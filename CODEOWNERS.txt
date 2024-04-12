@@ -1,0 +1,7 @@
+##############################################################
+#
+# List of approvers/reviewers for Connectmate Next.js Frontend 
+#
+##############################################################
+#
+* @Aram32mm @AntonioLaurance @abeejita @a01026512

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   return (
-    <nav>
+    <header>
       <ul>
         Navbar
         <li>
@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
         </li>
         {/* Add more navigation links as needed */}
       </ul>
-    </nav>
+    </header>
   );
 };
 

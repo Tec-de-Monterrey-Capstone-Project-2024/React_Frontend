@@ -6,6 +6,8 @@ import Layout from './components/Layouts/Layout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 
+import './assets/styles/App.css';
+
 const App: React.FC = () => {
   return (
     <Router>

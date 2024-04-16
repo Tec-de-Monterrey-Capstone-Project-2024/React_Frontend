@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+const Sidebar: React.FC = () => {
   return (
     <nav>
       <ul>
-        Navbar
+        Side bar
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -18,4 +18,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default Sidebar;

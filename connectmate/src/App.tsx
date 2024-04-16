@@ -13,6 +13,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<LoginPage />} />
+          <Route path="/queues" element={<LoginPage />} />
+          <Route path="/dashboard" element={<LoginPage />} />
+          <Route path="/auth" element={<LoginPage />} />
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

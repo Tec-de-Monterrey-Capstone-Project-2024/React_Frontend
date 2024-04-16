@@ -5,12 +5,21 @@ const Sidebar: React.FC = () => {
   return (
     <nav>
       <ul>
-        Side bar
+        Sidebar
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
           <Link to="/auth">Auth</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/queues">Queues</Link>
+        </li>
+        <li>
+          <Link to="/agents">Agents</Link>
         </li>
         {/* Add more navigation links as needed */}
       </ul>

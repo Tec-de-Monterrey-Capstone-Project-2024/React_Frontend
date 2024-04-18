@@ -1,7 +1,8 @@
 ##############################################################
 #
-# List of approvers/reviewers for Connectmate Next.js Frontend 
+# List of approvers/reviewers for Connectmate React Frontend 
 #
 ##############################################################
 #
-* @Aram32mm @AntonioLaurance @abeejita @a01026512
+* @Aram32mm @AntonioLaurance @abeejita @a01026512 @MoyBadillo117
+

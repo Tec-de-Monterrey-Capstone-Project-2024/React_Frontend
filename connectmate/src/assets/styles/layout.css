@@ -8,7 +8,7 @@
 .layout .panel main { height: auto; border: 1px solid green; flex: 1 0 auto; }
 
 
-.content-card { border-radius: 1rem; background: #E5E5E5; margin: 1rem; padding: 1rem; position: relative; }
+.content-card { border-radius: 1rem; background: #E5E5E5; margin: 1rem; padding: 1rem; position: relative; height: calc(100% - 2rem); }
 
 
 /* login background */

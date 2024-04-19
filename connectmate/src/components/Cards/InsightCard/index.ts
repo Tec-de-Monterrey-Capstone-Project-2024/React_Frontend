@@ -1,0 +1,1 @@
+import InsightCard from './InsightCard';

@@ -1,34 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import img from '../../../assets/img/Logo-de-Amazon.webp';
+
+import { ROUTES } from '../../../ROUTES';
+
+import img from '../../../assets/img/logo.png';
 
 
 const Sidebar: React.FC = () => {
   return (
     <nav>
-      <img src={img} alt="" />
-      <ul>
-        Sidebar
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/auth">Auth</Link>
-        </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/queues">Queues</Link>
-        </li>
-        <li>
-          <Link to="/agents">Agents</Link>
-        </li>
-        <li>
-          <Link to="/account">Account</Link>
-        </li>
-        {/* Add more navigation links as needed */}
-      </ul>
+      <div className='nav-container container'>
+        <div className='content'>
+          <div className='img'>
+            <Link to={ROUTES.HOME}>
+              <img src={img} alt="Connectmate" />
+            </Link>
+          </div>
+          <ul>
+            <li>
+              <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+            </li>
+            <li>
+              <Link to={ROUTES.QUEUES}>Queues</Link>
+            </li>
+            <li>
+              <Link to={ROUTES.AGENTS}>Agents</Link>
+            </li>
+            <li>
+              <Link to={ROUTES.ALERTS}>Alerts</Link>
+            </li>
+            <li>
+              <Link to={ROUTES.RECOMMENDATIONS}>Recommendations</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
   );
 };

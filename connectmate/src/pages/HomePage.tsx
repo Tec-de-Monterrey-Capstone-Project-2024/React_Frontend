@@ -6,10 +6,7 @@ import { ROUTES } from '../ROUTES';
 const HomePage: React.FC = () => {
   return <>
     <div>
-      <h1>Welcome to the Home Page</h1>
-      <Link to={ROUTES.AUTH}>auth</Link>
-      <br />
-      <Link to={ROUTES.DASHBOARD}>Dashb</Link>
+      Home
     </div>
   </>;
 };

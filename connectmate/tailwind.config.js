@@ -7,11 +7,10 @@ module.exports = {
     extend: {},
     colors: {
       blue: "#022539",
-      white: "#ffffff"
+      white: "#ffffff",
+      green: "#9DC53E"
     },
-    margin: {
-      half: '50%'
-    }
+
   },
   plugins: [],
 }

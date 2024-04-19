@@ -9,8 +9,9 @@ import '../../assets/styles/layout.css';
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     const location = useLocation();
     const isAuthPage = location.pathname === '/auth';
+    const isForgotPage = location.pathname === '/auth/forgot';
     
-    if (isAuthPage) {
+    if (isAuthPage || isForgotPage) {
         return (
             <>
                 <main>{children}</main>

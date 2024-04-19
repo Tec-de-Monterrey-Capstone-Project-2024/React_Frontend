@@ -6,6 +6,7 @@ import Layout from './components/Layouts/Layout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
+import ForgotPage from './pages/ForgotPage';
 
 import './assets/styles/App.css';
 
@@ -16,9 +17,12 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<LoginPage />} />
+          <Route path="/auth/forgot" element={<ForgotPage />} />
           <Route path="/queues" element={<div>Queues</div>} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/agents" element={<div>Agents</div>} />
+
+
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

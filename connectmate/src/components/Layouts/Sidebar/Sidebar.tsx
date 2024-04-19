@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import img from '../../../assets/img/Logo-de-Amazon.webp';
+
 
 const Sidebar: React.FC = () => {
   return (
     <nav>
+      <img src={img} alt="" />
       <ul>
         Sidebar
         <li>

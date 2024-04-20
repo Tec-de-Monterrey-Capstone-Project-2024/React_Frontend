@@ -1,20 +1,21 @@
 import React from 'react';
-import './Button.css'; // Importa el archivo de estilos CSS
+import './Button.css';
 
-export interface ButtonProps {
-  index?: number; // Hacer el índice opcional
-  text?: string; // Prop para personalizar el texto del botón
-  styles?: string; // Prop para estilos adicionales
-  onClick?: () => void; // Función de devolución de llamada para eventos de clic
-}
+import { ButtonProps } from './ButtonProps';
 
-const Button: React.FC<ButtonProps> = ({ index = 1, text = 'Button', styles = '', onClick }) => {
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  variant,
+  size,
+  index,
+}) => {
   return (
     <button
-      className={`custom-button ${styles}`} // Agrega la clase de estilos personalizados junto con las clases dinámicas
+      className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${variant} ${size}`}
       onClick={onClick}
     >
-      {text} {index}
+      {children}
     </button>
   );
 };

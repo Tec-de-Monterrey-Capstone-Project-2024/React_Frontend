@@ -1,18 +1,22 @@
 import React from 'react';
-import { StoryFn, Meta } from '@storybook/react';
-
+import { Meta, StoryFn } from '@storybook/react';
 import Button from './Button';
-import { ButtonProps } from './Button';
 
-export default {
-  title: 'Components/Button',
-  component: Button,
-} as Meta;
-
-const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
-
+const Template: StoryFn<any> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
+  variant: 'primary',
+  size: 'large',
+  index: 0,
+  children: 'Primary Button',
+  onClick: () => console.log('Button clicked'),
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  variant: 'secondary',
+  size: 'small',
   index: 1,
-  styles: '',
+  children: 'Secondary Button',
+  onClick: () => console.log('Button clicked'),
 };

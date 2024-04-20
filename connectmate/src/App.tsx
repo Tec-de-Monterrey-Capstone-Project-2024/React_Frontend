@@ -7,8 +7,6 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import ForgotPage from './pages/ForgotPage';
-
-import './assets/styles/App.css';
 import AccountPage from './pages/AccountPage';
 
 const App: React.FC = () => {

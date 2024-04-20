@@ -1,12 +1,12 @@
 import React from 'react';
-import LoginForm from '../components/Forms/LoginForm';
+import ForgotPassword from '../components/Forms/ForgotPassword';
 
-const LoginPage = () => {
+const ForgotPage = () => {
   return <>
 
       <div >
         <div className='grid grid-rows-2 h-screen w-screen'>
-          <LoginForm />
+          <ForgotPassword />
           <div className='grid-span-1'>
             <img className='h-full w-full' src='/loginFoto.png' alt='login page image'/>
           </div>
@@ -19,4 +19,4 @@ const LoginPage = () => {
   </>;
 };
 
-export default LoginPage;
+export default ForgotPage;

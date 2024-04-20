@@ -1,7 +1,7 @@
 import React from 'react';
 import './Button.css'; // Importa el archivo de estilos CSS
 
-interface ButtonProps {
+export interface ButtonProps {
   index?: number; // Hacer el índice opcional
   text?: string; // Prop para personalizar el texto del botón
   styles?: string; // Prop para estilos adicionales

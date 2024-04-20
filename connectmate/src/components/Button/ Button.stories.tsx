@@ -1,15 +1,15 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 
-import Button from '../Button';
-import { ButtonProps } from '@mui/material/Button/Button';
+import Button from './Button';
+import { ButtonProps } from './Button';
 
 export default {
   title: 'Components/Button',
   component: Button,
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

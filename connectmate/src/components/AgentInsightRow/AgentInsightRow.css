@@ -1,0 +1,15 @@
+.row-box {
+    @apply flex px-4 py-2 rounded-lg justify-between space-x-4;
+}
+
+.row-text {
+    @apply text-black font-bold font-montserrat;
+}
+
+.gray-bg {
+    @apply bg-gray-300;
+}
+
+.white-bg {
+    @apply bg-white;
+}

@@ -1,11 +1,9 @@
-import React from 'react';
 import { addDecorator } from '@storybook/react';
-import { withThemes } from 'storybook-addon-themes';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from '../src/styles/themes';
+import { theme } from '../src/styles/theme';
 
-const ThemedWrapper = ({ children }) => (
-  <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
-);
-
-addDecorator(withThemes(ThemedWrapper));
+addDecorator((Story) => (
+  <ThemeProvider theme={theme}>
+    <Story />
+  </ThemeProvider>
+));

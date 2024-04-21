@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
     return(
         <div>
             <p>Home</p>
-            <Select placeholder="Filters" color="grey"></Select>
+            <Select color="gray"></Select>
         </div>
     
   );

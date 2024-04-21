@@ -4,15 +4,17 @@ import React from 'react';
 import './Select.css';
 
 const Select: React.FC<ISelect> = ({
-    placeholder,
-    color
+    placeholder = "",
+    color,
+    values
 }) => {
     const selectClass = classNames({
-
+        "drop-box h-9": true,
+        "bg-gray-500": color === "gray",
     });
 
     return (
-        <select>
+        <select className={selectClass}>
             <option value="" disabled selected>{placeholder}</option>
         </select>
     );

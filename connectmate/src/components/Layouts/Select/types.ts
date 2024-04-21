@@ -1,5 +1,5 @@
 export interface ISelect {
-    placeholder: string;
-    color: 'green' | 'grey';
-    // values: Array<string>;
+    placeholder?: string;
+    color: 'green' | 'gray';
+    values?: string[];
 }

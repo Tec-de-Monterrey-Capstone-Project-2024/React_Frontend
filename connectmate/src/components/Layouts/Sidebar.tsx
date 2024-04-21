@@ -25,27 +25,6 @@ const Sidebar: React.FC = () => {
         <li>
           <Link to="/account">Account</Link>
         </li>
-        <li>
-          <Select placeholder="Filters" color="green"></Select>
-        </li> 
-        <li>
-          Salmon
-        </li>
-        <li>
-          <Select color="gray"></Select>
-        </li>
-        <li>
-          Salmon
-        </li>
-        <li>
-          <Select color="gray"></Select>
-        </li>
-        <li>
-          Salmon
-        </li>
-        <li>
-          <Select color="gray"></Select>
-        </li>
         {/* Add more navigation links as needed */}
       </ul>
     </nav>

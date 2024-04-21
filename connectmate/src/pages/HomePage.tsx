@@ -8,7 +8,14 @@ const HomePage: React.FC = () => {
     return(
         <div>
             <p>Home</p>
-            <Select color="gray"></Select>
+            <div className='flex'>
+                <div className='flex-initial w-64 m-36'>
+                    <Select placeholder="Filters" color="green"></Select>
+                </div>
+                <div className='flex-initial'>
+                    <Select color="gray"></Select>
+                </div>
+            </div>
         </div>
   );
 };

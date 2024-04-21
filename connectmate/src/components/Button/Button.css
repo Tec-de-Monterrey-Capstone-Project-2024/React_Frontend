@@ -3,5 +3,5 @@
 }
 
 .blue-bg {
-    @apply blue;
+    @apply bg-sky-950;
 }

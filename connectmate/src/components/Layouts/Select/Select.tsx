@@ -5,12 +5,14 @@ import './Select.css';
 
 const Select: React.FC<ISelect> = ({
     placeholder = "",
+    values = [],
     color,
-    values
 }) => {
     const selectClass = classNames({
-        "drop-box h-9": true,
-        "bg-gray-500": color === "gray",
+        "drop-box": true,
+        "green-drop-box": color === "green",
+        "gray-drop-box h-9": color === "gray",
+       
     });
 
     return (

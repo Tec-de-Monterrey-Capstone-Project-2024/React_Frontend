@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Select from './Select/Select';
 
 const Sidebar: React.FC = () => {
   return (
@@ -23,6 +24,27 @@ const Sidebar: React.FC = () => {
         </li>
         <li>
           <Link to="/account">Account</Link>
+        </li>
+        <li>
+          <Select placeholder="Filters" color="green"></Select>
+        </li> 
+        <li>
+          Salmon
+        </li>
+        <li>
+          <Select color="gray"></Select>
+        </li>
+        <li>
+          Salmon
+        </li>
+        <li>
+          <Select color="gray"></Select>
+        </li>
+        <li>
+          Salmon
+        </li>
+        <li>
+          <Select color="gray"></Select>
         </li>
         {/* Add more navigation links as needed */}
       </ul>

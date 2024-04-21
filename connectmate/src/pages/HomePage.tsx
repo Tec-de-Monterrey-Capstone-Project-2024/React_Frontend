@@ -10,7 +10,6 @@ const HomePage: React.FC = () => {
             <p>Home</p>
             <Select color="gray"></Select>
         </div>
-    
   );
 };
 

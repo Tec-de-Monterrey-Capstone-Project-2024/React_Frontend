@@ -4,10 +4,8 @@ import { ROUTES } from '../ROUTES';
 
 import MyAccount from '../components/DataDisplay/MyAccount';
 
-import ContentCard from '../components/Cards/ContentCard';
+import { ContentCard } from '../components/Cards/ContentCard';
 
-
-//import { MetricCard } from '../components/MetricCard';
 
 const AccountPage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();

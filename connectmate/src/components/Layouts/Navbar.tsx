@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../ROUTES';
+import Select from '../Widgets/Select/Select';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -52,9 +53,7 @@ const Navbar: React.FC = () => {
             <button title='bell' type='button' className='bell'>
               bell
             </button>
-            <button title='filter' type='button' className='filter'>
-              filter
-            </button>
+            <Select placeholder="Filters" color="green"></Select>
             <Link to={ROUTES.ACCOUNT} className='account'>
               account
             </Link>

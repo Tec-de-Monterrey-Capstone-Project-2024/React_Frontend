@@ -1,5 +1,5 @@
 .topPart {
-    @apply  flex space-x-9 items-center px-4
+    @apply  flex space-x-12 items-center px-4
 }
 
 .downPart {
@@ -11,7 +11,7 @@
 }
 
 .card {
-    @apply bg-white rounded-xl py-4
+    @apply bg-gray-400 border-black  rounded-xl py-2 px-16;
 }
 
 .line {

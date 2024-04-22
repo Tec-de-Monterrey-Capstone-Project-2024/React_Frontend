@@ -33,5 +33,5 @@ export const MetricCardExample = Template.bind({});
 MetricCardExample.args = {
     title: 'Title',
     subtitle: 'subtitle',
-    metricUnit: 'n',
+    metricUnit: 0,
 };

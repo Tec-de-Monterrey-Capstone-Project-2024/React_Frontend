@@ -24,6 +24,9 @@ const Sidebar: React.FC = () => {
         <li>
           <Link to="/account">Account</Link>
         </li>
+        <li>
+          <Link to="/alerts">Alerts</Link>
+        </li>
         {/* Add more navigation links as needed */}
       </ul>
     </nav>

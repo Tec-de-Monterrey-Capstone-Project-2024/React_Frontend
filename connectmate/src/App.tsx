@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import AccountPage from './pages/AccountPage';
+import AlertsPage from './pages/AlertsPage';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/agents" element={<div>Agents</div>} />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/alerts" element={<AlertsPage />} />
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

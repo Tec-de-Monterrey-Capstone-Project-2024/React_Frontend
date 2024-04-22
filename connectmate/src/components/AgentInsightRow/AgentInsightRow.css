@@ -7,7 +7,7 @@
 }
 
 .gray-bg {
-    @apply bg-gray-300;
+    @apply bg-gray-200;
 }
 
 .white-bg {

@@ -1,3 +1,6 @@
+# Use base image.
+FROM node:18-alpine
+
 # Create a directory in the container to store the app.
 RUN mkdir app
 

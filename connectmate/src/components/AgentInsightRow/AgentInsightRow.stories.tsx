@@ -6,7 +6,7 @@ const meta = {
     title: 'Components/AgentInsightRow',
     component: AgentInsightRow,
     parameters: {
-        layout: 'centered',
+        layout: 'fullscreen',
         docs: {
             story: {
                 inline: true,
@@ -19,8 +19,7 @@ const meta = {
             options: ['gray', 'white'],
             control: { type: 'select' },
         },
-        title: { control: 'text' },
-        content: { control: 'text' },
+        title: { control: 'text' }
     },
     tags: ["autodocs"]
 } as Meta;

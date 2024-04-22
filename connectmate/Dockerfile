@@ -6,12 +6,16 @@ WORKDIR /app
 
 # Copy the public directory to the app directory.
 COPY public /app/public
+
 # Copy the src directory to the app directory.
 COPY src /app/src
+
 # Copy the package.json file to the app directory.
 COPY package.json /app/package.json
+
 # Copy the tailwind.config.js file to the app directory.
 COPY tailwind.config.js /app/tailwind.config.js
+
 # Copy the tsconfig.json file to the app directory.
 COPY tsconfig.json /app/tsconfig.json
 

@@ -5,7 +5,6 @@ interface InsightProps {
     title: string;
     message: string;
 }
-
 const Insight: React.FC<InsightProps> = ({ title, message }: InsightProps) => {
     return (
         <div className="insight-container">

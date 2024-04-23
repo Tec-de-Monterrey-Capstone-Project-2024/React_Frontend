@@ -1,0 +1,7 @@
+.button-box {
+    @apply text-white px-2 rounded-md font-bold font-montserrat;
+}
+
+.blue-bg {
+    @apply bg-sky-950;
+}

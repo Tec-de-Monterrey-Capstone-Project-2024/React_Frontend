@@ -1,6 +1,7 @@
 import { IMetricCard } from "./types";
 
 import './styles.css'
+import React from "react";
 
 const MetricCard: React.FC<IMetricCard> = ({ title, subtitle, metricUnit }) => {
     return (

@@ -9,9 +9,9 @@ const Select: React.FC<ISelect> = ({
     color,
 }) => {
     const selectClass = classNames({
-        "drop-box": true,
-        "green-drop-box": color === "green",
-        "gray-drop-box h-9": color === "gray",
+        "rounded-xl text-xs font-semibold pl-3": true,
+        "bg-lime-600 h-8 w-40": color === "green",
+        "bg-slate-300 h-9 w-96": color === "gray",
        
     });
 

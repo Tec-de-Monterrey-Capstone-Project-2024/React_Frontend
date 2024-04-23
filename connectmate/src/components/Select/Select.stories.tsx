@@ -10,7 +10,7 @@ const meta = {
         layout: 'fullscreen',
         docs: {
             story: {
-                inline: true,
+                inline: false,
                 iframeHeight: 400,
             }
         },
@@ -32,5 +32,5 @@ const Template: StoryFn<ISelect> = (args) => <Select {...args} />;
 export const Default = Template.bind({});
 Default.args = {
     placeholder: 'Filters',
-    color: 'gray',
+    color: 'green',
 };

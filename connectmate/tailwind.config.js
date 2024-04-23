@@ -4,19 +4,16 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-
-// tailwind.config.js
-module.exports = {
-  theme: {
     extend: {
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+      },
       colors: {
-        // Define custom colors if needed
+        blue: "#022539",
+        white: "#ffffff",
+        green: "#9DC53E"
       },
     },
+    plugins: [],
   },
-  //...
 }

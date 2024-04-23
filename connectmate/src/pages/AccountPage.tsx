@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ROUTES } from '../ROUTES';
 
+import MyAccount from '../components/DataDisplay/MyAccount';
+
 import ContentCard from '../components/Cards/ContentCard';
+
+
 //import { MetricCard } from '../components/MetricCard';
 
 const AccountPage: React.FC = () => {
@@ -40,12 +44,12 @@ const AccountPage: React.FC = () => {
                                             Preferences
                                         </button>
                                     </li>
-                                    {/* <li>
-                                        <button onClick={logout}>
-                                            {t("logout")}
-                                            <img src={logoutIcon} alt="Logout icon" />
+                                    <li>
+                                        <button>
+                                            Logout
+                                            {/* <img src={logoutIcon} alt="Logout icon" /> */}
                                         </button>
-                                    </li> */}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -55,15 +59,11 @@ const AccountPage: React.FC = () => {
                                     <div className="th-container">
                                         <div className="title">
                                             <h1>My account</h1>
-                                            {/* <h2>Please complete your register</h2> */}
                                         </div>
-                                        {/* <div className="logo">
-                                            <img src={logo} alt="Logo" />
-                                        </div> */}
                                     </div>
                                     <hr />
                                 </div>
-                                {/* <MyAccount /> */}
+                                <MyAccount />
                             </> : tab === 2 ? <>
                                 <div className="tab-header">
                                     <div className="th-container">

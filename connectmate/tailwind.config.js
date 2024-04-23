@@ -4,8 +4,16 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+      },
+      colors: {
+        blue: "#022539",
+        white: "#ffffff",
+        green: "#9DC53E"
+      },
+    },
+    plugins: [],
   },
-  plugins: [],
 }
-

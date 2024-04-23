@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../ROUTES';
+import { InsightCard } from '../components/Cards/InsightCard';
 //import { MetricCard } from '../components/MetricCard';
 
 const HomePage: React.FC = () => {
@@ -10,6 +11,7 @@ const HomePage: React.FC = () => {
       <Link to={ROUTES.AUTH}>auth</Link>
       <br />
       <Link to={ROUTES.DASHBOARD}>Dashb</Link>
+      <InsightCard title='Reassignments' description= 'Assign more agents to cancellations' color='white' borderColor='green' showBoxBorder={true}></InsightCard>
     </div>
   </>;
 };

@@ -1,0 +1,36 @@
+.box-container{
+    @apply rounded-lg px-8 py-8;
+    @apply max-w-96;
+    @apply max-h-60;
+}
+.gray-box{
+    @apply bg-gray-600;
+}
+
+.white-box{
+    @apply bg-white;
+}
+
+.box-border{
+    @apply border-l-8;
+}
+
+.green-border{
+    @apply border-l-green-700;
+}
+
+.red-border{
+    @apply border-l-red-500;
+}
+
+.yellow-border{
+    @apply border-l-yellow-300;
+}
+
+.header{
+    @apply flex-none text-wrap text-black font-bold text-left;
+}
+
+.description{
+    @apply  text-black text-left;
+}

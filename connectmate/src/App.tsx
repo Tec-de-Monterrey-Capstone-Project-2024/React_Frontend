@@ -6,6 +6,12 @@ import Layout from './components/Layouts/Layout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
+<<<<<<< Updated upstream
+=======
+
+import AccountPage from './pages/AccountPage';
+import AlertsPage from './pages/AlertsPage';
+>>>>>>> Stashed changes
 
 const App: React.FC = () => {
   return (

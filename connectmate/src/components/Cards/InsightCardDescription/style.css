@@ -2,7 +2,7 @@
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #f8f8f8; /* Agregar un fondo grisáceo suave */
+    background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -15,5 +15,5 @@
 .insight-container p {
     font-size: 16px;
     line-height: 1.5;
-    color: #555; /* Cambiar el color del mensaje a gris */
+    color: #555;
 }

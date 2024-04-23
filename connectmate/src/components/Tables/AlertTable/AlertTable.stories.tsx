@@ -1,11 +1,9 @@
 import { Meta, StoryFn } from "@storybook/react";
-import Sidebar from "./Sidebar";
-import React from "react";
-import {BrowserRouter} from "react-router-dom";
+import AlertsTable from './AlertsTable';
 
 const meta = {
-    title: 'Components/Layouts/Sidebar',
-    component: Sidebar,
+    title: 'Components/AlertsTable',
+    component: AlertsTable,
     parameters: {
         layout: 'centered',
         docs: {
@@ -15,14 +13,12 @@ const meta = {
             }
         },
     },
-    argTypes: {
-    },
     tags: ["autodocs"]
 } as Meta;
 
 export default meta;
 
-const Template: StoryFn = (args) => <BrowserRouter><Sidebar {...args} /></BrowserRouter>;
+const Template: StoryFn = () => <AlertsTable />;
 
 export const Default = Template.bind({});
-Default.args = {};
+

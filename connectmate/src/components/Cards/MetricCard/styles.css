@@ -15,5 +15,5 @@
 }
 
 .line {
-    @apply border-b border-black my-2 mx-1
+    @apply border-b my-2 mx-1
 }

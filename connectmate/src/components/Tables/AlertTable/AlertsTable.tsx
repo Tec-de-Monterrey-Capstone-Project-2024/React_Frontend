@@ -1,7 +1,7 @@
 import React from 'react';
 import alertData from './alert-example.json'; // Ensure the path to your JSON file is correct
-import { PerformanceTag, PerformanceCategory } from '../Tags/PerformanceCategoryTag';
-import { ScopeTag, AlertScope } from '../Tags/AlertScopeTag';
+import { PerformanceTag, PerformanceCategory } from '../../Tags/PerformanceCategoryTag';
+import { ScopeTag, AlertScope } from '../../Tags/AlertScopeTag';
 
 function AlertsTable() {
   return (

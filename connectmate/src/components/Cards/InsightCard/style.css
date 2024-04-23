@@ -16,7 +16,7 @@
 }
 
 .green-border{
-    @apply border-l-green-700;
+    @apply border-l-green;
 }
 
 .red-border{

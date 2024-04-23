@@ -12,6 +12,7 @@ const meta = {
             story: {
                 inline: false,
                 iframeHeight: 400,
+
             }
         },
     },
@@ -29,8 +30,13 @@ export default meta;
 
 const Template: StoryFn<ISelect> = (args) => <Select {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Filters = Template.bind({});
+Filters.args = {
     placeholder: 'Filters',
     color: 'green',
 };
+
+export const SelectorValues = Template.bind({});
+SelectorValues.args = {
+    color: 'gray',
+}

@@ -24,7 +24,8 @@ const meta = {
             options: ['white',  'gray'],
             control: { type: 'select'},
         },
-        title: { control: 'text'}
+        title: { control: 'text'},
+        description: { control: 'text'}
     },
     tags: ["autodocs"]
 } as Meta;
@@ -36,7 +37,7 @@ const Template: StoryFn<IInsightCard> = (args) => <InsightCard {...args} />;
 export const InsightCardExample = Template.bind({});
 InsightCardExample.args = {
     title: 'Reassignment',
-    description: 'Assign more agents to Reinbursements Queue',
+    description: 'Assign more agents to Reimbursements Queue',
     color: 'gray',
     borderColor: "green",
     showBoxBorder: true

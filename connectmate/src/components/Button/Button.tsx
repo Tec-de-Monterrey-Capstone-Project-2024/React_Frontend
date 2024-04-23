@@ -1,26 +1,31 @@
+// Import React from the 'react' package
 import React from 'react';
-import './Button.css';
-// Importing the ButtonProps interface from the types file
-import ButtonProps from './types';
 
-// Defining the Button component with React.FC type and destructuring the props
-export const Button: React.FC<ButtonProps> = ({
-  children, // The content of the button
-  onClick, // The function to be called when the button is clicked
-  variant, // The variant of the button
-  size, // The size of the button
-  index, // The index of the button
-}) => {
-  // Returning a button element with the specified classes, onClick function, and children
+// Define the props interface for the Button component
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  label: string; // Label text for the button
+  variant: 'ignore' | 'done' | 'solve'; // Variant prop to determine the styling of the button
+}
+
+// Define the Button component using function component syntax with ButtonProps as its type
+export const Button: React.FC<ButtonProps> = ({ label, variant, ...props }) => {
+  // Base styles applied to all variants of the button
+  const baseStyles = 'px-4 py-2 rounded font-semibold text-white focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out';
+  
+  // Variant-specific styles to modify appearance based on the variant prop
+  const variantStyles = {
+    ignore: 'bg-gray-400 hover:bg-gray-500', // Styles for 'ignore' variant
+    done: 'bg-green-500 hover:bg-green-600', // Styles for 'done' variant
+    solve: 'bg-blue-500 hover:bg-blue-600',  // Styles for 'solve' variant
+  };
+
+  // Render the button with combined base and variant-specific styles, and spread the rest of the props
   return (
-    <button
-      className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${variant} ${size}`}
-      onClick={onClick}
-    >
-      {children}
+    <button className={`${baseStyles} ${variantStyles[variant]}`} {...props}>
+      {label} // Display the label text inside the button
     </button>
   );
 };
 
-// Exporting the Button component as the default export
+// Export the Button component as the default export of this module
 export default Button;

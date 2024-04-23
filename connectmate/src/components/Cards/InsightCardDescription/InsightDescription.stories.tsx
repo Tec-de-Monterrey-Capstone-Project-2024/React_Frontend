@@ -9,6 +9,8 @@ export default {
 
 const Template: ComponentStory<typeof InsightDescription> = (args) => <InsightDescription {...args} />;
 
+
+/*talcual del figma */
 export const Default = Template.bind({});
 Default.args = {
     title: 'Reconfigure virtual floor',

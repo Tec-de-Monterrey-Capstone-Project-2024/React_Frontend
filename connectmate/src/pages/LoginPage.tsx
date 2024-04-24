@@ -1,12 +1,11 @@
 import React from 'react';
-import LoginForm from '../components/Forms/LoginForm';
+import {LoginForgot} from './../components/Forms/LoginForgot';
 
 const LoginPage = () => {
   return <>
-
       <div >
         <div className='grid grid-rows-2 h-screen w-screen'>
-          <LoginForm />
+          <LoginForgot/>
           <div className='grid-span-1'>
             <img className='h-full w-full' src='/loginFoto.png' alt='login page image'/>
           </div>
@@ -16,6 +15,7 @@ const LoginPage = () => {
           </div> 
         </div>
       </div>
+
   </>;
 };
 

@@ -14,6 +14,11 @@ module.exports = {
         greenConnect: "#9DC53E",
       },
     },
-    plugins: [],
+    plugins: { 
+        'postcss-import': {}, 
+        'postcss-nesting': {}, 
+        tailwindcss: {}, 
+        autoprefixer: {}, 
+    }, 
   },
 }

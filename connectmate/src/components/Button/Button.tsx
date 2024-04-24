@@ -1,31 +1,46 @@
-// Import React from the 'react' package
+// Button.tsx
+
 import React from 'react';
+import { CustomButtonProps, getVariantStyles } from './types'; // Adjust the import path as necessary
 
-// Define the props interface for the Button component
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string; // Label text for the button
-  variant: 'ignore' | 'done' | 'solve'; // Variant prop to determine the styling of the button
-}
+export const Button: React.FC<CustomButtonProps> = ({
+  label,
+  variant = 'default', // default variant if none is provided
+  size = 'medium',
+  rounded = false,
+  action = 'none',
+  onClick,
+  ...props
+}) => {
+  // Get styles for the specified variant
+  const variantStyles = getVariantStyles(variant);
 
-// Define the Button component using function component syntax with ButtonProps as its type
-export const Button: React.FC<ButtonProps> = ({ label, variant, ...props }) => {
-  // Base styles applied to all variants of the button
-  const baseStyles = 'px-4 py-2 rounded font-semibold text-white focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out';
-  
-  // Variant-specific styles to modify appearance based on the variant prop
-  const variantStyles = {
-    ignore: 'bg-gray-400 hover:bg-gray-500', // Styles for 'ignore' variant
-    done: 'bg-green-500 hover:bg-green-600', // Styles for 'done' variant
-    solve: 'bg-blue-500 hover:bg-blue-600',  // Styles for 'solve' variant
+  // Combine the styles
+  const buttonClasses = `
+    ${variantStyles.backgroundColor} 
+    ${variantStyles.textColor} 
+    ${rounded ? 'rounded-full' : ''} 
+    ... // other styles based on size, etc.
+  `;
+
+  // Handle the onClick action
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    // Handle modify/delete actions if necessary
+    if (action === 'modify') {
+      // perform modify action
+    } else if (action === 'delete') {
+      // perform delete action
+    }
   };
 
-  // Render the button with combined base and variant-specific styles, and spread the rest of the props
   return (
-    <button className={`${baseStyles} ${variantStyles[variant]}`} {...props}>
-      {label} // Display the label text inside the button
+    <button className={buttonClasses} onClick={handleClick} {...props}>
+      {label}
     </button>
   );
 };
 
-// Export the Button component as the default export of this module
 export default Button;

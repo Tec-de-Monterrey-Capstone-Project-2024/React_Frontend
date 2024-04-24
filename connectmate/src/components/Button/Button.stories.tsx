@@ -1,36 +1,47 @@
-// Import React from the 'react' package
+// Button.stories.tsx
+
 import React from 'react';
-// Import necessary Storybook components for configuration
-import { Meta, StoryObj } from '@storybook/react';
-// Import the Button component and its props type from the local Button file
-import Button, { ButtonProps } from './Button';
+import { Meta, StoryFn } from '@storybook/react';
+import Button from './Button';
+import { CustomButtonProps } from './types'; // Adjust the import path as necessary
 
-// Default export to define Storybook metadata for the Button component
 export default {
-  title: 'Components/Button', // Title of the component in the Storybook navigator
-  component: Button, // Specifies the actual component being documented
-} as Meta<typeof Button>; // Casts the export to ensure correct type with the component
-
-// Define a Story object for the 'Ignore' state of the Button component
-export const Ignore: StoryObj<ButtonProps> = {
-  args: { // Arguments passed to the Button component
-    label: 'Ignore', // Label prop for the Button
-    variant: 'ignore', // Variant prop to customize the Button styling
+  title: 'Components/Button',
+  component: Button,
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['ignore', 'done', 'solve'], // Add your variants here
+    },
+    // You can define argTypes for other properties as needed
   },
+} as Meta<CustomButtonProps>;
+
+// Template for creating stories using the correct Story type
+const Template: StoryFn<CustomButtonProps> = (args) => <Button {...args} />;
+
+// Story for the 'Ignore' variant of the Button
+export const Ignore = Template.bind({});
+Ignore.args = {
+  label: 'Ignore',
+  variant: 'ignore',
+  // Add other default args for this story if necessary
 };
 
-// Define a Story object for the 'Done' state of the Button component
-export const Done: StoryObj<ButtonProps> = {
-  args: {
-    label: 'Done', // Label prop for the Button
-    variant: 'done', // Variant prop to customize the Button styling
-  },
+// Story for the 'Done' variant of the Button
+export const Done = Template.bind({});
+Done.args = {
+  label: 'Done',
+  variant: 'done',
+  // Add other default args for this story if necessary
 };
 
-// Define a Story object for the 'Solve' state of the Button component
-export const Solve: StoryObj<ButtonProps> = {
-  args: {
-    label: 'Solve', // Label prop for the Button
-    variant: 'solve', // Variant prop to customize the Button styling
-  },
+// Story for the 'Solve' variant of the Button
+export const Solve = Template.bind({});
+Solve.args = {
+  label: 'Solve',
+  variant: 'solve',
+  // Add other default args for this story if necessary
 };
+
+// Continue to add more stories for each variant you support

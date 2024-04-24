@@ -1,7 +1,6 @@
 import { ISelect } from './types';
 import classNames from 'classnames';
 import React from 'react';
-import './Select.css';
 
 const Select: React.FC<ISelect> = ({
     placeholder = "",

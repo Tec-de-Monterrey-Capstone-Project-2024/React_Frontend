@@ -10,6 +10,8 @@
     "@types/node": "^16.18.96",
     "@types/react": "^18.2.78",
     "@types/react-dom": "^18.2.25",
+
+
     "autoprefixer": "^10.4.19",
     "classnames": "^2.5.1",
     "postcss": "^8.4.38",

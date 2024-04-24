@@ -3,7 +3,7 @@ import MetricCard from "./MetricCard";
 import { IMetricCard } from "./types";
 
 const meta = {
-    title: 'Components/MetricCard',
+    title: 'Components/Cards/MetricCard',
     component: MetricCard,
     parameters: {
         layout: 'centered',

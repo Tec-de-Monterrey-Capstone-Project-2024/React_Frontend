@@ -1,10 +1,8 @@
-export interface IButton {
-    /**
-     * The title of the row
-     */
-    title: string;
-    /**
-     * The color of the row
-     */
-    color: string;
+
+export interface ButtonProps {
+  children: React.ReactNode;
+  onClick: () => void;
+  className?: string;
+  type?: 'button' | 'submit' | 'reset';
+  variant: 'light' | 'dark';
 }

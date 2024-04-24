@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './styles.css';
 import { ButtonProps } from './types';
 
@@ -19,3 +20,4 @@ const Button: React.FC<ButtonProps> = ({
 );
 
 export default Button;
+

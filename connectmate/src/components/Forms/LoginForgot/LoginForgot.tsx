@@ -1,9 +1,6 @@
-
-
-import './styles.css';
 import React, { useState } from "react";
 
-
+import './styles.css';
 
 const LoginForgot: React.FC = () => {
     const [formData, setFormData] = useState({

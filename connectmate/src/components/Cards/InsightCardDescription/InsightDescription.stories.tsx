@@ -1,13 +1,13 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryFn } from "@storybook/react";
 import InsightDescription from './InsightDescription';
 
 export default {
     title: 'Components/InsightDescription',
     component: InsightDescription,
-} as ComponentMeta<typeof InsightDescription>;
+} as Meta<typeof InsightDescription>;
 
-const Template: ComponentStory<typeof InsightDescription> = (args) => <InsightDescription {...args} />;
+const Template: StoryFn<typeof InsightDescription> = (args) => <InsightDescription {...args} />;
 
 
 /*talcual del figma */

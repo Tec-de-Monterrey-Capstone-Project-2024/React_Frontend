@@ -2,7 +2,6 @@ import React from 'react';
 import { IInsightCard } from './types';
 import './style.css'
 import classNames from 'classnames';
-import Button from '../../Button/Button';
 const InsightCard: React.FC<IInsightCard> = ({ title, description, color, borderColor, showBoxBorder }) => {
 
     const card = classNames({
@@ -24,7 +23,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description, color, border
                 {description}
             </div>
             <div className="button">
-                <Button title="Show more" color='blue'></Button>
+                <button>Show more</button>
             </div>
         </div>
     );

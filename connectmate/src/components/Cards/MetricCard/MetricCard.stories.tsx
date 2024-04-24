@@ -4,7 +4,7 @@ import { IMetricCard } from "./types";
 import React from 'react';
 
 const meta = {
-    title: 'Components/MetricCard',
+    title: 'Components/Cards/MetricCard',
     component: MetricCard,
     parameters: {
         layout: 'centered',
@@ -34,5 +34,5 @@ export const MetricCardExample = Template.bind({});
 MetricCardExample.args = {
     title: 'Title',
     subtitle: 'subtitle',
-    metricUnit: 'n',
+    metricUnit: 0,
 };

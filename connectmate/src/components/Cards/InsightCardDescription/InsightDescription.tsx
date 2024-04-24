@@ -5,11 +5,12 @@ interface InsightProps {
     title: string;
     message: string;
 }
-const Insight: React.FC<InsightProps> = ({ title, message }: InsightProps) => {
+
+const Insight: React.FunctionComponent<InsightProps> = ({ title, message }: InsightProps) => {
     return (
         <div className="insight-container">
             <h2>{title}</h2>
-            <p>{message}</p>
+            <span>{message}</span>
         </div>
     );
 };

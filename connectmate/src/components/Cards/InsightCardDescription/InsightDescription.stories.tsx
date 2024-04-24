@@ -1,11 +1,11 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Meta, StoryFn } from "@storybook/react";
 import InsightDescription from './InsightDescription';
 
 export default {
     title: 'Components/InsightDescription',
     component: InsightDescription,
-} as ComponentMeta<typeof InsightDescription>;
+} as Meta<typeof InsightDescription>;
 
 const Template: ComponentStory<typeof InsightDescription> = (args) => <InsightDescription {...args} />;
 
@@ -17,10 +17,7 @@ Default.args = {
     message: 'Not enough people on the Reimbursements Queue. Consider allocating more agents from the Receipts Queue to the Reimbursements queue.',
 };
 
-<<<<<<< Updated upstream
-=======
 /*
->>>>>>> Stashed changes
 export const NoTitle = Template.bind({});
 NoTitle.args = {
     title: ' ',
@@ -31,9 +28,5 @@ export const LongMessage = Template.bind({});
 LongMessage.args = {
     title: 'title',
     message: 'message',
-<<<<<<< Updated upstream
-};
-=======
 };
 */
->>>>>>> Stashed changes

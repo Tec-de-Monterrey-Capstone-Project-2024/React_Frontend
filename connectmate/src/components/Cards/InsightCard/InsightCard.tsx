@@ -24,7 +24,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description, color, border
                 {description}
             </div>
             <div className="button">
-                <Button title="Show more" color='blue'></Button>
+                <Button variant = "dark"></Button>
             </div>
         </div>
     );

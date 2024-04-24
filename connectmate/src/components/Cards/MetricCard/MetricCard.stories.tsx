@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import MetricCard from "./MetricCard";
 import { IMetricCard } from "./types";
+import React from 'react';
 
 const meta = {
     title: 'Components/Cards/MetricCard',
@@ -33,5 +34,5 @@ export const MetricCardExample = Template.bind({});
 MetricCardExample.args = {
     title: 'Title',
     subtitle: 'subtitle',
-    metricUnit: 'n',
+    metricUnit: 0,
 };

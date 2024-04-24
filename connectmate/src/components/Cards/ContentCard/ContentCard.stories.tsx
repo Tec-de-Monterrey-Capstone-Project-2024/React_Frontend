@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import ContentCard from "./ContentCard";
 import { IContentCard } from "./types";
+import React from 'react';
 
 const meta = {
     title: 'Components/Cards/ContentCard',

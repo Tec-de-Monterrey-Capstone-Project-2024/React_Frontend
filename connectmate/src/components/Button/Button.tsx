@@ -1,24 +1,22 @@
 import React from 'react';
-import './Button.css';
-import {IButton} from "./types";
-import classNames from "classnames";
+import './styles.css';
+import { ButtonProps } from './types';
 
-// TODO: Update all Button files when team's Button component is ready.
-const Button: React.FC<IButton> = ({
-                                         title,
-                                         color,
-                                     }) => {
-    const buttonClass = classNames({
-        "button-box": true,
-        "blue-bg": color === 'blue'
-    });
-    return (
-        <div className = {buttonClass}>
-            <div>
-                {title}
-            </div>
-        </div>
-    )
-};
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  className = '',
+  type = 'button',
+  variant
+}) => (
+  <button
+    className={`button ${variant} ${className}`.trim()}
+    onClick={onClick}
+    type={type}
+  >
+    {children}
+  </button>
+);
 
 export default Button;
+

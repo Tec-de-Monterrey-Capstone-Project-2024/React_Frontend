@@ -1,0 +1,31 @@
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.button.light {
+  background-color: #E0E0E0;
+  color: #555;
+}
+
+.button.dark {
+  background-color: #007BFF;
+}
+
+.button:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+

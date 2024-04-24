@@ -3,12 +3,12 @@ import {LoginForgot} from './../components/Forms/LoginForgot';
 
 const LoginPage = () => {
   return <>
-<<<<<<< Updated upstream
+
     <div>
       <h1>Login</h1>
       <LoginForm />
     </div>
-=======
+
 
       <div >
         <div className='grid grid-rows-2 h-screen w-screen'>
@@ -22,7 +22,7 @@ const LoginPage = () => {
           </div> 
         </div>
       </div>
->>>>>>> Stashed changes
+
   </>;
 };
 

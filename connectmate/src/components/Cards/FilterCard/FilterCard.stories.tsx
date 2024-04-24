@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import FilterCard from './FilterCard';
 
 export default {
@@ -7,7 +7,7 @@ export default {
     component: FilterCard,
 } as Meta;
 
-const Template: ComponentStory<typeof FilterCard> = (args: any) => <FilterCard {...args} />;
+const Template: StoryFn<typeof FilterCard> = (args: any) => <FilterCard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

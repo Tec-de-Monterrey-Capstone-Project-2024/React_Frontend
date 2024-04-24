@@ -1,10 +1,10 @@
 import { Meta, StoryFn } from "@storybook/react";
-import MetricCard from "./MetricCard";
-import { IMetricCard } from "./types";
+import Button from "./Button";
+import { IButton } from "./types";
 
 const meta = {
-    title: 'Components/MetricCard',
-    component: MetricCard,
+    title: 'Components/Button',
+    component: Button,
     parameters: {
         layout: 'centered',
         docs: {
@@ -16,7 +16,7 @@ const meta = {
     },
     argTypes: {
         color: {
-            options: ['black', 'red', 'green', 'yellow', 'gray'],
+            options: ['blue'],
             control: { type: 'select' },
         },
         title: { control: 'text' },
@@ -27,11 +27,10 @@ const meta = {
 
 export default meta;
 
-const Template: StoryFn<IMetricCard> = (args) => <MetricCard {...args} />;
+const Template: StoryFn<IButton> = (args) => <Button {...args} />;
 
-export const MetricCardExample = Template.bind({});
-MetricCardExample.args = {
-    title: 'Title',
-    subtitle: 'subtitle',
-    metricUnit: 0,
+export const Default = Template.bind({});
+Default.args = {
+    title: 'Show more',
+    color: 'blue',
 };

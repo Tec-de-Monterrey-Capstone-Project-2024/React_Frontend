@@ -4,7 +4,7 @@ export const ROUTES = {
     DASHBOARD: "/dashboard",
     QUEUES: "/queues",
     AGENTS: "/agents",
-    ACCOUNT: "/account",
     ALERTS: "/alerts",
     RECOMMENDATIONS: "/recommendations",
+    ACCOUNT: "/account",
 };

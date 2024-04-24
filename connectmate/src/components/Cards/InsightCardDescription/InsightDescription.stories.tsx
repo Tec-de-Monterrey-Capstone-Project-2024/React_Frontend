@@ -7,7 +7,7 @@ export default {
     component: InsightDescription,
 } as Meta<typeof InsightDescription>;
 
-const Template: ComponentStory<typeof InsightDescription> = (args) => <InsightDescription {...args} />;
+const Template: StoryFn<typeof InsightDescription> = (args) => <InsightDescription {...args} />;
 
 
 /*talcual del figma */

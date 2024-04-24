@@ -1,19 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { ROUTES } from '../../ROUTES';
+import Select from '../Widgets/Select/Select';
 
 const Navbar: React.FC = () => {
+  const location = useLocation();
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/queues':
+        setTitle('Queues');
+        break;
+
+      case '/dashboard':
+        setTitle('Dashboard');
+        break;
+        
+      case '/account':
+        setTitle('Account');
+        break;
+
+      case '/alerts':
+        setTitle('Alerts');
+        break;
+
+      case '/agents':
+        setTitle('Agents');
+        break;
+
+      case '/recommendations':
+        setTitle('Recommendations');
+        break;
+
+      default:
+        setTitle(' ');
+        break;
+    }
+  }, [location]);
+
   return (
     <header>
-      <ul>
-        Navbar
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/auth">Auth</Link>
-        </li>
-        {/* Add more navigation links as needed */}
-      </ul>
+      <div className='header-container container'>
+        <div className='content'>
+          <div className='title'>
+            <h2>
+              {title}
+              <span className="aid-letter">.</span>
+            </h2>
+          </div>
+          <div className='links'>
+            <button title='bell' type='button' className='bell'>
+              bell
+            </button>
+            <Select placeholder="Filters" color="green"></Select>
+            <Link to={ROUTES.ACCOUNT} className='account'>
+              account
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   );
 };

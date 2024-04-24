@@ -1,17 +1,14 @@
 import React from 'react';
 import './FilterCard.css';
-interface FilterOption {
-    name: string;
-    color: string;
-}
+import { FilterCardProps } from './types'; // Importing types
 
-const priorityOptions: FilterOption[] = [
+const defaultPriorityOptions = [
     { name: 'Urgent', color: 'bg-red-200' },
     { name: 'Moderate', color: 'bg-yellow-200' },
     { name: 'Low', color: 'bg-green-200' },
 ];
 
-const kpiOptions: string[] = [
+const defaultKpiOptions = [
     'Service Level',
     'Abandoned calls percentage',
     'First Call Resolutions',
@@ -20,7 +17,10 @@ const kpiOptions: string[] = [
     'Average Speed of Answer',
 ];
 
-const FilterCard: React.FC = () => {
+const FilterCard: React.FC<FilterCardProps> = ({
+                                                   priorityOptions = defaultPriorityOptions,
+                                                   kpiOptions = defaultKpiOptions
+                                               }) => {
     return (
         <div>
             {/* Priority Filter */}

@@ -1,7 +1,9 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import Button from './Button';
 import { ButtonProps } from './types';
+import Button from './Button';
+
+import agentIcon from '../../assets/icons/agent.svg';
 
 export default {
   title: 'Components/Button',
@@ -13,50 +15,37 @@ const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 export const Text = Template.bind({});
 Text.args = {
   children: 'Text',
-  variant: 'grey',
+  variant: 'light',
   onClick: () => {},
 };
 
-/*
-import { Meta, StoryFn } from "@storybook/react";
-import Button from "./Button";
-import { ButtonProps } from "./types";
-
-const meta: Meta<ButtonProps> = {
-    title: 'Components/Button',
-    component: Button,
-    parameters: {
-        layout: 'centered',
-        docs: {
-            story: {
-                inline: true,
-                iframeHeight: 400,
-            }
-        },
-    },
-    argTypes: {
-        variant: {
-            options: ['light', 'dark', 'custom'],  // Variants
-            control: { type: 'select' }
-        },
-        color: {
-            options: ['red', 'blue', 'green'], // Ejemplos de colores
-            control: { type: 'select' },
-        },
-        title: { control: 'text' },
-        content: { control: 'text' },
-    },
-    tags: ["autodocs"]
+export const Dark = Template.bind({});
+Dark.args = {
+  children: 'Dark Button',
+  variant: 'dark',
+  onClick: () => {},
 };
 
-export default meta;
-
-const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-    type: 'button',
-    variant: 'light',
-    color: 'blue' // Ejemplo de un color por defecto
+export const Green = Template.bind({});
+Green.args = {
+  children: 'Green Button',
+  variant: 'light',
+  className: 'green',
+  onClick: () => {},
 };
-*/
+
+// export const Red = Template.bind({});
+// Red.args = {
+//   children: 'Green Button',
+//   variant: 'light',
+//   className: 'green',
+//   onClick: () => {},
+// };
+
+export const Icon = Template.bind({});
+Icon.args = {
+  children: <img src={agentIcon} alt="Agent icon" />,
+  variant: 'light',
+  className: 'green icon',
+  onClick: () => {},
+};

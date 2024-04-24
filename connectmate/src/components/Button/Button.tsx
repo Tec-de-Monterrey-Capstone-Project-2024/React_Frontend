@@ -1,7 +1,8 @@
 import React from 'react';
-import './styles.css';
+
 import { ButtonProps } from './types';
 
+<<<<<<< HEAD
 const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
@@ -19,8 +20,18 @@ const Button: React.FC<ButtonProps> = ({
     title={title} // Cambio
     content={content} // Cambio
   >
+=======
+import './styles.css';
+
+const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', type = 'button', variant }) => (
+  <button className={`button ${variant} ${className}`.trim()} onClick={onClick} type={type}>
+>>>>>>> 518b638b15fd0505539efbacb0eef87f06e02df1
     {children}
   </button>
 );
 
+<<<<<<< HEAD
 export default Button;
+=======
+export default Button;
+>>>>>>> 518b638b15fd0505539efbacb0eef87f06e02df1

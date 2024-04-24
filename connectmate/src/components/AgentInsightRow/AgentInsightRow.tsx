@@ -2,7 +2,7 @@ import React from 'react';
 import './AgentInsightRow.css';
 import {IAgentInsightRow} from "./types";
 import classNames from "classnames";
-import {Button} from "../Button";
+// import {Button} from "../Button";
 const AgentInsightRow: React.FC<IAgentInsightRow> = ({
                                    title,
                                    color,
@@ -18,7 +18,7 @@ const AgentInsightRow: React.FC<IAgentInsightRow> = ({
                 {title}
             </div>
             <div>
-                <Button title="Show more" color='blue'/>
+                <button>Show more</button>
             </div>
         </div>
     )

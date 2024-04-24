@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import Button from "./Button";
-import { IButton } from "./types";
+import { ButtonProps } from "./types";
 
 const meta = {
     title: 'Components/Button',
@@ -27,10 +27,10 @@ const meta = {
 
 export default meta;
 
-const Template: StoryFn<IButton> = (args) => <Button {...args} />;
+const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    title: 'Show more',
-    color: 'blue',
+    type: 'button',
+    variant: 'light'
 };

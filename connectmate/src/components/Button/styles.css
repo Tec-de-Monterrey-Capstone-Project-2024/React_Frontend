@@ -18,15 +18,43 @@
 }
 
 .button.dark {
+  padding: 10px 50px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
   background-color: #062547;
 }
 
 .button.pink {
+  padding: 10px 50px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
   background-color: #FFCCCC;
 }
 
-.button.green {
+.button.lightgreen {
   background-color: #BED499;
+  color: #333333; /* Color del texto, un gris oscuro */
+  padding: 10px 200px; /* Espaciado interior para que el texto no toque los bordes */
+  font-family: 'Arial', sans-serif; /* Tipo de letra */
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold; /* Negrita para el texto */
+  border-radius: 25px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
+  text-shadow: 0 1px 0 #ffffff; /* Sombra sutil en el texto para mejorar el contraste */
+  cursor: pointer; /* Cursor de mano al pasar el mouse */
+  transition: background-color 0.3s, box-shadow 0.3s; 
+}
+
+.button.yellow {
+  background-color: #FFDFA1;
+}
+
+.button.darkgreen {
+  background-color: #9DC53E;
 }
 
 

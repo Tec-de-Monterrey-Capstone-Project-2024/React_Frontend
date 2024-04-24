@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   <button
     className={`button ${variant} ${color} ${className}`.trim()} // ${color} 
     onClick={onClick}
-    type={type}
+    type={type as "button" | "submit" | "reset" | undefined} // Fix: Update type prop
     title={title} // Cambio
     content={content} // Cambio
   >
@@ -24,4 +24,3 @@ const Button: React.FC<ButtonProps> = ({
 );
 
 export default Button;
-

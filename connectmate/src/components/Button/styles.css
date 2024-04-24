@@ -12,14 +12,23 @@
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.button.light {
+.button.grey {
   background-color: #E0E0E0;
   color: #555;
 }
 
 .button.dark {
-  background-color: #007BFF;
+  background-color: #062547;
 }
+
+.button.pink {
+  background-color: #FFCCCC;
+}
+
+.button.green {
+  background-color: #BED499;
+}
+
 
 .button:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);

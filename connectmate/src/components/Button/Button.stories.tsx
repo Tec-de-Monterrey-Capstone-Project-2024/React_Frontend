@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import Button from './Button';
 import { ButtonProps } from './types';
 
@@ -8,18 +8,55 @@ export default {
   component: Button,
 } as Meta;
 
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {
-  children: 'Light Button',
-  variant: 'light',
+export const Text = Template.bind({});
+Text.args = {
+  children: 'Text',
+  variant: 'grey',
   onClick: () => {},
 };
 
-export const Dark = Template.bind({});
-Dark.args = {
-  children: 'Dark Button',
-  variant: 'dark',
-  onClick: () => {},
+/*
+import { Meta, StoryFn } from "@storybook/react";
+import Button from "./Button";
+import { ButtonProps } from "./types";
+
+const meta: Meta<ButtonProps> = {
+    title: 'Components/Button',
+    component: Button,
+    parameters: {
+        layout: 'centered',
+        docs: {
+            story: {
+                inline: true,
+                iframeHeight: 400,
+            }
+        },
+    },
+    argTypes: {
+        variant: {
+            options: ['light', 'dark', 'custom'],  // Variants
+            control: { type: 'select' }
+        },
+        color: {
+            options: ['red', 'blue', 'green'], // Ejemplos de colores
+            control: { type: 'select' },
+        },
+        title: { control: 'text' },
+        content: { control: 'text' },
+    },
+    tags: ["autodocs"]
 };
+
+export default meta;
+
+const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+    type: 'button',
+    variant: 'light',
+    color: 'blue' // Ejemplo de un color por defecto
+};
+*/

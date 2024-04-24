@@ -1,5 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import AlertsTable from './AlertsTable';
+import React from 'react';
 
 const meta = {
     title: 'Components/AlertsTable',

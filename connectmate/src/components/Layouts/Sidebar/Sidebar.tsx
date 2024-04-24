@@ -1,9 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { ROUTES } from '../../../ROUTES';
-
 import img from '../../../assets/img/logo.png';
+import React from 'react';
 
 
 const Sidebar: React.FC = () => {

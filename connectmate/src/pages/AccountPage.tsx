@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ROUTES } from '../ROUTES';
 
-import ContentCard from '../components/Cards/ContentCard';
-//import { MetricCard } from '../components/MetricCard';
+import MyAccount from '../components/DataDisplay/MyAccount';
+
+import { ContentCard } from '../components/Cards/ContentCard';
+
 
 const AccountPage: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -29,10 +31,14 @@ const AccountPage: React.FC = () => {
                     <div className="content">
                         <div className="sidebar">
                             <div className="sidebar-container container">
+                                <div className="user">
+                                    <h2>Diego Zepeda</h2>
+                                    <p className='subtitle'>Supervisor</p>
+                                </div>
                                 <ul>
                                     <li>
                                         <button onClick={() => changeTab(1)} data-active={tab === 1}>
-                                            My account
+                                            Account
                                         </button>
                                     </li>
                                     <li>
@@ -40,48 +46,34 @@ const AccountPage: React.FC = () => {
                                             Preferences
                                         </button>
                                     </li>
-                                    {/* <li>
-                                        <button onClick={logout}>
-                                            {t("logout")}
-                                            <img src={logoutIcon} alt="Logout icon" />
+                                    <li>
+                                        <button>
+                                            Logout
+                                            {/* <img src={logoutIcon} alt="Logout icon" /> */}
                                         </button>
-                                    </li> */}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        <section className="tab-content">
+                        <div className="tab">
                             {tab === 1 ? <>
                                 <div className="tab-header">
-                                    <div className="th-container">
-                                        <div className="title">
-                                            <h1>My account</h1>
-                                            {/* <h2>Please complete your register</h2> */}
-                                        </div>
-                                        {/* <div className="logo">
-                                            <img src={logo} alt="Logo" />
-                                        </div> */}
+                                    <div className="title">
+                                        <h3>Account</h3>
                                     </div>
-                                    <hr />
                                 </div>
-                                {/* <MyAccount /> */}
+                                <MyAccount />
                             </> : tab === 2 ? <>
                                 <div className="tab-header">
-                                    <div className="th-container">
-                                        <div className="title">
-                                            <h1>Preferences</h1>
-                                            {/* <h2>Please complete your register</h2> */}
-                                        </div>
-                                        {/* <div className="logo">
-                                            <img src={logo} alt="Logo" />
-                                        </div> */}
+                                    <div className="title">
+                                        <h3>Preferences</h3>
                                     </div>
-                                    <hr />
                                 </div>
                                 {/* <Preferences /> */}
                             </> : <>
                                 <p>Error</p>
                             </>}
-                        </section>
+                        </div>
                     </div>
                 </div>
             </section>

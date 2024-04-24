@@ -1,5 +1,5 @@
 .card {
-    @apply absolute bg-white border-green rounded-lg shadow-2xl border-l-8 top-2/4 left-2/4 -translate-x-1/2 -translate-y-3/4 max-w-xl w-full px-12
+    @apply absolute bg-white border-greenConnect rounded-lg shadow-2xl border-l-8 top-2/4 left-2/4 -translate-x-1/2 -translate-y-3/4 max-w-xl w-full px-12
 }
 
 .loginforgot-text {
@@ -25,7 +25,7 @@
 }
 
 .button {
-    @apply bg-blue px-20 py-2 rounded-2xl text-white my-4
+    @apply bg-blueConnect px-20 py-2 rounded-2xl text-white my-4
 }
 
 .link {

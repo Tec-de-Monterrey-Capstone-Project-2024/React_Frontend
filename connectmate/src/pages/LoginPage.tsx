@@ -3,13 +3,6 @@ import {LoginForgot} from './../components/Forms/LoginForgot';
 
 const LoginPage = () => {
   return <>
-
-    <div>
-      <h1>Login</h1>
-      <LoginForm />
-    </div>
-
-
       <div >
         <div className='grid grid-rows-2 h-screen w-screen'>
           <LoginForgot/>

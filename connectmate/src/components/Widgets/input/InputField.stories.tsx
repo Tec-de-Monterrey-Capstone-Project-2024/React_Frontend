@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
-import InputField from './input';
+import InputField from './InputField';
 import { useState } from 'react';
 
 export default {
@@ -17,4 +17,12 @@ export const Default = Template.bind({});
 Default.args = {
   label: 'Label',
   placeholder: 'Type something...',
+  variant: '1',
+};
+
+export const Default2 = Template.bind({});
+Default2.args = {
+  label: 'Label',
+  placeholder: 'Type something...',
+  variant: '2',
 };

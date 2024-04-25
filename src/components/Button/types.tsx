@@ -3,8 +3,8 @@ export interface ButtonProps {
   onClick: () => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
-  color?: string; // Cambio
-  title?: string; // Cambio
-  content?: string; // Cambio
+  color?: string; 
+  title?: string; 
+  content?: string; 
   variant: 'grey' | 'darkblue' | 'pink' | 'green' | 'yellow' | 'lightgreen' | 'light' | 'dark';
 }

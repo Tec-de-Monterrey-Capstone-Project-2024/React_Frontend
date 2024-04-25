@@ -11,8 +11,8 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', type
     className={`button ${variant} ${color} ${className}`.trim()} // ${color} 
     onClick={onClick}
     type={type}
-    title={title} // Cambio
-    content={content} // Cambio
+    title={title} 
+    content={content} 
   >
     {children}
   </button>

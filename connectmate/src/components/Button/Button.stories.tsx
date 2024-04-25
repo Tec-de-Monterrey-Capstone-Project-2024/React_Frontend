@@ -1,41 +1,47 @@
+// Importing necessary modules from React and Storybook.
 import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
+// Importing the ButtonProps type definition from the local 'types' file.
 import { ButtonProps } from './types';
+// Importing the Button component from the local file.
 import Button from './Button';
 
-//import agentIcon from '../../assets/icons/agent.svg';
-
+// Default export for the Storybook configuration for the Button component.
 export default {
-  title: 'Components/Button',
-  component: Button,
+  title: 'Components/Button', // The title that will appear in the Storybook sidebar.
+  component: Button, // The actual component that these stories will represent.
 } as Meta;
 
+// A template function for creating stories with different props.
 const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
+// Binding the template to create individual stories.
+
+// A story for a Button with text 'Text' and the 'light' style variant.
 export const Text = Template.bind({});
 Text.args = {
-  children: 'Text',
-  variant: 'light',
-  onClick: () => {},
+  children: 'Text', // The text that will appear inside the button.
+  variant: 'light', // The style variant that will be applied to the button.
+  onClick: () => {}, // The onClick handler for the button (noop in this case).
 };
 
-
+// A story for a Button with text 'Green Button' and additional className.
 export const Green = Template.bind({});
 Green.args = {
   children: 'Green Button',
   variant: 'light',
-  className: 'green',
+  className: 'green', // Additional CSS class to apply custom styles.
   onClick: () => {},
 };
 
+// Further stories for Buttons with various text and style variants.
 export const Light = Template.bind({});
 Light.args = {
   children: 'Light Button',
   variant: 'light',
   onClick: () => {},
-  // Asegúrate de que `variant` coincida con una clase en `styles.css`
+  // Make sure the 'variant' matches a class in 'styles.css'
 };
-
 
 export const Grey = Template.bind({});
 Grey.args = {
@@ -60,50 +66,30 @@ LightGreen.args = {
 
 export const Dark = Template.bind({});
 Dark.args = {
-  children: 'Dark  Button',
+  children: 'Dark Button',
   variant: 'dark',
   onClick: () => {},
 };
 
 export const DarkBlue = Template.bind({});
 DarkBlue.args = {
-  children: 'DarkBlue  Button',
+  children: 'DarkBlue Button',
   variant: 'darkblue',
   onClick: () => {},
 };
 
 export const Yellow = Template.bind({});
 Yellow.args = {
-  children: 'Yellow  Button',
+  children: 'Yellow Button',
   variant: 'yellow',
   onClick: () => {},
 };
 
 export const DarkGreen = Template.bind({});
 DarkGreen.args = {
-  children: 'DarkGreen  Button',
+  children: 'DarkGreen Button',
   variant: 'darkgreen',
   onClick: () => {},
 };
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//Botones del figma
-export const IgnoreButton = Template.bind({});
-IgnoreButton.args = {
-  children: 'Ignore',
-  variant: 'grey', // Asumiendo que grey es para el botón Ignore
-  onClick: () => alert('Ignore Button clicked'),
-};
 
-export const DoneButton = Template.bind({});
-DoneButton.args = {
-  children: 'Done',
-  variant: 'green', // Asumiendo que green es para el botón Done
-  onClick: () => alert('Done Button clicked'),
-};
-
-export const SolveButton = Template.bind({});
-SolveButton.args = {
-  children: 'Solve',
-  variant: 'darkblue', // Asumiendo que darkblue es para el botón Solve
-  onClick: () => alert('Solve Button clicked'),
-};
+// Each story above allows you to see different button variants in Storybook.

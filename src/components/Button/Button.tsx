@@ -6,7 +6,7 @@ import { ButtonProps } from './types';
 // Importing CSS styles that will be applied to the button.
 import './styles.css';
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', type = 'button',variant,color = 'defaultColor', title = '' , content = '' }) => (
+const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', type = 'button', variant, color = 'defaultColor', title = '' , content = '' }) => (
   <button
     className={`button ${variant} ${color} ${className}`.trim()} // ${color} 
     onClick={onClick}

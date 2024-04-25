@@ -6,9 +6,9 @@ const HomePage: React.FC = () => {
   return <>
     <div>
       <h1>Welcome to the Home Page</h1>
-      <Link to={ROUTES.AUTH}>auth</Link>
+      <Link to={ROUTES.AUTH}>Auth</Link>
       <br />
-      <Link to={ROUTES.DASHBOARD}>Dashb</Link>
+      <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
     </div>
   </>;
 };

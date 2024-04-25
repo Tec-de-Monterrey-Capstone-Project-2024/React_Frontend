@@ -1,0 +1,21 @@
+.topPart {
+    @apply  flex justify-between items-center px-4
+}
+
+.downPart {
+    @apply px-4
+}
+
+.unit {
+    @apply text-4xl
+}
+
+.card {
+    @apply bg-white py-2 px-2 border border-b rounded-lg min-w-48;
+}
+
+.line {
+    @apply border-b my-3 mx-0;
+    width: calc(100% + 1rem);
+    margin-left: -0.5rem;
+}

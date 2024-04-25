@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { formProps } from "./types";
 
 import './styles.css';
 
-const LoginForgot: React.FC = () => {
+const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }) => {
     const [formData, setFormData] = useState({
         name: '',
         password: ''
@@ -14,7 +15,7 @@ const LoginForgot: React.FC = () => {
         setShowLoginForgot(!showLoginForgot);
     };
 
-    const loginProps = {
+    const loginProps: formProps = {
         title: "Login",
         label: "IAM Role",
         label2: 'Password',
@@ -22,9 +23,10 @@ const LoginForgot: React.FC = () => {
         link: "Forgot Password"
     };
     
-    const forgotPasswordProps = {
+    const forgotPasswordProps: formProps = {
         title: "Forgot Password",
         label: "IAM Role",
+        label2: null,
         button: "Send recovery code",
         link: "Login"
     };

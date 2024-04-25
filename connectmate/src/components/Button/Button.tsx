@@ -1,26 +1,30 @@
 import React from 'react';
-import './styles.css';
-import { ButtonProps } from './types';
+import { ButtonProps } from './types'; // Asegúrate de que la ruta al archivo de tipos es correcta
 
+
+// El componente Button toma las propiedades definidas en ButtonProps
 const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   className = '',
   type = 'button',
   variant,
-  color = 'defaultColor', // Cambio
-  title = '' , // Cambio
-  content = '',   //Cambio
-}) => (
-  <button
-    className={`button ${variant} ${color} ${className}`.trim()} // ${color} 
-    onClick={onClick}
-    type={type}
-    title={title} // Cambio
-    content={content} // Cambio
-  >
-    {children}
-  </button>
-);
+
+  title = '', // El título se usa para accesibilidad, como un tooltip
+}) => {
+  // Construye una cadena de clases de CSS basada en la variante y cualquier clase adicional proporcionada
+  const buttonClass = `button ${variant} ${className}`.trim();
+
+  return (
+    <button
+      className={buttonClass} // Aplica las clases de CSS al botón
+      onClick={onClick}
+      type={type}
+      title={title}
+    >
+      {children}
+    </button>
+  );
+};
 
 export default Button;

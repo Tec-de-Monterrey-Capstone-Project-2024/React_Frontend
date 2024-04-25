@@ -1,5 +1,5 @@
 .topPart {
-    @apply  flex space-x-12 items-center px-4
+    @apply  flex justify-between items-center px-4
 }
 
 .downPart {
@@ -11,9 +11,11 @@
 }
 
 .card {
-    @apply bg-gray-400 border-black  rounded-xl py-2 px-16;
+    @apply bg-white py-2 px-2 border border-b rounded-lg min-w-48;
 }
 
 .line {
-    @apply border-b my-2 mx-1
+    @apply border-b my-3 mx-0;
+    width: calc(100% + 1rem);
+    margin-left: -0.5rem;
 }

@@ -1,0 +1,40 @@
+.box-container{
+    @apply rounded-lg px-6 py-6;
+    @apply max-w-96;
+    @apply max-h-60;
+}
+.gray-box{
+    @apply bg-gray-300;
+}
+
+.white-box{
+    @apply bg-white;
+}
+
+.box-border{
+    @apply border-l-8;
+}
+
+.green-border{
+    @apply border-l-green-500;
+}
+
+.red-border{
+    @apply border-l-red-500;
+}
+
+.yellow-border{
+    @apply border-l-yellow-300;
+}
+
+.header{
+    @apply text-wrap text-black font-bold text-left font-montserrat;
+}
+
+.description{
+    @apply text-wrap text-black text-left font-montserrat;
+}
+
+.button{
+    @apply flex flex-col items-center justify-center;
+}

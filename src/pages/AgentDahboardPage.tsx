@@ -31,28 +31,30 @@ const AgentDashboardPage: React.FC = () => {
       <div className='container-doremi'>
         <h1>Dashboard Page</h1>
         <br />
-        {metrics && metrics.map(metric => {
-          const { metric_info_code, value, id } = metric;
-          const { name, min, max, graph } = MetricsData[id];
-          
-          return (
-            <div key={id}>
-              <p>{name}</p>
-                {graph === 'Gauge' ? (
-                  <GaugeChart min={min} max={max} value={value} />
-                ) : (
-                  <Pie value={value} metric={metric_info_code} />
-                )}
-              </div>
-            );
-          })}
-        {/* {metrics ? <>
-          <GaugeChart min={0} max={100} value={0} />
-        </> : <>
-          <GaugeChart min={0} max={100} value={metrics} />
-        </>} */}
-        {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
-        <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
+        <div className='charts-container'>
+          {metrics && metrics.map(metric => {
+            const { metric_info_code, value, id } = metric;
+            const { name, min, max, graph } = MetricsData[id];
+            
+            return (
+              <div key={id} className='chart'>
+                <p>{name}</p>
+                  {graph === 'Gauge' ? (
+                    <GaugeChart min={min} max={max} value={value} />
+                  ) : (
+                    <Pie value={value} metric={metric_info_code} />
+                  )}
+                </div>
+              );
+            })}
+          {/* {metrics ? <>
+            <GaugeChart min={0} max={100} value={0} />
+          </> : <>
+            <GaugeChart min={0} max={100} value={metrics} />
+          </>} */}
+          {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
+          <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
+        </div>
       </div>
     </>
   )

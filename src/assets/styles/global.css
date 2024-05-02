@@ -46,9 +46,13 @@ code {
 }
 
 
-.container-doremi { margin: 2rem; padding: 1rem; position: relative; height: calc(100% - 4rem); max-height: calc(100% - 4rem); overflow-y: auto; }
+
 
 
 /* temporary classes */
+.container-doremi { margin: 2rem; padding: 1rem; position: relative; height: calc(100% - 4rem); max-height: calc(100% - 4rem); overflow-y: auto; }
 
 .agents-table { display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: 1rem; }
+
+.charts-container { display: flex; flex-direction: row; flex-wrap: wrap; align-content: flex-start; justify-content: flex-start; align-items: flex-start; gap: 1rem; }
+.charts-container .chart { flex: 0 0 calc(50% - 1rem); }

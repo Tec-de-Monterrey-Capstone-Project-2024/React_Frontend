@@ -40,8 +40,8 @@ const AgentDashboardPage: React.FC = () => {
           <div className='charts-container'>
             <h2>KPIs</h2>
             {loading ? <p>Loading...</p> : metrics && metrics.map(metric => {
-              const { metric_info_code, value, id } = metric;
-              const { name, min, max, graph } = MetricsData[id];
+              const { metric_info_code, value } = metric;
+              const { name, min, max, graph } = MetricsData[metric_info_code];
               
               return (
                 <div key={id} className='chart'>

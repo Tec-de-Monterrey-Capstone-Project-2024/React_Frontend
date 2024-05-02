@@ -7,8 +7,10 @@ const GaugeChart: React.FC<IGaugeChart> = ({ min, max, value }) => {
     return (
         <>
             <div className='gauge-chart'>
-                <h1>Gauge Chart</h1>
-                <p>{value}</p>
+                <div className='gauge'>
+                    {/* <div className='percentage'></div> */}
+                    <div className='center'></div>
+                </div>
             </div>
         </>
     )

@@ -6,8 +6,7 @@ import { ScopeTag, AlertScope } from '../../Tags/AlertScopeTag';
 function AlertsTable() {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-semibold text-gray-800 mb-4">Call Center Alerts</h1>
-      <div className="overflow-auto rounded-lg shadow">
+        <div className="overflow-auto rounded-lg shadow">
         <table className="w-full table-fixed">
           <thead className="bg-gray-200">
             <tr>

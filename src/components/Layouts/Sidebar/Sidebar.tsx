@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
               <Link to={ROUTES.ALERTS}>Alerts</Link>
             </li>
             <li>
-              <Link to={ROUTES.RECOMMENDATIONS}>Recommendations</Link>
+              <Link to={ROUTES.INSIGHTS}>Insights</Link>
             </li>
           </ul>
         </div>

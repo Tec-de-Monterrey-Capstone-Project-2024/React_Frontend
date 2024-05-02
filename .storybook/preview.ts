@@ -1,4 +1,4 @@
-import '!style-loader!css-loader!postcss-loader!../src/index.css';
+import '!style-loader!css-loader!postcss-loader!../src/assets/styles/global.css';
 
 import type { Preview } from '@storybook/react';
 

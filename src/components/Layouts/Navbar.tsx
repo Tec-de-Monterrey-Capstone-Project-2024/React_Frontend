@@ -6,35 +6,58 @@ import Select from '../Widgets/Select/Select';
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState<string | null>(null);
 
   useEffect(() => {
     switch (location.pathname) {
       case '/queues':
         setTitle('Queues');
+        setSubtitle(null);
         break;
 
       case '/dashboard':
         setTitle('Dashboard');
+        setSubtitle(null);
         break;
         
       case '/account':
         setTitle('Account');
+        setSubtitle(null);
         break;
 
       case '/alerts':
         setTitle('Alerts');
+        setSubtitle(null);
         break;
 
       case '/agents':
         setTitle('Agents');
+        setSubtitle(null);
         break;
 
-      case '/recommendations':
-        setTitle('Recommendations');
+      case '/insights':
+        setTitle('Insights');
+        setSubtitle(null);
+        break;
+
+      case '/dashboard/agent/1':
+          setTitle('Dashboard');
+          setSubtitle('- Luis Gerardo Doe');
+          break;
+
+      case '/dashboard/agent/2':
+          setTitle('Dashboard');
+          setSubtitle('- Jane Smith');
+          break;
+      
+      case '/dashboard/agent/3':
+        setTitle('Dashboard');
+        setSubtitle('- Michael Johnson');
         break;
 
       default:
         setTitle(' ');
+        setSubtitle(null);
         break;
     }
   }, [location]);
@@ -46,6 +69,7 @@ const Navbar: React.FC = () => {
           <div className='title'>
             <h2>
               {title}
+              {subtitle ? <small> {subtitle}</small> : <></>}
               <span className="aid-letter">.</span>
             </h2>
           </div>

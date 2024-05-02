@@ -51,7 +51,8 @@ code {
 
 /* temporary classes */
 .container-doremi { margin: 2rem; padding: 1rem; position: relative; height: calc(100% - 4rem); max-height: calc(100% - 4rem); overflow-y: auto; }
-.container-doremi h2 { font-size: 1.3rem; font-weight: 700; }
+.container-doremi h2 { font-size: 1.6rem; font-weight: 700; color: var(--dark-blue); }
+.container-doremi h5 { font-size: 1.1rem; font-weight: 700; padding: 1rem; text-align: center; }
 .divider-doremi { display: flex; gap: 1rem; }
 
 .agents-table { display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: 1rem; }

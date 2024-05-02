@@ -45,7 +45,7 @@ const AgentDashboardPage: React.FC = () => {
               
               return (
                 <div key={id} className='chart'>
-                  <p>{name}</p>
+                  <h5>{name}</h5>
                     {graph === 'Gauge' ? (
                       <GaugeChart min={min} max={max} value={value} />
                     ) : (

@@ -1,8 +1,8 @@
 import httpInstance from "../httpInstance";
 
-export const getAgentMetrics = async (id: number) => {
+export const getAgentMetrics = async (id: string) => {
     let res: any;
-    const endpoint = `api/metrics/agents/${id}`;
+    const endpoint = `api/metrics/agents/1`;
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;

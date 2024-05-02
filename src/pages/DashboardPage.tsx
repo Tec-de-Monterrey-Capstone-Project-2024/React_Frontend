@@ -15,7 +15,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getAgentMetrics(1);
+      const res = await getAgentMetrics("1");
       console.log(res.data);
       setMetrics(res.data);
     }

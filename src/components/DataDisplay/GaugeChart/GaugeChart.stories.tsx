@@ -26,5 +26,7 @@ const Template: StoryFn<IGaugeChart> = (args) => <GaugeChart {...args} />;
 export const GaugeChartExample = Template.bind({});
 
 GaugeChartExample.args = {
+    min: 0,
+    max: 100,
     value: 10
 };

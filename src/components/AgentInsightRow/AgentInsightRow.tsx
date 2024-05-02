@@ -3,10 +3,7 @@ import './AgentInsightRow.css';
 import {IAgentInsightRow} from "./types";
 import classNames from "classnames";
 // import {Button} from "../Button";
-const AgentInsightRow: React.FC<IAgentInsightRow> = ({
-                                   title,
-                                   color,
-                               }) => {
+const AgentInsightRow: React.FC<IAgentInsightRow> = ({ title, color }) => {
     const rowClass = classNames({
         "row-box": true,
         "gray-bg": color === 'gray',
@@ -14,9 +11,7 @@ const AgentInsightRow: React.FC<IAgentInsightRow> = ({
     });
     return (
         <div className = {rowClass}>
-            <div className = "row-text">
-                {title}
-            </div>
+            <div className = "row-text">{title}</div>
             <div>
                 <button>Show more</button>
             </div>

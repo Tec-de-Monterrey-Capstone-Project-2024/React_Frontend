@@ -44,3 +44,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+/* temporary classes */
+
+.agents-table { display: flex; }

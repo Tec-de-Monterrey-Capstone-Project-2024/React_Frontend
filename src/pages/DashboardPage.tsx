@@ -1,39 +1,59 @@
 import React, { useEffect, useState } from 'react'
 
-import { getMetrics } from '../services/metrics/getMetrics';
-import { IMetrics } from '../services/metrics/types';
+import { getAgentMetrics } from '../services/metrics/getAgentMetrics';
+import { IMetric } from '../services/metrics/types';
+
+import MetricsData, { MetricData } from '../config/MetricsData';
 
 import { ContentCard } from '../components/Cards/ContentCard';
 import { GaugeChart } from '../components/DataDisplay/GaugeChart';
 import { Pie } from '../components/DataDisplay/PieChart';
 
 const DashboardPage = () => {
-  const [metrics, setMetrics] = useState<IMetrics>();
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  const [metrics, setMetrics] = useState<IMetric[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      const res = await getMetrics();
-      console.log(res.data[0]);
-      setMetrics(res.data[0]);
-      setLoading(false);
+      const res = await getAgentMetrics(1);
+      console.log(res.data);
+      setMetrics(res.data);
     }
 
     fetchData();
 
     // const intervalId = setInterval(fetchData, 5000);
     // return () => clearInterval(intervalId);
-}, []);
+  }, []);
 
   return (
     <>
-    <ContentCard>
-      <h1>Dashboard Page</h1>
-      <br />
-      {loading ? <p></p> : <GaugeChart min={0} max={100} value={metrics!.value} />}
-    </ContentCard>
-    <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} />
+      <ContentCard>
+        <h1>Dashboard Page</h1>
+        <br />
+        {metrics && metrics.map(metric => {
+          const { metric_info_code, value, id } = metric;
+          const { min, max, graph } = MetricsData[id];
+          
+          return (
+            <div key={id}>
+              <p>{metric_info_code}</p>
+                {graph === 'Gauge' ? (
+                  <GaugeChart min={min} max={max} value={value} />
+                ) : (
+                  <Pie id={id} value={value} metric={metric_info_code} />
+                )}
+              </div>
+            );
+          })}
+        {/* {metrics ? <>
+          <GaugeChart min={0} max={100} value={0} />
+        </> : <>
+          <GaugeChart min={0} max={100} value={metrics} />
+        </>} */}
+        {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
+        <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
+      </ContentCard>
     </>
   )
 }

@@ -20,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/auth/forgot" element={<ForgotPage />} />
           <Route path="/queues" element={<div>Queues</div>} />
           <Route path="/dashboard" element={<DashboardPage />} />
+          {/* <Route path="/dashboard/:id" element={<DashboardPage />} /> */}
           <Route path="/agents" element={<div>Agents</div>} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />

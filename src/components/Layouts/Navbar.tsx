@@ -29,8 +29,8 @@ const Navbar: React.FC = () => {
         setTitle('Agents');
         break;
 
-      case '/recommendations':
-        setTitle('Recommendations');
+      case '/insights':
+        setTitle('Insights');
         break;
 
       default:

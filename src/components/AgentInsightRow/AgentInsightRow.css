@@ -3,7 +3,8 @@
 }
 
 .row-text {
-    @apply text-black font-bold font-montserrat;
+    @apply flex text-black font-bold font-montserrat;
+    align-items: center;
 }
 
 .gray-bg {

@@ -27,8 +27,12 @@ const AgentsPage = () => {
         <>
             <ContentCard>
                 <div className='agents-table'>
-                    {agents.map((agent, index) => (
-                        <AgentInsightRow key={index} title={agent.firstName} color='gray' />
+                    {agents.map((agent) => (
+                        <AgentInsightRow 
+                        id={agent.id}
+                        firstName={agent.firstName} 
+                        lastName= {agent.lastName}
+                        color='gray' />
                     ))}
                 </div>
             </ContentCard>

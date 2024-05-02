@@ -9,12 +9,14 @@ const Pie: React.FC<IPieChart> = ({ value, metric }) => {
         data: [{
             id: 0,
             value: value,
-            label: metric
+            label: "Archieved",
+            color: "green"
         },
         {
             id: 1,
             value: 100 - value,
-            label: "No"
+            label: "No archieved",
+            color: "red"
         }]
     }];
 

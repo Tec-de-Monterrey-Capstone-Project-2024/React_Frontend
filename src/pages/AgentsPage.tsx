@@ -26,7 +26,7 @@ const AgentsPage = () => {
     return (
         <>
             <ContentCard>
-                <div className='agent-table'>
+                <div className='agents-table'>
                     {agents.map((agent, index) => (
                         <AgentInsightRow key={index} title={agent.firstName} color='gray' />
                     ))}

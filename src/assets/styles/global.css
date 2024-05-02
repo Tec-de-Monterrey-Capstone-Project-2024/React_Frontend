@@ -49,4 +49,4 @@ code {
 
 /* temporary classes */
 
-.agents-table { display: flex; }
+.agents-table { display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: 1rem; }

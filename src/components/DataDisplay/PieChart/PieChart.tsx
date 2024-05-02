@@ -7,8 +7,8 @@ const Pie: React.FC<IPieChart> = ({ value, metric }) => {
 
     const series = [{
         data: [
-            { value, label: `${metric} (${value}%)` }, // Display the metric with its percentage
-            { value: remainingValue, label: `Remaining (${remainingValue}%)` } // Display the remaining percentage
+            { value, label: `${metric} (${value}%)`, color:'#3a83c8' }, // Display the metric with its percentage
+            { value: remainingValue, label: `Remaining (${remainingValue}%)`, color:'#a1c14f' } // Display the remaining percentage
         ]
     }];
 

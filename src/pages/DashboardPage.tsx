@@ -33,11 +33,11 @@ const DashboardPage = () => {
         <br />
         {metrics && metrics.map(metric => {
           const { metric_info_code, value, id } = metric;
-          const { min, max, graph } = MetricsData[id];
+          const { name, min, max, graph } = MetricsData[id];
           
           return (
             <div key={id}>
-              <p>{metric_info_code}</p>
+              <p>{name}</p>
                 {graph === 'Gauge' ? (
                   <GaugeChart min={min} max={max} value={value} />
                 ) : (

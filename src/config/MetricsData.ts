@@ -14,7 +14,7 @@ const MetricsData: Record<number, MetricData> = {
         min: 70,
         max: 100,
         positive_upside: true,
-        graph: 'Gauge'
+        graph: 'Pie'
     },
     2: {
         metric_info_code: "ACR",
@@ -22,7 +22,7 @@ const MetricsData: Record<number, MetricData> = {
         min: 0,
         max: 30,
         positive_upside: false,
-        graph: 'Gauge'
+        graph: 'Pie'
     },
     3: {
         metric_info_code: "FCR",
@@ -30,7 +30,7 @@ const MetricsData: Record<number, MetricData> = {
         min: 70,
         max: 100,
         positive_upside: true,
-        graph: 'Gauge'
+        graph: 'Pie'
     },
     4: {
         metric_info_code: "OCC",
@@ -38,7 +38,7 @@ const MetricsData: Record<number, MetricData> = {
         min: 0,
         max: 30,
         positive_upside: false,
-        graph: 'Gauge'
+        graph: 'Pie'
     },
     5: {
         metric_info_code: "SA",
@@ -46,7 +46,7 @@ const MetricsData: Record<number, MetricData> = {
         min: 70,
         max: 90,
         positive_upside: true,
-        graph: 'Gauge'
+        graph: 'Pie'
     },
     6: {
         metric_info_code: "ASA",
@@ -70,7 +70,7 @@ const MetricsData: Record<number, MetricData> = {
         min: 0.5,
         max: 2,
         positive_upside: false,
-        graph: 'Gauge'
+        graph: 'Pie'
     }
 }
 

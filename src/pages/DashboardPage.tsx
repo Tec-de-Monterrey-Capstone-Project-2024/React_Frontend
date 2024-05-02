@@ -29,7 +29,6 @@ const DashboardPage = () => {
   return (
     <>
       <ContentCard>
-        <h1>Dashboard Page</h1>
         <br />
         {metrics && metrics.map(metric => {
           const { metric_info_code, value, id } = metric;

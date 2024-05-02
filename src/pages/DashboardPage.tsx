@@ -5,6 +5,7 @@ import { IMetrics } from '../services/metrics/types';
 
 import { ContentCard } from '../components/Cards/ContentCard';
 import { GaugeChart } from '../components/DataDisplay/GaugeChart';
+import { Pie } from '../components/DataDisplay/PieChart';
 
 const DashboardPage = () => {
   const [metrics, setMetrics] = useState<IMetrics>();
@@ -26,11 +27,14 @@ const DashboardPage = () => {
 }, []);
 
   return (
+    <>
     <ContentCard>
       <h1>Dashboard Page</h1>
       <br />
       {loading ? <p></p> : <GaugeChart min={0} max={100} value={metrics!.value} />}
     </ContentCard>
+    <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} />
+    </>
   )
 }
 

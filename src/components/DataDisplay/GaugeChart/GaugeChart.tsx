@@ -13,7 +13,7 @@ const GaugeChart: React.FC<IGaugeChart> = ({ min, max, value }) => {
     };
     
     return (
-        <>
+        <div className='gauge'>
             <div className='gauge-chart'>
                 <div className='content'>
                     <div className='gauge' style={styles}>
@@ -21,7 +21,12 @@ const GaugeChart: React.FC<IGaugeChart> = ({ min, max, value }) => {
                     </div>
                 </div>
             </div>
-        </>
+            <div className='bottom'>
+                <div className='text min'>{min}</div>
+                <div className='text value'>{value}</div>
+                <div className='text max'>{max}</div>
+            </div>
+        </div>
     )
 }
 

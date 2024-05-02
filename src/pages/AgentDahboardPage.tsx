@@ -38,6 +38,7 @@ const AgentDashboardPage: React.FC = () => {
       <div className='container-doremi'>
         <div className='divider-doremi'>
           <div className='charts-container'>
+            <h2>KPIs</h2>
             {loading ? <p>Loading...</p> : metrics && metrics.map(metric => {
               const { metric_info_code, value, id } = metric;
               const { name, min, max, graph } = MetricsData[id];
@@ -61,7 +62,9 @@ const AgentDashboardPage: React.FC = () => {
             {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
             <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
           </div>
-          <div className='insights-container'></div>
+          <div className='insights-container'>
+            <h2>Insights</h2>
+          </div>
         </div>
       </div>
     </>

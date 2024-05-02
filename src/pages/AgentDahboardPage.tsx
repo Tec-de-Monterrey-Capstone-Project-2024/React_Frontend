@@ -41,7 +41,7 @@ const AgentDashboardPage: React.FC = () => {
                 {graph === 'Gauge' ? (
                   <GaugeChart min={min} max={max} value={value} />
                 ) : (
-                  <Pie id={id} value={value} metric={metric_info_code} />
+                  <Pie value={value} metric={metric_info_code} />
                 )}
               </div>
             );

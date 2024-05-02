@@ -20,15 +20,14 @@ const DashboardPage = () => {
       setMetrics(res.data);
     }
 
-    fetchData();
+  fetchData();
 
-    // const intervalId = setInterval(fetchData, 5000);
-    // return () => clearInterval(intervalId);
+  // const intervalId = setInterval(fetchData, 5000);
+  // return () => clearInterval(intervalId);
   }, []);
 
   return (
     <>
-      <ContentCard>
         <br />
         {metrics && metrics.map(metric => {
           const { metric_info_code, value, id } = metric;
@@ -36,11 +35,11 @@ const DashboardPage = () => {
           
           return (
             <div key={id}>
-              <p>{name}</p>
+              <b>{name}</b>
                 {graph === 'Gauge' ? (
                   <GaugeChart min={min} max={max} value={value} />
                 ) : (
-                  <Pie id={id} value={value} metric={metric_info_code} />
+                  <Pie value={value} metric={metric_info_code} />
                 )}
               </div>
             );
@@ -52,7 +51,6 @@ const DashboardPage = () => {
         </>} */}
         {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
         <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
-      </ContentCard>
     </>
   )
 }

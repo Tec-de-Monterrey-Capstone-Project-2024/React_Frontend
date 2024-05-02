@@ -28,7 +28,7 @@ const AgentDashboardPage: React.FC = () => {
 
   return (
     <>
-      <ContentCard>
+      <div className='container-doremi'>
         <h1>Dashboard Page</h1>
         <br />
         {metrics && metrics.map(metric => {
@@ -53,7 +53,7 @@ const AgentDashboardPage: React.FC = () => {
         </>} */}
         {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
         <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
-      </ContentCard>
+      </div>
     </>
   )
 }

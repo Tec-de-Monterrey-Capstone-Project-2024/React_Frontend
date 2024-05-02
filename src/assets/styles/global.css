@@ -46,6 +46,8 @@ code {
 }
 
 
+.container-doremi { margin: 2rem; padding: 1rem; position: relative; height: calc(100% - 4rem); max-height: calc(100% - 4rem); overflow-y: auto; }
+
 
 /* temporary classes */
 

@@ -14,7 +14,7 @@ const AgentInsightRow: React.FC<IAgentInsightRow> = ({ id, firstName, lastName, 
     });
 
     const handleShowMore = () => {
-        navigate(`/dashboard/agent/${id}`, { state: { id } }); // Passing params as part of the state.
+        navigate(`/dashboard/agent/${id}`, { state: { id } });
     };
 
     return (

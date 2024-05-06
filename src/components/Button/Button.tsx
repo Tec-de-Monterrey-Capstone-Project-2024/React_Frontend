@@ -4,11 +4,11 @@ import { ButtonProps } from './types';
 
 const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', type = 'button', variant ,color = 'defaultColor', title = '' , content = '' }) => (
   <button
-    className={`button ${variant} ${color} ${className}`.trim()} // ${color} 
+    className={`button ${variant} ${color} ${className}`.trim()}
     onClick={onClick}
     type={type}
-    title={title} // Cambio
-    content={content} // Cambio
+    title={title}
+    content={content}
   >
     {children}
   </button>

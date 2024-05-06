@@ -1,0 +1,13 @@
+.gauge { padding: 1rem; }
+
+.gauge .gauge-chart { position: relative; width: 100%; height: 0; background: var(--light-grey); padding-top: 50%; box-sizing: content-box; border-radius: .5rem; }
+.gauge .gauge-chart .content { width: 100%; height: 100%; position: absolute; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: center; align-items: flex-start; overflow: hidden; top: 0; left: 0; right: 0; bottom: 0; }
+.gauge .gauge-chart .gauge { position: relative; overflow: hidden; width: 100%; height: 200%; border-radius: 100%; flex: 0 0 100%; background: linear-gradient(0deg, rgba(161,193,79,1) 50%, rgba(58,131,200,1) 50%); display: flex; flex-direction: row; justify-content: center; align-items: center; flex-wrap: nowrap; transition: 0.5s; }
+/* .gauge .percentage { background: green; height: 100%; width: 50%; --percentage: 0deg; transform: rotateZ(var(--percentage)); } */
+.gauge .gauge-chart .gauge .center { width: 70%; height: 70%; border-radius: 100%; background: var(--light-grey); }
+
+.gauge .bottom { display: flex; }
+.gauge .bottom .text { flex: 1 0 calc(100% / 3); }
+.gauge .bottom .text.min { text-align: left; padding-left: 1.5rem; }
+.gauge .bottom .text.value { text-align: center; font-weight: 600; font-size: 1.2rem; }
+.gauge .bottom .text.max { text-align: right; padding-right: 1.5rem; }

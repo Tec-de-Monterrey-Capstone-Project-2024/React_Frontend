@@ -31,6 +31,8 @@ const Template: StoryFn<IAgentInsightRow> = (args) => <AgentInsightRow {...args}
 
 export const Default = Template.bind({});
 Default.args = {
-    title: 'Title',
+    id: 1,
+    firstName: 'John',
+    lastName: 'Doe',
     color: 'gray',
 };

@@ -3,28 +3,31 @@ import { IMetricCard } from "./types";
 import './styles.css'
 import React from "react";
 
-const MetricCard: React.FC<IMetricCard> = ({ title, subtitle, metricUnit }) => {
+const MetricCard: React.FC<IMetricCard> = ({ title, subtitle, minValue, maxValue, value, unit, positive_upside }) => {
+    const range = maxValue - minValue;
+    const fThreshold = (range / 3) * 2;
+    const sThreshold = range / 3;
 
-    let unitColorClass = " ";
+    let unitColorClass = "";
 
-    if (metricUnit > 80) {
-        unitColorClass = "text-green-500";
-
-    }else if (metricUnit > 60 && metricUnit < 80) { 
+    // positive_upside: true (entre mas alto mejor)
+    if (value > fThreshold) {
+        unitColorClass = positive_upside ? "text-green-500" : "text-red-500";
+    } else if (value > sThreshold && value < fThreshold) {
         unitColorClass = "text-yellow-500";
-    }else { 
-        unitColorClass = "text-red-500";
+    } else {
+        unitColorClass = positive_upside ? "text-red-500" : "text-green-500";
     }
 
     return (
-        <div className="card">
-            <div className="topPart">
-                <h1>{title}</h1>
-                <h1  className={`unit ${unitColorClass}`}>{metricUnit}</h1>
+        <div className="metric-card">
+            <div className="top">
+                <h4>{title}</h4>
+                <p className={`${unitColorClass}`}>{value}{unit}</p>
             </div>
-            <div className="line"></div>
-            <div className="downPart">
-                {subtitle}
+            <div className="bottom">
+                <p>{subtitle}</p>
+                <button>+</button>
             </div>
         </div>
     );

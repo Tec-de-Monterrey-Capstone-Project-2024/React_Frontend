@@ -47,7 +47,7 @@ main section { height: 100%; }
 @media (min-width: 992px) { .container { max-width: 960px; } }
 @media (min-width: 1200px) { .container { max-width: 1140px; } }
 @media (min-width: 1400px) { .container { max-width: 1320px; } }
-.container { --bs-gutter-x: 1.5rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x)* .5); padding-left: calc(var(--bs-gutter-x)* .5); margin-right: auto; margin-left: auto; }
+.container { --bs-gutter-x: 3rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x)* .5); padding-left: calc(var(--bs-gutter-x)* .5); margin-right: auto; margin-left: auto; }
 .section-container { height: 100%; padding-top: calc(var(--bs-gutter-x)* .5); padding-bottom: calc(var(--bs-gutter-x)* .5); }
 
 

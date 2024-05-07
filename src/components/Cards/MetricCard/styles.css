@@ -1,3 +1,14 @@
+.metric-card {  }
+.metric-card .top {  }
+.metric-card .top h4 {  }
+.metric-card .top p {  }
+
+.metric-card .bottom {  }
+.metric-card .bottom p {  }
+.metric-card .bottom button {  }
+.metric-card .bottom button img {  }
+
+
 .topPart {
     @apply  flex justify-between items-center px-4
 }

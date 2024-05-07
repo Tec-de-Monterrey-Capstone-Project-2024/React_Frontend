@@ -1,5 +1,9 @@
 export interface IMetricCard {
     title: string,
     subtitle: string,
-    metricUnit: number; // 'ns', 'n%', 'n'
+    minValue: number,
+    maxValue: number,
+    value: number,
+    unit: null | '%' | 's',
+    positive_upside: boolean;
 }

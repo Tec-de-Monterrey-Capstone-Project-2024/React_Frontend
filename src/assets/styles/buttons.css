@@ -1,5 +1,5 @@
 .btn-type-1 { display: block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .6rem 0; border-radius: .5rem; font-size: 1rem; font-weight: 700; line-height: 1; transition: 0.5s; }
 .btn-type-1:hover { box-shadow: 0px 0px 20px 0px #9DC53E; }
-.btn-type-1.active { box-shadow: 0px 0px 20px 2px #9DC53E; }
+.btn-type-1.active { box-shadow: 0px 0px 0px 6px #9DC53E; }
 
 .btn-type-2 { display: block; text-align: start; background: var(--light-green); color: var(--white); padding: .5rem 1rem; border-radius: .7rem; font-size: 1rem; font-weight: 500; line-height: 1; transition: 0.5s; outline: none; border-right: 1rem solid var(--light-green); }

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ROUTES } from '../ROUTES';
+import { ROUTES } from '../../ROUTES';
 
-import MyAccount from '../components/DataDisplay/MyAccount';
+import MyAccount from '../../components/DataDisplay/MyAccount';
 
-import { ContentCard } from '../components/Cards/ContentCard';
+import { ContentCard } from '../../components/Cards/ContentCard';
+
+import './styles.css';
 
 
 const AccountPage: React.FC = () => {
@@ -25,9 +27,9 @@ const AccountPage: React.FC = () => {
     }, [searchParams]);
 
     return <>
-        <ContentCard>
-            <section className='account'>
-                <div className="account-container container">
+        <section className='account'>
+            <div className="section-container container">
+                <ContentCard>
                     <div className="content">
                         <div className="sidebar">
                             <div className="sidebar-container container">
@@ -75,9 +77,9 @@ const AccountPage: React.FC = () => {
                             </>}
                         </div>
                     </div>
-                </div>
-            </section>
-        </ContentCard>
+                </ContentCard>
+            </div>
+        </section>
     </>;
 };
 

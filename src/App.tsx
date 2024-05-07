@@ -7,9 +7,9 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import AgentDashboardPage from './pages/AgentDahboardPage';
-import AgentsPage from './pages/AgentsPage';
+import AgentsPage from './pages/AgentsPage/AgentsPage';
 import ForgotPage from './pages/ForgotPage';
-import AccountPage from './pages/AccountPage';
+import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
 
 const App: React.FC = () => {

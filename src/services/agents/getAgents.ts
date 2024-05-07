@@ -1,8 +1,8 @@
 import httpInstance from "../httpInstance";
 
-export const getAgents = async () => {
+export const getAgents = async (queue: number) => {
     let res: any;
-    const endpoint = `api/queues/2/agents`;
+    const endpoint = `api/queues/${queue}/agents`;
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;

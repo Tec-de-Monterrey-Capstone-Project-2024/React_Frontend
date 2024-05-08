@@ -40,7 +40,7 @@ const AgentDashboardPage: React.FC = () => {
     <section className='agent-dashboard'>
       <div className='container'>
         <div className='agent-content'>
-          <div className='column container'>
+          <div className='column'>
             <h2>KPIs</h2>
             <div className='metrics'>
               {loading ? <p>Loading...</p> : metrics && metrics.map(metric => {
@@ -62,7 +62,7 @@ const AgentDashboardPage: React.FC = () => {
                 })}
             </div>
           </div>
-          <div className='column container'>
+          <div className='column'>
             <h2>Insights</h2>
             <div className='insights'>
             {loading ? <p>Loading...</p> : metrics && metrics.map(metric => {

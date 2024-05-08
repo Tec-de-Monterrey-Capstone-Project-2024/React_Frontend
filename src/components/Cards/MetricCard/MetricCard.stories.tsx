@@ -12,6 +12,7 @@ const meta = {
             story: {
                 inline: true,
                 iframeHeight: 400,
+                iframeWidth: 400,
             }
         },
     },
@@ -37,5 +38,6 @@ MetricCardExample.args = {
     maxValue: 100,
     value: 58,
     unit: '%',
-    positive_upside: true
+    positive_upside: true,
+    onClick: null
 };

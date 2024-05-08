@@ -22,5 +22,3 @@
 .layout .panel header .links button.bell {  }
 .layout .panel header .links button.filter {  }
 .layout .panel header .links a.account {  }
-
-.layout .panel main { height: auto; flex: 1 0 auto; z-index: 10; }

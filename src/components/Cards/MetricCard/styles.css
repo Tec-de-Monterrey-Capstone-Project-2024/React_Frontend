@@ -1,32 +1,14 @@
-.metric-card {  }
-.metric-card .top {  }
-.metric-card .top h4 {  }
-.metric-card .top p {  }
+.metric-card { flex: 1 0 100%; width: 100%; background: #FFFFFF; border: 1px solid rgba(0, 0, 0, .3); box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, .2); border-radius: .5rem; display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: center; align-items: stretch; }
+
+.metric-card :is(.top, .bottom) { flex: 1 0 auto; width: 100%; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: .75rem 1rem; gap: 1.5rem; }
+.metric-card :is(h4, p) { flex: 1 0 0%; color: var(--black); font-size: 1rem; margin-bottom: 0; font-weight: 400; line-height: 1.4; }
+
+.metric-card .top { border-bottom: 1px solid rgba(0, 0, 0, .3); }
+.metric-card .top p.unit { flex: 0 1 auto; color: var(--black); font-size: 1.8rem; margin-bottom: 0; font-weight: 500; line-height: 1; }
+.metric-card .top p.success { color: var(--success-color); }
+.metric-card .top p.warning { color: var(--warning-color); }
+.metric-card .top p.danger { color: var(--danger-color); }
 
 .metric-card .bottom {  }
-.metric-card .bottom p {  }
-.metric-card .bottom button {  }
+.metric-card .bottom button { flex: 0 1 auto; }
 .metric-card .bottom button img {  }
-
-
-.topPart {
-    @apply  flex justify-between items-center px-4
-}
-
-.downPart {
-    @apply px-4
-}
-
-.unit {
-    @apply text-4xl
-}
-
-.card {
-    @apply bg-white py-2 px-2 border border-b rounded-lg min-w-48;
-}
-
-.line {
-    @apply border-b my-3 mx-0;
-    width: calc(100% + 1rem);
-    margin-left: -0.5rem;
-}

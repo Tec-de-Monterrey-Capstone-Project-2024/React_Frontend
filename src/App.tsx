@@ -6,7 +6,7 @@ import Layout from './components/Layouts/Layout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
-import AgentDashboardPage from './pages/AgentDahboardPage';
+import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import ForgotPage from './pages/ForgotPage';
 import AccountPage from './pages/AccountPage/AccountPage';

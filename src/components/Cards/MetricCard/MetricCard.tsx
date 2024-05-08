@@ -1,33 +1,39 @@
+import React from "react";
 import { IMetricCard } from "./types";
 
-import './styles.css'
-import React from "react";
+import plusIcon from './../../../assets/icons/plus.svg';
 
-const MetricCard: React.FC<IMetricCard> = ({ title, subtitle, minValue, maxValue, value, unit, positive_upside }) => {
+import './styles.css';
+
+const MetricCard: React.FC<IMetricCard> = ({ title, subtitle, minValue, maxValue, value, unit, positive_upside, onClick }) => {
     const range = maxValue - minValue;
     const fThreshold = (range / 3) * 2;
     const sThreshold = range / 3;
 
-    let unitColorClass = "";
+    let state = "";
 
     // positive_upside: true (entre mas alto mejor)
     if (value > fThreshold) {
-        unitColorClass = positive_upside ? "text-green-500" : "text-red-500";
+        state = positive_upside ? "success" : "danger";
     } else if (value > sThreshold && value < fThreshold) {
-        unitColorClass = "text-yellow-500";
+        state = "warning";
     } else {
-        unitColorClass = positive_upside ? "text-red-500" : "text-green-500";
+        state = positive_upside ? "danger" : "success";
     }
 
     return (
         <div className="metric-card">
             <div className="top">
                 <h4>{title}</h4>
-                <p className={`${unitColorClass}`}>{value}{unit}</p>
+                <p className={`unit ${state}`}>{value}{unit}</p>
             </div>
             <div className="bottom">
                 <p>{subtitle}</p>
-                <button>+</button>
+                {onClick && (
+                    <button onClick={onClick} type="button" className="btn-type-3">
+                        <img src={plusIcon} alt="Go" />
+                    </button>
+                )}
             </div>
         </div>
     );

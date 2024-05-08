@@ -24,7 +24,6 @@
 
   --black: #000000;
   --white: #FFFFFF;
-
 }
 
 body {
@@ -38,7 +37,7 @@ body {
   color: #000;
 }
 
-main {  }
+main { position: relative; height: 0%; flex: 1 0 0%; z-index: 10; flex-basis: 0%; }
 main section { height: 100%; }
 
 /* container */
@@ -49,25 +48,3 @@ main section { height: 100%; }
 @media (min-width: 1400px) { .container { max-width: 1320px; } }
 .container { --bs-gutter-x: 3rem; --bs-gutter-y: 0; width: 100%; padding-right: calc(var(--bs-gutter-x)* .5); padding-left: calc(var(--bs-gutter-x)* .5); margin-right: auto; margin-left: auto; }
 .section-container { height: 100%; padding-top: calc(var(--bs-gutter-x)* .5); padding-bottom: calc(var(--bs-gutter-x)* .5); }
-
-
-
-/* temporary classes */
-.container-doremi { margin: 2rem; padding: 1rem; position: relative; height: calc(100% - 4rem); max-height: calc(100% - 4rem); overflow-y: auto; }
-.container-doremi h2 { font-size: 1.6rem; font-weight: 700; color: var(--dark-blue); }
-.container-doremi h5 { font-size: 1.1rem; font-weight: 700; padding: 1rem; text-align: center; }
-.divider-doremi { display: flex; gap: 1rem; }
-
-.agents-table { display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: 1rem; }
-
-.charts-container { width: calc(50% - 1rem); flex: 1 1 calc(50% - 1rem); display: flex; flex-direction: row; flex-wrap: wrap; align-content: flex-start; justify-content: flex-start; align-items: flex-start; gap: 1rem; border-right: 1px solid black; }
-.charts-container .chart { flex: 0 0 calc(100% - 1rem); background: var(--light-grey); border-radius: 1rem; }
-
-.insights-container { width: calc(50% - 1rem); flex: 1 1 calc(50% - 1rem); }
-
-
-.css-1u0lry5-MuiChartsLegend-root { transform: translateX(20px); }
-
-
-
-

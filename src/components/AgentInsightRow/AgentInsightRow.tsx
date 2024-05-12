@@ -21,7 +21,9 @@ const AgentInsightRow: React.FC<IAgentInsightRow> = ({ id, firstName, lastName, 
         <div className = {rowClass}>
             <div className = "row-text">{firstName} {lastName}</div>
             <div>
-                <Button className={`button blue`.trim()} variant='dark' onClick={handleShowMore} type={'button'} >Show more</Button>
+                <div className="row-button">
+                    <Button title={"Show more"} variant={"dark"} onClick={handleShowMore}>Show more</Button>
+                </div>
             </div>
         </div>
     )

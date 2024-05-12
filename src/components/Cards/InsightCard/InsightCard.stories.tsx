@@ -37,7 +37,8 @@ const Template: StoryFn<IInsightCard> = (args) => <InsightCard {...args} />;
 export const InsightCardExample = Template.bind({});
 InsightCardExample.args = {
     title: 'Reassignment',
-    description: 'Assign more agents to Reimbursements Queue',
+    description1: 'Assign more agents to Reimbursements Queue',
+    description2: 'More clients than agents',
     color: 'gray',
     borderColor: "green",
     showBoxBorder: true

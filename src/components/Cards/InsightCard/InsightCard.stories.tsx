@@ -4,7 +4,7 @@ import InsightCard from "./InsightCard";
 import { IInsightCard } from "./types";
 
 const meta = {
-    title: 'InsightCard',
+    title: 'Components/Cards/InsightCard',
     component: InsightCard,
     parameters: {
         layout: 'centered',

@@ -78,9 +78,13 @@ const Navbar: React.FC = () => {
             </h2>
           </div>
           <div className='links'>
-            <Button children={<img src={alertIcon} alt="Alert icon" />} variant="light" onClick={() => {}} className="green icon"></Button> 
+            <Button variant="light" onClick={() => {}} className="green icon">
+              <img src={alertIcon} alt="Alert icon" />
+            </Button> 
             <Select placeholder="Filters" color="green"></Select>
-            <Button children={<img src={agentIcon} alt="Agent icon" />} variant="light" onClick={() => {navigate("/account");}} className="green icon"></Button> 
+            <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
+              <img src={agentIcon} alt="Agent icon" />
+            </Button> 
           </div>
         </div>
       </div>

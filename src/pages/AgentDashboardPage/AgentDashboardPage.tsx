@@ -14,18 +14,22 @@ import { MetricCard } from '../../components/Cards/MetricCard';
 import './styles.css';
 
 const AgentDashboardPage: React.FC = () => {
-  const [loading, setLoading] = useState(true);
   const { id } = useParams<{ id: string }>();
+
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(id);
     const fetchData = async () => {
       setLoading(true);
       if (id) {
         const res = await getAgentMetrics(id);
-        console.log(res.data);
-        setMetrics(res.data);
+        console.log(res);
+        if (res.status >= 200 && res.status < 300) {
+          setMetrics(res.data);
+        } else {
+          setMetrics(null);
+        }
       }
       setLoading(false);
     }
@@ -42,11 +46,12 @@ const AgentDashboardPage: React.FC = () => {
         <div className='agent-content'>
           <div className='column'>
             <h2>KPIs</h2>
-            <div className='metrics'>
-              {loading ? <p>Loading...</p> : metrics && metrics.map(metric => {
+            {loading ? <p>Loading...</p> : (metrics ? (
+              <div className='metrics'>
+                {metrics.map(metric => {
                   const { metric_info_code, value } = metric;
                   const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];
-                  
+                
                   return (
                     <MetricCard
                       title={name}
@@ -60,7 +65,10 @@ const AgentDashboardPage: React.FC = () => {
                     />
                   );
                 })}
-            </div>
+              </div>
+            ) : (
+              <p>No metrics found</p>
+            ))}
           </div>
           <div className='column'>
             <h2>Insights</h2>

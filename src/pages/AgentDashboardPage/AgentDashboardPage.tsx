@@ -48,6 +48,16 @@ const AgentDashboardPage: React.FC = () => {
             <h2>KPIs</h2>
             {loading ? <p>Loading...</p> : (metrics ? (
               <div className='metrics'>
+                <MetricCard
+                  title={"name"}
+                  subtitle={'No se que se ponga aqui'}
+                  minValue={1}
+                  maxValue={100}
+                  value={70}
+                  unit={null}
+                  positive_upside={true}
+                  onClick={() => {}}
+                />
                 {metrics.map(metric => {
                   const { metric_info_code, value } = metric;
                   const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];

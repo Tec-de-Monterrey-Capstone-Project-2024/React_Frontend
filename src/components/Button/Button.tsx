@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import { ButtonProps } from './types';
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', type = 'button', variant ,color = 'defaultColor', title = '' , content = '' }) => (
+const Button: React.FC<ButtonProps> = ({ onClick, variant, title, color, className, type, content }) => (
   <button
     className={`button ${variant} ${color} ${className}`.trim()}
     onClick={onClick}
@@ -10,7 +10,7 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, className = '', type
     title={title}
     content={content}
   >
-    {children}
+    {title}
   </button>
 );
 

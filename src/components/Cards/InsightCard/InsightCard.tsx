@@ -2,7 +2,9 @@ import React from 'react';
 import { IInsightCard } from './types';
 import './style.css'
 import classNames from 'classnames';
-const InsightCard: React.FC<IInsightCard> = ({ title, description, color, borderColor, showBoxBorder }) => {
+import { Button } from '../../Button';
+
+const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2, color, borderColor, showBoxBorder, func }) => {
 
     const card = classNames({
         "box-container": true,
@@ -20,10 +22,13 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description, color, border
                 <h1>{title}</h1>
             </div>
             <div className="description">
-                {description}
+                {description1}
+            </div>
+            <div className="description">
+                {description2}
             </div>
             <div className="button">
-                <button>Show more</button>
+                <Button title={"Show more"} variant={"dark"} onClick={func}>Show more</Button>
             </div>
         </div>
     );

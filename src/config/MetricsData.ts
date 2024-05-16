@@ -3,6 +3,7 @@ export type MetricData = {
     min: number;
     max: number;
     positive_upside: boolean;
+    unit: null | '%' | 's';
     graph: 'Pie' | 'Gauge';
 };
 
@@ -12,6 +13,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 70,
         max: 100,
         positive_upside: true,
+        unit: '%',
         graph: 'Pie'
     },
     "ACR": {
@@ -19,6 +21,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 0,
         max: 30,
         positive_upside: false,
+        unit: '%',
         graph: 'Pie'
     },
     "FCR": {
@@ -26,6 +29,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 70,
         max: 100,
         positive_upside: true,
+        unit: '%',
         graph: 'Pie'
     },
     "OCC": {
@@ -33,6 +37,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 0,
         max: 30,
         positive_upside: false,
+        unit: '%',
         graph: 'Pie'
     },
     "SA": {
@@ -40,6 +45,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 70,
         max: 90,
         positive_upside: true,
+        unit: '%',
         graph: 'Pie'
     },
     "ASA": {
@@ -47,6 +53,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 0,
         max: 60,
         positive_upside: false,
+        unit: 's',
         graph: 'Gauge'
     },
     "AHT": {
@@ -54,6 +61,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 5,
         max: 20,
         positive_upside: false,
+        unit: 's',
         graph: 'Gauge'
     },
     "VFR": {
@@ -61,6 +69,7 @@ const MetricsData: Record<string, MetricData> = {
         min: 0.5,
         max: 2,
         positive_upside: false,
+        unit: '%',
         graph: 'Pie'
     }
 }

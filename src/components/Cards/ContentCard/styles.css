@@ -1,1 +1,2 @@
-.content-card { border-radius: 1rem; background: #E5E5E5; margin: 2rem; padding: 1rem; position: relative; height: calc(100% - 4rem); max-height: calc(100% - 4rem); overflow-y: auto; }
+.content-card { border-radius: 1rem; background: #E5E5E5; margin: 0; padding: 1rem 0; position: relative; height: calc(100% - 4rem); max-height: calc(100% - 4rem); overflow-y: auto; }
+.content-card .content-card-container { height: 100%; }

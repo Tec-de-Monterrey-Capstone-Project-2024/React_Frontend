@@ -12,16 +12,16 @@ const meta = {
             story: {
                 inline: true,
                 iframeHeight: 400,
+                iframeWidth: 400,
             }
         },
     },
     argTypes: {
-        color: {
-            options: ['black', 'red', 'green', 'yellow', 'gray'],
+        title: { control: 'text' },
+        unit: {
+            options: [null, '%', 's'],
             control: { type: 'select' },
         },
-        title: { control: 'text' },
-        content: { control: 'text' },
     },
     tags: ["autodocs"]
 } as Meta;
@@ -33,6 +33,11 @@ const Template: StoryFn<IMetricCard> = (args) => <MetricCard {...args} />;
 export const MetricCardExample = Template.bind({});
 MetricCardExample.args = {
     title: 'Title',
-    subtitle: 'subtitle',
-    metricUnit: 0,
+    subtitle: 'This is the subtitle',
+    minValue: 0,
+    maxValue: 100,
+    value: 58,
+    unit: '%',
+    positive_upside: true,
+    onClick: null
 };

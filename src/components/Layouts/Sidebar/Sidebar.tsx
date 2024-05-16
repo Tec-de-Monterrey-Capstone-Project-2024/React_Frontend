@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../../ROUTES';
 import img from '../../../assets/img/logo.png';
 import React from 'react';
@@ -10,25 +10,25 @@ const Sidebar: React.FC = () => {
       <div className='nav-container container'>
         <div className='content'>
           <div className='img'>
-            <Link to={ROUTES.HOME}>
+            <NavLink to={ROUTES.HOME}>
               <img src={img} alt="Connectmate" />
-            </Link>
+            </NavLink>
           </div>
           <ul>
             <li>
-              <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
+              <NavLink to={ROUTES.DASHBOARD} className="btn-type-1">Dashboard</NavLink>
             </li>
             <li>
-              <Link to={ROUTES.QUEUES}>Queues</Link>
+              <NavLink to={ROUTES.QUEUES} className="btn-type-1">Queues</NavLink>
             </li>
             <li>
-              <Link to={ROUTES.AGENTS}>Agents</Link>
+              <NavLink to={ROUTES.AGENTS} className="btn-type-1">Agents</NavLink>
             </li>
             <li>
-              <Link to={ROUTES.ALERTS}>Alerts</Link>
+              <NavLink to={ROUTES.ALERTS} className="btn-type-1">Alerts</NavLink>
             </li>
             <li>
-              <Link to={ROUTES.INSIGHTS}>Insights</Link>
+              <NavLink to={ROUTES.INSIGHTS} className="btn-type-1">Insights</NavLink>
             </li>
           </ul>
         </div>

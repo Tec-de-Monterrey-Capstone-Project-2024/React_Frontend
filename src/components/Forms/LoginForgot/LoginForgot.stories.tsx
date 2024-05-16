@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, StoryFn } from "@storybook/react";
 import LoginForgot from "./LoginForgot";
+import { formProps } from './types';
 
 
 
@@ -43,7 +44,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: StoryFn = () => <LoginForgot />;
+const Template: StoryFn<formProps> = () => <LoginForgot title='Login' label='IAM Role' label2='Password' button='Login' link='Forgot Password' />;
 
 export const Default = Template.bind({});
 Default.storyName = 'Login Forgot component';

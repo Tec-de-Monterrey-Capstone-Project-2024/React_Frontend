@@ -22,8 +22,8 @@ const AlertViewMore: React.FC = () => {
         <Insight 
           title="Reconfigure Virtual floor" 
           message="Not Enough people on the Reimbursements Queue." 
-          situationTitle="Situación" 
-          actionTitle="Acción"
+          situationTitle="Situation" 
+          actionTitle="Action"
         />
       </div>
       <div className="flex justify-center space-x-4 mt-auto mb-24">

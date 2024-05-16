@@ -1,5 +1,6 @@
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode, useContext } from 'react';
 import { IUser } from '../services/user/types';
+import { IInstance } from '../services/instance/types';
 
 interface DataContextProps {
     isLogged: boolean,
@@ -7,17 +8,11 @@ interface DataContextProps {
     user: IUser | null,
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>,
 
-    exampleData: string;
-    setExampleData: React.Dispatch<React.SetStateAction<string>>;
+    selectedInstance: string,
+    setSelectedInstance: React.Dispatch<React.SetStateAction<string>>,
 
-    // lang: 'en' | 'es';
-    // setLang: React.Dispatch<React.SetStateAction<'en' | 'es'>>;
-
-    // theme: string;
-    // setTheme: React.Dispatch<React.SetStateAction<string>>;
-
-    // navbarOpen: boolean,
-    // setNavbarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    selectedQueue: string,
+    setSelectedQueue: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export const DataContext = createContext<DataContextProps | null>(null);
@@ -26,13 +21,8 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null>(null);
 
-    const [exampleData, setExampleData] = useState<string>('Initial data');
-
-    // const [lang, setLang] = useState<'en' | 'es'>('en');
-    
-    // const [theme, setTheme] = useState<string>('dark');
-
-    // const [navbarOpen, setNavbarOpen] = useState<boolean>(false);
+    const [selectedInstance, setSelectedInstance] = useState<string>("0");
+    const [selectedQueue, setSelectedQueue] = useState<string>("all");
     
     const DataContextValue: DataContextProps = {
         isLogged,
@@ -40,17 +30,10 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         user,
         setUser,
 
-        exampleData,
-        setExampleData,
-
-        // lang,
-        // setLang,
-
-        // theme,
-        // setTheme,
-        
-        // navbarOpen,
-        // setNavbarOpen
+        selectedInstance,
+        setSelectedInstance,
+        selectedQueue,
+        setSelectedQueue
     };
     
     return (
@@ -58,4 +41,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             {children}
         </DataContext.Provider>
     );
+};
+
+export const useDataContext = () => {
+    const context = useContext(DataContext);
+    if (!context) {
+        throw new Error("useDataContext must be used within a DataProvider");
+    }
+    return context;
 };

@@ -1,14 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, ChangeEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import { useDataContext } from '../../context/DataContext';
+
 import { ROUTES } from '../../ROUTES';
+import { getInstances } from '../../services/instance/getInstances';
+import { IInstance } from '../../services/instance/types';
+
+import { getQueues } from '../../services/queue/getQueues';
+import { IQueue } from '../../services/queue/types';
+
 import Select from '../Widgets/Select/Select';
+import { Button } from '../Button';
+
 import agentIcon from '../../assets/icons/agent.svg';
 import alertIcon from '../../assets/icons/alert.svg';
-import { Button } from '../Button';
+
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  
+  const [instances, setInstances] = useState<IInstance[]>([]);
+  useEffect(() => {
+    const fetchInstances = async () => {
+      var res = await getInstances();
+      console.log(res);
+    }
+    fetchInstances();
+  }, []);
+  const { selectedInstance, setSelectedInstance } = useDataContext();
+  const changeInstance = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedInstance(event.target.value);
+  };
+
+  const [queues, setQueues] = useState<IQueue[]>([]);
+  useEffect(() => {
+    const fetchQueues = async () => {
+      var res = await getQueues(selectedInstance);
+      console.log(res);
+    }
+    if (selectedInstance !== "0") {
+      fetchQueues();
+    }
+  }, [selectedInstance]);
+  const { selectedQueue, setSelectedQueue } = useDataContext();
+  const changeQueue = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedQueue(event.target.value);
+  };
+
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
 
@@ -80,8 +121,40 @@ const Navbar: React.FC = () => {
           <div className='links'>
             <Button variant="light" onClick={() => {}} className="green icon">
               <img src={alertIcon} alt="Alert icon" />
-            </Button> 
-            <Select placeholder="Filters" color="green"></Select>
+            </Button>
+            
+            {/* <Select placeholder="Filters" color="green"></Select> */}
+            {/* <Select placeholder="Filters" color="green"></Select> */}
+
+            {/* {selectedInstance !== "0" && (
+              <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
+                <option value="all">All queues</option>
+                {queues.map((queue) => (
+                  <option key={queue.id} value={queue.id}>
+                    {queue.name}
+                  </option>
+                ))}
+              </select>
+            )} */}
+
+            <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
+              <option value="all">All queues</option>
+              {queues.map((queue) => (
+                <option key={queue.id} value={queue.id}>
+                  {queue.name}
+                </option>
+              ))}
+            </select>
+
+            <select id="instances" title='instances' value={selectedInstance} onChange={changeInstance} className='btn-type-2'>
+              <option value="0">Select instance</option>
+              {instances.map((instance) => (
+                <option key={instance.id} value={instance.id}>
+                  {instance.instanceAlias}
+                </option>
+              ))}
+            </select>
+
             <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
               <img src={agentIcon} alt="Agent icon" />
             </Button> 

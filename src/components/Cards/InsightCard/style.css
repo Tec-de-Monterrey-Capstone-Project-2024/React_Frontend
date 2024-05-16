@@ -1,7 +1,5 @@
 .box-container{
-    @apply rounded-lg px-6 py-6;
-    @apply max-w-96;
-    @apply max-h-60;
+    @apply rounded-lg px-6 py-6 shadow-md w-full;
 }
 .gray-box{
     @apply bg-gray-300;
@@ -28,13 +26,13 @@
 }
 
 .header{
-    @apply text-wrap text-black font-bold text-left font-montserrat;
+    @apply text-wrap text-black font-bold text-left font-montserrat mb-2;
 }
 
 .description{
-    @apply text-wrap text-black text-left font-montserrat;
+    @apply text-wrap text-black text-left font-montserrat mb-2;
 }
 
-.button{
-    @apply flex flex-col items-center justify-center;
+.insight-button{
+    @apply flex flex-col items-center justify-center w-full;
 }

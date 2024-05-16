@@ -6,7 +6,9 @@ import './styles.css';
 const ContentCard: React.FC<IContentCard> = ({ children }) => {
     return (
         <div className="content-card">
-            {children}
+            <div className='content-card-container container'>
+                {children}
+            </div>
         </div>
     );
 };

@@ -5,7 +5,7 @@ const LoginPage = () => {
   return <>
       <div >
         <div className='grid grid-rows-2 h-screen w-screen'>
-          <LoginForgot/>
+          <LoginForgot title='Login' label='IAM Role' label2='Password' button='Login' link='Forgot Password' />
           <div className='grid-span-1'>
             <img className='h-full w-full' src='/loginFoto.png' alt='login page image'/>
           </div>

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../ROUTES';
 import Select from '../Widgets/Select/Select';
+import agentIcon from '../../assets/icons/agent.svg';
+import alertIcon from '../../assets/icons/alert.svg';
+import { Button } from '../Button';
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
@@ -79,13 +83,13 @@ const Navbar: React.FC = () => {
             </h2>
           </div>
           <div className='links'>
-            <button title='bell' type='button' className='bell'>
-              bell
-            </button>
+            <Button variant="light" onClick={() => {}} className="green icon">
+              <img src={alertIcon} alt="Alert icon" />
+            </Button> 
             <Select placeholder="Filters" color="green"></Select>
-            <Link to={ROUTES.ACCOUNT} className='account'>
-              account
-            </Link>
+            <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
+              <img src={agentIcon} alt="Agent icon" />
+            </Button> 
           </div>
         </div>
       </div>

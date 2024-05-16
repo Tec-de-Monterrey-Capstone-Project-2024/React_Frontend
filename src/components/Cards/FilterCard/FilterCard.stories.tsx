@@ -4,7 +4,7 @@ import FilterCard from './FilterCard';
 import { FilterCardProps } from './types'; // Importing types
 
 export default {
-    title: 'Components/FilterCard',
+    title: 'Components/Cards/FilterCard',
     component: FilterCard,
     argTypes: {
         priorityOptions: {

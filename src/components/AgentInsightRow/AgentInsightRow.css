@@ -14,3 +14,7 @@
 .white-bg {
     @apply bg-white;
 }
+
+.row-button {
+    @apply w-full;
+}

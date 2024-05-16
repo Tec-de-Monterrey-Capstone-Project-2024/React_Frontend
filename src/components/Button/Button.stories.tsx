@@ -4,6 +4,7 @@ import { ButtonProps } from './types';
 import Button from './Button';
 
 import agentIcon from '../../assets/icons/agent.svg';
+import alertIcon from '../../assets/icons/alert.svg';
 
 export default {
   title: 'Components/Button',
@@ -42,9 +43,17 @@ Green.args = {
 //   onClick: () => {},
 // };
 
-export const Icon = Template.bind({});
-Icon.args = {
+export const IconAgent = Template.bind({});
+IconAgent.args = {
   children: <img src={agentIcon} alt="Agent icon" />,
+  variant: 'light',
+  className: 'green icon',
+  onClick: () => {},
+};
+
+export const IconAlert = Template.bind({});
+IconAlert.args = {
+  children: <img src={alertIcon} alt="Agent icon" />,
   variant: 'light',
   className: 'green icon',
   onClick: () => {},

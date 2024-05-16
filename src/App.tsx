@@ -12,7 +12,7 @@ import ForgotPage from './pages/ForgotPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
 import AlertViewMore from './pages/AlertViewMore';
-=======
+
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 
 const App: React.FC = () => {

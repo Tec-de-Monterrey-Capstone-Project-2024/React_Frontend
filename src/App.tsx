@@ -11,6 +11,7 @@ import AgentsPage from './pages/AgentsPage';
 import ForgotPage from './pages/ForgotPage';
 import AccountPage from './pages/AccountPage';
 import AlertsPage from './pages/AlertsPage';
+import AlertViewMore from './pages/AlertViewMore';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
+          <Route path="/insights-show" element={<AlertViewMore />} />
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

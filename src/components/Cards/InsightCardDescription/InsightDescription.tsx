@@ -1,13 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import {InsightDescriptionProps} from './types';
 
-interface InsightDescriptionProps {
-  title: string;
-  message: string;
-  situationTitle: string;
-  actionTitle: string;
-}
 
 const InsightDescription: React.FC<InsightDescriptionProps> = ({ title, message, situationTitle, actionTitle }) => {
   return (

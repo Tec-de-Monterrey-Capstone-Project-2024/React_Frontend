@@ -1,23 +1,23 @@
+import { IMetric } from '../services/metrics/types';
+import MetricsData, { MetricData } from '../config/MetricsData';
+import { getGeneralMetrics } from '../services/metrics/getGeneralMetrics';
+import { MetricCard } from '../components/Cards/MetricCard';
 import React, { useEffect, useState } from 'react'
 
-import { getAgentMetrics } from '../services/metrics/getAgentMetrics';
-import { IMetric } from '../services/metrics/types';
-
-import MetricsData, { MetricData } from '../config/MetricsData';
-
-import { ContentCard } from '../components/Cards/ContentCard';
-import { GaugeChart } from '../components/DataDisplay/GaugeChart';
-import { Pie } from '../components/DataDisplay/PieChart';
 
 const DashboardPage = () => {
-  // const [loading, setLoading] = useState(true);
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getAgentMetrics("1");
+      setLoading(true);
+
+      const res = await getGeneralMetrics();
       console.log(res.data);
       setMetrics(res.data);
+
+      setLoading(false);
     }
 
   fetchData();
@@ -27,31 +27,38 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <>
-        <br />
-        {metrics && metrics.map(metric => {
-          const { metric_info_code, value, id } = metric;
-          const { name, min, max, graph } = MetricsData[id];
-          
-          return (
-            <div key={id}>
-              <b>{name}</b>
-                {graph === 'Gauge' ? (
-                  <GaugeChart min={min} max={max} value={value} />
-                ) : (
-                  <Pie value={value} metric={metric_info_code} />
-                )}
+    <section className='agent-dashboard'>
+      <div className='container'>
+        <div className='agent-content'>
+          <div className='column'>
+            <h2>KPIs</h2>
+            {loading ? <p>Loading...</p> : (metrics ? (
+              <div className='metrics'>
+                {metrics.map(metric => {
+                  const { metric_info_code, value } = metric;
+                  const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];
+                
+                  return (
+                    <MetricCard
+                      title={name}
+                      subtitle={'No se que se ponga aqui'}
+                      minValue={min}
+                      maxValue={max}
+                      value={value}
+                      unit={unit}
+                      positive_upside={positive_upside}
+                      onClick={() => {}}
+                    />
+                  );
+                })}
               </div>
-            );
-          })}
-        {/* {metrics ? <>
-          <GaugeChart min={0} max={100} value={0} />
-        </> : <>
-          <GaugeChart min={0} max={100} value={metrics} />
-        </>} */}
-        {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
-        <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
-    </>
+            ) : (
+              <p>No metrics found</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 

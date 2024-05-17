@@ -1,12 +1,12 @@
 import React from 'react';
 import './style.css';
 
-interface InsightProps {
+export interface InsightProps {
     title: string;
     message: string;
 }
 
-const Insight: React.FunctionComponent<InsightProps> = ({ title, message }: InsightProps) => {
+const InsightDescription: React.FunctionComponent<InsightProps> = ({ title, message }: InsightProps) => {
     return (
         <div className="insight-container">
             <h2>{title}</h2>
@@ -15,4 +15,4 @@ const Insight: React.FunctionComponent<InsightProps> = ({ title, message }: Insi
     );
 };
 
-export default Insight;
+export default InsightDescription;

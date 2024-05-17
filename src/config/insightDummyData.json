@@ -1,0 +1,28 @@
+
+[
+  {
+    "title": "Improve occupancy",
+    "description1": "See details on how to improve occupancy",
+    "description2": "Assign more agents.",
+    "color": "white",
+    "borderColor": "red",
+    "showBoxBorder": "false"
+  },
+  {
+    "title": "Improve adherence",
+    "description1": "See details on how to improve occupancy",
+    "description2": "Assign more agents.",
+    "color": "white",
+    "borderColor": "green",
+    "showBoxBorder": "false"
+  },
+  {
+    "title": "Assignment",
+    "description1": "Assign more agents",
+    "description2": "Assign more agents.",
+    "color": "white",
+    "borderColor": "yellow",
+    "showBoxBorder": "false"
+  }
+
+]

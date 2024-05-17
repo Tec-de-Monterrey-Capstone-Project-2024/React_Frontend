@@ -3,7 +3,6 @@ import { IInsightCard } from './types';
 import './style.css'
 import classNames from 'classnames';
 import { Button } from '../../Button';
-
 const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2, color, borderColor, showBoxBorder, func }) => {
 
     const card = classNames({

@@ -1,12 +1,15 @@
 import { IMetric } from '../services/metrics/types';
 import MetricsData, { MetricData } from '../config/MetricsData';
+import InsightData from '../config/insightDummyData.json'
 import { getGeneralMetrics } from '../services/metrics/getGeneralMetrics';
 import { MetricCard } from '../components/Cards/MetricCard';
 import React, { useEffect, useState } from 'react'
-
+import InsightCard  from "../components/Cards/InsightCard/InsightCard";
+import {IInsightCard} from "../components/Cards/InsightCard/types";
 
 const DashboardPage = () => {
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
+  const [insights,setInsights] = useState<IInsightCard[] | null>(null)
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -56,6 +59,28 @@ const DashboardPage = () => {
               <p>No metrics found</p>
             ))}
           </div>
+          <div className='column'>
+            <h2>Insights</h2>
+            {loading ? <p>Loading...</p> : (InsightData ? (
+                <div className="insights">
+                  {InsightData.map(insight => (
+                      <InsightCard
+                          key={insight.title}
+                          title={insight.title}
+                          description1={insight.description1}
+                          description2={insight.description2}
+                          color={insight.color}
+                          borderColor={insight.borderColor}
+                          showBoxBorder={insight.showBoxBorder === "true"}
+                          func={() => { console.log(`More info about ${insight.title}`); }}
+                      />
+                  ))}
+                </div>
+            ) : (
+                <p>No insights found</p>
+            ))}
+
+        </div>
         </div>
       </div>
     </section>

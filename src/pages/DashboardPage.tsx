@@ -9,8 +9,8 @@ import {IInsightCard} from "../components/Cards/InsightCard/types";
 
 const DashboardPage = () => {
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
-  const [insights,setInsights] = useState<IInsightCard[] | null>(null)
-  const [loading, setLoading] = useState<boolean>(true);
+  const [insights, setInsights] = useState<IInsightCard[] | null>(null)
+  const [loading, setLoading] = useState<Boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {

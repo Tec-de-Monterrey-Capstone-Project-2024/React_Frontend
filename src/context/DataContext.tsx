@@ -1,6 +1,7 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
 import { IUser } from '../services/user/types';
 import { IInstance } from '../services/instance/types';
+import { IQueue } from '../services/queue/types';
 
 interface DataContextProps {
     isLogged: boolean,
@@ -8,11 +9,15 @@ interface DataContextProps {
     user: IUser | null,
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>,
 
-    selectedInstance: string,
-    setSelectedInstance: React.Dispatch<React.SetStateAction<string>>,
+    selectedInstanceId: string,
+    setSelectedInstanceId: React.Dispatch<React.SetStateAction<string>>,
+    selectedInstance: IInstance | null,
+    setSelectedInstance: React.Dispatch<React.SetStateAction<IInstance | null>>,
 
-    selectedQueue: string,
-    setSelectedQueue: React.Dispatch<React.SetStateAction<string>>,
+    selectedQueueId: string,
+    setSelectedQueueId: React.Dispatch<React.SetStateAction<string>>,
+    selectedQueue: IQueue | null,
+    setSelectedQueue: React.Dispatch<React.SetStateAction<IQueue | null>>,
 }
 
 export const DataContext = createContext<DataContextProps | null>(null);
@@ -21,8 +26,11 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null>(null);
 
-    const [selectedInstance, setSelectedInstance] = useState<string>("0");
-    const [selectedQueue, setSelectedQueue] = useState<string>("all");
+    const [selectedInstanceId, setSelectedInstanceId] = useState<string>("0");
+    const [selectedInstance, setSelectedInstance] = useState<IInstance | null>(null);
+    
+    const [selectedQueueId, setSelectedQueueId] = useState<string>("all");
+    const [selectedQueue, setSelectedQueue] = useState<IQueue | null>(null);
     
     const DataContextValue: DataContextProps = {
         isLogged,
@@ -30,8 +38,13 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         user,
         setUser,
 
+        selectedInstanceId,
+        setSelectedInstanceId,
         selectedInstance,
         setSelectedInstance,
+
+        selectedQueueId,
+        setSelectedQueueId,
         selectedQueue,
         setSelectedQueue
     };

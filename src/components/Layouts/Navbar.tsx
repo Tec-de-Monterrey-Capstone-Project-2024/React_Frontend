@@ -4,9 +4,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDataContext } from '../../context/DataContext';
 
 import { ROUTES } from '../../ROUTES';
+
 import { getInstances } from '../../services/instance/getInstances';
 import { IInstance } from '../../services/instance/types';
-
 import { getQueues } from '../../services/queue/getQueues';
 import { IQueue } from '../../services/queue/types';
 
@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
   
   const [instances, setInstances] = useState<IInstance[]>([]);
   const [loadingInstances, setLoadingInstances] = useState<boolean>(true);
+  const { selectedInstanceId, setSelectedInstanceId, selectedInstance, setSelectedInstance } = useDataContext();
   useEffect(() => {
     const fetchInstances = async () => {
       setLoadingInstances(true);
@@ -35,29 +36,41 @@ const Navbar: React.FC = () => {
     }
     fetchInstances();
   }, []);
-  const { selectedInstance, setSelectedInstance } = useDataContext();
   const changeInstance = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedInstance(event.target.value);
+    setSelectedInstanceId(event.target.value);
+    setSelectedQueueId('all');
   };
+  useEffect(() => {
+    if (selectedInstanceId) {
+      const instance = instances.find(instance => instance.id === selectedInstanceId);
+      setSelectedInstance(instance || null);
+    }
+  }, [selectedInstanceId, instances, setSelectedInstance]);
 
   const [queues, setQueues] = useState<IQueue[]>([]);
   const [loadingQueues, setLoadingQueues] = useState<boolean>(true);
+  const { selectedQueueId, setSelectedQueueId, selectedQueue, setSelectedQueue } = useDataContext();
   useEffect(() => {
     const fetchQueues = async () => {
       setLoadingQueues(true);
-      var res = await getQueues(selectedInstance);
+      var res = await getQueues(selectedInstanceId);
       setQueues(res.data);
       console.log(res);
       setLoadingQueues(false);
     }
-    if (selectedInstance !== "0" && !loadingInstances) {
+    if (selectedInstanceId !== "0" && !loadingInstances) {
       fetchQueues();
     }
-  }, [selectedInstance]);
-  const { selectedQueue, setSelectedQueue } = useDataContext();
+  }, [selectedInstanceId]);
   const changeQueue = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedQueue(event.target.value);
+    setSelectedQueueId(event.target.value);
   };
+  useEffect(() => {
+    if (selectedQueueId) {
+      const queue = queues.find(queue => queue.id === selectedQueueId);
+      setSelectedQueue(queue || null);
+    }
+  }, [selectedQueueId, queues, setSelectedQueue]);
 
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
@@ -135,8 +148,8 @@ const Navbar: React.FC = () => {
             {/* <Select placeholder="Filters" color="green"></Select> */}
             {/* <Select placeholder="Filters" color="green"></Select> */}
 
-            {(selectedInstance !== "0" && !loadingQueues && !loadingInstances) && (
-              <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
+            {(selectedInstanceId !== "0" && !loadingQueues && !loadingInstances) && (
+              <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (
                   <option key={queue.id} value={queue.id}>
@@ -146,16 +159,7 @@ const Navbar: React.FC = () => {
               </select>
             )}
 
-            {/* <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
-              <option value="all">All queues</option>
-              {queues.map((queue) => (
-                <option key={queue.id} value={queue.id}>
-                  {queue.name}
-                </option>
-              ))}
-            </select> */}
-
-            <select id="instances" title='instances' value={selectedInstance} onChange={changeInstance} className='btn-type-2'>
+            <select id="instances" title='instances' value={selectedInstanceId} onChange={changeInstance} className='btn-type-2'>
               <option value="0">Select instance</option>
               {instances.map((instance) => (
                 <option key={instance.id} value={instance.id}>

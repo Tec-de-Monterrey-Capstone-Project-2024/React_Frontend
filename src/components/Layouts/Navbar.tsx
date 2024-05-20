@@ -20,13 +20,18 @@ import alertIcon from '../../assets/icons/alert.svg';
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
 
   
   const [instances, setInstances] = useState<IInstance[]>([]);
+  const [loadingInstances, setLoadingInstances] = useState<boolean>(true);
   useEffect(() => {
     const fetchInstances = async () => {
+      setLoadingInstances(true);
       var res = await getInstances();
+      setInstances(res.data);
       console.log(res);
+      setLoadingInstances(false);
     }
     fetchInstances();
   }, []);
@@ -36,12 +41,16 @@ const Navbar: React.FC = () => {
   };
 
   const [queues, setQueues] = useState<IQueue[]>([]);
+  const [loadingQueues, setLoadingQueues] = useState<boolean>(true);
   useEffect(() => {
     const fetchQueues = async () => {
+      setLoadingQueues(true);
       var res = await getQueues(selectedInstance);
+      setQueues(res.data);
       console.log(res);
+      setLoadingQueues(false);
     }
-    if (selectedInstance !== "0") {
+    if (selectedInstance !== "0" && !loadingInstances) {
       fetchQueues();
     }
   }, [selectedInstance]);
@@ -126,7 +135,7 @@ const Navbar: React.FC = () => {
             {/* <Select placeholder="Filters" color="green"></Select> */}
             {/* <Select placeholder="Filters" color="green"></Select> */}
 
-            {/* {selectedInstance !== "0" && (
+            {(selectedInstance !== "0" && !loadingQueues && !loadingInstances) && (
               <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (
@@ -135,16 +144,16 @@ const Navbar: React.FC = () => {
                   </option>
                 ))}
               </select>
-            )} */}
+            )}
 
-            <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
+            {/* <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
               <option value="all">All queues</option>
               {queues.map((queue) => (
                 <option key={queue.id} value={queue.id}>
                   {queue.name}
                 </option>
               ))}
-            </select>
+            </select> */}
 
             <select id="instances" title='instances' value={selectedInstance} onChange={changeInstance} className='btn-type-2'>
               <option value="0">Select instance</option>

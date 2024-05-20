@@ -7,7 +7,7 @@ export const getQueues = async (instanceId: string) => {
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;
-        res = response.data.filter((queue: IQueue) => queue.queueType === "STANDARD");
+        res.data = response.data.filter((queue: IQueue) => queue.queueType === "STANDARD");
     }).catch((err) => {
         res = err.response
     });

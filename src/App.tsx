@@ -21,7 +21,7 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<LoginPage />} />
           <Route path="/auth/forgot" element={<ForgotPage />} />
-          <Route path="/queues" element={<div>Queues</div>} />
+          <Route path="/queues" element={<QueuesPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
           <Route path="/agents" element={<AgentsPage />} />

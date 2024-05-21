@@ -3,17 +3,13 @@ import { IInsights } from "./types";
 
 export const getAgentInsights = async (id: string) => {
     const mockInsightsData: IInsights[] = [
-        { id: 1 },
-        { id: 2 },
-        { id: 3 },
-        { id: 4 },
-        { id: 5 },
-        { id: 6 },
-
+        { id: 1,title: "Prueba1", description1: "Descripcion corta 1", description2: "Descripcion larga 1", color: "red", borderColor: "yellow", showBoxBorder: true  },
+        { id: 2,title: "Prueba2", description1: "Descripcion corta 2", description2: "Descripcion larga 1", color: "green", borderColor: "red", showBoxBorder: true  },
+        { id: 3,title: "Prueba3", description1: "Descripcion corta 3", description2: "Descripcion larga 1", color: "yellow", borderColor: "green", showBoxBorder: true  },
+        { id: 4,title: "Prueba4", description1: "Descripcion corta 4", description2: "Descripcion larga 1", color: "red", borderColor: "red", showBoxBorder: true  },
     ];
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    
     // Simulate an HTTP status code (200 for success)
     const status = 200;
 

@@ -96,17 +96,17 @@ const AgentDashboardPage: React.FC = () => {
             {loadingInsights ? <p>Loading...</p> : (insights ? (
               <div className='insights'>
                 {insights.map(insight => {
-                  const { id } = insight;
+                  const { title, description1, description2, color, borderColor, showBoxBorder } = insight;
                 
                   return (
-                    <InsightCard 
-                    title={"Título"}
-                    description1={"Esta es la descripción"}
-                    description2={"Esta es la descripción larga, como la de esteban"}
-                    color={"red"}
-                    borderColor={"red"}
-                    showBoxBorder={true}
-                    func={()=>{}}
+                    <InsightCard
+                      title={title}
+                      description1={description1}
+                      description2={description2}
+                      color={color}
+                      borderColor={borderColor}
+                      showBoxBorder={showBoxBorder}
+                      func={() => {}}
                     />
                   );
                 })}
@@ -131,7 +131,7 @@ const AgentDashboardPage: React.FC = () => {
                   </div>
                 );
               })} */}
-            </div>
+r            </div>
           </div>
         </div>
       </div>

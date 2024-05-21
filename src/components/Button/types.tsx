@@ -6,7 +6,7 @@ export interface ButtonProps {
   color?: string; // Cambio
   title?: string; // Cambio
   content?: string; // Cambio
-  variant: 'grey' | 'darkblue' | 'pink' | 'green' | 'yellow' | 'lightgreen' | 'light' | 'dark';
+  variant: 'grey' | 'darkblue' | 'pink' | 'green' | 'yellow' | 'lightgreen' | 'light' | 'dark'|'bright-green';
 }
 /*
 export interface ButtonProps {

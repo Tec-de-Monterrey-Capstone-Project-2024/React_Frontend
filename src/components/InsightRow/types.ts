@@ -1,6 +1,6 @@
 export interface IInsightRow {
     id: number;
-    description: string;
+    title: string;
     color: string;
 }
 

@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 
-const InsightRow: React.FC<IInsightRow> = ({ id,description, color }) => {
+const InsightRow: React.FC<IInsightRow> = ({ title, color }) => {
 
     const insightRow = classNames({
         "row-container": true,
@@ -21,7 +21,7 @@ const InsightRow: React.FC<IInsightRow> = ({ id,description, color }) => {
 
     return (
         <div className={insightRow}>
-            <div className="text">{description}</div>
+            <div className="text">{title}</div>
                 <div className="button-text">
                     <Button onClick={handleNavigate} variant='dark' type={'button'}>Show more</Button>
                 </div>

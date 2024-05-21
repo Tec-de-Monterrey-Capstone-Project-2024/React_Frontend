@@ -16,7 +16,7 @@ const meta = {
         },
     },
     argTypes: {
-        description: { control: 'text'},
+        title: { control: 'text'},
         color: { control: 'text'},
     },
     tags: ["autodocs"]
@@ -28,6 +28,6 @@ const Template: StoryFn<IInsightRow> = (args) => <InsightRow {...args} />;
 
 export const InsightRowExample = Template.bind({});
 InsightRowExample.args = {
-    description: 'Assign more agents to Reimbursements Queue',
+    title: 'Assign more agents to Reimbursements Queue',
     color: 'white',
 }

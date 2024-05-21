@@ -6,9 +6,9 @@ import './style.css';
 
 const InsightPage = () => {
     const insightRows = [
-        { id:1, description: "Improve Service Level", color: "white" },
-        { id:2, description: "Improve Occupancy", color: "white" },
-        { id:3, description: "Reassignment", color: "white" },
+        { id:1, title: "Improve Service Level", color: "white" },
+        { id:2, title: "Improve Occupancy", color: "white" },
+        { id:3, title: "Reassignment", color: "white" },
     ];
     const kanbanInsight = {
         'To-do': {
@@ -27,15 +27,20 @@ const InsightPage = () => {
 
     const [kanban, setKanban] = useState(kanbanInsight)
 
-    const onDragEnd = ({ source, destination }: DropResult) => {
+    const onDragEnd = ({source,destination}: DropResult) => {
         if (!destination) return;
+    
+        if (source.droppableId === destination.droppableId && source.index === destination.index) {
+            return;
+        }
+    
         const start = kanban[source.droppableId as keyof typeof kanban];
         const end = kanban[destination.droppableId as keyof typeof kanban];
-        const draggableItem = start.list[source.index];
         if (start === end) {
             const newList = Array.from(start.list);
-            newList.splice(source.index, 1);
+            const [draggableItem] = newList.splice(source.index, 1);
             newList.splice(destination.index, 0, draggableItem);
+    
             setKanban(prevState => ({
                 ...prevState,
                 [start.id]: {
@@ -43,30 +48,27 @@ const InsightPage = () => {
                     list: newList
                 }
             }));
-        } else {
-            const start = kanban[source.droppableId as keyof typeof kanban] as { id: string; list: { id: number; description: string; color: string; }[]; index: number };
-            const sourceList = Array.from(start.list);
-            sourceList.splice(start.index, 1);
-
-            const end = kanban[destination.droppableId as keyof typeof kanban] as { id: string; list: { id: number; description: string; color: string; }[]; index: number };
-            const destinationList = Array.from(end.list);
-            destinationList.splice(end.index, 0, draggableItem);
-
+        } else { 
+            const startList = Array.from(start.list);
+            const [draggableItem] = startList.splice(source.index, 1);
+            const endList = Array.from(end.list);
+            endList.splice(destination.index, 0, draggableItem);
+    
             setKanban(prevState => ({
                 ...prevState,
                 [start.id]: {
                     ...start,
-                    list: sourceList
+                    list: startList
                 },
                 [end.id]: {
                     ...end,
-                    list: destinationList
+                    list: endList
                 }
             }));
         }
     };
-
-
+    
+    
     return (
     <DragDropContext onDragEnd={onDragEnd}>
         <div className='kanban'>
@@ -87,7 +89,7 @@ const InsightPage = () => {
                                                 {...provided.dragHandleProps}>
                                                     <InsightRow
                                                         id={insight.id}
-                                                        description={insight.description}
+                                                        title={insight.title}
                                                         color={insight.color}
                                                     />
                                                 </div>

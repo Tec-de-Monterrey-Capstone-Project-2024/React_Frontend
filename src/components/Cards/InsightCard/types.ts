@@ -12,11 +12,11 @@ export interface IInsightCard {
      */
     description2?: string;
     /**
-     * Background color of the  card
+     * Background color of the card
      */
     color: string;
     /**
-     * Border color of the  card
+     * Border color of the card
      */
     borderColor: string;
     /**

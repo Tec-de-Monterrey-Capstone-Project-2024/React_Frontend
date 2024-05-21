@@ -18,7 +18,7 @@ const AlertViewMore: React.FC = () => {
         </button>
         <br />
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow mt-12">
         <Insight 
           title="Reconfigure Virtual floor" 
           message="Not Enough people on the Reimbursements Queue." 

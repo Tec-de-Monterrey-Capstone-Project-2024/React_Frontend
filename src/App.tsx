@@ -11,6 +11,7 @@ import AgentsPage from './pages/AgentsPage/AgentsPage';
 import ForgotPage from './pages/ForgotPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
+import InsightPage  from './pages/InsightPage/InsightPage';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
+          <Route path="/insights" element={<InsightPage />} />
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

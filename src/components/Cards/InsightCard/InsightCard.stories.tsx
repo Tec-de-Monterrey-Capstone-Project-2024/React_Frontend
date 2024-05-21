@@ -11,7 +11,7 @@ const meta = {
         docs: {
             story: {
                 inline: true,
-                iframeHeight: 200,
+                iframeHeight: 400,
             }
         },
     },

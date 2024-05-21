@@ -14,8 +14,8 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
 
     const navigate = useNavigate();
     const [showLoginForgot, setShowLoginForgot] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('hola@gmail.com');
+    const [password, setPassword] = useState('hola123');
 
     const handleChangeForm = () => {setShowLoginForgot(!showLoginForgot);};
 
@@ -61,12 +61,12 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
                     <div className="">
                     <div className="input-container ">
                         <label className="input-label" htmlFor="iam-role">{showLoginForgot ? forgotPasswordProps.label : loginProps.label}</label>
-                        <input className="input" name="email" type="email" id="email-address" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} />
+                        <input className="input" name="email" type="email" id="email-address" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
                     </div>
                     {Object.keys(loginProps).includes("label2") && !showLoginForgot && (
                         <div className="input-container">
                             <label className="input-label" htmlFor="password">{showLoginForgot ? forgotPasswordProps.label : loginProps.label2}</label>
-                            <input className="input" name="password" required type="password" id="password" placeholder="  password..." onChange={(e) => setPassword(e.target.value)}  />
+                            <input className="input" name="password" required type="password" id="password" placeholder="  password..." onChange={(e) => setPassword(e.target.value)} value={password} />
                         </div>
                     )}
                 </div>

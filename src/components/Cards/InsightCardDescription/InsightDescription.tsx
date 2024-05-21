@@ -1,9 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-import type { InsightDescription } from './types';
+import type { IInsightDescription } from './types';
 
-const InsightDescription: React.FC<InsightDescription> = ({ title, message, situationTitle, actionTitle }) => {
+const InsightDescription: React.FC<IInsightDescription> = ({ title, message, situationTitle, actionTitle }) => {
   return (
     <div className="p-6 border border-gray-300 rounded-lg shadow-lg bg-gray-50">
       <h2 className="text-4xl font-bold mb-4 flex items-center">

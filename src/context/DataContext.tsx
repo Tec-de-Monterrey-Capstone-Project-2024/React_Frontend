@@ -1,5 +1,7 @@
-import React, { createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
 import { IUser } from '../services/user/types';
+import { IInstance } from '../services/instance/types';
+import { IQueue } from '../services/queue/types';
 
 interface DataContextProps {
     isLogged: boolean,
@@ -7,17 +9,11 @@ interface DataContextProps {
     user: IUser | null,
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>,
 
-    exampleData: string;
-    setExampleData: React.Dispatch<React.SetStateAction<string>>;
+    selectedInstanceId: string,
+    setSelectedInstanceId: React.Dispatch<React.SetStateAction<string>>,
 
-    // lang: 'en' | 'es';
-    // setLang: React.Dispatch<React.SetStateAction<'en' | 'es'>>;
-
-    // theme: string;
-    // setTheme: React.Dispatch<React.SetStateAction<string>>;
-
-    // navbarOpen: boolean,
-    // setNavbarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    selectedQueueId: string,
+    setSelectedQueueId: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export const DataContext = createContext<DataContextProps | null>(null);
@@ -26,13 +22,15 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null>(null);
 
-    const [exampleData, setExampleData] = useState<string>('Initial data');
+    const [selectedInstanceId, setSelectedInstanceId] = useState<string>( localStorage.getItem('selectedInstanceId') || "0" );
+    const [selectedQueueId, setSelectedQueueId] = useState<string>( localStorage.getItem('selectedQueueId') || "all" );
 
-    // const [lang, setLang] = useState<'en' | 'es'>('en');
-    
-    // const [theme, setTheme] = useState<string>('dark');
-
-    // const [navbarOpen, setNavbarOpen] = useState<boolean>(false);
+    useEffect(() => {
+        localStorage.setItem('selectedInstanceId', selectedInstanceId);
+    }, [selectedInstanceId]);
+    useEffect(() => {
+        localStorage.setItem('selectedQueueId', selectedQueueId);
+    }, [selectedQueueId]);
     
     const DataContextValue: DataContextProps = {
         isLogged,
@@ -40,17 +38,11 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         user,
         setUser,
 
-        exampleData,
-        setExampleData,
+        selectedInstanceId,
+        setSelectedInstanceId,
 
-        // lang,
-        // setLang,
-
-        // theme,
-        // setTheme,
-        
-        // navbarOpen,
-        // setNavbarOpen
+        selectedQueueId,
+        setSelectedQueueId,
     };
     
     return (
@@ -58,4 +50,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             {children}
         </DataContext.Provider>
     );
+};
+
+export const useDataContext = () => {
+    const context = useContext(DataContext);
+    if (!context) {
+        throw new Error("useDataContext must be used within a DataProvider");
+    }
+    return context;
 };

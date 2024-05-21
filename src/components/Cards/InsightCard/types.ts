@@ -4,9 +4,13 @@ export interface IInsightCard {
      */
     title:string;
     /**
-     * Content description of the card
+     * First line of the content description of the card.
      */
-    description:string;
+    description1:string;
+    /**
+     * Second line of the content description of the card.
+     */
+    description2?:string;
     /**
      * Background color of the  card
      */
@@ -19,4 +23,8 @@ export interface IInsightCard {
      * Decide wether to show the border or not
      */
     showBoxBorder: boolean;
+    /**
+     * Function to use with the button
+     */
+    func: () => void;
 }

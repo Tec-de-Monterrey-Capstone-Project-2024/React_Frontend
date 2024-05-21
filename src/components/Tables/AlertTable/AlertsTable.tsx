@@ -2,6 +2,7 @@ import React from 'react';
 import alertData from './alert-example.json'; // Ensure the path to your JSON file is correct
 import { PerformanceTag, PerformanceCategory } from '../../Tags/PerformanceCategoryTag';
 import { ScopeTag, AlertScope } from '../../Tags/AlertScopeTag';
+import Button from '../../Button/Button';
 
 function AlertsTable() {
   return (
@@ -36,20 +37,17 @@ function AlertsTable() {
                   {alert.metric.queue_id && <ScopeTag type="queue" />}
                 </td>
                 <td className="p-3 text-center">{new Date(alert.occurred_at).toLocaleString()}</td>
-                <td className="p-3 text-center">
-                  <button 
-                    onClick={() => console.log('Insights for ID:', alert.id)}
-                    className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  >
-                    View Insights
-                  </button>
-                </td>
+                  <td className="p-3 text-center">
+                      <div className="w-full">
+                          <Button title={"View"} variant={"dark"} onClick={() => console.log('Insights for ID:', alert.id)}/>
+                      </div>
+                  </td>
               </tr>
             ))}
           </tbody>
-          
+
         </table>
-      </div>
+        </div>
     </div>
   );
 }

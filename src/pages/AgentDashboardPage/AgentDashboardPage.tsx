@@ -96,13 +96,12 @@ const AgentDashboardPage: React.FC = () => {
             {loadingInsights ? <p>Loading...</p> : (insights ? (
               <div className='insights'>
                 {insights.map(insight => {
-                  const { title, description1, description2, color, borderColor, showBoxBorder } = insight;
+                  const { title, description1, color, borderColor, showBoxBorder } = insight;
                 
                   return (
                     <InsightCard
                       title={title}
                       description1={description1}
-                      description2={description2}
                       color={color}
                       borderColor={borderColor}
                       showBoxBorder={showBoxBorder}

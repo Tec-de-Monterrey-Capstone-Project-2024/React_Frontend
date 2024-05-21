@@ -5,7 +5,7 @@ import './styles.css';
 
 const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }) => {
     const [formData, setFormData] = useState({
-        iamrole: '',
+        name: '',
         password: ''
     });
 
@@ -33,22 +33,22 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
     
     return (
         <div className="card" >
-            <form className="">
+            <form className=" ">
                     <div className="loginforgot-text">
                         <h3>{showLoginForgot ? forgotPasswordProps.title : loginProps.title}</h3>
                     </div>
                     <div className="">
-                        <div className="input-container ">
-                            <label className="input-label" htmlFor="iam-role">{showLoginForgot ? forgotPasswordProps.label : loginProps.label}</label>
-                            <input className="input" type="text" id="iam-role" placeholder="  iam role..." />
-                        </div>
-                        {Object.keys(loginProps).includes("label2") && !showLoginForgot && (
-                            <div className="input-container">
-                                <label className="input-label" htmlFor="password">{showLoginForgot ? forgotPasswordProps.label : loginProps.label2}</label>
-                                <input className="input" type="password" id="password" placeholder="  password..."  />
-                            </div>
-                        )}
+                    <div className="input-container ">
+                        <label className="input-label" htmlFor="iam-role">{showLoginForgot ? forgotPasswordProps.label : loginProps.label}</label>
+                        <input className="input" type="text" id="iam-role" placeholder="  iam role..." />
                     </div>
+                    {Object.keys(loginProps).includes("label2") && !showLoginForgot && (
+                        <div className="input-container">
+                            <label className="input-label" htmlFor="password">{showLoginForgot ? forgotPasswordProps.label : loginProps.label2}</label>
+                            <input className="input" type="password" id="password" placeholder="  password..."  />
+                        </div>
+                    )}
+                </div>
                 <div className="link-container">
                     <button className="button login-button">{showLoginForgot ? forgotPasswordProps.button : loginProps.button}</button>
                     <a className="link"  onClick={handleChangeForm}>{showLoginForgot ? forgotPasswordProps.link : loginProps.link}</a>

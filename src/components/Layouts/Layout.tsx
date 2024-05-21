@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { DataProvider } from '../../context/DataContext';
-
 import Navbar from './Navbar';
 import Sidebar from './Sidebar/Sidebar';
 
@@ -22,7 +20,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
 
     return (
-        <DataProvider>
+        <>
             <div className='layout'>
                 <Sidebar />
                 <div className='panel'>
@@ -30,7 +28,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     <main>{children}</main>
                 </div>
             </div>
-        </DataProvider>
+        </>
     );
 };
 

@@ -41,13 +41,23 @@ const AgentDashboardPage: React.FC = () => {
   }, [id]);
 
   return (
-    <section className='dashboard'>
+    <section className='agent-dashboard'>
       <div className='container'>
-        <div className='dashboard-content'>
+        <div className='agent-content'>
           <div className='column'>
             <h2>KPIs</h2>
             {loading ? <p>Loading...</p> : (metrics ? (
               <div className='metrics'>
+                <MetricCard
+                  title={"name"}
+                  subtitle={'No se que se ponga aqui'}
+                  minValue={1}
+                  maxValue={100}
+                  value={70}
+                  unit={null}
+                  positive_upside={true}
+                  onClick={() => {}}
+                />
                 {metrics.map(metric => {
                   const { metric_info_code, value } = metric;
                   const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];
@@ -73,7 +83,7 @@ const AgentDashboardPage: React.FC = () => {
           <div className='column'>
             <h2>Insights</h2>
             <div className='insights'>
-            {/* {loading ? <p>Loading...</p> : metrics && metrics.map(metric => {
+            {loading ? <p>Loading...</p> : metrics && metrics.map(metric => {
               const { metric_info_code, value } = metric;
               const { name, min, max, graph } = MetricsData[metric_info_code];
               
@@ -87,7 +97,7 @@ const AgentDashboardPage: React.FC = () => {
                     )}
                   </div>
                 );
-              })} */}
+              })}
             </div>
           </div>
         </div>

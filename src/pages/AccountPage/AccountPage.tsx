@@ -39,16 +39,6 @@ const AccountPage: React.FC = () => {
                                 </div>
                                 <ul>
                                     <li>
-                                        <button onClick={() => changeTab(1)} data-active={tab === 1}>
-                                            Account
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button onClick={() => changeTab(2)} data-active={tab === 2}>
-                                            Preferences
-                                        </button>
-                                    </li>
-                                    <li>
                                         <button>
                                             Logout
                                             {/* <img src={logoutIcon} alt="Logout icon" /> */}

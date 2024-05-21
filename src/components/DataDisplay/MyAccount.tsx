@@ -24,27 +24,20 @@ const MyAccount = () => {
     return (
         <>
             <div className="tab-container container">
-                <form onSubmit={handleSubmit}>
-                    <div className='columns-2'>
-                        <div className='form-control'>
-                            <label htmlFor="name">Name</label>
-                            <input name='name' title='name' type="text" value={userData.name} onChange={handleInputChange} />
-                        </div>
-                        <div className='form-control'>
-                            <label htmlFor="lastname">Last Name</label>
-                            <input name='lastname' title='lastname' type="text" value={userData.lastname} onChange={handleInputChange} />
-                        </div>
+                <div className='columns-2'>
+                    <div className='form-control'>
+                        <label htmlFor="name"><b>Name</b></label>
+                        <p>Elma</p>
                     </div>
                     <div className='form-control'>
-                        <label htmlFor="email">Email</label>
-                        <input name='email' title='email' type="email" value={userData.email} onChange={handleInputChange} />
+                        <label htmlFor="lastname"><b> Last Name</b></label>
+                        <p>Chucapapas</p>
                     </div>
-                    <div className="buttons">
-                        <button className="save" type="submit">
-                            Update data
-                        </button>
-                    </div>
-                </form>
+                </div>
+                <div className='form-control'>
+                    <label htmlFor="email"><b>Email</b></label>
+                    <p>elmachucapapas@gmail.com</p>
+                </div>
             </div>
         </>
     );

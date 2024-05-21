@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Layout from './components/Layouts/Layout';
-
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
@@ -12,7 +11,6 @@ import ForgotPage from './pages/ForgotPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
 import AlertViewMore from './pages/AlertViewMore';
-
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 
 const App: React.FC = () => {
@@ -23,13 +21,13 @@ const App: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<LoginPage />} />
           <Route path="/auth/forgot" element={<ForgotPage />} />
-          <Route path="/queues" element={<div>Queues</div>} />
+          <Route path="/queues" element={<QueuesPage/>} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
-          <Route path="/insights-show" element={<AlertViewMore />} />
+          <Route path="/insights" element={<AlertViewMore />} />
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

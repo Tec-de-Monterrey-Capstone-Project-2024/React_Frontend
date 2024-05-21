@@ -1,7 +1,7 @@
 /**
  * Interface for the props of the InsightDescription component.
  */
-export interface InsightDescriptionProps {
+export interface InsightDescription {
   /**
    * The initial title of the card: Reconfigure Virtual floor
    */

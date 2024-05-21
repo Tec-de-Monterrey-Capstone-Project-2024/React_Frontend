@@ -12,7 +12,7 @@ import './styles.css';
 
 const AgentsPage = () => {
     const [loading, setLoading] = useState<boolean>(true);
-    const { selectedQueueId, setSelectedQueueId, selectedQueue } = useDataContext();
+    const { selectedInstanceId, selectedQueueId } = useDataContext();
     const [agents, setAgents] = useState<IAgent[]>([]);
     
     // const changeQueue = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -24,7 +24,7 @@ const AgentsPage = () => {
             setLoading(true);
             try {
                 const res = await getAgents(selectedQueueId);
-                console.log('Agents data:', res.data);
+                console.log(res);
                 setAgents(res.data);
             } catch (tcErr) {
                 console.error(tcErr);
@@ -32,7 +32,7 @@ const AgentsPage = () => {
             setLoading(false);
         }
         fetchData();
-    }, [selectedQueueId]);
+    }, [selectedInstanceId, selectedQueueId]);
 
     return (
         <section className='agents'>
@@ -44,7 +44,9 @@ const AgentsPage = () => {
                         <option value="3">Queue 3</option>
                     </select> */}
                     <ContentCard>
-                        {loading ? <p>Loading agents from Queue {selectedQueue?.name}...</p> : <AgentsTable agents={agents} />}
+                        {selectedInstanceId === "0" ? <p>Please select an instance.</p> : (
+                            loading ? <p>Loading agents from Queue {selectedQueueId}...</p> : <AgentsTable agents={agents} />
+                        )}
                     </ContentCard>
                 </div>
             </div>

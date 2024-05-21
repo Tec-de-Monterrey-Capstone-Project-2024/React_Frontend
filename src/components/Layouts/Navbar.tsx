@@ -24,15 +24,11 @@ const Navbar: React.FC = () => {
 
   
   const [instances, setInstances] = useState<IInstance[]>([]);
-  const [loadingInstances, setLoadingInstances] = useState<boolean>(true);
-  const { selectedInstanceId, setSelectedInstanceId, selectedInstance, setSelectedInstance } = useDataContext();
+  const { selectedInstanceId, setSelectedInstanceId } = useDataContext();
   useEffect(() => {
     const fetchInstances = async () => {
-      setLoadingInstances(true);
       var res = await getInstances();
       setInstances(res.data);
-      console.log(res);
-      setLoadingInstances(false);
     }
     fetchInstances();
   }, []);
@@ -40,37 +36,21 @@ const Navbar: React.FC = () => {
     setSelectedInstanceId(event.target.value);
     setSelectedQueueId('all');
   };
-  useEffect(() => {
-    if (selectedInstanceId) {
-      const instance = instances.find(instance => instance.id === selectedInstanceId);
-      setSelectedInstance(instance || null);
-    }
-  }, [selectedInstanceId, instances, setSelectedInstance]);
 
   const [queues, setQueues] = useState<IQueue[]>([]);
-  const [loadingQueues, setLoadingQueues] = useState<boolean>(true);
-  const { selectedQueueId, setSelectedQueueId, selectedQueue, setSelectedQueue } = useDataContext();
+  const { selectedQueueId, setSelectedQueueId } = useDataContext();
   useEffect(() => {
     const fetchQueues = async () => {
-      setLoadingQueues(true);
       var res = await getQueues(selectedInstanceId);
       setQueues(res.data);
-      console.log(res);
-      setLoadingQueues(false);
     }
-    if (selectedInstanceId !== "0" && !loadingInstances) {
+    if (selectedInstanceId !== "0") {
       fetchQueues();
     }
   }, [selectedInstanceId]);
   const changeQueue = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedQueueId(event.target.value);
   };
-  useEffect(() => {
-    if (selectedQueueId) {
-      const queue = queues.find(queue => queue.id === selectedQueueId);
-      setSelectedQueue(queue || null);
-    }
-  }, [selectedQueueId, queues, setSelectedQueue]);
 
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
@@ -148,7 +128,7 @@ const Navbar: React.FC = () => {
             {/* <Select placeholder="Filters" color="green"></Select> */}
             {/* <Select placeholder="Filters" color="green"></Select> */}
 
-            {(selectedInstanceId !== "0" && !loadingQueues && !loadingInstances) && (
+            {(selectedInstanceId !== "0") && (
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (

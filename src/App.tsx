@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 
 import Layout from './components/Layouts/Layout';
-import { AuthProvider } from './context/AuthContext';
+import { useAuth } from './context/AuthContext';
 import PrivateRoute from './context/PrivateRoute';
 
 import HomePage from './pages/HomePage';
@@ -19,14 +19,12 @@ import QueuesPage from './pages/QueuesPage/QueuesPage';
 const App: React.FC = () => {
   return (
     <Router>
-      <AuthProvider>
       <Layout>
         <Routes>
-          <Route path="/" element={<Navigate to='/auth' />} />
+          <Route path="/" element={<Navigate to='/dashboard' />} />
           <Route path="/auth" element={<LoginPage />} />
 
           <Route path='/' element={<PrivateRoute />}>
-            <Route path="/home" element={<HomePage/>} />
             <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
@@ -37,7 +35,6 @@ const App: React.FC = () => {
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>
-      </AuthProvider>
     </Router>
   );
 };

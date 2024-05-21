@@ -25,7 +25,7 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            navigate("/home")
+            navigate("/dashboard");
             console.log(user);
         })
         .catch((error) => {

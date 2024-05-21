@@ -29,7 +29,7 @@ const App: React.FC = () => {
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
-          <Route path="/insights-show" element={<AlertViewMore />} />
+          <Route path="/insights-show" element={<AlertViewMore/>} />
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

@@ -8,7 +8,10 @@ const AlertViewMore: React.FC = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const [modalStatus, setModalStatus] = useState('');
+  const [modalStatus, setModalStatus] = useState<'Solve in Connect' | 'In Progress' | 'Done'>('Done');
+  const [redirecting, setRedirecting] = useState(false);
+  const [redirectTimeout, setRedirectTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [redirectCountdown, setRedirectCountdown] = useState(5);
 
   const goBack = () => {
     navigate(-1);
@@ -18,6 +21,31 @@ const AlertViewMore: React.FC = () => {
     setModalMessage(message);
     setModalStatus(status);
     setShowModal(true);
+
+    if (status === 'Solve in Connect') {
+      setRedirecting(true);
+      setRedirectCountdown(5);
+      const countdownInterval = setInterval(() => {
+        setRedirectCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+      const timeout = setTimeout(() => {
+        clearInterval(countdownInterval);
+        window.location.href = 'https://connectmate.awsapps.com/auth/?client_id=564fda62f107a665&redirect_uri=https%3A%2F%2Fconnectmate.my.connect.aws%2Fauth%2Fcode%3Fdestination%3D%252Fhome&state=0yqS8AbKw5xfLwSqJuPYqYuM2AiclxoNoV1OBLE0hndTTjWPajWdxygHwGwIx1BA5B1DYZOLymGZhtAlIfHA7w';
+      }, 5000);
+      setRedirectTimeout(timeout);
+    } else {
+      setTimeout(() => {
+        navigate('/insights');
+      }, 2720);
+    }
+  };
+
+  const cancelRedirect = () => {
+    if (redirectTimeout) {
+      clearTimeout(redirectTimeout);
+      setRedirecting(false);
+      setShowModal(false);
+    }
   };
 
   const handleCloseModal = () => {
@@ -27,7 +55,7 @@ const AlertViewMore: React.FC = () => {
   return (
     <div className="p-4 flex flex-col h-screen">
       <div>
-        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline">
+        <button onClick={goBack} className="flex items-center text-black font-sans text-sm no-underline">
           <span className="mr-2">&#8592;</span>
           Back
         </button>
@@ -40,22 +68,38 @@ const AlertViewMore: React.FC = () => {
           situationTitle="Situation" 
           actionTitle="Action"
         />
-      </div>
-      <div className="flex justify-center space-x-4 mt-auto mb-24">
-        <Button variant="darkblue" onClick={() => handleButtonClick('Recommendation 1 [Reconfigure virtual floor] has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
-          Solve in Connect
-        </Button>
-        <Button variant="green" onClick={() => handleButtonClick('Recommendation 1 [Reconfigure virtual floor] has been marked as In Progress successfully.', 'In Progress')}>
-          In progress
-        </Button>
-        <Button variant="grey" onClick={() => handleButtonClick('Recommendation 1 [Reconfigure virtual floor] has been marked as Done successfully.', 'Done')}>
-            Done
-        </Button>
-      </div>
-  {showModal && (
-    <InsightModal message={modalMessage} onClose={handleCloseModal} status={modalStatus as 'Solve in Connect' | 'In Progress' | 'Done'} />
-  )}
+        <div className="mt-4 flex justify-between items-start">
+          <div>
+            <p className="text-base font-semibold mb-2">Mark this Insight as:</p>
+            <div className="flex space-x-4">
+              <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+                In Progress
+              </Button>
+              <Button variant="green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                Done
+              </Button>
+            </div>
+          </div>
+          <div className="mt-8">
+            <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+              Solve in Connect
+            </Button>
+          </div>
+        </div>
+      {showModal && (
+        <InsightModal
+          message={modalMessage}
+          onClose={handleCloseModal}
+          status={modalStatus}
+          redirecting={redirecting}
+          cancelRedirect={cancelRedirect}
+          redirectCountdown={redirectCountdown}
+        />
+      )}
     </div>
+  </div>
   );
-}
+};
+
+
 export default AlertViewMore;

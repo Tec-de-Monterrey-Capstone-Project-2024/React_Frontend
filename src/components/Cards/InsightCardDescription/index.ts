@@ -1,2 +1,2 @@
 export { default as InsightDescription } from './InsightDescription';
-export type { InsightProps } from './InsightDescription';
+export type { IInsightDescription } from './types';

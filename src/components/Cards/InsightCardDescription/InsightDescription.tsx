@@ -1,12 +1,8 @@
+import { IInsightDescription } from './types';
 import React from 'react';
 import './style.css';
 
-export interface InsightProps {
-    title: string;
-    message: string;
-}
-
-const InsightDescription: React.FunctionComponent<InsightProps> = ({ title, message }: InsightProps) => {
+const InsightDescription: React.FunctionComponent<IInsightDescription> = ({ title, message }: IInsightDescription) => {
     return (
         <div className="insight-container">
             <h2>{title}</h2>

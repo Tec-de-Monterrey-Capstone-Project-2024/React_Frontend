@@ -1,4 +1,4 @@
-export interface InsightCardProps {
+export interface IInsightDescription {
     title: string;
     message: string;
 }

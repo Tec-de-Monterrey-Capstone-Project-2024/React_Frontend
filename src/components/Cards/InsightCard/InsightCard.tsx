@@ -27,7 +27,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
                 {description2}
             </div>
             <div className="insight-button">
-                <Button title={"Show more"} variant={"dark"} onClick={func}>Show more</Button>
+                <Button title={"Show more"} className="w-full" variant={"dark"} onClick={func}>Show more</Button>
             </div>
         </div>
     );

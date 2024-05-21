@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
         break;
 
         case '/insights-show':
-          setTitle('Insight 1');
+          setTitle('Insight');
           setSubtitle(null);
           break;
 

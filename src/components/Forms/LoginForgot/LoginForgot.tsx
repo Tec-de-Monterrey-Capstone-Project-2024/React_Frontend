@@ -7,6 +7,11 @@ import './styles.css';
 import { useNavigate } from "react-router-dom";
 
 const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }) => {
+    const [formData, setFormData] = useState({
+        iamrole: '',
+        password: ''
+    });
+
     const navigate = useNavigate();
     const [showLoginForgot, setShowLoginForgot] = useState(false);
     const [email, setEmail] = useState('');

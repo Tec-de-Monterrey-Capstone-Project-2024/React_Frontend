@@ -3,19 +3,16 @@ import { formProps } from "./types";
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from "../../../firebase";
 
-import './styles.css';
-import { useNavigate } from "react-router-dom";
+import '../styles.css';
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }) => {
-    const [formData, setFormData] = useState({
-        iamrole: '',
-        password: ''
-    });
 
     const navigate = useNavigate();
     const [showLoginForgot, setShowLoginForgot] = useState(false);
     const [email, setEmail] = useState('hola@gmail.com');
     const [password, setPassword] = useState('hola123');
+    const [error, setError] = useState<string | null>(null);
 
     const handleChangeForm = () => {setShowLoginForgot(!showLoginForgot);};
 
@@ -31,7 +28,8 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+            console.log(errorCode, errorMessage);
+            setError(errorMessage);
         });
        
     }
@@ -55,10 +53,10 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
     return (
         <div className="card" >
             <form className=" " onSubmit={onLogin}>
-                    <div className="loginforgot-text">
-                        <h3>{showLoginForgot ? forgotPasswordProps.title : loginProps.title}</h3>
-                    </div>
-                    <div className="">
+                <div className="title">
+                    <h3>{showLoginForgot ? forgotPasswordProps.title : loginProps.title}</h3>
+                </div>
+                <div className="">
                     <div className="input-container ">
                         <label className="input-label" htmlFor="iam-role">{showLoginForgot ? forgotPasswordProps.label : loginProps.label}</label>
                         <input className="input" name="email" type="email" id="email-address" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
@@ -71,8 +69,12 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
                     )}
                 </div>
                 <div className="link-container">
+                    {error && (
+                        <p className="text-red-500 mb-4 text-sm font-medium">{error}</p>
+                    )}
                     <button className="button login-button" type="submit">{showLoginForgot ? forgotPasswordProps.button : loginProps.button}</button>
                     <a className="link"  onClick={handleChangeForm}>{showLoginForgot ? forgotPasswordProps.link : loginProps.link}</a>
+                    <Link className="link" to='/Register'>Still dont have an account? </Link >
                 </div>
             </form>
         </div>

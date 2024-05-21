@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   if (user) {
     return <Navigate to='/dashboard' />;
-  }
+  } 
   return <>
       <div >
         <div className='grid grid-rows-2 h-screen w-screen'>

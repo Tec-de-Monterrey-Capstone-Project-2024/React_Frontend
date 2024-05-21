@@ -7,4 +7,6 @@ export const ROUTES = {
     ALERTS: "/alerts",
     INSIGHTS: "/insights",
     ACCOUNT: "/account",
+    REGISTER: "/register"
 };
+

@@ -16,6 +16,9 @@ import RegisterPage from './pages/RegisterPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
 import QueuesPage from './pages/QueuesPage/QueuesPage';
+import InsightPage  from './pages/InsightPage/InsightPage';
+
+
 
 const App: React.FC = () => {
   return (

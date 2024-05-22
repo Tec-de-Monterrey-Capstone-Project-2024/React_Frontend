@@ -1,7 +1,17 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 import {LoginForgot} from './../components/Forms/LoginForgot';
 
+import { useAuth } from '../context/AuthContext';
+
+
 const LoginPage = () => {
+  const { user } = useAuth();
+
+  if (user) {
+    return <Navigate to='/dashboard' />;
+  } 
   return <>
       <div >
         <div className='grid grid-rows-2 h-screen w-screen'>

@@ -14,6 +14,9 @@ import AlertsPage from './pages/AlertsPage';
 import AlertViewMore from './pages/AlertViewMore';
 
 import QueuesPage from './pages/QueuesPage/QueuesPage';
+import InsightPage  from './pages/InsightPage/InsightPage';
+
+
 
 const App: React.FC = () => {
   return (
@@ -30,6 +33,7 @@ const App: React.FC = () => {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
           <Route path="/insights-show" element={<AlertViewMore/>} />
+          <Route path="/insights" element={<InsightPage />} />
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>

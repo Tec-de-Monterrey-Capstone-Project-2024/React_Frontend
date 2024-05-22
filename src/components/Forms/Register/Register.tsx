@@ -10,6 +10,7 @@ const Register = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [connectId, setConnectID] = useState('');
 
     const onRegister = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -32,6 +33,10 @@ const Register = () => {
                 <form action="" onSubmit={onRegister}>
                     <div className="title">
                         <h3>Register</h3>
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="id" className="input-label">Connect ID</label>
+                        <input className="input" type="input" name="connectID" id="connect-ID" placeholder=" connect ID..." onChange={(e) => setConnectID(e.target.value)}  />
                     </div>
                     <div className="input-container">
                         <label htmlFor="email" className="input-label">Email</label>

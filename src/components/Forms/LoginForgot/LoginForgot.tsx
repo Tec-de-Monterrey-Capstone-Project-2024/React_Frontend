@@ -74,7 +74,7 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
                     )}
                     <button className="button login-button" type="submit">{showLoginForgot ? forgotPasswordProps.button : loginProps.button}</button>
                     <a className="link"  onClick={handleChangeForm}>{showLoginForgot ? forgotPasswordProps.link : loginProps.link}</a>
-                    <Link className="link" to='/Register'>Still dont have an account? </Link >
+                    <Link className="link" to='/register'>Still dont have an account? </Link >
                 </div>
             </form>
         </div>

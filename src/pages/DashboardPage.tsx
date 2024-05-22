@@ -68,7 +68,6 @@ const DashboardPage = () => {
                           key={insight.title}
                           title={insight.title}
                           description1={insight.description1}
-                          description2={insight.description2}
                           color={insight.color}
                           borderColor={insight.borderColor}
                           showBoxBorder={insight.showBoxBorder === "true"}

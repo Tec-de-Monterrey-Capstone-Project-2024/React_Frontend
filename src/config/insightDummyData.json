@@ -2,24 +2,21 @@
 [
   {
     "title": "Improve occupancy",
-    "description1": "See details on how to improve occupancy",
-    "description2": "Assign more agents.",
+    "description1": "Take actions to improve occupancy...",
     "color": "white",
     "borderColor": "red",
     "showBoxBorder": "false"
   },
   {
     "title": "Improve adherence",
-    "description1": "See details on how to improve occupancy",
-    "description2": "Assign more agents.",
+    "description1": "Take actions to improve schedule adherence...",
     "color": "white",
     "borderColor": "green",
     "showBoxBorder": "false"
   },
   {
-    "title": "Assignment",
-    "description1": "Assign more agents",
-    "description2": "Assign more agents.",
+    "title": "Improve Average Answer Speed",
+    "description1": "Take actions to improve average answer speed...",
     "color": "white",
     "borderColor": "yellow",
     "showBoxBorder": "false"

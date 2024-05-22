@@ -12,6 +12,7 @@ import ForgotPage from './pages/ForgotPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
 import QueuesPage from './pages/QueuesPage/QueuesPage';
+import { MetricDetailsPage } from './pages/MetricDetailsPage';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
           <Route path="/queues" element={<QueuesPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
+          <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />

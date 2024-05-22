@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ROUTES } from '../../ROUTES';
+import { ROUTES } from '../../routes';
 
 import MyAccount from '../../components/DataDisplay/MyAccount';
 

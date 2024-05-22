@@ -6,11 +6,14 @@ import { MetricCard } from '../components/Cards/MetricCard';
 import React, { useEffect, useState } from 'react'
 import InsightCard  from "../components/Cards/InsightCard/InsightCard";
 import {IInsightCard} from "../components/Cards/InsightCard/types";
+import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
   const [insights, setInsights] = useState<IInsightCard[] | null>(null)
   const [loading, setLoading] = useState<Boolean>(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,10 +26,7 @@ const DashboardPage = () => {
       setLoading(false);
     }
 
-  fetchData();
-
-  // const intervalId = setInterval(fetchData, 5000);
-  // return () => clearInterval(intervalId);
+    fetchData();
   }, []);
 
   return (
@@ -38,7 +38,7 @@ const DashboardPage = () => {
             {loading ? <p>Loading...</p> : (metrics ? (
               <div className='metrics'>
                 {metrics.map(metric => {
-                  const { metric_info_code, value } = metric;
+                  const { id, metric_info_code, value } = metric;
                   const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];
                 
                   return (
@@ -50,7 +50,7 @@ const DashboardPage = () => {
                       value={value}
                       unit={unit}
                       positive_upside={positive_upside}
-                      onClick={() => {}}
+                      onClick={() => {navigate("general-metrics/" + id);}}
                     />
                   );
                 })}

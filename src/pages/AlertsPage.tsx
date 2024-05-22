@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../ROUTES';
+import { ROUTES } from '../routes';
 import AlertsTable from '../components/Tables/AlertTable';
 //import { MetricCard } from '../components/MetricCard';
 

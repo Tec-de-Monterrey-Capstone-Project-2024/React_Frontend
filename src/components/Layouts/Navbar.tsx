@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../ROUTES';
+import { ROUTES } from '../../routes';
 import Select from '../Widgets/Select/Select';
 import agentIcon from '../../assets/icons/agent.svg';
 import alertIcon from '../../assets/icons/alert.svg';

@@ -12,13 +12,13 @@ const AlertViewMore: React.FC = () => {
   return (
     <div className="p-4 flex-col h-screen">
       <div>
-        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline">
+        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
           <span className="mr-2">&#8592;</span>
           Back
         </button>
         <br />
       </div>
-      <div className="flex-grow mt-4">
+      <div className="flex-grow">
         <Insight 
           title="Reconfigure Virtual floor" 
           message="Not Enough people on the Reimbursements Queue." 
@@ -26,7 +26,8 @@ const AlertViewMore: React.FC = () => {
           actionTitle="Action"
         />
       </div>
-      <div className="flex justify-between mt-8">
+      <div className='mt-4 font-bold'>Mark this Insight as: </div>
+      <div className="flex justify-between mt-4">
         <div className="space-x-4">
           <Button variant="grey" onClick={() => {}}>In progress</Button>
           <Button variant="bright-green" onClick={() => {}}>Done</Button>

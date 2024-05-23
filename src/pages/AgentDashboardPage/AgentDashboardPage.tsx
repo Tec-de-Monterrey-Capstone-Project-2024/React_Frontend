@@ -130,7 +130,7 @@ const AgentDashboardPage: React.FC = () => {
                   </div>
                 );
               })} */}
-r            </div>
+            </div>
           </div>
         </div>
       </div>

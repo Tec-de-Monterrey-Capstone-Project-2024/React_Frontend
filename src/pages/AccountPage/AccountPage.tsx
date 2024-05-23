@@ -63,8 +63,8 @@ const AccountPage: React.FC = () => {
                                         </button>
                                     </li>
                                     <li>
-                                        <button onClick={handleLogOut}>
-                                            Logout
+                                        <button onClick={handleLogOut} className="btn-type-4">
+                                            Log Out
                                             {/* <img src={logoutIcon} alt="Logout icon" /> */}
                                         </button>
                                     </li>

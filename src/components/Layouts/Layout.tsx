@@ -11,10 +11,9 @@ import '../../assets/styles/layout.css';
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     const location = useLocation();
-    const isAuthPage = location.pathname === '/auth';
-    const isRegisterpage = location.pathname === '/register';
+    const isAuthPage = location.pathname.includes('auth');
     
-    if (isAuthPage || isRegisterpage) {
+    if (isAuthPage) {
         return (
             <AuthProvider>
                 <main>{children}</main>

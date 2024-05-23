@@ -1,0 +1,14 @@
+.kanban{
+    @apply grid grid-cols-3 gap-4 h-screen;
+    @apply mr-6;
+    @apply ml-6;
+    @apply mt-8;
+}
+.kanban-title{
+    @apply text-2xl font-bold text-center;
+}
+.kanban-rows{
+    @apply mt-4;
+    @apply grid grid-flow-row gap-4;
+    @apply object-contain;
+}

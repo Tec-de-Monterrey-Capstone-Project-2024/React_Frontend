@@ -1,0 +1,24 @@
+.row-container{
+    @apply flex px-4 py-2 rounded-lg justify-between space-x-2;
+}
+.gray-box{
+    @apply bg-gray-300;
+}
+
+.white-box{
+    @apply bg-white;
+}
+.text{
+    @apply flex text-black font-bold font-montserrat text-left;
+    @apply items-center;
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+    @apply text-base;
+}
+
+.button-text{
+    @apply text-xs;
+    @apply w-20;
+}
+

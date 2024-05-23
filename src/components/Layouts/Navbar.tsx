@@ -4,9 +4,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDataContext } from '../../context/DataContext';
 
 import { ROUTES } from '../../ROUTES';
+
 import { getInstances } from '../../services/instance/getInstances';
 import { IInstance } from '../../services/instance/types';
-
 import { getQueues } from '../../services/queue/getQueues';
 import { IQueue } from '../../services/queue/types';
 
@@ -20,34 +20,36 @@ import alertIcon from '../../assets/icons/alert.svg';
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
 
   
   const [instances, setInstances] = useState<IInstance[]>([]);
+  const { selectedInstanceId, setSelectedInstanceId } = useDataContext();
   useEffect(() => {
     const fetchInstances = async () => {
       var res = await getInstances();
-      console.log(res);
+      setInstances(res.data);
     }
     fetchInstances();
   }, []);
-  const { selectedInstance, setSelectedInstance } = useDataContext();
   const changeInstance = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedInstance(event.target.value);
+    setSelectedInstanceId(event.target.value);
+    setSelectedQueueId('all');
   };
 
   const [queues, setQueues] = useState<IQueue[]>([]);
+  const { selectedQueueId, setSelectedQueueId } = useDataContext();
   useEffect(() => {
     const fetchQueues = async () => {
-      var res = await getQueues(selectedInstance);
-      console.log(res);
+      var res = await getQueues(selectedInstanceId);
+      setQueues(res.data);
     }
-    if (selectedInstance !== "0") {
+    if (selectedInstanceId !== "0") {
       fetchQueues();
     }
-  }, [selectedInstance]);
-  const { selectedQueue, setSelectedQueue } = useDataContext();
+  }, [selectedInstanceId]);
   const changeQueue = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedQueue(event.target.value);
+    setSelectedQueueId(event.target.value);
   };
 
   const [title, setTitle] = useState('');
@@ -126,8 +128,8 @@ const Navbar: React.FC = () => {
             {/* <Select placeholder="Filters" color="green"></Select> */}
             {/* <Select placeholder="Filters" color="green"></Select> */}
 
-            {/* {selectedInstance !== "0" && (
-              <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
+            {(selectedInstanceId !== "0") && (
+              <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (
                   <option key={queue.id} value={queue.id}>
@@ -135,18 +137,9 @@ const Navbar: React.FC = () => {
                   </option>
                 ))}
               </select>
-            )} */}
+            )}
 
-            <select id="queues" title='queues' value={selectedQueue} onChange={changeQueue} className='btn-type-2 light'>
-              <option value="all">All queues</option>
-              {queues.map((queue) => (
-                <option key={queue.id} value={queue.id}>
-                  {queue.name}
-                </option>
-              ))}
-            </select>
-
-            <select id="instances" title='instances' value={selectedInstance} onChange={changeInstance} className='btn-type-2'>
+            <select id="instances" title='instances' value={selectedInstanceId} onChange={changeInstance} className='btn-type-2'>
               <option value="0">Select instance</option>
               {instances.map((instance) => (
                 <option key={instance.id} value={instance.id}>

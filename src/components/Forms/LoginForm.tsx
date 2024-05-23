@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import { auth } from "../../firebase";
 
@@ -8,6 +8,8 @@ import './styles.css';
 
 const LoginForm: React.FC = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const fromForgotForm = location.state?.fromForgotForm || false;
     
     const [email, setEmail] = useState('hola@gmail.com');
     const [password, setPassword] = useState('hola123');
@@ -35,6 +37,7 @@ const LoginForm: React.FC = () => {
         <form onSubmit={onLogin}>
             <div className="title">
                 <h3>Login</h3>
+                {fromForgotForm && <p className="text-sm text-[--dark-red]">You have received and email with instructions, come back when reseting your password.</p>}
             </div>
             <div className="">
                 <div className="input-container ">

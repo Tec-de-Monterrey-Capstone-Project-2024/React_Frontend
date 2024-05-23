@@ -32,10 +32,7 @@ const SignupForm = () => {
         <form action="" onSubmit={onRegister}>
             <div className="title">
                 <h3>Register</h3>
-            </div>
-            <div className="input-container">
-                <label htmlFor="id" className="input-label">Connect ID</label>
-                <input className="input" type="input" name="connectID" id="connect-ID" placeholder=" connect ID..." onChange={(e) => setConnectID(e.target.value)}  />
+                <p className="text-sm">Make sure your email is the same as Connect.</p>
             </div>
             <div className="input-container">
                 <label htmlFor="email" className="input-label">Email</label>

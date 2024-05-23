@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase";
-
-import '../styles.css'
 import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
-const Register = () => {
+import './styles.css'
+
+
+const SignupForm = () => {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -52,4 +53,4 @@ const Register = () => {
     )
 }
 
-export default Register;
+export default SignupForm;

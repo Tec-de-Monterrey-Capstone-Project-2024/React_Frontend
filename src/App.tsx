@@ -1,18 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-
 import Layout from './components/Layouts/Layout';
-import { useAuth } from './context/AuthContext';
 import PrivateRoute from './context/PrivateRoute';
 
 import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/AuthPages/LoginPage';
+import SignupPage from './pages/AuthPages/SignupPage';
+import ForgotPage from './pages/AuthPages/ForgotPage';
+
 import DashboardPage from './pages/DashboardPage';
 import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
-import RegisterPage from './pages/RegisterPage';
-
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
 import QueuesPage from './pages/QueuesPage/QueuesPage';
@@ -26,9 +25,11 @@ const App: React.FC = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Navigate to='/dashboard' />} />
-          <Route path="/auth" element={<LoginPage />} />
+          <Route path="/auth" element={<Navigate to='/auth/login' />} />
+          <Route path="/auth/login" element={<LoginPage />} />
+          <Route path="/auth/signup" element={<SignupPage />} />
+          <Route path="/auth/forgot" element={<ForgotPage />} />
           
-          <Route path="/register" element={<RegisterPage />} />
 
           <Route path='/' element={<PrivateRoute />}>
             <Route path="/queues" element={<QueuesPage/>} />

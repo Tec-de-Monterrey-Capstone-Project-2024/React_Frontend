@@ -6,6 +6,7 @@ import { GaugeChart } from '../components/DataDisplay/GaugeChart';
 import { Pie } from '../components/DataDisplay/PieChart';
 
 const DashboardPage = () => {
+
   const [metrics, setMetrics] = useState<IMetric[]>([]);
 
   useEffect(() => {

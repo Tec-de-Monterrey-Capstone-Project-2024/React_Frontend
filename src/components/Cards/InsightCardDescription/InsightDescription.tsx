@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+
 import type { IInsightDescription } from './types';
 
 const InsightDescription: React.FC<IInsightDescription> = ({ title, message, situationTitle, actionTitle }) => {
@@ -26,6 +27,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({ title, message, sit
       </div>
     </div>
   );
-}
+};
+
 
 export default InsightDescription;

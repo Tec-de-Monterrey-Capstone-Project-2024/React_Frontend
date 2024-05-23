@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button/Button';
@@ -16,6 +17,7 @@ const AlertViewMore: React.FC = () => {
   const goBack = () => {
     navigate(-1);
   };
+
 
   const handleButtonClick = (message: string, status: 'Solve in Connect' | 'In Progress' | 'Done') => {
     setModalMessage(message);
@@ -55,7 +57,8 @@ const AlertViewMore: React.FC = () => {
   return (
     <div className="p-4 flex flex-col h-screen">
       <div>
-        <button onClick={goBack} className="flex items-center text-black font-sans text-sm no-underline">
+        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
+
           <span className="mr-2">&#8592;</span>
           Back
         </button>
@@ -68,38 +71,31 @@ const AlertViewMore: React.FC = () => {
           situationTitle="Situation" 
           actionTitle="Action"
         />
-        <div className="mt-4 flex justify-between items-start">
-          <div>
-            <p className="text-base font-semibold mb-2">Mark this Insight as:</p>
-            <div className="flex space-x-4">
-              <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
-                In Progress
-              </Button>
-              <Button variant="green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
-                Done
-              </Button>
-            </div>
+        <div className='mt-4 font-bold'>Mark this Insight as:</div>
+        <div className="flex justify-between mt-4 items-start">
+          <div className="space-x-4">
+            <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+              In Progress
+            </Button>
+            <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+              Done
+            </Button>
           </div>
-          <div className="mt-8">
+          <div>
             <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
               Solve in Connect
             </Button>
           </div>
         </div>
-      {showModal && (
-        <InsightModal
-          message={modalMessage}
-          onClose={handleCloseModal}
-          status={modalStatus}
-          redirecting={redirecting}
-          cancelRedirect={cancelRedirect}
-          redirectCountdown={redirectCountdown}
-        />
-      )}
-    </div>
-  </div>
-  );
-};
-
+        {showModal && (
+          <InsightModal
+            message={modalMessage}
+            onClose={handleCloseModal}
+            status={modalStatus}
+            redirecting={redirecting}
+            cancelRedirect={cancelRedirect}
+            redirectCountdown={redirectCountdown}
+          />
+        )}
 
 export default AlertViewMore;

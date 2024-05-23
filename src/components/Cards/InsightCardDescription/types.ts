@@ -1,6 +1,24 @@
-export interface InsightDescriptionProps {
-    title: string;//Es el Titulo inicial de la tarjeta : Reconfigure Virtual floor
-    message: string; // Es el espacio donde se vera la descripción del los subtitulos
-    situationTitle: string; //Subtitulo Situation
-    actionTitle: string; //Subtitulo Action
-  }
+/**
+ * Interface for the props of the InsightDescription component.
+ */
+export interface IInsightDescription {
+  /**
+   * The initial title of the card: Reconfigure Virtual floor
+   */
+  title: string;
+
+  /**
+   * The space where the description of the subtitles will be displayed
+   */
+  message: string;
+
+  /**
+   * Subtitle: Situation
+   */
+  situationTitle: string;
+
+  /**
+   * Subtitle: Action
+   */
+  actionTitle: string;
+}

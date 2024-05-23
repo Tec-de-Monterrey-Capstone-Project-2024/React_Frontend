@@ -1,56 +1,50 @@
-import React, { useEffect, useState } from 'react'
-
+import React, { useEffect, useState } from 'react';
 import { getAgentMetrics } from '../services/metrics/getAgentMetrics';
 import { IMetric } from '../services/metrics/types';
-
-import MetricsData, { MetricData } from '../config/MetricsData';
-
-import { ContentCard } from '../components/Cards/ContentCard';
+import MetricsData from '../config/MetricsData';
 import { GaugeChart } from '../components/DataDisplay/GaugeChart';
 import { Pie } from '../components/DataDisplay/PieChart';
 
 const DashboardPage = () => {
-  // const [loading, setLoading] = useState(true);
-  const [metrics, setMetrics] = useState<IMetric[] | null>(null);
+
+  const [metrics, setMetrics] = useState<IMetric[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getAgentMetrics("1");
-      console.log(res.data);
-      setMetrics(res.data);
-    }
+      try {
+        const res = await getAgentMetrics("1");
+        console.log(res.data);
+        if (Array.isArray(res.data)) {
+          setMetrics(res.data);
+        } else {
+          console.error('Expected an array of metrics, but received:', res.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch metrics:', error);
+      }
+    };
 
-  fetchData();
-
-  // const intervalId = setInterval(fetchData, 5000);
-  // return () => clearInterval(intervalId);
+    fetchData();
   }, []);
 
   return (
     <>
-        <br />
-        {metrics && metrics.map(metric => {
-          const { metric_info_code, value, id } = metric;
-          const { name, min, max, graph } = MetricsData[id];
-          
-          return (
-            <div key={id}>
-              <b>{name}</b>
-                {graph === 'Gauge' ? (
-                  <GaugeChart min={min} max={max} value={value} />
-                ) : (
-                  <Pie value={value} metric={metric_info_code} />
-                )}
-              </div>
-            );
-          })}
-        {/* {metrics ? <>
-          <GaugeChart min={0} max={100} value={0} />
-        </> : <>
-          <GaugeChart min={0} max={100} value={metrics} />
-        </>} */}
-        {/* {loading ? <p>Loading...</p> : <GaugeChart min={0} max={100} value={metrics.value} />}
-        <Pie id={metrics!.id} value={metrics!.value} metric={metrics!.metric_info_code} /> */}
+      <br />
+      {metrics.map(metric => {
+        const { metric_info_code, value, id } = metric;
+        const { name, min, max, graph } = MetricsData[id];
+        
+        return (
+          <div key={id}>
+            <b>{name}</b>
+            {graph === 'Gauge' ? (
+              <GaugeChart min={min} max={max} value={value} />
+            ) : (
+              <Pie value={value} metric={metric_info_code} />
+            )}
+          </div>
+        );
+      })}
     </>
   )
 }

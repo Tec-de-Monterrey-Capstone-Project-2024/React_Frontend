@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Layout from './components/Layouts/Layout';
-
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
@@ -32,7 +31,7 @@ const App: React.FC = () => {
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
-          <Route path="/insights-show" element={<AlertViewMore/>} />
+          <Route path="/insights-show" element={<AlertViewMore />} />
           <Route path="/insights" element={<InsightPage />} />
           {/* <Route component={NotFound} /> */}
         </Routes>

@@ -37,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />
+            <Route path="/insights" element={<InsightPage />} />
           </Route>
           {/* <Route component={NotFound} /> */}
         </Routes>

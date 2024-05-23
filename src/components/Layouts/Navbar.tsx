@@ -132,7 +132,7 @@ const Navbar: React.FC = () => {
             <Button variant="light" onClick={togglePopup} className="green icon">
               <img src={alertIcon} alt="Alert icon" />
             </Button>
-            <AlertPopup onClose={togglePopup} message={'Holi'} isVisible={showPopup} />
+            <AlertPopup onClose={togglePopup} message={'The Refunds Queue has a high quantity of clients. Consider reasigning agents to this queue.'} isVisible={showPopup} />
             {/* <Select placeholder="Filters" color="green"></Select> */}
             {/* <Select placeholder="Filters" color="green"></Select> */}
 

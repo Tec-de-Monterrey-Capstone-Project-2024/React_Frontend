@@ -58,17 +58,16 @@ const AlertViewMore: React.FC = () => {
     <div className="p-4 flex flex-col h-screen">
       <div>
         <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
-
           <span className="mr-2">&#8592;</span>
           Back
         </button>
         <br />
       </div>
       <div className="flex-grow">
-        <Insight 
-          title="Reconfigure Virtual floor" 
-          message="Not Enough people on the Reimbursements Queue." 
-          situationTitle="Situation" 
+        <Insight
+          title="Reconfigure Virtual floor"
+          message="Not Enough people on the Reimbursements Queue."
+          situationTitle="Situation"
           actionTitle="Action"
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
@@ -97,5 +96,10 @@ const AlertViewMore: React.FC = () => {
             redirectCountdown={redirectCountdown}
           />
         )}
+      </div>
+    </div>
+  );
+  }
 
-export default AlertViewMore;
+
+        export default AlertViewMore;

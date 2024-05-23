@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import {sendPasswordResetEmail} from 'firebase/auth';
 import { auth } from "../../firebase";
 
 import './styles.css';
@@ -13,7 +13,18 @@ const ForgotForm: React.FC = () => {
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("yes");
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            navigate("/auth/login");
+
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setError(errorMessage);
+
+        });
+
     }
 
     return (

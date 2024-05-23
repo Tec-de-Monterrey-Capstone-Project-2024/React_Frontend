@@ -5,12 +5,19 @@ import Select from '../Widgets/Select/Select';
 import agentIcon from '../../assets/icons/agent.svg';
 import alertIcon from '../../assets/icons/alert.svg';
 import { Button } from '../Button';
+import { AlertPopup } from '../Popups/AlertPopup';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
   useEffect(() => {
     switch (location.pathname) {
@@ -78,9 +85,10 @@ const Navbar: React.FC = () => {
             </h2>
           </div>
           <div className='links'>
-            <Button variant="light" onClick={() => {}} className="green icon">
+            <Button variant="light" onClick={togglePopup} className="green icon">
               <img src={alertIcon} alt="Alert icon" />
-            </Button> 
+            </Button>
+            <AlertPopup onClose={togglePopup} message={'The Refunds Queue has a high quantity of clients. Consider reasigning agents to this queue.'} isVisible={showPopup} />
             <Select placeholder="Filters" color="green"></Select>
             <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
               <img src={agentIcon} alt="Agent icon" />

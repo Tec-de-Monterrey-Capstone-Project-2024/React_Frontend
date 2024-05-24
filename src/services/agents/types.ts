@@ -3,7 +3,8 @@ export interface IAgent {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
+    // password: string,
     username: string,
-    role: 'SUPERVISOR' | 'AGENT'
+    // role: 'SUPERVISOR' | 'AGENT',
+    queueName: string,
 }

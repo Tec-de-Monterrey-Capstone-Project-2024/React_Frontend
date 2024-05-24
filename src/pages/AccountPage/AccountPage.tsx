@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, Navigate, useSearchParams } from 'react-router-dom';
 import { ROUTES } from '../../ROUTES';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { useNavigate } from "react-router-dom";
 
 import MyAccount from '../../components/DataDisplay/MyAccount';
 
@@ -9,7 +12,10 @@ import { ContentCard } from '../../components/Cards/ContentCard';
 import './styles.css';
 
 
+
+
 const AccountPage: React.FC = () => {
+    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     const [tab, setTab] = useState(1);
 
@@ -17,6 +23,14 @@ const AccountPage: React.FC = () => {
         setTab(tabIndex);
     };
 
+    const handleLogOut = () => {
+        signOut(auth).then(() => {
+            navigate("/");
+            console.log("Signed out succesfully")
+        }).catch((error) => {
+            console.log('an error happened')
+        })
+    }
     useEffect(() => {
         const urlTab = searchParams.get("tab");
         if (urlTab) {
@@ -49,8 +63,8 @@ const AccountPage: React.FC = () => {
                                         </button>
                                     </li>
                                     <li>
-                                        <button>
-                                            Logout
+                                        <button onClick={handleLogOut} className="btn-type-4">
+                                            Log Out
                                             {/* <img src={logoutIcon} alt="Logout icon" /> */}
                                         </button>
                                     </li>

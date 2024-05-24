@@ -8,3 +8,9 @@
 
 .btn-type-3 { display: block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .4rem; border-radius: 100%; font-size: 1rem; font-weight: 700; line-height: 1; transition: 0.5s; }
 .btn-type-3 img { width: 1.2rem; height: auto; display: block; margin: 0 auto; filter: invert(100%); }
+
+.btn-type-4 {display: block; text-align: center; background: var(--danger-color); color:var(--white); padding:5px ; padding-left: 10px; width: 100%; ; border-radius: 15px; text-align: left; font-weight: 500}
+
+.btn-type-5 { display: inline-block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .5rem 1rem; border-radius: 1rem; font-size: 1rem; font-weight: 500; line-height: 1; transition: 0.5s; }
+
+.btn-type-6 { display: block; width: 100%; background-color: var(--dark-blue); border-radius: 5rem; color: white }

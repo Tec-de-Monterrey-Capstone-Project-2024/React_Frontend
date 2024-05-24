@@ -5,7 +5,7 @@
 
 .gauge .gauge-chart { 
     position: relative; 
-    width: 100px; 
+    width: 200px; 
     padding-top: 48%; 
     box-sizing: content-box; 
     border-radius: .5rem; 
@@ -47,7 +47,7 @@
     width: 70%; 
     height: 70%; 
     border-radius: 100%; 
-    background: #E5E5E5; 
+    background: var(--grey); 
 }
 
 .gauge .bottom { 
@@ -55,21 +55,25 @@
 }
 
 .gauge .bottom .text { 
-    flex: 1 0 calc(10% / 3); 
+    flex: 1 0 calc(20% / 3); 
 }
 
 .gauge .bottom .text.min {
     text-align: left; 
-    padding-left: 2.2rem; 
+    font-weight: normal;
+    padding-left: 2.1rem; 
 }
 
 .gauge .bottom .text.value {
     text-align: center; 
     font-weight: 600; 
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
+    padding-right: 8.7rem;
+    padding-left: 8.7rem;
 }
 
 .gauge .bottom .text.max { 
     text-align: right; 
-    padding-right: 3.45rem; 
+    font-weight: normal;
+    padding-right: 2rem; 
 }

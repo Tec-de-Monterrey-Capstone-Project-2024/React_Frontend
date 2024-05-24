@@ -4,46 +4,50 @@ import { Pie } from '../../components/DataDisplay/PieChart';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { getGeneralMetrics } from '../../services/metrics/getGeneralMetrics';
+import MetricsData, { MetricData } from '../../config/MetricsData';
 
 const MetricDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-
-    const [metric, setMetric] = useState<IMetric | null>(null); 
-    const [loading, setLoading] = useState<Boolean>(true);
+    const [metric, setMetric] = useState<IMetric | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            if(id){
+            if (id) {
                 const res = await getGeneralMetrics();
-                console.log(res);
-            } else {
+                const dataMetric = res.data.find((metric: IMetric) => metric.id.toString() === id);
+                setMetric(dataMetric || null);
+                setLoading(false);
             }
-
-            setLoading(false);
-        }
-
+        };
         fetchData();
-    }, [id])
-    
+    }, [id]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!metric) {
+        return <div>Metric not found</div>;
+    }
+
+    const { metric_info_code, value } = metric;
+    const { name, min, max, graph } = MetricsData[metric_info_code];
+
     return (
         <div>
-            MetricsDetailsPage
+            <h2>Metric Details</h2>
+            <div key={id} className='chart'>
+                <h5>{metric_info_code}</h5>
+                {graph === 'Gauge' ? (
+                    <GaugeChart min={0} max={100} value={value} />
+                ) : (
+                    <Pie value={value} metric={metric_info_code} />
+                )}
+            </div>
         </div>
     );
-
-    /*
-    return (
-        <div key={id} className='chart'>
-          <h5>{name}</h5>
-            {graph === 'Gauge' ? (
-              <GaugeChart min={min} max={max} value={value} />
-            ) : (
-              <Pie value={value} metric={metric_info_code} />
-            )}
-          </div>
-    );
-    */
 };
 
 export default MetricDetailsPage;

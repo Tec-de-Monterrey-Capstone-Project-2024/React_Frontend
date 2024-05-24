@@ -29,7 +29,6 @@ const App: React.FC = () => {
           <Route path="/agents" element={<AgentsPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/alerts" element={<AlertsPage />} />
-          {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>
     </Router>

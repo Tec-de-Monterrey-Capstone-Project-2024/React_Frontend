@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { getGeneralMetrics } from '../../services/metrics/getGeneralMetrics';
 import MetricsData, { MetricData } from '../../config/MetricsData';
+import { ContentCard } from '../../components/Cards/ContentCard';
 
 const MetricDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -33,18 +34,22 @@ const MetricDetailsPage: React.FC = () => {
     }
 
     const { metric_info_code, value } = metric;
-    const { name, min, max, graph } = MetricsData[metric_info_code];
+    const { name, graph } = MetricsData[metric_info_code];
 
     return (
-        <div>
-            <h2>Metric Details</h2>
-            <div key={id} className='chart'>
-                <h5>{metric_info_code}</h5>
-                {graph === 'Gauge' ? (
-                    <GaugeChart min={0} max={100} value={value} />
-                ) : (
-                    <Pie value={value} metric={metric_info_code} />
-                )}
+        <div className="pt-5 pl-7">
+            <h2 className="pb-5">
+                <b><u>Metric Details</u></b>
+            </h2>
+            <div key={id} className='w-fit'>
+                <ContentCard>
+                    <h5 className="pb-2"><b>{name + " (" + metric_info_code + ")"}</b></h5>
+                    {graph === 'Gauge' ? (
+                            <GaugeChart min={0} max={100} value={value} />
+                    ) : (
+                            <Pie value={value} metric={metric_info_code} />
+                    )}
+                </ContentCard>
             </div>
         </div>
     );

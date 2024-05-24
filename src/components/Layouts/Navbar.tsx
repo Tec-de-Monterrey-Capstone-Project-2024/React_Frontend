@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../routes';
-import Select from '../Widgets/Select/Select';
+import { Button } from '../Button';
+import { Select }  from '../Widgets/Select';
 import agentIcon from '../../assets/icons/agent.svg';
 import alertIcon from '../../assets/icons/alert.svg';
-import { Button } from '../Button';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -60,7 +59,8 @@ const Navbar: React.FC = () => {
         break;
 
       default:
-        setTitle(' ');
+        location.pathname.match('/dashboard/general-metrics/[0-9+]*$')? 
+          setTitle('Dashboard'):setTitle(' ');
         setSubtitle(null);
         break;
     }

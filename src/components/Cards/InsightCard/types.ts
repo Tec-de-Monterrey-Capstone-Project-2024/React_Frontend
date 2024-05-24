@@ -14,7 +14,7 @@ export interface IInsightCard {
     /**
      * Background color of the  card
      */
-    color:string,
+    color:string;
     /**
      * Border color of the  card
      */

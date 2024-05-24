@@ -16,10 +16,8 @@ export const getAgentMetrics = async (id: string) => {
 
     const responseData = mockMetricsData.filter(metric => metric.agent_id === parseInt(id));
     
-    // Simulate an HTTP status code (200 for success)
     const status = 200;
 
-    // Return mock data with axios-like structure
     return { data: responseData, status };
 
     // let res: any;

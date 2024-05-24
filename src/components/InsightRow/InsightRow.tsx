@@ -16,7 +16,7 @@ const InsightRow: React.FC<IInsightRow> = ({ title, color }) => {
     const navigate = useNavigate();
     //to-do change link 
     const handleNavigate = () => {
-        navigate('/dashboard');
+        navigate('/insights-show');
     };
 
     return (

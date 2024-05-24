@@ -5,6 +5,10 @@ import agentIcon from '../../assets/icons/agent.svg';
 import alertIcon from '../../assets/icons/alert.svg';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import { getQueues } from '../../services/queues/getQueues';
+import { IQueue } from '../../services/queues/types';
+import { getInstances } from '../../services/instance/getInstances';
+import { IInstance } from '../../services/instance/types';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();

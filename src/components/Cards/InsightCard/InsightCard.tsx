@@ -2,7 +2,6 @@ import React from 'react';
 import { IInsightCard } from './types';
 import './style.css'
 import classNames from 'classnames';
-import { Button } from '../../Button';
 
 const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2, color, borderColor, showBoxBorder, func }) => {
 
@@ -28,7 +27,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
                 {description2}
             </div>
             <div className="insight-button">
-                <Button title={"Show more"} variant={"dark"} onClick={func}>Show more</Button>
+                <button className='btn-type-6'>View more</button>
             </div>
         </div>
     );

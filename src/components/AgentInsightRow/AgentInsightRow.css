@@ -1,6 +1,8 @@
 .row-box {
-    @apply flex px-4 py-2 rounded-lg justify-between space-x-4;
+    @apply flex px-4 py-2 rounded-lg justify-start space-x-4;
 }
+
+.row-box div { flex: 1 0 0%; }
 
 .row-text {
     @apply flex text-black font-bold font-montserrat;
@@ -9,6 +11,10 @@
 
 .gray-bg {
     background: #D9D9D9;
+}
+
+.light-gray-bg {
+    background: #E5E5E5;
 }
 
 .white-bg {

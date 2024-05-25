@@ -71,39 +71,43 @@ const InsightPage = () => {
     
     return (
     <DragDropContext onDragEnd={onDragEnd}>
-        <div className='kanban'>
-            {Object.values(kanban).map(kan => (
-                <Droppable droppableId={kan.id} key={kan.id}>
-                    {(provided) => (
-                        <div className='kanban-column' ref={provided.innerRef} {...provided.droppableProps}>
-                            <ContentCard>
-                                <div className='kanban-title'>
-                                    <h1>{kan.id}</h1>
+        <section className="insights-page">
+            <div className="section-container container">
+                <div className='kanban'>
+                    {Object.values(kanban).map(kan => (
+                        <Droppable droppableId={kan.id} key={kan.id}>
+                            {(provided) => (
+                                <div className='kanban-column' ref={provided.innerRef} {...provided.droppableProps}>
+                                    <ContentCard>
+                                        <div className='kanban-title'>
+                                            <h1>{kan.id}</h1>
+                                        </div>
+                                        <div className='kanban-rows'>
+                                            {kan.list.map((insight, index) => (
+                                                <Draggable key={insight.id} draggableId={insight.id.toString()} index={index}>
+                                                    {(provided) => (
+                                                        <div ref={provided.innerRef} 
+                                                        {...provided.draggableProps} 
+                                                        {...provided.dragHandleProps}>
+                                                            <InsightRow
+                                                                id={insight.id}
+                                                                title={insight.title}
+                                                                color={insight.color}
+                                                            />
+                                                        </div>
+                                                    )}
+                                                </Draggable>
+                                            ))}
+                                        </div>
+                                    </ContentCard>
+                                    {provided.placeholder}
                                 </div>
-                                <div className='kanban-rows'>
-                                    {kan.list.map((insight, index) => (
-                                        <Draggable key={insight.id} draggableId={insight.id.toString()} index={index}>
-                                            {(provided) => (
-                                                <div ref={provided.innerRef} 
-                                                {...provided.draggableProps} 
-                                                {...provided.dragHandleProps}>
-                                                    <InsightRow
-                                                        id={insight.id}
-                                                        title={insight.title}
-                                                        color={insight.color}
-                                                    />
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                    ))}
-                                </div>
-                            </ContentCard>
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            ))}
-        </div>
+                            )}
+                        </Droppable>
+                    ))}
+                </div>
+            </div>
+        </section>
     </DragDropContext>
   );
 }

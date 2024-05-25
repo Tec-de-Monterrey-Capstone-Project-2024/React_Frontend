@@ -28,3 +28,7 @@ yarn-error.log*
 # Package manager cache files
 package-lock.json
 yarn.lock
+
+# Idea cache files
+.idea
+.idea/*

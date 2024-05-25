@@ -1,8 +1,9 @@
 .kanban{
-    @apply grid grid-cols-3 gap-4 h-screen;
-    @apply mr-6;
+    @apply grid grid-cols-3 gap-4;
+    /* @apply mr-6;
     @apply ml-6;
-    @apply mt-8;
+    @apply mt-8; */
+    height: 100%;
 }
 .kanban-title{
     @apply text-2xl font-bold text-center;
@@ -11,4 +12,14 @@
     @apply mt-4;
     @apply grid grid-flow-row gap-4;
     @apply object-contain;
+}
+
+.kanban-column { overflow: auto; }
+
+.kanban-column .content-card {
+    height: 100%;
+    max-height: 100%;
+}
+.kanban-column .content-card .content-card-container {
+    height: auto;
 }

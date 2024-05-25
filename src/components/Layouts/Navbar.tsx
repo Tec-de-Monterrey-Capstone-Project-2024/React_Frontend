@@ -1,14 +1,19 @@
-import { Button } from '../Button';
-import { Select }  from '../Widgets/Select';
+import React, { useContext, useEffect, useState, ChangeEvent } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 import { useDataContext } from '../../context/DataContext';
-import agentIcon from '../../assets/icons/agent.svg';
-import alertIcon from '../../assets/icons/alert.svg';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { getQueues } from '../../services/queues/getQueues';
-import { IQueue } from '../../services/queues/types';
+
+
 import { getInstances } from '../../services/instance/getInstances';
 import { IInstance } from '../../services/instance/types';
+import { getQueues } from '../../services/queues/getQueues';
+import { IQueue } from '../../services/queues/types';
+
+import { Button } from '../Button';
+
+import agentIcon from '../../assets/icons/agent.svg';
+import alertIcon from '../../assets/icons/alert.svg';
+
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -42,6 +47,7 @@ const Navbar: React.FC = () => {
   const changeQueue = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedQueueId(event.target.value);
   };
+
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
 
@@ -93,8 +99,7 @@ const Navbar: React.FC = () => {
         break;
 
       default:
-        location.pathname.match('/dashboard/general-metrics/[0-9+]*$')? 
-          setTitle('Dashboard'):setTitle(' ');
+        setTitle(' ');
         setSubtitle(null);
         break;
     }

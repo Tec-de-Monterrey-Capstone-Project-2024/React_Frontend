@@ -127,7 +127,7 @@ const Navbar: React.FC = () => {
             {/* <Select placeholder="Filters" color="green"></Select> */}
 
             {(selectedInstanceId !== "0") && (
-              <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
+              <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (
                   <option key={queue.id} value={queue.id}>

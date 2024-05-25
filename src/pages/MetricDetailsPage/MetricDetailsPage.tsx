@@ -1,11 +1,12 @@
+import { ContentCard } from '../../components/Cards/ContentCard';
 import { IMetric } from '../../services/metrics/types';
-import { GaugeChart } from '../../components/DataDisplay/GaugeChart';
+import { getGeneralMetrics } from '../../services/metrics/getGeneralMetrics';
+import MetricsData from '../../config/MetricsData';
 import { Pie } from '../../components/DataDisplay/PieChart';
+import { GaugeChart } from '../../components/DataDisplay/GaugeChart';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import { getGeneralMetrics } from '../../services/metrics/getGeneralMetrics';
-import MetricsData, { MetricData } from '../../config/MetricsData';
-import { ContentCard } from '../../components/Cards/ContentCard';
+import { IMetricDetailsPage } from './types';
 
 const MetricDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();

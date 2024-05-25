@@ -13,6 +13,7 @@ import { IInstance } from '../../services/instance/types';
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  
   const [instances, setInstances] = useState<IInstance[]>([]);
   const { selectedInstanceId, setSelectedInstanceId } = useDataContext();
   useEffect(() => {

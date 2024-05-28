@@ -7,30 +7,30 @@ import { Pie } from '../components/DataDisplay/PieChart';
 
 const DashboardPage = () => {
 
-  const [metrics, setMetrics] = useState<IMetric[]>([]);
+  // const [metrics, setMetrics] = useState<IMetric[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await getAgentMetrics("1");
-        console.log(res.data);
-        if (Array.isArray(res.data)) {
-          setMetrics(res.data);
-        } else {
-          console.error('Expected an array of metrics, but received:', res.data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch metrics:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await getAgentMetrics("1");
+  //       console.log(res.data);
+  //       if (Array.isArray(res.data)) {
+  //         setMetrics(res.data);
+  //       } else {
+  //         console.error('Expected an array of metrics, but received:', res.data);
+  //       }
+  //     } catch (error) {
+  //       console.error('Failed to fetch metrics:', error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <>
       <br />
-      {metrics.map(metric => {
+      {/* {metrics.map(metric => {
         const { metric_info_code, value, id } = metric;
         const { name, min, max, graph } = MetricsData[id];
         
@@ -44,7 +44,7 @@ const DashboardPage = () => {
             )}
           </div>
         );
-      })}
+      })} */}
     </>
   )
 }

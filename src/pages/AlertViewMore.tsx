@@ -97,5 +97,9 @@ const AlertViewMore: React.FC = () => {
             redirectCountdown={redirectCountdown}
           />
         )}
+      </div>
+    </div>
+  );
+}
 
 export default AlertViewMore;

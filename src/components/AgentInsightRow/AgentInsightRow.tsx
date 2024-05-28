@@ -2,14 +2,15 @@ import React from 'react';
 import './AgentInsightRow.css';
 import {IAgentInsightRow} from "./types";
 import classNames from "classnames";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../Button';
-const AgentInsightRow: React.FC<IAgentInsightRow> = ({ id, firstName, lastName, color }) => {
+const AgentInsightRow: React.FC<IAgentInsightRow> = ({ id, firstName, lastName, queueName, color, button }) => {
     const navigate = useNavigate();
     
     const rowClass = classNames({
         "row-box": true,
         "gray-bg": color === 'gray',
+        "light-gray-bg": color === 'light-gray',
         "white-bg": color === 'white'
     });
 
@@ -19,11 +20,11 @@ const AgentInsightRow: React.FC<IAgentInsightRow> = ({ id, firstName, lastName, 
 
     return (
         <div className = {rowClass}>
-            <div className = "row-text">{firstName} {lastName}</div>
-            <div>
-                <div className="row-button">
-                    <Button title={"Show more"} variant={"dark"} onClick={handleShowMore}>Show more</Button>
-                </div>
+            <div className="row-text">{firstName} {lastName!}</div>
+            {queueName && <div className="row-text">{queueName}</div>}
+            <div className="row-button">
+                {button && <Link to={`/dashboard/agent/${id}`} className='btn-type-5'>Show more</Link>}
+                {/* <Button title={"Show more"} variant={"dark"} onClick={handleShowMore}>Show more</Button> */}
             </div>
         </div>
     )

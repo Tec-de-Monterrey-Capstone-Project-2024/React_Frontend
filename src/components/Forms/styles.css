@@ -2,7 +2,7 @@
     @apply absolute bg-white border-greenConnect rounded-lg shadow-2xl border-l-8 top-2/4 left-2/4 -translate-x-1/2 -translate-y-3/4 max-w-xl w-full px-12
 }
 
-.loginforgot-text {
+.title {
     @apply text-lg my-4 flex justify-center
 }
 

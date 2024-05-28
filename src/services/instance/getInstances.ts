@@ -6,6 +6,7 @@ export const getInstances = async () => {
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;
+        console.log(res);
     }).catch((err) => {
         res = err.response
     });

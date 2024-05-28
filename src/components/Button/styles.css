@@ -1,78 +1,87 @@
-.button { padding: .3rem 1rem; border: none; border-radius: 1rem; font-size: 1rem; font-weight: 500; text-align: center; color: white; outline: none; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, box-shadow 0.3s; margin-top: 0; margin-bottom: 0; }
+.button {
+  padding: .3rem 1rem; /* Interior spacing */
+  border: none; /* No border */
+  border-radius: 1rem; /* Rounded borders */
+  font-size: 1rem; /* Text size */
+  font-weight: 500; /* Font weight */
+  text-align: center; /* Center-aligned text */
+  color: white; /* Text color */
+  outline: none; /* No outline */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+  margin-top: 0; /* No top margin */
+  margin-bottom: 0; /* No bottom margin */
+}
 
-.button.light { background-color: #D9D9D9; color: #000000; }
-.button.dark { background-color: #022539; }
-.button.light.green { background-color: #9DC53E; color: #FFFFFF; }
+.button.light { background-color: #D9D9D9; color: #000000; } /* Light grey button with black text */
+.button.dark { background-color: #022539; } /* Dark blue button */
+.button.light.green { background-color: #9DC53E; color: #FFFFFF; } /* Light green button with white text */
 
 .button.darkblue {
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #062547;
+  padding: 10px 50px; /* Larger padding for a wider button */
+  border: none; /* No border */
+  border-radius: 1rem; /* Rounded borders */
+  font-size: 16px; /* Larger text size */
+  font-weight: bold; /* Bold font weight */
+  background-color: #062547; /* Dark blue color */
 }
 
 .button.grey {
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #D9D9D9;
+  padding: 10px 50px; /* Larger padding for a wider button */
+  border: none; /* No border */
+  border-radius: 1rem; /* Rounded borders */
+  font-size: 16px; /* Larger text size */
+  font-weight: bold; /* Bold font weight */
+  background-color: #D9D9D9; /* Grey color */
+  color: black; /* Black text */
 }
 
 .button.pink {
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #FFCCCC;
+  padding: 10px 50px; /* Larger padding for a wider button */
+  border: none; /* No border */
+  border-radius: 1rem; /* Rounded borders */
+  font-size: 16px; /* Larger text size */
+  font-weight: bold; /* Bold font weight */
+  background-color: #FFCCCC; /* Light pink color */
 }
 
 .button.green {
-  background-color: #9DC53E;
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
+  background-color: #9DC53E; /* Green color */
+  padding: 10px 50px; /* Larger padding for a wider button */
+  border: none; /* No border */
+  border-radius: 1rem; /* Rounded borders */
+  font-size: 16px; /* Larger text size */
+  font-weight: bold; /* Bold font weight */
+}
+
+.button.bright-green {
+  background-color: #009F23; /* Bright green color */
+  padding: 10px 50px; /* Larger padding for a wider button */
+  border: none; /* No border */
+  border-radius: 1rem; /* Rounded borders */
+  font-size: 16px; /* Larger text size */
+  font-weight: bold; /* Bold font weight */
 }
 
 .button.lightgreen {
-  background-color: #BED499;
-  color: #333333; /* Color del texto, un gris oscuro */
-  padding: 10px 200px; /* Espaciado interior para que el texto no toque los bordes */
-  font-family: 'Arial', sans-serif; /* Tipo de letra */
-  font-size: 16px; /* Tamaño del texto */
-  font-weight: bold; /* Negrita para el texto */
-  border-radius: 1rem; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para dar profundidad */
-  text-shadow: 0 1px 0 #ffffff; /* Sombra sutil en el texto para mejorar el contraste */
-  cursor: pointer; /* Cursor de mano al pasar el mouse */
-  transition: background-color 0.3s, box-shadow 0.3s; 
+  background-color: #BED499; /* Light green color */
+  color: #333333; /* Dark grey text */
+  padding: 10px 200px; /* Larger padding for an extra wide button */
+  font-family: 'Arial', sans-serif; /* Arial font */
+  font-size: 16px; /* Larger text size */
+  font-weight: bold; /* Bold font weight */
+  border-radius: 1rem; /* Rounded borders */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  text-shadow: 0 1px 0 #ffffff; /* Subtle white text shadow for contrast */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
 }
 
-.button.yellow {
-  background-color: #FFDFA1;
-}
+.button.yellow { background-color: #FFDFA1; } /* Light yellow color */
+.button.darkgreen { background-color: #9DC53E; } /* Dark green color */
 
-.button.darkgreen {
-  background-color: #9DC53E;
-}
-
-
-.button:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.button:active {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-.button.icon { padding: .5rem; border-radius: 100%; }
-.button img { height: 1.2rem; filter: invert(100%); }
-
-.button:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); }
-
-.button:active { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
+.button:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); } /* Hover effect with deeper shadow */
+.button:active { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); } /* Active state with inset shadow */
+.button.icon { padding: .5rem; border-radius: 100%; } /* Icon button with circular shape */
+.button img { height: 1.2rem; filter: invert(100%); } /* Image styling for icon buttons */

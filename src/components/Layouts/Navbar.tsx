@@ -85,6 +85,12 @@ const Navbar: React.FC = () => {
         setSubtitle(null);
         break;
 
+        case '/insights-show':
+
+          setTitle('Insight');
+          setSubtitle(null);
+          break;
+
       case '/dashboard/agent/1':
           setTitle('Dashboard');
           setSubtitle('- Luis Gerardo Doe');

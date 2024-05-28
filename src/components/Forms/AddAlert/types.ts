@@ -7,5 +7,5 @@ export interface AlertFormData {
     metric: string;
     minThreshold: string;
     maxThreshold: string;
-    targeValue: string;
+    targetValue: string;
 }

@@ -1,3 +1,4 @@
+import { IInsightDescription } from './types';
 import React from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faBell } from '@fortawesome/free-solid-svg-icons';
@@ -29,6 +30,5 @@ const InsightDescription: React.FC<IInsightDescription> = ({ title, message, sit
     </div>
   );
 };
-
 
 export default InsightDescription;

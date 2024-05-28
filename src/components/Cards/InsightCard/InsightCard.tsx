@@ -4,7 +4,6 @@ import './style.css'
 import classNames from 'classnames';
 
 const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2, color, borderColor, showBoxBorder, func }) => {
-
     const card = classNames({
         "box-container": true,
         "gray-box": color === 'gray',

@@ -1,0 +1,25 @@
+
+[
+  {
+    "title": "Improve occupancy",
+    "description1": "Take actions to improve occupancy...",
+    "color": "white",
+    "borderColor": "red",
+    "showBoxBorder": "false"
+  },
+  {
+    "title": "Improve adherence",
+    "description1": "Take actions to improve schedule adherence...",
+    "color": "white",
+    "borderColor": "green",
+    "showBoxBorder": "false"
+  },
+  {
+    "title": "Improve Average Answer Speed",
+    "description1": "Take actions to improve average answer speed...",
+    "color": "white",
+    "borderColor": "yellow",
+    "showBoxBorder": "false"
+  }
+
+]

@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Layout from './components/Layouts/Layout';
 import PrivateRoute from './context/PrivateRoute';
 
-import HomePage from './pages/HomePage';
 import LoginPage from './pages/AuthPages/LoginPage';
 import SignupPage from './pages/AuthPages/SignupPage';
 import ForgotPage from './pages/AuthPages/ForgotPage';
@@ -17,9 +16,8 @@ import AlertsPage from './pages/AlertsPage';
 import ViewInsightPage from './pages/ViewInsightPage';
 
 import QueuesPage from './pages/QueuesPage/QueuesPage';
+import { MetricDetailsPage } from './pages/MetricDetailsPage';
 import InsightPage  from './pages/InsightPage/InsightPage';
-
-
 
 const App: React.FC = () => {
   return (
@@ -31,11 +29,12 @@ const App: React.FC = () => {
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/signup" element={<SignupPage />} />
           <Route path="/auth/forgot" element={<ForgotPage />} />
-          
+
           <Route path='/' element={<PrivateRoute />}>
             <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
+            <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />

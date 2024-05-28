@@ -1,7 +1,5 @@
 import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
 import { IUser } from '../services/user/types';
-import { IInstance } from '../services/instance/types';
-import { IQueue } from '../services/queue/types';
 
 interface DataContextProps {
     isLogged: boolean,

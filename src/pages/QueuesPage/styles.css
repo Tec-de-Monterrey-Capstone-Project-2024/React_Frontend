@@ -1,23 +1,23 @@
-/* .queues-box {
+.queues-box {
     @apply py-4;
-} */
+}
 
-/* .queues-columns {
+.queues-columns {
     @apply flex grid grid-cols-2 items-start;
-} */
+}
 
-/* .queues-column {
+.queues-column {
     @apply flex;
-} */
+}
 
-/* .queue-column:first-child {
+.queue-column:first-child {
     @apply border-r-2 border-gray-300;
-} */
+}
 
 .queues-titles {
-    @apply text-2xl font-bold text-start text-sky-950 mb-4;
+    @apply text-2xl font-bold text-start text-sky-950 ml-8 mb-4;
 }
 
 .queues-card {
-    @apply mb-8;
+    @apply mx-8 mb-8;
 }

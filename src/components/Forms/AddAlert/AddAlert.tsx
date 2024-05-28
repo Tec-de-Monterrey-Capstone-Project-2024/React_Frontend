@@ -9,7 +9,8 @@ const AddAlert: React.FC = () => {
     const [formData, setFormData] = useState<AlertFormData>({
         metric: '',
         minThreshold: '',
-        maxThreshold: ''
+        maxThreshold: '',
+        targetValue: ''
     });
 
     const metrics: MetricOption[] = [

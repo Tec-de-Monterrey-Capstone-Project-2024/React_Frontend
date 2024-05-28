@@ -1,6 +1,6 @@
 import React from "react";
 import './InputField.css'
-import {InputFieldProps} from './type'
+import {InputFieldProps} from './type';
 
 const InputField: React.FC<InputFieldProps> = ({ label, placeholder, value, onChange, variant }) => {
   const variantClass = variant ? `variant${variant}` : '';

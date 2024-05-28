@@ -25,8 +25,11 @@ yarn-error.log*
 
 *storybook.log
 
-# Package manager cache files
+# Lockfile
 package-lock.json
+yarn.lock
+
+.env
 yarn.lock
 
 # Idea cache files

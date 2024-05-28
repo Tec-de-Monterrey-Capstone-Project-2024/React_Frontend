@@ -13,6 +13,8 @@ import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
+import ViewInsightPage from './pages/ViewInsightPage';
+
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 import { MetricDetailsPage } from './pages/MetricDetailsPage';
 import InsightPage  from './pages/InsightPage/InsightPage';
@@ -27,6 +29,7 @@ const App: React.FC = () => {
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/signup" element={<SignupPage />} />
           <Route path="/auth/forgot" element={<ForgotPage />} />
+
           <Route path='/' element={<PrivateRoute />}>
             <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<DashboardPage />} />
@@ -36,7 +39,10 @@ const App: React.FC = () => {
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/insights" element={<InsightPage />} />
+            <Route path="/insights/:id" element={<ViewInsightPage />} />
           </Route>
+          
+          {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>
     </Router>

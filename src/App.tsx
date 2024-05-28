@@ -14,7 +14,7 @@ import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage';
-import AlertViewMore from './pages/AlertViewMore';
+import ViewInsightPage from './pages/ViewInsightPage';
 
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 import InsightPage  from './pages/InsightPage/InsightPage';
@@ -40,7 +40,7 @@ const App: React.FC = () => {
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/insights" element={<InsightPage />} />
-            <Route path="/insights-show" element={<AlertViewMore />} />
+            <Route path="/insights/:id" element={<ViewInsightPage />} />
           </Route>
           
           {/* <Route component={NotFound} /> */}

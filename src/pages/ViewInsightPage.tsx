@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button/Button';
 import Insight from '../components/Cards/InsightCardDescription/InsightDescription';
 import InsightModal from '../components/Cards/Insights/InsightModal';
 
-const AlertViewMore: React.FC = () => {
+const ViewInsightPage: React.FC = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
@@ -101,4 +100,4 @@ const AlertViewMore: React.FC = () => {
   );
 }
 
-export default AlertViewMore;
+export default ViewInsightPage;

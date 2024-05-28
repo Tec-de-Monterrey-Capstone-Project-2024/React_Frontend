@@ -1,5 +1,4 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
-
 import { useDataContext } from '../../context/DataContext';
 
 import { getAgents } from '../../services/agents/getAgents';
@@ -44,7 +43,7 @@ const AgentsPage = () => {
                     button={false}
                 />
                     <ContentCard>
-                        {selectedInstanceId === "0" ? <p>Please select an instance.</p> : (
+                    {selectedInstanceId === "0" ? <p>Please select an instance.</p> : (
                             loading ? <p>Loading agents from Queue {selectedQueueId}...</p> : <AgentsTable agents={agents} />
                         )}
                     </ContentCard>

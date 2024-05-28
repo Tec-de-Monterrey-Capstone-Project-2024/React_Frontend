@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../ROUTES';
+import { ROUTES } from '../routes';
 
 const HomePage: React.FC = () => {
   return <>

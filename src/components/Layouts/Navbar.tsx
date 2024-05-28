@@ -3,14 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useDataContext } from '../../context/DataContext';
 
-import { ROUTES } from '../../ROUTES';
 
 import { getInstances } from '../../services/instance/getInstances';
 import { IInstance } from '../../services/instance/types';
-import { getQueues } from '../../services/queue/getQueues';
-import { IQueue } from '../../services/queue/types';
+import { getQueues } from '../../services/queues/getQueues';
+import { IQueue } from '../../services/queues/types';
 
-import Select from '../Widgets/Select/Select';
 import { Button } from '../Button';
 
 import agentIcon from '../../assets/icons/agent.svg';
@@ -128,9 +126,6 @@ const Navbar: React.FC = () => {
             <Button variant="light" onClick={() => {}} className="green icon">
               <img src={alertIcon} alt="Alert icon" />
             </Button>
-            
-            {/* <Select placeholder="Filters" color="green"></Select> */}
-            {/* <Select placeholder="Filters" color="green"></Select> */}
 
             {(selectedInstanceId !== "0") && (
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>

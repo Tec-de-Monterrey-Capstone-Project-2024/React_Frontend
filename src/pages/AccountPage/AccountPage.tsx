@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link, Navigate, useSearchParams } from 'react-router-dom';
-import { ROUTES } from '../../ROUTES';
-import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
-import { useNavigate } from "react-router-dom";
+import { signOut } from 'firebase/auth';
 
 import MyAccount from '../../components/DataDisplay/MyAccount';
-
 import { ContentCard } from '../../components/Cards/ContentCard';
 
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
-
-
-
 
 const AccountPage: React.FC = () => {
     const navigate = useNavigate();

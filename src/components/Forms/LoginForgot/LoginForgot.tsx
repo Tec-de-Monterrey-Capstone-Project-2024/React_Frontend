@@ -7,7 +7,6 @@ import '../styles.css';
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }) => {
-
     const navigate = useNavigate();
     const [showLoginForgot, setShowLoginForgot] = useState(false);
     const [email, setEmail] = useState('hola@gmail.com');

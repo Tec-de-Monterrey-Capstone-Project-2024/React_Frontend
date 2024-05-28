@@ -1,9 +1,8 @@
 import React from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faBell } from '@fortawesome/free-solid-svg-icons';
-import alertIcon from '../../../assets/icons/alert.svg';
 
-import type { IInsightDescription } from './types';
+import { IInsightDescription } from './types';
+
+import alertIcon from '../../../assets/icons/alert.svg';
 
 const InsightDescription: React.FC<IInsightDescription> = ({ title, message, situationTitle, actionTitle }) => {
   return (
@@ -29,6 +28,5 @@ const InsightDescription: React.FC<IInsightDescription> = ({ title, message, sit
     </div>
   );
 };
-
 
 export default InsightDescription;

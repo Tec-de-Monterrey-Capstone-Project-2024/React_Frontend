@@ -58,7 +58,6 @@ const AlertViewMore: React.FC = () => {
     <div className="p-4 flex flex-col h-screen">
       <div>
         <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
-
           <span className="mr-2">&#8592;</span>
           Back
         </button>

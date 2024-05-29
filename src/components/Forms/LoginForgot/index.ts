@@ -1,1 +1,0 @@
-export { default as LoginForgot } from './LoginForgot';

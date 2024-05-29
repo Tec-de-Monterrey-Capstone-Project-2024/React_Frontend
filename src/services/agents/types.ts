@@ -8,3 +8,14 @@ export interface IAgent {
     // role: 'SUPERVISOR' | 'AGENT',
     queueName: string,
 }
+
+export interface registerAgent {
+    connectId: string,
+    instanceID: string,
+    username: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    secondaryEmail: string,
+    mobile: number
+}

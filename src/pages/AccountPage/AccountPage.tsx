@@ -1,15 +1,19 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import { auth } from '../../firebase';
 import { signOut } from 'firebase/auth';
+
+import { useDataContext } from '../../context/DataContext';
 
 import MyAccount from '../../components/DataDisplay/MyAccount';
 import { ContentCard } from '../../components/Cards/ContentCard';
 
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
 import './styles.css';
 
 const AccountPage: React.FC = () => {
     const navigate = useNavigate();
+    const { user } = useDataContext();
     const [searchParams, setSearchParams] = useSearchParams();
     const [tab, setTab] = useState(1);
 
@@ -42,7 +46,7 @@ const AccountPage: React.FC = () => {
                         <div className="sidebar">
                             <div className="sidebar-container container">
                                 <div className="user">
-                                    <h2>Diego Zepeda</h2>
+                                    <h2>{user?.firstName} {user?.lastName}</h2>
                                     <p className='subtitle'>Supervisor</p>
                                 </div>
                                 <ul>

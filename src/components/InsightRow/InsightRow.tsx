@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 
-const InsightRow: React.FC<IInsightRow> = ({ title, color }) => {
+const InsightRow: React.FC<IInsightRow> = ({ id, title, color }) => {
 
     const insightRow = classNames({
         "row-container": true,
@@ -16,7 +16,7 @@ const InsightRow: React.FC<IInsightRow> = ({ title, color }) => {
     const navigate = useNavigate();
     //to-do change link 
     const handleNavigate = () => {
-        navigate('/insights/1');
+        navigate(`/insights/${id}`);
     };
 
     return (

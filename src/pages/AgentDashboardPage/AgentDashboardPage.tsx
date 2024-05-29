@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getAgentMetrics } from '../../services/metrics/getAgentMetrics';
 import { getAgentInsights } from '../../services/insights/getAgentInsights';
 import { IMetric } from '../../services/metrics/types';
-import { IInsights } from '../../services/insights/types';
+import { IInsight } from '../../services/insights/types';
 
 import MetricsData, { MetricData } from '../../config/MetricsData';
 
@@ -20,7 +20,7 @@ const AgentDashboardPage: React.FC = () => {
 
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState(true);
-  const [insights, setInsights] = useState<IInsights[] | null>(null);
+  const [insights, setInsights] = useState<IInsight[] | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(true);
 
   useEffect(() => {
@@ -91,15 +91,15 @@ const AgentDashboardPage: React.FC = () => {
             {loadingInsights ? <p>Loading...</p> : (insights ? (
               <div className='insights'>
                 {insights.map(insight => {
-                  const { title, description1, color, borderColor, showBoxBorder } = insight;
+                  const { insightName, insightSummary } = insight;
                 
                   return (
                     <InsightCard
-                      title={title}
-                      description1={description1}
-                      color={color}
-                      borderColor={borderColor}
-                      showBoxBorder={showBoxBorder}
+                      title={insightName}
+                      description1={insightSummary}
+                      color={'white'}
+                      borderColor={'red'}
+                      showBoxBorder={true}
                       func={() => {}}
                     />
                   );

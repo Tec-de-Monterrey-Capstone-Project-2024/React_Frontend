@@ -1,12 +1,11 @@
 import httpInstance from "../httpInstance";
 
-export const getInstances = async () => {
+export const loginUser = async (firebaseId: string) => {
     let res: any;
-    const endpoint = `api/amazon-connect/instances`;
+    const endpoint = `/api/auth/users/login/${firebaseId}`;
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;
-        console.log(res);
     }).catch((err) => {
         res = err.response
     });

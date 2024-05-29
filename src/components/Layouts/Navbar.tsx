@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const { user } = useDataContext();
 
-  const [instanceAlias, setInstanceAlias] = useState<string>('');
+  const [instanceAlias, setInstanceAlias] = useState<string | null>(null);
   useEffect(() => {
     const fetchInstance = async () => {
       var res = await getInstance(user!.instanceId);
@@ -143,7 +143,7 @@ const Navbar: React.FC = () => {
               ))}
             </select> */}
 
-            <span className='btn-type-2'>{instanceAlias}</span>
+            {instanceAlias && <span className='btn-type-2'>{instanceAlias}</span>}
 
             <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
               <img src={agentIcon} alt="Agent icon" />

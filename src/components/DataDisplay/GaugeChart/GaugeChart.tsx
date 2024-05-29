@@ -1,6 +1,5 @@
-import React from 'react';
 import { IGaugeChart } from './types';
-
+import React from 'react';
 import './styles.css';
 
 const GaugeChart: React.FC<IGaugeChart> = ({ min, max, value }) => {

@@ -4,22 +4,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
-import { registerAgent } from "../../services/agents/types";
+import { useDataContext } from '../../context/DataContext';
+import { useAuth } from "../../context/AuthContext";
+
 import { getInstances } from "../../services/instance/getInstances";
 import { IInstance } from "../../services/instance/types";
 
-import { postAgents } from "../../services/agents/postAgents";
+import { signupUser } from "../../services/user/signupUser";
 
 import './styles.css'
 
 
 const SignupForm = () => {
-
     const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const[selectedInstanceId, setSelectedInstanceId] = useState('');
+    const [selectedInstanceId, setSelectedInstanceId] = useState('');
     const [instances, setInstances] = useState<IInstance[]>([]);
 
     useEffect(() => {
@@ -28,7 +30,7 @@ const SignupForm = () => {
             setInstances(res.data);
         };
         fetchInstances();
-    }, []);
+    }, [setInstances, getInstances]);
 
     const handleInstanceChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setSelectedInstanceId(event.target.value);
@@ -36,26 +38,19 @@ const SignupForm = () => {
 
     const onRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth ,email ,password)
-        .then(async (userCredential) => {
-            console.log(userCredential)
-            const user = userCredential.user;
+        createUserWithEmailAndPassword(auth ,email ,password).then(async (userCredential) => {
             const firebaseId = userCredential.user.uid;
             const body = {
                 firebaseId: firebaseId,
                 email: email,
                 instanceId: selectedInstanceId
             }
-            const res = await postAgents(body);
-            if (res.ok) {
-                navigate("/dashboard");
-            }
-        })
-        .catch((error) => {
+            const res = await signupUser(body);
+        }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
-        })
+        });
     }
 
     return(
@@ -66,13 +61,7 @@ const SignupForm = () => {
             </div>
             <div className="input-container">
                 <label htmlFor="instance" className="input-label">Instance</label>
-                <select
-                     name="instanceAlias"
-                     id="instanceAlias"
-                     value={selectedInstanceId}
-                     onChange={handleInstanceChange}
-                     className="input"
-                 >
+                <select name="instanceAlias" id="instanceAlias" value={selectedInstanceId} onChange={handleInstanceChange} className="btn-type-7">
                      <option value="">Select an instance</option>
                      {instances.map((instance) => (
                          <option key={instance.id} value={instance.id}>

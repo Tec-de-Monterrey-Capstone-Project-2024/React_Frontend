@@ -1,37 +1,36 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { Link, useLocation } from "react-router-dom";
+
+import { useDataContext } from "../../context/DataContext";
+import { useAuth } from "../../context/AuthContext";
+
+import { loginUser } from "../../services/user/loginUser";
+
 import './styles.css';
 
 
 
-const LoginForm: React.FC = () => {
-    const navigate = useNavigate();
 
-    const [email, setEmail] = useState('hola@gmail.com');
-    const [password, setPassword] = useState('hola123');
+const LoginForm: React.FC = () => {
+    const { setUser } = useDataContext();
+    const { signIn, signOut } = useAuth();
+
+    const [email, setEmail] = useState('a01657142@tec.mx');
+    const [password, setPassword] = useState('password');
     const [error, setError] = useState<string | null>(null);
 
     const location = useLocation();
     const fromForgotForm = location.state?.fromForgotForm || false;
 
-    const onLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            navigate("/dashboard");
-            console.log(user);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-            setError(errorMessage);
-        });
-
+        const firebaseId = await signIn(email, password);
+        const res = await loginUser(firebaseId);
+        if (res.status >= 200 && res.status < 300) {
+            setUser(res.data);
+        } else {
+            signOut();
+        }
     }
 
     return (

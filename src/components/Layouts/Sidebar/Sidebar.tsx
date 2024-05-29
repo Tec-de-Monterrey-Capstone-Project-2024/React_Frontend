@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { ROUTES } from '../../../routes';
+import { ROUTES } from '../../../ROUTES';
 import img from '../../../assets/img/logo.png';
 import React from 'react';
 

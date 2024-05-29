@@ -8,10 +8,10 @@ import { IQueue } from '../../services/queues/types';
 import { getInstance } from '../../services/instance/getInstance';
 
 import { Button } from '../Button';
+import { AlertPopup } from '../Popups/AlertPopup';
 
 import agentIcon from '../../assets/icons/agent.svg';
 import alertIcon from '../../assets/icons/alert.svg';
-
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -47,6 +47,12 @@ const Navbar: React.FC = () => {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
 
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
   useEffect(() => {
     switch (location.pathname) {
       case '/queues':
@@ -58,7 +64,7 @@ const Navbar: React.FC = () => {
         setTitle('Dashboard');
         setSubtitle(null);
         break;
-        
+
       case '/account':
         setTitle('Account');
         setSubtitle(null);
@@ -79,22 +85,21 @@ const Navbar: React.FC = () => {
         setSubtitle(null);
         break;
 
-        case '/insights-show':
-
-          setTitle('Insight');
-          setSubtitle(null);
-          break;
+      case '/insights-show':
+        setTitle('Insight');
+        setSubtitle(null);
+        break;
 
       case '/dashboard/agent/1':
-          setTitle('Dashboard');
-          setSubtitle('- Luis Gerardo Doe');
-          break;
+        setTitle('Dashboard');
+        setSubtitle('- Luis Gerardo Doe');
+        break;
 
       case '/dashboard/agent/2':
-          setTitle('Dashboard');
-          setSubtitle('- Jane Smith');
-          break;
-      
+        setTitle('Dashboard');
+        setSubtitle('- Jane Smith');
+        break;
+
       case '/dashboard/agent/3':
         setTitle('Dashboard');
         setSubtitle('- Michael Johnson');
@@ -119,9 +124,10 @@ const Navbar: React.FC = () => {
             </h2>
           </div>
           <div className='links'>
-            <Button variant="light" onClick={() => {}} className="green icon">
+            <Button variant="light" onClick={togglePopup} className="green icon">
               <img src={alertIcon} alt="Alert icon" />
             </Button>
+            <AlertPopup onClose={togglePopup} message={'The Refunds Queue has a high quantity of clients. Consider reassigning agents to this queue.'} isVisible={showPopup} />
 
             {(user) && (
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
@@ -145,9 +151,9 @@ const Navbar: React.FC = () => {
 
             {instanceAlias && <span className='btn-type-2'>{instanceAlias}</span>}
 
-            <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
+            <Button variant="light" onClick={() => { navigate("/account"); }} className="green icon">
               <img src={agentIcon} alt="Agent icon" />
-            </Button> 
+            </Button>
           </div>
         </div>
       </div>

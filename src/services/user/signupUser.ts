@@ -1,6 +1,6 @@
 import httpInstance from "../httpInstance";
 
-export const postAgents = async (body: { firebaseId: string; email: string; instanceId: string; }) => {
+export const signupUser = async (body: { firebaseId: string; email: string; instanceId: string; }) => {
     let res: any;
     const endpoint = `/api/auth/users/register`;
 

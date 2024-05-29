@@ -16,7 +16,9 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     if (isAuthPage) {
         return (
             <AuthProvider>
-                <main>{children}</main>
+                <DataProvider>
+                    <main>{children}</main>
+                </DataProvider>
             </AuthProvider>
         );
     }

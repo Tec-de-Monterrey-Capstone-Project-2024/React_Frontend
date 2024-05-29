@@ -5,7 +5,7 @@
  interface AuthContextType {
     user: User | null;
     loading: boolean;
-    signIn: (email: string, password: string) => Promise<void>;
+    signIn: (email: string, password: string) => Promise<string>;
     signOut: () => Promise<void>;
   }
   
@@ -24,7 +24,9 @@
     }, []);
   
     const signIn = async (email: string, password: string) => {
-      await signInWithEmailAndPassword(auth, email, password);
+      const res = await signInWithEmailAndPassword(auth, email, password);
+      const firebaseId = res.user.uid;
+      return firebaseId;
     };
   
     const signOutUser = async () => {

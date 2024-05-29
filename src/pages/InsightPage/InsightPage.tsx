@@ -12,7 +12,7 @@ import { InsightRow } from "../../components/InsightRow";
 import './style.css';
 
 const InsightPage = () => {
-    const { selectedInstanceId, selectedQueueId } = useDataContext();
+    const { user, selectedQueueId } = useDataContext();
     const [loading, setLoading] = useState(true);
     const [insights, setInsights] = useState<IInsight[]>([]);
     const [toDoInsights, setToDoInsights] = useState<IInsight[]>([]);
@@ -23,7 +23,7 @@ const InsightPage = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await getQueueInsights(selectedInstanceId, selectedQueueId);
+                const res = await getQueueInsights(user!.instanceId, selectedQueueId);
                 console.log(res.data);
                 setInsights(res.data);
             } catch (tcErr) {
@@ -32,7 +32,7 @@ const InsightPage = () => {
             setLoading(false);
         }
         fetchData();
-    }, [selectedInstanceId, selectedQueueId]);
+    }, [user, selectedQueueId]);
 
     useEffect(() => {
         if (insights.length > 0) {

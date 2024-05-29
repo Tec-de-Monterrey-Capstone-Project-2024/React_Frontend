@@ -7,9 +7,6 @@ interface DataContextProps {
     user: IUser | null,
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>,
 
-    selectedInstanceId: string,
-    setSelectedInstanceId: React.Dispatch<React.SetStateAction<string>>,
-
     selectedQueueId: string,
     setSelectedQueueId: React.Dispatch<React.SetStateAction<string>>,
 }
@@ -20,12 +17,8 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null>(null);
 
-    const [selectedInstanceId, setSelectedInstanceId] = useState<string>( localStorage.getItem('selectedInstanceId') || "0" );
     const [selectedQueueId, setSelectedQueueId] = useState<string>( localStorage.getItem('selectedQueueId') || "all" );
 
-    useEffect(() => {
-        localStorage.setItem('selectedInstanceId', selectedInstanceId);
-    }, [selectedInstanceId]);
     useEffect(() => {
         localStorage.setItem('selectedQueueId', selectedQueueId);
     }, [selectedQueueId]);
@@ -35,9 +28,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setIsLogged,
         user,
         setUser,
-
-        selectedInstanceId,
-        setSelectedInstanceId,
 
         selectedQueueId,
         setSelectedQueueId,

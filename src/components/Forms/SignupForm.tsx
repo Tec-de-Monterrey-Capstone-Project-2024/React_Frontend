@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, ChangeEvent} from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+
+import { registerAgent } from "../../services/agents/types";
+import { getInstances } from "../../services/instance/getInstances";
+import { IInstance } from "../../services/instance/types";
+
+import { postAgents } from "../../services/agents/postAgents";
 
 import './styles.css'
 
@@ -11,15 +18,38 @@ const SignupForm = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [connectId, setConnectID] = useState('');
 
-    const onRegister = (e: React.FormEvent<HTMLFormElement>) => {
+    const[selectedInstanceId, setSelectedInstanceId] = useState('');
+    const [instances, setInstances] = useState<IInstance[]>([]);
+
+    useEffect(() => {
+        const fetchInstances = async () => {
+            const res = await getInstances();
+            setInstances(res.data);
+        };
+        fetchInstances();
+    }, []);
+
+    const handleInstanceChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        setSelectedInstanceId(event.target.value);
+    };
+
+    const onRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth ,email ,password)
-        .then((userCredential) => {
+        .then(async (userCredential) => {
+            console.log(userCredential)
             const user = userCredential.user;
-            navigate("/dashboard");
-            console.log(user);
+            const firebaseId = userCredential.user.uid;
+            const body = {
+                firebaseId: firebaseId,
+                email: email,
+                instanceId: selectedInstanceId
+            }
+            const res = await postAgents(body);
+            if (res.ok) {
+                navigate("/dashboard");
+            }
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -33,6 +63,23 @@ const SignupForm = () => {
             <div className="title">
                 <h3>Register</h3>
                 <p className="text-sm">Make sure your email is the same as Connect.</p>
+            </div>
+            <div className="input-container">
+                <label htmlFor="instance" className="input-label">Instance</label>
+                <select
+                     name="instanceAlias"
+                     id="instanceAlias"
+                     value={selectedInstanceId}
+                     onChange={handleInstanceChange}
+                     className="input"
+                 >
+                     <option value="">Select an instance</option>
+                     {instances.map((instance) => (
+                         <option key={instance.id} value={instance.id}>
+                             {instance.instanceAlias}
+                         </option>
+                     ))}
+                 </select>
             </div>
             <div className="input-container">
                 <label htmlFor="email" className="input-label">Email</label>

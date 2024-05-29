@@ -8,7 +8,7 @@ export interface IAgent {
     role: 'SUPERVISOR' | 'AGENT'
 }
 
-export interface loginAgent {
+export interface registerAgent {
     connectId: string,
     instanceID: string,
     username: string,

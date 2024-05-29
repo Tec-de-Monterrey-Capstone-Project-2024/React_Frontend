@@ -3,9 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useDataContext } from '../../context/DataContext';
 
-
 import { getQueues } from '../../services/queues/getQueues';
 import { IQueue } from '../../services/queues/types';
+import { getInstance } from '../../services/instance/getInstance';
 
 import { Button } from '../Button';
 
@@ -16,24 +16,18 @@ import alertIcon from '../../assets/icons/alert.svg';
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
   const { user } = useDataContext();
 
-
-  
-  // const [instances, setInstances] = useState<IInstance[]>([]);
-  
-  // useEffect(() => {
-  //   const fetchInstances = async () => {
-  //     var res = await getInstances();
-  //     setInstances(res.data);
-  //   }
-  //   fetchInstances();
-  // }, []);
-  // const changeInstance = (event: ChangeEvent<HTMLSelectElement>) => {
-  //   setSelectedInstanceId(event.target.value);
-  //   setSelectedQueueId('all');
-  // };
+  const [instanceAlias, setInstanceAlias] = useState<string>('');
+  useEffect(() => {
+    const fetchInstance = async () => {
+      var res = await getInstance(user!.instanceId);
+      setInstanceAlias(res.data.instanceAlias);
+    }
+    if (user) {
+      fetchInstance();
+    }
+  }, [user]);
 
   const [queues, setQueues] = useState<IQueue[]>([]);
   const { selectedQueueId, setSelectedQueueId } = useDataContext();
@@ -148,6 +142,8 @@ const Navbar: React.FC = () => {
                 </option>
               ))}
             </select> */}
+
+            <span className='btn-type-2'>{instanceAlias}</span>
 
             <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
               <img src={agentIcon} alt="Agent icon" />

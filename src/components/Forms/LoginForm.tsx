@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useDataContext } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
@@ -12,8 +12,6 @@ import './styles.css';
 
 
 const LoginForm: React.FC = () => {
-    const navigate = useNavigate();
-
     const { setUser } = useDataContext();
     const { signIn, signOut } = useAuth();
 
@@ -28,7 +26,9 @@ const LoginForm: React.FC = () => {
         e.preventDefault();
         const firebaseId = await signIn(email, password);
         const res = await loginUser(firebaseId);
-        if (!(res.status >= 200 && res.status < 300)) {
+        if (res.status >= 200 && res.status < 300) {
+            setUser(res.data);
+        } else {
             signOut();
         }
     }

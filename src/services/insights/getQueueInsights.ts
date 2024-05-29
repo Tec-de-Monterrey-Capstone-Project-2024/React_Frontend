@@ -1,7 +1,21 @@
-import httpInstance from "../httpInstance";
+// import httpInstance from "../httpInstance";
+
+// export const getQueueInsights = async (instanceId:string, queueId: string) => {
+//     let res: any;
+//     const endpoint = `api/`;
+
+//     await httpInstance.get(endpoint).then((response) => {
+//         res = response;
+//     }).catch((err) => {
+//         res = err.response
+//     });
+
+//     return res;
+// }
+
 import { IInsight } from "./types";
 
-export const getAgentInsights = async (id: string) => {
+export const getQueueInsights = async (instanceId: string, queueId: string): Promise<{ data: IInsight[] }> => {
     const dummyInsights: IInsight[] = [
         {
             id: 1,
@@ -58,21 +72,10 @@ export const getAgentInsights = async (id: string) => {
             insightPrevention: "Regular task reviews"
         }
     ];
-    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Simulate an HTTP status code (200 for success)
-    const status = 200;
-
-    // Return mock data with axios-like structure
-    return { data: dummyInsights, status };
-
-    // let res: any;
-    // const endpoint = `api/metrics/agents/${id}`;
-
-    // await httpInstance.get(endpoint).then((response) => {
-    //     res = response;
-    // }).catch((err) => {
-    //     res = err.response
-    // });
-    // return res;
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({ data: dummyInsights });
+        }, 1000);
+    });
 }

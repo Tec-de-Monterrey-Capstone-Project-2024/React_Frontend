@@ -3,55 +3,55 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useDataContext } from '../../context/DataContext';
 
-import { ROUTES } from '../../ROUTES';
+import { getQueues } from '../../services/queues/getQueues';
+import { IQueue } from '../../services/queues/types';
+import { getInstance } from '../../services/instance/getInstance';
 
-import { getInstances } from '../../services/instance/getInstances';
-import { IInstance } from '../../services/instance/types';
-import { getQueues } from '../../services/queue/getQueues';
-import { IQueue } from '../../services/queue/types';
-
-import Select from '../Widgets/Select/Select';
 import { Button } from '../Button';
+import { AlertPopup } from '../Popups/AlertPopup';
 
 import agentIcon from '../../assets/icons/agent.svg';
 import alertIcon from '../../assets/icons/alert.svg';
 
-
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
-  const [instances, setInstances] = useState<IInstance[]>([]);
-  const { selectedInstanceId, setSelectedInstanceId } = useDataContext();
+  const { user } = useDataContext();
+
+  const [instanceAlias, setInstanceAlias] = useState<string | null>(null);
   useEffect(() => {
-    const fetchInstances = async () => {
-      var res = await getInstances();
-      setInstances(res.data);
+    const fetchInstance = async () => {
+      var res = await getInstance(user!.instanceId);
+      setInstanceAlias(res.data.instanceAlias);
     }
-    fetchInstances();
-  }, []);
-  const changeInstance = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedInstanceId(event.target.value);
-    setSelectedQueueId('all');
-  };
+    if (user) {
+      fetchInstance();
+    }
+  }, [user]);
 
   const [queues, setQueues] = useState<IQueue[]>([]);
   const { selectedQueueId, setSelectedQueueId } = useDataContext();
   useEffect(() => {
     const fetchQueues = async () => {
-      var res = await getQueues(selectedInstanceId);
+      var res = await getQueues(user!.instanceId);
       setQueues(res.data);
     }
-    if (selectedInstanceId !== "0") {
+    if (user) {
       fetchQueues();
     }
-  }, [selectedInstanceId]);
+  }, [user]);
   const changeQueue = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedQueueId(event.target.value);
   };
 
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState<string | null>(null);
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
 
   useEffect(() => {
     switch (location.pathname) {
@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
         setTitle('Dashboard');
         setSubtitle(null);
         break;
-        
+
       case '/account':
         setTitle('Account');
         setSubtitle(null);
@@ -85,22 +85,21 @@ const Navbar: React.FC = () => {
         setSubtitle(null);
         break;
 
-        case '/insights-show':
-
-          setTitle('Insight');
-          setSubtitle(null);
-          break;
+      case '/insights-show':
+        setTitle('Insight');
+        setSubtitle(null);
+        break;
 
       case '/dashboard/agent/1':
-          setTitle('Dashboard');
-          setSubtitle('- Luis Gerardo Doe');
-          break;
+        setTitle('Dashboard');
+        setSubtitle('- Luis Gerardo Doe');
+        break;
 
       case '/dashboard/agent/2':
-          setTitle('Dashboard');
-          setSubtitle('- Jane Smith');
-          break;
-      
+        setTitle('Dashboard');
+        setSubtitle('- Jane Smith');
+        break;
+
       case '/dashboard/agent/3':
         setTitle('Dashboard');
         setSubtitle('- Michael Johnson');
@@ -125,14 +124,12 @@ const Navbar: React.FC = () => {
             </h2>
           </div>
           <div className='links'>
-            <Button variant="light" onClick={() => {}} className="green icon">
+            <Button variant="light" onClick={togglePopup} className="green icon">
               <img src={alertIcon} alt="Alert icon" />
             </Button>
-            
-            {/* <Select placeholder="Filters" color="green"></Select> */}
-            {/* <Select placeholder="Filters" color="green"></Select> */}
+            <AlertPopup onClose={togglePopup} message={'The Refunds Queue has a high quantity of clients. Consider reassigning agents to this queue.'} isVisible={showPopup} />
 
-            {(selectedInstanceId !== "0") && (
+            {(user) && (
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (
@@ -143,18 +140,20 @@ const Navbar: React.FC = () => {
               </select>
             )}
 
-            <select id="instances" title='instances' value={selectedInstanceId} onChange={changeInstance} className='btn-type-2'>
+            {/* <select id="instances" title='instances' value={selectedInstanceId} onChange={changeInstance} className='btn-type-2'>
               <option value="0">Select instance</option>
               {instances.map((instance) => (
                 <option key={instance.id} value={instance.id}>
                   {instance.instanceAlias}
                 </option>
               ))}
-            </select>
+            </select> */}
 
-            <Button variant="light" onClick={() => {navigate("/account");}} className="green icon">
+            {instanceAlias && <span className='btn-type-2'>{instanceAlias}</span>}
+
+            <Button variant="light" onClick={() => { navigate("/account"); }} className="green icon">
               <img src={agentIcon} alt="Agent icon" />
-            </Button> 
+            </Button>
           </div>
         </div>
       </div>

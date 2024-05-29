@@ -1,5 +1,4 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
-
 import { useDataContext } from '../../context/DataContext';
 
 import { getAgents } from '../../services/agents/getAgents';
@@ -13,14 +12,14 @@ import './styles.css';
 
 const AgentsPage = () => {
     const [loading, setLoading] = useState<boolean>(true);
-    const { selectedInstanceId, selectedQueueId } = useDataContext();
+    const { user, selectedQueueId } = useDataContext();
     const [agents, setAgents] = useState<IAgent[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await getAgents(selectedInstanceId, selectedQueueId);
+                const res = await getAgents(user!.instanceId, selectedQueueId);
                 console.log(res.data);
                 setAgents(res.data);
             } catch (tcErr) {
@@ -29,7 +28,7 @@ const AgentsPage = () => {
             setLoading(false);
         }
         fetchData();
-    }, [selectedInstanceId, selectedQueueId]);
+    }, [user, selectedQueueId]);
 
     return (
         <section className='agents'>
@@ -44,9 +43,7 @@ const AgentsPage = () => {
                     button={false}
                 />
                     <ContentCard>
-                        {selectedInstanceId === "0" ? <p>Please select an instance.</p> : (
-                            loading ? <p>Loading agents from Queue {selectedQueueId}...</p> : <AgentsTable agents={agents} />
-                        )}
+                        {loading ? <p>Loading agents from Queue {selectedQueueId}...</p> : <AgentsTable agents={agents} />}
                     </ContentCard>
                 </div>
             </div>

@@ -4,11 +4,10 @@ import { useParams } from 'react-router-dom';
 import { getAgentMetrics } from '../../services/metrics/getAgentMetrics';
 import { getAgentInsights } from '../../services/insights/getAgentInsights';
 import { IMetric } from '../../services/metrics/types';
-import { IInsights } from '../../services/insights/types';
+import { IInsight } from '../../services/insights/types';
 
 import MetricsData, { MetricData } from '../../config/MetricsData';
 
-import { ContentCard } from '../../components/Cards/ContentCard';
 import { GaugeChart } from '../../components/DataDisplay/GaugeChart';
 import { Pie } from '../../components/DataDisplay/PieChart';
 import { MetricCard } from '../../components/Cards/MetricCard';
@@ -21,7 +20,7 @@ const AgentDashboardPage: React.FC = () => {
 
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState(true);
-  const [insights, setInsights] = useState<IInsights[] | null>(null);
+  const [insights, setInsights] = useState<IInsight[] | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(true);
 
   useEffect(() => {
@@ -55,16 +54,12 @@ const AgentDashboardPage: React.FC = () => {
 
     fetchMetrics();
     fetchInsights();
-
-
-    // const intervalId = setInterval(fetchData, 5000);
-    // return () => clearInterval(intervalId);
   }, [id]);
 
   return (
-    <section className='dashboard'>
+    <section className='agent-dashboard'>
       <div className='container'>
-        <div className='dashboard-content'>
+        <div className='agent-content'>
           <div className='column'>
             <h2>KPIs</h2>
             {loadingMetrics ? <p>Loading...</p> : (metrics ? (
@@ -96,15 +91,15 @@ const AgentDashboardPage: React.FC = () => {
             {loadingInsights ? <p>Loading...</p> : (insights ? (
               <div className='insights'>
                 {insights.map(insight => {
-                  const { title, description1, color, borderColor, showBoxBorder } = insight;
+                  const { insightName, insightSummary } = insight;
                 
                   return (
                     <InsightCard
-                      title={title}
-                      description1={description1}
-                      color={color}
-                      borderColor={borderColor}
-                      showBoxBorder={showBoxBorder}
+                      title={insightName}
+                      description1={insightSummary}
+                      color={'white'}
+                      borderColor={'red'}
+                      showBoxBorder={true}
                       func={() => {}}
                     />
                   );
@@ -115,7 +110,7 @@ const AgentDashboardPage: React.FC = () => {
             ))}
 
             <div className='insights'>
-            {/* {loadingMetrics ? <p>LoadingMetrics...</p> : metrics && metrics.map(metric => {
+            {loadingMetrics ? <p>LoadingMetrics...</p> : metrics && metrics.map(metric => {
               const { metric_info_code, value } = metric;
               const { name, min, max, graph } = MetricsData[metric_info_code];
               
@@ -129,7 +124,7 @@ const AgentDashboardPage: React.FC = () => {
                     )}
                   </div>
                 );
-              })} */}
+              })}
             </div>
           </div>
         </div>

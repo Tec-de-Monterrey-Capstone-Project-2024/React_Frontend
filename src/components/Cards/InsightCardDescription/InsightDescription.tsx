@@ -1,15 +1,15 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-import type { IInsightDescription } from './types';
+import { IInsightDescription } from './types';
+
+import alertIcon from '../../../assets/icons/alert.svg';
 
 const InsightDescription: React.FC<IInsightDescription> = ({ title, message, situationTitle, actionTitle }) => {
   return (
     <div className="p-6 border border-gray-300 rounded-lg shadow-lg bg-gray-50">
       <h2 className="text-4xl font-bold mb-4 flex items-center">
         <span className="p-2 bg-gray-50 rounded-full text-lime-500 text-4xl border border-gray-300 mr-2">
-          <FontAwesomeIcon icon={faBell} />
+          <img src={alertIcon} alt="Alert icon" width={32} height={32} />
         </span>
         {title}
       </h2>
@@ -28,6 +28,5 @@ const InsightDescription: React.FC<IInsightDescription> = ({ title, message, sit
     </div>
   );
 };
-
 
 export default InsightDescription;

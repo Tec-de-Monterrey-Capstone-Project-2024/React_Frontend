@@ -15,7 +15,7 @@ const ForgotForm: React.FC = () => {
         e.preventDefault();
         sendPasswordResetEmail(auth, email)
         .then(() => {
-            navigate("/auth/login");
+            navigate("/auth/login", { state: { fromForgotForm: true } });
 
         })
         .catch((error) => {

@@ -19,7 +19,7 @@ export const getAgentMetrics = async (id: string) => {
     const status = 200;
 
     return { data: responseData, status };
-
+  
     // let res: any;
     // const endpoint = `api/metrics/agents/${id}`;
 

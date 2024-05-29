@@ -1,51 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { getAgentMetrics } from '../services/metrics/getAgentMetrics';
 import { IMetric } from '../services/metrics/types';
-import MetricsData from '../config/MetricsData';
-import { GaugeChart } from '../components/DataDisplay/GaugeChart';
-import { Pie } from '../components/DataDisplay/PieChart';
+import MetricsData, { MetricData } from '../config/MetricsData';
+import InsightData from '../config/insightDummyData.json'
+import { getGeneralMetrics } from '../services/metrics/getGeneralMetrics';
+import { MetricCard } from '../components/Cards/MetricCard';
+import React, { useEffect, useState } from 'react'
+import InsightCard  from "../components/Cards/InsightCard/InsightCard";
+import {IInsightCard} from "../components/Cards/InsightCard/types";
+import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
+  const [metrics, setMetrics] = useState<IMetric[] | null>(null);
+  const [insights, setInsights] = useState<IInsightCard[] | null>(null)
+  const [loading, setLoading] = useState<Boolean>(true);
 
-  const [metrics, setMetrics] = useState<IMetric[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const res = await getAgentMetrics("1");
-        console.log(res.data);
-        if (Array.isArray(res.data)) {
-          setMetrics(res.data);
-        } else {
-          console.error('Expected an array of metrics, but received:', res.data);
-        }
-      } catch (error) {
-        console.error('Failed to fetch metrics:', error);
-      }
-    };
+      setLoading(true);
+
+      const res = await getGeneralMetrics();
+      console.log(res.data);
+      setMetrics(res.data);
+
+      setLoading(false);
+    }
 
     fetchData();
   }, []);
 
   return (
-    <>
-      <br />
-      {metrics.map(metric => {
-        const { metric_info_code, value, id } = metric;
-        const { name, min, max, graph } = MetricsData[id];
-        
-        return (
-          <div key={id}>
-            <b>{name}</b>
-            {graph === 'Gauge' ? (
-              <GaugeChart min={min} max={max} value={value} />
+    <section className='agent-dashboard'>
+      <div className='container'>
+        <div className='agent-content'>
+          <div className='column'>
+            <h2>KPIs</h2>
+            {loading ? <p>Loading...</p> : (metrics ? (
+              <div className='metrics'>
+                {metrics.map(metric => {
+                  const { id, metric_info_code, value } = metric;
+                  const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];
+                
+                  return (
+                    <MetricCard
+                      title={name}
+                      subtitle={'No se que se ponga aqui'}
+                      minValue={min}
+                      maxValue={max}
+                      value={value}
+                      unit={unit}
+                      positive_upside={positive_upside}
+                      onClick={() => {navigate("general-metrics/" + id);}}
+                    />
+                  );
+                })}
+              </div>
             ) : (
-              <Pie value={value} metric={metric_info_code} />
-            )}
+              <p>No metrics found</p>
+            ))}
           </div>
-        );
-      })}
-    </>
+          <div className='column'>
+            <h2>Insights</h2>
+            {loading ? <p>Loading...</p> : (InsightData ? (
+                <div className="insights">
+                  {InsightData.map(insight => (
+                      <InsightCard
+                          key={insight.title}
+                          title={insight.title}
+                          description1={insight.description1}
+                          color={insight.color}
+                          borderColor={insight.borderColor}
+                          showBoxBorder={insight.showBoxBorder === "true"}
+                          func={() => { console.log(`More info about ${insight.title}`); }}
+                      />
+                  ))}
+                </div>
+            ) : (
+                <p>No insights found</p>
+            ))}
+
+        </div>
+        </div>
+      </div>
+    </section>
   )
 }
 

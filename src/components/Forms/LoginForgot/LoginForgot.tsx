@@ -50,7 +50,7 @@ const LoginForgot: React.FC<formProps> = ({ title, label, label2, button, link }
                     )}
                 </div>
                 <div className="link-container">
-                    <button className="button">{showLoginForgot ? forgotPasswordProps.button : loginProps.button}</button>
+                    <button className="button login-button">{showLoginForgot ? forgotPasswordProps.button : loginProps.button}</button>
                     <a className="link"  onClick={handleChangeForm}>{showLoginForgot ? forgotPasswordProps.link : loginProps.link}</a>
                 </div>
             </form>

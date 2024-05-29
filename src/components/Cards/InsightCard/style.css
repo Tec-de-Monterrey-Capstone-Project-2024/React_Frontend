@@ -33,6 +33,6 @@
     @apply text-wrap text-black text-left font-montserrat mb-2;
 }
 
-.button{
+.insight-button{
     @apply flex flex-col items-center justify-center w-full;
 }

@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {signInWithEmailAndPassword} from 'firebase/auth';
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-
 import './styles.css';
+
 
 
 const LoginForm: React.FC = () => {
     const navigate = useNavigate();
-    
+
     const [email, setEmail] = useState('hola@gmail.com');
     const [password, setPassword] = useState('hola123');
     const [error, setError] = useState<string | null>(null);
+
+    const location = useLocation();
+    const fromForgotForm = location.state?.fromForgotForm || false;
 
     const onLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,22 +31,40 @@ const LoginForm: React.FC = () => {
             console.log(errorCode, errorMessage);
             setError(errorMessage);
         });
-       
+
     }
-    
+
     return (
         <form onSubmit={onLogin}>
             <div className="title">
                 <h3>Login</h3>
+                {fromForgotForm && <p className="text-sm text-[--dark-red]">You have received an email with instructions, come back after resetting your password.</p>}
             </div>
             <div className="">
-                <div className="input-container ">
-                    <label className="input-label" htmlFor="iam-role">IAM Role</label>
-                    <input className="input" name="email" type="email" id="email-address" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
+                <div className="input-container">
+                    <label className="input-label" htmlFor="iam-role">Email</label>
+                    <input
+                        className="input"
+                        name="email"
+                        type="email"
+                        id="email-address"
+                        placeholder="email address..."
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
                 </div>
                 <div className="input-container">
                     <label className="input-label" htmlFor="password">Password</label>
-                    <input className="input" name="password" required type="password" id="password" placeholder="  password..." onChange={(e) => setPassword(e.target.value)} value={password} />
+                    <input
+                        className="input"
+                        name="password"
+                        required
+                        type="password"
+                        id="password"
+                        placeholder="password..."
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
                 </div>
             </div>
             <div className="link-container">
@@ -52,10 +73,11 @@ const LoginForm: React.FC = () => {
                 )}
                 <button className="button login-button" type="submit">Login</button>
                 <Link to='/auth/forgot' className="link">Forgot Password</Link>
-                <Link to='/auth/signup' className="link">Still dont have an account?</Link>
+                <Link to='/auth/signup' className="link">Don't have an account?</Link>
             </div>
         </form>
     );
 }
+
 
 export default LoginForm;

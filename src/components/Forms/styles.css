@@ -3,7 +3,7 @@
 }
 
 .title {
-    @apply text-lg my-4 flex justify-center
+    @apply text-lg my-4 flex justify-center items-center flex-col
 }
 
 

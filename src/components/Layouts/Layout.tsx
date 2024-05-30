@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { AuthProvider } from '../../context/AuthContext';
+import { ErrorProvider } from '../../context/ErrorContext';
 import { DataProvider } from '../../context/DataContext';
 
 import Navbar from './Navbar';
@@ -16,24 +17,28 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     if (isAuthPage) {
         return (
             <AuthProvider>
-                <DataProvider>
-                    <main>{children}</main>
-                </DataProvider>
+                <ErrorProvider>
+                    <DataProvider>
+                        <main>{children}</main>
+                    </DataProvider>
+                </ErrorProvider>
             </AuthProvider>
         );
     }
 
     return (
         <AuthProvider>
-            <DataProvider>
-                <div className='layout'>
-                    <Sidebar />
-                    <div className='panel'>
-                        <Navbar />
-                        <main>{children}</main>
+            <ErrorProvider>
+                <DataProvider>
+                    <div className='layout'>
+                        <Sidebar />
+                        <div className='panel'>
+                            <Navbar />
+                            <main>{children}</main>
+                        </div>
                     </div>
-                </div>
-            </DataProvider>
+                </DataProvider>
+            </ErrorProvider>
         </AuthProvider>
     );
 };

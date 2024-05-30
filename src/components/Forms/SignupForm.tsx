@@ -18,9 +18,6 @@ const SignupForm = () => {
     const navigate = useNavigate();
     const { setUser } = useDataContext();
     const { register, signOut } = useAuth();
-
-    const { setUser } = useDataContext();
-    const { register, signOut } = useAuth();
     const { signupError, setSignupError } = useError();
 
     const [email, setEmail] = useState('');

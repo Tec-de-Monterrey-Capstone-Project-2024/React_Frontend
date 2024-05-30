@@ -9,6 +9,7 @@ import { getQueueInsights } from '../services/insights/getQueueInsights';
 import { getQueueCounts } from '../services/queues/getQueueCounts';
 import { describeQueue } from '../services/queues/describeQueue';
 import { getQueueMetrics } from '../services/metrics/getQueueMetrics';
+import { getAgentMetrics } from '../services/metrics/getAgentMetrics';
 
 import { IMetric } from '../services/metrics/types';
 import { IInsight } from '../services/insights/types';
@@ -75,13 +76,23 @@ const DashboardPage = () => {
           setMetrics(null);
         }
         setLoadingMetrics(false);
+      } else {
+        const res = await getQueueMetrics(arn, 'f0813607-af92-4a36-91e6-630ababb643c');
+        console.log(res);
+        if (res.status >= 200 && res.status < 300) {
+          const transformedMetrics = Object.entries(res.data).map(([key, value], index) => ({
+            id: index,
+            metric_info_code: key,
+            value
+          }));
+          setMetrics(transformedMetrics);
+        } else {
+          setMetrics(null);
+        }
+        setLoadingMetrics(false);
       }
     }
-    if (arn !== '' && selectedQueueId !== 'all') {
-      fetchData();
-    } else {
-      setMetrics(null);
-    }
+    fetchData();
   }, [arn, selectedQueueId]);
   
   const [insights, setInsights] = useState<IInsight[] | null>(null);
@@ -114,7 +125,7 @@ const DashboardPage = () => {
         <div className='dashboard-content'>
           <div className='column'>
             <h2>KPIs</h2>
-            {loadingMetrics ? <p>Loading...</p> : (metrics ? (
+            {loadingMetrics ? <p>Loading...</p> : ((metrics && metrics.length > 0) ? (
                 <div className='metrics'>
                   {metrics.map(metric => {
                     const {id, metric_info_code, value} = metric;

@@ -17,7 +17,7 @@ import { InsightCard } from '../../components/Cards/InsightCard';
 import './styles.css';
 
 const AgentDashboardPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { agentId } = useParams<{ agentId: string }>();
 
   const { user, arn } = useDataContext();
 
@@ -29,11 +29,15 @@ const AgentDashboardPage: React.FC = () => {
   useEffect(() => {
     const fetchMetrics = async () => {
       setLoadingMetrics(true);
-      if (arn !== '' && id) {
-        const res = await getAgentMetrics(arn, id);
-        console.log("metr", res);
+      if (arn !== '' && agentId) {
+        const res = await getAgentMetrics(arn, agentId);
         if (res.status >= 200 && res.status < 300) {
-          setMetrics(res.data);
+          const transformedMetrics = Object.entries(res.data).map(([key, value], index) => ({
+            id: index,
+            metric_info_code: key,
+            value
+          }));
+          setMetrics(transformedMetrics);
         } else {
           setMetrics(null);
         }
@@ -43,9 +47,8 @@ const AgentDashboardPage: React.FC = () => {
 
     const fetchInsights = async () => {
       setLoadingInsights(true);
-      if (id) {
-        const res = await getAgentInsights(id);
-        console.log(res);
+      if (agentId) {
+        const res = await getAgentInsights(agentId);
         if (res.status >= 200 && res.status < 300) {
           setInsights(res.data);
         } else {
@@ -57,7 +60,7 @@ const AgentDashboardPage: React.FC = () => {
 
     fetchMetrics();
     fetchInsights();
-  }, [arn, id]);
+  }, [arn, agentId]);
 
   return (
     <section className='agent-dashboard'>
@@ -68,11 +71,15 @@ const AgentDashboardPage: React.FC = () => {
             {loadingMetrics ? <p>Loading...</p> : (metrics ? (
               <div className='metrics'>
                 {metrics.map(metric => {
-                  const { metric_info_code, value } = metric;
-                  const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];
+                  const { id, metric_info_code, value } = metric;
+                  const metricData = MetricsData[metric_info_code];
+                  if (!metricData) return null;
+
+                  const { name, min, max, unit, positive_upside } = metricData;
                 
                   return (
                     <MetricCard
+                      key={id}
                       title={name}
                       subtitle={'No se que se ponga aqui'}
                       minValue={min}
@@ -94,10 +101,11 @@ const AgentDashboardPage: React.FC = () => {
             {loadingInsights ? <p>Loading...</p> : (insights ? (
               <div className='insights'>
                 {insights.map(insight => {
-                  const { insightName, insightSummary } = insight;
+                  const { id, insightName, insightSummary } = insight;
                 
                   return (
                     <InsightCard
+                      key={id}
                       title={insightName}
                       description1={insightSummary}
                       color={'white'}
@@ -113,9 +121,9 @@ const AgentDashboardPage: React.FC = () => {
               <p>No insights found</p>
             ))}
 
-            <div className='insights'>
+            {/* <div className='insights'>
             {loadingMetrics ? <p>LoadingMetrics...</p> : metrics && metrics.map(metric => {
-              const { metric_info_code, value } = metric;
+              const { id, metric_info_code, value } = metric;
               const { name, min, max, graph } = MetricsData[metric_info_code];
               
               return (
@@ -129,7 +137,7 @@ const AgentDashboardPage: React.FC = () => {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

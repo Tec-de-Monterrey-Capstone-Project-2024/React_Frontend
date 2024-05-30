@@ -24,6 +24,14 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
+    "FCR": {
+        name: "First Contact Resolution",
+        min: 70,
+        max: 100,
+        positive_upside: true,
+        unit: '%',
+        graph: 'Pie'
+    },
     "agentOccupancy": {
         name: "Occupancy",
         min: 0,
@@ -31,6 +39,22 @@ const MetricsData: Record<string, MetricData> = {
         positive_upside: false,
         unit: '%',
         graph: 'Pie'
+    },
+    "SA": {
+        name: "Schedule Adherence",
+        min: 70,
+        max: 90,
+        positive_upside: true,
+        unit: '%',
+        graph: 'Pie'
+    },
+    "avgAfterContactWorkTime": {
+        name: "Average Speed Answer",
+        min: 0,
+        max: 60,
+        positive_upside: false,
+        unit: 's',
+        graph: 'Gauge'
     },
     "avgHandleTime": {
         name: "Average Handle Time",

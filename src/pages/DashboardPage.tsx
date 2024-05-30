@@ -5,7 +5,6 @@ import { useDataContext } from '../context/DataContext';
 
 import MetricsData from '../config/MetricsData';
 
-import { getGeneralMetrics } from '../services/metrics/getGeneralMetrics';
 import { getQueueInsights } from '../services/insights/getQueueInsights';
 import { getQueueCounts } from '../services/queues/getQueueCounts';
 import { describeQueue } from '../services/queues/describeQueue';
@@ -62,9 +61,9 @@ const DashboardPage = () => {
     const fetchData = async () => {
       setLoadingMetrics(true);
 
-      const res = await getGeneralMetrics();
-      // console.log(res.data);
-      setMetrics(res.data);
+      // const res = await getGeneralMetrics();
+      // // console.log(res.data);
+      // setMetrics(res.data);
 
       setLoadingMetrics(false);
     }

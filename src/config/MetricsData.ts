@@ -16,7 +16,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
-    "ACR": {
+    "abandonmentRate": {
         name: "Abandonment Call Rate",
         min: 0,
         max: 30,
@@ -32,7 +32,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
-    "OCC": {
+    "agentOccupancy": {
         name: "Occupancy",
         min: 0,
         max: 30,
@@ -48,7 +48,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
-    "ASA": {
+    "avgAfterContactWorkTime": {
         name: "Average Speed Answer",
         min: 0,
         max: 60,
@@ -56,7 +56,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: 's',
         graph: 'Gauge'
     },
-    "AHT": {
+    "avgHandleTime": {
         name: "Average Handle Time",
         min: 5,
         max: 20,

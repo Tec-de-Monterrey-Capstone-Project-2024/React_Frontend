@@ -15,8 +15,8 @@ const Pie: React.FC<IPieChart> = ({ value, metric }) => {
     return (
         <PieChart
             series={series}
-            width={400}
-            height={200}
+            width={520}
+            height={260}
         />
     );
 }

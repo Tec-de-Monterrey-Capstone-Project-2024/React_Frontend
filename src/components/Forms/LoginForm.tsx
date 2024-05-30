@@ -1,33 +1,82 @@
 import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+import { useDataContext } from "../../context/DataContext";
+import { useAuth } from "../../context/AuthContext";
+
+import { loginUser } from "../../services/user/loginUser";
+
+import './styles.css';
 
 
-export default function LoginForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        password: ''
-    });
-    
+
+
+const LoginForm: React.FC = () => {
+    const { setUser } = useDataContext();
+    const { signIn, signOut } = useAuth();
+
+    const [email, setEmail] = useState('a01657142@tec.mx');
+    const [password, setPassword] = useState('password');
+    const [error, setError] = useState<string | null>(null);
+
+    const location = useLocation();
+    const fromForgotForm = location.state?.fromForgotForm || false;
+
+    const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const firebaseId = await signIn(email, password);
+        const res = await loginUser(firebaseId);
+        if (res.status >= 200 && res.status < 300) {
+            setUser(res.data);
+        } else {
+            signOut();
+        }
+    }
+
     return (
-        <div className=" absolute bg-white border-green rounded-lg shadow-2xl border-l-8 top-2/4 left-2/4 -translate-x-1/2 -translate-y-3/4 max-w-xl w-full px-12 " >
-            <form className=" ">
-                    <div className="text-lg my-4 flex justify-center">
-                        <h3>Login</h3>
-                    </div>
-                    <div className="grid grid-rows-2">
-                    <div className="flex flex-col justify-left mb-4 ">
-                        <label className="pb-3" htmlFor="iam-role">IAM Role</label>
-                        <input className="border rounded-md py-2" type="text" id="iam-role" placeholder="  iam role..." />
-                    </div>
-                    <div className="flex flex-col justify-left mb-4">
-                        <label className="pb-3" htmlFor="password">Password</label>
-                        <input className="border rounded-md py-2" type="password" id="password" placeholder="  password..."  />
-                    </div>
+        <form onSubmit={onLogin}>
+            <div className="title">
+                <h3>Login</h3>
+                {fromForgotForm && <p className="text-sm text-[--dark-red]">You have received an email with instructions, come back after resetting your password.</p>}
+            </div>
+            <div className="">
+                <div className="input-container">
+                    <label className="input-label" htmlFor="iam-role">Email</label>
+                    <input
+                        className="input"
+                        name="email"
+                        type="email"
+                        id="email-address"
+                        placeholder="email address..."
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
                 </div>
-                <div className="flex flex-col items-center">
-                    <button className="bg-blue px-20 py-2 rounded-2xl text-white my-4">Login</button>
-                    <a className="mb-4" href="/auth/forgot">Forgot password</a>
+                <div className="input-container">
+                    <label className="input-label" htmlFor="password">Password</label>
+                    <input
+                        className="input"
+                        name="password"
+                        required
+                        type="password"
+                        id="password"
+                        placeholder="password..."
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
                 </div>
-            </form>
-        </div>
+            </div>
+            <div className="link-container">
+                {error && (
+                    <p className="text-red-500 mb-4 text-sm font-medium">{error}</p>
+                )}
+                <button className="button login-button" type="submit">Login</button>
+                <Link to='/auth/forgot' className="link">Forgot Password</Link>
+                <Link to='/auth/signup' className="link">Don't have an account?</Link>
+            </div>
+        </form>
     );
 }
+
+
+export default LoginForm;

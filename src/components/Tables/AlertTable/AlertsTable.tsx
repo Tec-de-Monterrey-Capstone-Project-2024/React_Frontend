@@ -38,8 +38,8 @@ function AlertsTable() {
                 </td>
                 <td className="p-3 text-center">{new Date(alert.occurred_at).toLocaleString()}</td>
                   <td className="p-3 text-center">
-                      <div className="w-full">
-                          <Button title={"View"} variant={"dark"} onClick={() => console.log('Insights for ID:', alert.id)}/>
+                      <div className="w-full ">
+                          <Button onClick={() => console.log('Insights for ID:', alert.id)} variant='dark' type={'button'}>Show more</Button>
                       </div>
                   </td>
               </tr>

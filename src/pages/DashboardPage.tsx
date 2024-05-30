@@ -74,8 +74,8 @@ const DashboardPage = () => {
         } else {
           setMetrics(null);
         }
-        setLoadingMetrics(false);
       }
+      setLoadingMetrics(false);
     }
     if (arn !== '' && selectedQueueId !== 'all') {
       fetchData();
@@ -114,7 +114,7 @@ const DashboardPage = () => {
         <div className='dashboard-content'>
           <div className='column'>
             <h2>KPIs</h2>
-            {loadingMetrics ? <p>Loading...</p> : (metrics ? (
+            {loadingMetrics ? <p>Loading...</p> : ((metrics && metrics.length > 0) ? (
                 <div className='metrics'>
                   {metrics.map(metric => {
                     const {id, metric_info_code, value} = metric;

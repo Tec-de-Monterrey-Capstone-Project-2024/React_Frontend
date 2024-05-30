@@ -55,9 +55,9 @@ jobs:
       run: |
         # Create a JSON file for GCP (Google Cloud Platform)
         echo '{
-          "GCP_PROJECT_ID": "${{ secrets.GCP_PROJECT_ID }}"
-          "GCP_PROJECT_NAME": "${{ secrets.GCP_PROJECT_NAME }}"
-          "GCP_PROJECT_NUMBER": "${{ secrets.GCP_PROJECT_NUMBER }}"
+          "GCP_PROJECT_ID": "${{ secrets.GCP_PROJECT_ID }}",
+          "GCP_PROJECT_NAME": "${{ secrets.GCP_PROJECT_NAME }}",
+          "GCP_PROJECT_NUMBER": "${{ secrets.GCP_PROJECT_NUMBER }}",
           "GCR_SERVICE_ACCOUNT_KEY": "${{ secrets.GCR_SERVICE_ACCOUNT_KEY }}"
         }' > env-vars.json
 

@@ -4,7 +4,7 @@ export const getQueueInsights = async (queueId: string) => {
     let res: any;
     let endpoint: string;
     if (queueId === 'all') {
-        endpoint = `api/threshold-breach-insights?itemType=INSTANCE`;
+        endpoint = `api/threshold-breach-insights`;
     } else {
         endpoint = `api/threshold-breach-insights?connectItemId=${queueId}`;
     }

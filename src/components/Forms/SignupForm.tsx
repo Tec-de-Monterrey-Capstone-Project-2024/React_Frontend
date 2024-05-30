@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, deleteUser } from "firebase/auth";
 import { auth } from "../../firebase";
 
 import { useDataContext } from '../../context/DataContext';
@@ -17,6 +17,8 @@ import './styles.css'
 
 const SignupForm = () => {
     const navigate = useNavigate();
+    const { setUser } = useDataContext();
+    const { register, signOut } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -36,22 +38,25 @@ const SignupForm = () => {
         setSelectedInstanceId(event.target.value);
     };
 
+
     const onRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth ,email ,password).then(async (userCredential) => {
-            const firebaseId = userCredential.user.uid;
-            const body = {
-                firebaseId: firebaseId,
-                email: email,
-                instanceId: selectedInstanceId
-            }
-            const res = await signupUser(body);
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-        });
+        const firebaseId = await register(email,password);
+        const body = {
+            firebaseId: firebaseId,
+            email: email,
+            instanceId: selectedInstanceId
+        }
+        const res = await signupUser(body);  
+        if (res.status >= 200 && res.status < 300) {
+            setUser(res.data);
+        } else {
+            signOut();
+            deleteUser(res);
+        }
     }
+
+    
 
     return(
         <form action="" onSubmit={onRegister}>

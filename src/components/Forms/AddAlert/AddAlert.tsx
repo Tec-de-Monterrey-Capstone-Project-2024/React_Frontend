@@ -111,7 +111,7 @@ const AddAlert: React.FC = () => {
                     <button 
                         type="button" 
                         onClick={handleSubmit} 
-                        className={`form-control alert-form-button button ${isButtonPressed ? 'pressed' : ''}`}
+                        className={`form-control alert-form-button button alert-button ${isButtonPressed ? 'pressed' : ''}`}
                         onMouseDown={() => setIsButtonPressed(true)}
                         onMouseUp={() => setIsButtonPressed(false)}
                     >

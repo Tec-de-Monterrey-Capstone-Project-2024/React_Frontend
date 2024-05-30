@@ -19,15 +19,20 @@ const AgentsPage = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await getAgents(user!.instanceId, selectedQueueId);
-                console.log(res.data);
-                setAgents(res.data);
+                if (user) {
+                    const res = await getAgents(user.instanceId, selectedQueueId);
+                    console.log(res.data);
+                    setAgents(res.data);
+                    
+                }
             } catch (tcErr) {
                 console.error(tcErr);
             }
             setLoading(false);
         }
-        fetchData();
+        if (user) {
+            fetchData();
+        }
     }, [user, selectedQueueId]);
 
     return (

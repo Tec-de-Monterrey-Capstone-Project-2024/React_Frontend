@@ -5,6 +5,9 @@ interface DataContextProps {
     user: IUser | null,
     setUser: React.Dispatch<React.SetStateAction<IUser | null>>,
 
+    arn: string,
+    setArn: React.Dispatch<React.SetStateAction<string>>,
+
     selectedQueueId: string,
     setSelectedQueueId: React.Dispatch<React.SetStateAction<string>>,
 }
@@ -25,6 +28,10 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [user]);
 
+    const [arn, setArn] = useState<string>('');
+    useEffect(() => {
+        localStorage.setItem('arn', arn);
+    }, [arn]);
 
     const [selectedQueueId, setSelectedQueueId] = useState<string>( localStorage.getItem('selectedQueueId') || "all" );
     useEffect(() => {
@@ -34,6 +41,9 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const DataContextValue: DataContextProps = {
         user,
         setUser,
+
+        arn,
+        setArn,
 
         selectedQueueId,
         setSelectedQueueId,

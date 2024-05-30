@@ -18,9 +18,9 @@ const Sidebar: React.FC = () => {
             <li>
               <NavLink to={ROUTES.DASHBOARD} className="btn-type-1">Dashboard</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to={ROUTES.QUEUES} className="btn-type-1">Queues</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to={ROUTES.AGENTS} className="btn-type-1">Agents</NavLink>
             </li>

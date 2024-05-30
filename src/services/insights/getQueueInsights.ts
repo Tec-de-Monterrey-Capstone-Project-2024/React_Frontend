@@ -1,8 +1,8 @@
 // import httpInstance from "../httpInstance";
 
-// export const getQueueInsights = async (instanceId:string, queueId: string) => {
+// export const getQueueInsights = async (connectItemId: string) => {
 //     let res: any;
-//     const endpoint = `api/`;
+//     const endpoint = `api/threshold-breach-insights`;
 
 //     await httpInstance.get(endpoint).then((response) => {
 //         res = response;

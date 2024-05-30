@@ -15,6 +15,10 @@ const DashboardPage = () => {
 
   const navigate = useNavigate();
 
+  const goToAgentList = () => {
+    navigate("/agents");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -32,31 +36,38 @@ const DashboardPage = () => {
   return (
     <section className='agent-dashboard'>
       <div className='container'>
+        <div className="queues-card-dashboard">
+          <InsightCard title={"Reimbursements Queue"} description1={"Clients: 10"}
+                       description2={"Agents: 2"}
+                       color={"white"} borderColor={"red"} showBoxBorder={true} func={goToAgentList}/>
+        </div>
         <div className='agent-content'>
           <div className='column'>
             <h2>KPIs</h2>
             {loading ? <p>Loading...</p> : (metrics ? (
-              <div className='metrics'>
-                {metrics.map(metric => {
-                  const { id, metric_info_code, value } = metric;
-                  const { name, min, max, unit, positive_upside } = MetricsData[metric_info_code];
-                
-                  return (
-                    <MetricCard
-                      title={name}
-                      subtitle={'No se que se ponga aqui'}
-                      minValue={min}
-                      maxValue={max}
-                      value={value}
-                      unit={unit}
-                      positive_upside={positive_upside}
-                      onClick={() => {navigate("general-metrics/" + id);}}
-                    />
-                  );
-                })}
-              </div>
+                <div className='metrics'>
+                  {metrics.map(metric => {
+                    const {id, metric_info_code, value} = metric;
+                    const {name, min, max, unit, positive_upside} = MetricsData[metric_info_code];
+
+                    return (
+                        <MetricCard
+                            title={name}
+                            subtitle={'No se que se ponga aqui'}
+                            minValue={min}
+                            maxValue={max}
+                            value={value}
+                            unit={unit}
+                            positive_upside={positive_upside}
+                            onClick={() => {
+                              navigate("general-metrics/" + id);
+                            }}
+                        />
+                    );
+                  })}
+                </div>
             ) : (
-              <p>No metrics found</p>
+                <p>No metrics found</p>
             ))}
           </div>
           <div className='column'>
@@ -71,7 +82,9 @@ const DashboardPage = () => {
                           color={insight.color}
                           borderColor={insight.borderColor}
                           showBoxBorder={insight.showBoxBorder === "true"}
-                          func={() => { console.log(`More info about ${insight.title}`); }}
+                          func={() => {
+                            console.log(`More info about ${insight.title}`);
+                          }}
                       />
                   ))}
                 </div>
@@ -79,7 +92,7 @@ const DashboardPage = () => {
                 <p>No insights found</p>
             ))}
 
-        </div>
+          </div>
         </div>
       </div>
     </section>

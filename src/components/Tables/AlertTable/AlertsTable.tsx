@@ -31,8 +31,8 @@ const AlertsTable: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="overflow-auto rounded-lg shadow">
+    <div className="p-6 bg-gray-50">
+        <div className="overflow-auto rounded-lg shadow">
         <table className="w-full table-fixed">
           <thead className="bg-gray-200">
             <tr>

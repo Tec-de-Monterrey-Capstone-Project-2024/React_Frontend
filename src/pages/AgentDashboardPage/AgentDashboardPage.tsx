@@ -16,8 +16,6 @@ import { MetricCard } from '../../components/Cards/MetricCard';
 import { InsightCard } from '../../components/Cards/InsightCard';
 import './styles.css';
 
-
-
 const AgentDashboardPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 

@@ -49,7 +49,7 @@ const AlertsTable: React.FC = () => {
             {alerts.map((alert, index) => (
               <tr className="border-b" key={index}>
                 <td className="p-3 text-center">{alert.id}</td>
-                <td className="p-3 text-center">{alert.metricCode}</td>
+                <td className="p-3 text-center">{alert.metricCode.replace(/_/g, ' ')}</td>
                 <td className="p-3 text-center">
                   <PerformanceTag severity={alert.insightCategory.toLowerCase() as PerformanceCategory} />
                 </td>

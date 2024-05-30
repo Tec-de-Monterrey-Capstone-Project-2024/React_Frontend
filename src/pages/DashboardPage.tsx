@@ -131,7 +131,7 @@ const DashboardPage = () => {
           </div>
           <div className='column'>
             <h2>Insights</h2>
-            {loadingInsights ? <p>Loading...</p> : (insights ? (
+            {loadingInsights ? <p>Loading...</p> : ((insights && insights.length > 0) ? (
                 <div className="insights">
                   {insights.map(insight => (
                       <InsightCard
@@ -149,7 +149,7 @@ const DashboardPage = () => {
                   ))}
                 </div>
             ) : (
-                <p>No insights found</p>
+                <p>No insights found.</p>
             ))}
 
           </div>

@@ -20,7 +20,7 @@ import InsightCard  from "../components/Cards/InsightCard/InsightCard";
 const DashboardPage = () => {
   const navigate = useNavigate();
 
-  const { selectedQueueId } = useDataContext();
+  const { user, selectedQueueId } = useDataContext();
 
   const [queue, setQueue] = useState<IQueue[] | null>(null);
   const [loadingQueue, setLoadingQueue] = useState<Boolean>(true);
@@ -46,15 +46,16 @@ const DashboardPage = () => {
     const fetchData = async () => {
       setLoadingQueueCounts(true);
 
-      const res = await getQueueCounts(localStorage.getItem("instanceId") || "", selectedQueueId);
+      const res = await getQueueCounts(user!.instanceId, selectedQueueId);
       console.log(res.data);
       setQueueCounts(res.data);
 
       setLoadingQueueCounts(false);
     }
-
-    fetchData();
-  }, [selectedQueueId]);
+    if (user) {
+      fetchData();
+    }
+  }, [user, selectedQueueId]);
 
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState<Boolean>(true);

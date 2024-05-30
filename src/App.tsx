@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 
 import Layout from './components/Layouts/Layout';
 import PrivateRoute from './context/PrivateRoute';
+import { ErrorProvider } from './context/ErrorContext';
 
 import LoginPage from './pages/AuthPages/LoginPage';
 import SignupPage from './pages/AuthPages/SignupPage';
@@ -21,6 +22,7 @@ import InsightPage  from './pages/InsightPage/InsightPage';
 
 const App: React.FC = () => {
   return (
+    <ErrorProvider>
     <Router>
       <Layout>
         <Routes>
@@ -46,6 +48,7 @@ const App: React.FC = () => {
         </Routes>
       </Layout>
     </Router>
+    </ErrorProvider>
   );
 };
 

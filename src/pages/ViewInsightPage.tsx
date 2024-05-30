@@ -4,6 +4,7 @@ import Button from '../components/Button/Button';
 import Insight from '../components/Cards/InsightCardDescription/InsightDescription';
 import InsightModal from '../components/Cards/Insights/InsightModal';
 import { getInsightByID } from '../services/insights/getInsightByID';
+import { updateInsightStatus } from '../services/insights/updateInsightStatus';
 import { IInsight } from '../services/insights/types';
 
 const ViewInsightPage: React.FC = () => {
@@ -40,10 +41,31 @@ const ViewInsightPage: React.FC = () => {
     navigate(-1);
   };
 
-  const handleButtonClick = (message: string, status: 'Solve in Connect' | 'In Progress' | 'Done') => {
+  const handleButtonClick = async (message: string, status: 'Solve in Connect' | 'In Progress' | 'Done') => {
     setModalMessage(message);
     setModalStatus(status);
     setShowModal(true);
+
+    let apiStatus: "TO_DO" | "IN_PROGRESS" | "DONE";
+    switch (status) {
+      case 'In Progress':
+        apiStatus = 'IN_PROGRESS';
+        break;
+      case 'Done':
+        apiStatus = 'DONE';
+        break;
+      default:
+        apiStatus = 'TO_DO';
+    }
+
+    if (id) {
+      try {
+        const response = await updateInsightStatus(Number(id), apiStatus);
+        console.log('Insight status updated:', response);
+      } catch (err) {
+        console.error('Failed to update insight status', err);
+      }
+    }
 
     if (status === 'Solve in Connect') {
       setRedirecting(true);
@@ -58,7 +80,7 @@ const ViewInsightPage: React.FC = () => {
       setRedirectTimeout(timeout);
     } else {
       setTimeout(() => {
-        navigate('/insights');
+        navigate('/insights', { state: { updated: true } });
       }, 2720);
     }
   };

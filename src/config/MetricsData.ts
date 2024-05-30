@@ -8,7 +8,7 @@ export type MetricData = {
 };
 
 const MetricsData: Record<string, MetricData> = {
-    "SL": {
+    "serviceLevel": {
         name: "Service Level",
         min: 70,
         max: 100,
@@ -16,7 +16,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
-    "ACR": {
+    "abandonmentRate": {
         name: "Abandonment Call Rate",
         min: 0,
         max: 30,
@@ -24,15 +24,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
-    "FCR": {
-        name: "First Contact Resolution",
-        min: 70,
-        max: 100,
-        positive_upside: true,
-        unit: '%',
-        graph: 'Pie'
-    },
-    "OCC": {
+    "agentOccupancy": {
         name: "Occupancy",
         min: 0,
         max: 30,
@@ -40,23 +32,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
-    "SA": {
-        name: "Schedule Adherence",
-        min: 70,
-        max: 90,
-        positive_upside: true,
-        unit: '%',
-        graph: 'Pie'
-    },
-    "ASA": {
-        name: "Average Speed Answer",
-        min: 0,
-        max: 60,
-        positive_upside: false,
-        unit: 's',
-        graph: 'Gauge'
-    },
-    "AHT": {
+    "avgHandleTime": {
         name: "Average Handle Time",
         min: 5,
         max: 20,
@@ -71,6 +47,22 @@ const MetricsData: Record<string, MetricData> = {
         positive_upside: false,
         unit: '%',
         graph: 'Pie'
+    },
+    "avgAfterContactWorkTime": {
+        name: "Average After Contact Work Time",
+        min: 2,
+        max: 20,
+        positive_upside: false,
+        unit: 's',
+        graph: 'Gauge'
+    },
+    "avgQueueAnswerTime": {
+        name: "Average Queue Answer Time",
+        min: 0,
+        max: 5,
+        positive_upside: false,
+        unit: 's',
+        graph: 'Gauge'
     }
 }
 

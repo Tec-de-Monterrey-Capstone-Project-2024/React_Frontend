@@ -49,7 +49,7 @@ const MetricsData: Record<string, MetricData> = {
         graph: 'Pie'
     },
     "avgAfterContactWorkTime": {
-        name: "Average Speed Answer",
+        name: "Average After Contact Work Time",
         min: 2,
         max: 20,
         positive_upside: false,

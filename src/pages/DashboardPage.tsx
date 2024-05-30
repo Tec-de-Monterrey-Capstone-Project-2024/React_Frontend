@@ -81,6 +81,7 @@ const DashboardPage = () => {
       fetchData();
     } else {
       setMetrics(null);
+      setLoadingMetrics(false);
     }
   }, [arn, selectedQueueId]);
   

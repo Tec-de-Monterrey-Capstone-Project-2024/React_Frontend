@@ -28,7 +28,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         }
     }, [user]);
 
-    const [arn, setArn] = useState<string>('');
+    const [arn, setArn] = useState<string>(localStorage.getItem('arn') || '');
     useEffect(() => {
         localStorage.setItem('arn', arn);
     }, [arn]);

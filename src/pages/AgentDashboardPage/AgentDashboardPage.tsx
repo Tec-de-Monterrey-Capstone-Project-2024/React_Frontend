@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useDataContext } from '../../context/DataContext';
+
 import { getAgentMetrics } from '../../services/metrics/getAgentMetrics';
 import { getAgentInsights } from '../../services/insights/getAgentInsights';
 import { IMetric } from '../../services/metrics/types';
 import { IInsight } from '../../services/insights/types';
 
-import MetricsData, { MetricData } from '../../config/MetricsData';
+import MetricsData from '../../config/MetricsData';
 
 import { GaugeChart } from '../../components/DataDisplay/GaugeChart';
 import { Pie } from '../../components/DataDisplay/PieChart';
@@ -15,8 +17,11 @@ import { InsightCard } from '../../components/Cards/InsightCard';
 import './styles.css';
 
 
+
 const AgentDashboardPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+
+  const { user, arn } = useDataContext();
 
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState(true);
@@ -26,9 +31,9 @@ const AgentDashboardPage: React.FC = () => {
   useEffect(() => {
     const fetchMetrics = async () => {
       setLoadingMetrics(true);
-      if (id) {
-        const res = await getAgentMetrics(id);
-        console.log(res);
+      if (arn !== '' && id) {
+        const res = await getAgentMetrics(arn, id);
+        console.log("metr", res);
         if (res.status >= 200 && res.status < 300) {
           setMetrics(res.data);
         } else {
@@ -54,7 +59,7 @@ const AgentDashboardPage: React.FC = () => {
 
     fetchMetrics();
     fetchInsights();
-  }, [id]);
+  }, [arn, id]);
 
   return (
     <section className='agent-dashboard'>

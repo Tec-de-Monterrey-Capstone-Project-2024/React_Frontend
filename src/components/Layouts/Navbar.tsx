@@ -16,12 +16,14 @@ import alertIcon from '../../assets/icons/alert.svg';
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useDataContext();
+  const { user, setArn } = useDataContext();
 
   const [instanceAlias, setInstanceAlias] = useState<string | null>(null);
   useEffect(() => {
     const fetchInstance = async () => {
       var res = await getInstance(user!.instanceId);
+      console.log("resIn: ", res);
+      setArn(res.data.arn);
       setInstanceAlias(res.data.instanceAlias);
     }
     if (user) {

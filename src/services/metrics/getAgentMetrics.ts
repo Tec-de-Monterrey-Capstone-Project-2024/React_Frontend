@@ -1,7 +1,7 @@
 import httpInstance from "../httpInstance";
 import { IMetric } from "./types";
 
-export const getAgentMetrics = async (id: string) => {
+export const getAgentMetrics = async (instanceId: string, agentId: string) => {
     // const mockMetricsData: IMetric[] = [
     //     { id: 1, metric_info_code: "SL", value: 85, agent_id: parseInt(id), queue_id: 1 },
     //     { id: 2, metric_info_code: "ACR", value: 15, agent_id: parseInt(id), queue_id: 1 },
@@ -21,7 +21,7 @@ export const getAgentMetrics = async (id: string) => {
     // return { data: responseData, status };
   
     let res: any;
-    const endpoint = `api/metrics/agents/${id}`;
+    const endpoint = `/api/amazon-connect/instances/${instanceId}/agent/${agentId}/metrics`;
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;

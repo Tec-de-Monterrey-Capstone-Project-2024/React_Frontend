@@ -15,18 +15,11 @@ export const Default = Template.bind({});
 Default.args = {
     title: 'Reconfigure virtual floor',
     message: 'Not enough people on the Reimbursements Queue. Consider allocating more agents from the Receipts Queue to the Reimbursements queue.',
+  situationTitle: 'Situation',
+  actionTitle: 'Action',
+  insightRootCause: 'Sample root cause',
+  insightImpact: 'Sample impact',
+  insightPrevention: 'Sample prevention',
+  insightSeverity: 'LOW',
+  insightCategory: 'CRITICAL',
 };
-
-/*
-export const NoTitle = Template.bind({});
-NoTitle.args = {
-    title: ' ',
-    message: ' ',
-};
-
-export const LongMessage = Template.bind({});
-LongMessage.args = {
-    title: 'title',
-    message: 'message',
-};
-*/

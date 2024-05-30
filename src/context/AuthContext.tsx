@@ -31,7 +31,7 @@
     };
 
     const register = async (email: string, password: string) => {
-      const res = await createUserWithEmailAndPassword(auth,email, password);
+      const res = await createUserWithEmailAndPassword(auth, email, password);
       const firebaseId = res.user.uid;
       return firebaseId;
     }

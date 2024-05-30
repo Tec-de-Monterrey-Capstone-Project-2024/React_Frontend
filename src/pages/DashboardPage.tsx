@@ -1,50 +1,110 @@
-import { IMetric } from '../services/metrics/types';
-import MetricsData, { MetricData } from '../config/MetricsData';
-import InsightData from '../config/insightDummyData.json'
-import { getGeneralMetrics } from '../services/metrics/getGeneralMetrics';
-import { MetricCard } from '../components/Cards/MetricCard';
 import React, { useEffect, useState } from 'react'
-import InsightCard  from "../components/Cards/InsightCard/InsightCard";
-import {IInsightCard} from "../components/Cards/InsightCard/types";
 import { useNavigate } from 'react-router-dom';
 
-const DashboardPage = () => {
-  const [metrics, setMetrics] = useState<IMetric[] | null>(null);
-  const [insights, setInsights] = useState<IInsightCard[] | null>(null)
-  const [loading, setLoading] = useState<Boolean>(true);
+import { useDataContext } from '../context/DataContext';
 
+import MetricsData from '../config/MetricsData';
+
+import { getGeneralMetrics } from '../services/metrics/getGeneralMetrics';
+import { getQueueInsights } from '../services/insights/getQueueInsights';
+import { getQueueCounts } from '../services/queues/getQueueCounts';
+import { describeQueue } from '../services/queues/describeQueue';
+
+import { IMetric } from '../services/metrics/types';
+import { IInsight } from '../services/insights/types';
+import { MetricCard } from '../components/Cards/MetricCard';
+import { IQueueCounts } from '../services/queues/types';
+import { IQueue } from '../services/queues/types';
+import InsightCard  from "../components/Cards/InsightCard/InsightCard";
+
+const DashboardPage = () => {
   const navigate = useNavigate();
 
-  const goToAgentList = () => {
-    navigate("/agents");
-  };
+  const { user, selectedQueueId } = useDataContext();
 
+  const [queue, setQueue] = useState<IQueue[] | null>(null);
+  const [loadingQueue, setLoadingQueue] = useState<Boolean>(true);
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
+      setLoadingQueue(true);
+
+      if (selectedQueueId !== "all") {
+        const res = await describeQueue(localStorage.getItem("instanceId") || "", selectedQueueId);
+        console.log(res.data);
+        setQueue(res.data);
+      }
+
+      setLoadingQueue(false);
+    }
+
+    fetchData();
+  }, [selectedQueueId]);
+
+  const [queueCounts, setQueueCounts] = useState<IQueueCounts[] | null>(null);
+  const [loadingQueueCounts, setLoadingQueueCounts] = useState<Boolean>(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoadingQueueCounts(true);
+
+      const res = await getQueueCounts(user!.instanceId, selectedQueueId);
+      console.log(res.data);
+      setQueueCounts(res.data);
+
+      setLoadingQueueCounts(false);
+    }
+    if (user) {
+      fetchData();
+    }
+  }, [user, selectedQueueId]);
+
+  const [metrics, setMetrics] = useState<IMetric[] | null>(null);
+  const [loadingMetrics, setLoadingMetrics] = useState<Boolean>(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoadingMetrics(true);
 
       const res = await getGeneralMetrics();
       console.log(res.data);
       setMetrics(res.data);
 
-      setLoading(false);
+      setLoadingMetrics(false);
     }
 
     fetchData();
   }, []);
+  
+  const [insights, setInsights] = useState<IInsight[] | null>(null);
+  const [loadingInsights, setLoadingInsights] = useState<Boolean>(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoadingInsights(true);
+      const res = await getQueueInsights(selectedQueueId);
+      console.log("INSIGHTTT", res);
+      setInsights(res.data);
+
+      setLoadingInsights(false);
+    }
+    fetchData();
+  }, [selectedQueueId]);
+  
+  const goToAgentList = () => {
+    navigate("/agents");
+  };
 
   return (
-    <section className='agent-dashboard'>
+    <section className='dashboard home'>
       <div className='container'>
-        <div className="queues-card-dashboard">
-          <InsightCard title={"Reimbursements Queue"} description1={"Clients: 10"}
-                       description2={"Agents: 2"}
-                       color={"white"} borderColor={"red"} showBoxBorder={true} func={goToAgentList}/>
-        </div>
-        <div className='agent-content'>
+        {selectedQueueId !== "all" && (
+          <div className="queues-card-dashboard">
+            <InsightCard title={(loadingQueue ? "Loading queue name..." : (queue?.at(0)?.name ?? "Queue"))} description1={"Clients: " + (loadingQueueCounts ? "Loading clients..." : (queueCounts?.at(0)?.contacts ?? "0"))}
+                         description2={"Agents: " + (loadingQueueCounts ? "Loading agents..." : (queueCounts?.at(0)?.agents ?? "0"))} color={"white"} borderColor={queueCounts?.at(0)?.color ?? "green"}
+                         showBoxBorder={true} func={goToAgentList} btn={false} />
+          </div>
+        )}
+        <div className='dashboard-content'>
           <div className='column'>
             <h2>KPIs</h2>
-            {loading ? <p>Loading...</p> : (metrics ? (
+            {loadingMetrics ? <p>Loading...</p> : (metrics ? (
                 <div className='metrics'>
                   {metrics.map(metric => {
                     const {id, metric_info_code, value} = metric;
@@ -72,24 +132,25 @@ const DashboardPage = () => {
           </div>
           <div className='column'>
             <h2>Insights</h2>
-            {loading ? <p>Loading...</p> : (InsightData ? (
+            {loadingInsights ? <p>Loading...</p> : ((insights && insights.length > 0) ? (
                 <div className="insights">
-                  {InsightData.map(insight => (
+                  {insights.map(insight => (
                       <InsightCard
-                          key={insight.title}
-                          title={insight.title}
-                          description1={insight.description1}
-                          color={insight.color}
-                          borderColor={insight.borderColor}
-                          showBoxBorder={insight.showBoxBorder === "true"}
+                          key={insight.id}
+                          title={insight.insightName}
+                          description1={insight.insightSummary}
+                          color={"white"}
+                          borderColor={insight.insightSeverity}
+                          showBoxBorder={true}
                           func={() => {
-                            console.log(`More info about ${insight.title}`);
+                            navigate(`/insights/${insight.id}`);
                           }}
+                          btn={true}
                       />
                   ))}
                 </div>
             ) : (
-                <p>No insights found</p>
+                <p>No insights found.</p>
             ))}
 
           </div>

@@ -1,27 +1,71 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../components/Button/Button';
 import Insight from '../components/Cards/InsightCardDescription/InsightDescription';
 import InsightModal from '../components/Cards/Insights/InsightModal';
+import { getInsightByID } from '../services/insights/getInsightByID';
+import { updateInsightStatus } from '../services/insights/updateInsightStatus';
+import { IInsight } from '../services/insights/types';
 
 const ViewInsightPage: React.FC = () => {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const [insight, setInsight] = useState<IInsight | null>(null);
+  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [modalStatus, setModalStatus] = useState<'Solve in Connect' | 'In Progress' | 'Done'>('Done');
   const [redirecting, setRedirecting] = useState(false);
   const [redirectTimeout, setRedirectTimeout] = useState<NodeJS.Timeout | null>(null);
   const [redirectCountdown, setRedirectCountdown] = useState(5);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchInsight = async () => {
+      try {
+        if (id) {
+          const data = await getInsightByID(Number(id));
+          setInsight(data);
+        }
+      } catch (err) {
+        setError('Failed to fetch insight');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInsight();
+  }, [id]);
 
   const goBack = () => {
     navigate(-1);
   };
 
-
-  const handleButtonClick = (message: string, status: 'Solve in Connect' | 'In Progress' | 'Done') => {
+  const handleButtonClick = async (message: string, status: 'Solve in Connect' | 'In Progress' | 'Done') => {
     setModalMessage(message);
     setModalStatus(status);
     setShowModal(true);
+
+    let apiStatus: "TO_DO" | "IN_PROGRESS" | "DONE";
+    switch (status) {
+      case 'In Progress':
+        apiStatus = 'IN_PROGRESS';
+        break;
+      case 'Done':
+        apiStatus = 'DONE';
+        break;
+      default:
+        apiStatus = 'TO_DO';
+    }
+
+    if (id) {
+      try {
+        const response = await updateInsightStatus(Number(id), apiStatus);
+        console.log('Insight status updated:', response);
+      } catch (err) {
+        console.error('Failed to update insight status', err);
+      }
+    }
 
     if (status === 'Solve in Connect') {
       setRedirecting(true);
@@ -36,7 +80,7 @@ const ViewInsightPage: React.FC = () => {
       setRedirectTimeout(timeout);
     } else {
       setTimeout(() => {
-        navigate('/insights');
+        navigate('/insights', { state: { updated: true } });
       }, 2720);
     }
   };
@@ -53,6 +97,18 @@ const ViewInsightPage: React.FC = () => {
     setShowModal(false);
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!insight) {
+    return <div>No insight found</div>;
+  }
+
   return (
     <div className="p-4 flex flex-col h-screen">
       <div>
@@ -64,13 +120,18 @@ const ViewInsightPage: React.FC = () => {
       </div>
       <div className="flex-grow">
         <Insight 
-          title="Reconfigure Virtual floor" 
-          message="Not Enough people on the Reimbursements Queue." 
-          situationTitle="Situation" 
+          title={insight.insightName}
+          message={insight.insightSummary}
+          situationTitle="Situation"
           actionTitle="Action"
+          insightRootCause={insight.insightRootCause}
+          insightImpact={insight.insightImpact}
+          insightPrevention={insight.insightPrevention}
+          insightSeverity={insight.insightSeverity}
+          insightCategory={insight.insightCategory}
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
-        <div className="flex justify-between mt-4 items-start">
+        <div className="flex justify-between mt-4 items-start mb-8">
           <div className="space-x-4">
             <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
               In Progress

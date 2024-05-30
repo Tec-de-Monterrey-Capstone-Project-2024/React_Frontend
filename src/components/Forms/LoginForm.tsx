@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { deleteUser } from "firebase/auth";
 
 import { useDataContext } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
@@ -36,6 +37,7 @@ const LoginForm: React.FC = () => {
             setLoginError("Invalid credentials");
             console.error("Login failed:", loginError);
             signOut();
+            deleteUser(res);
         }
     }
 

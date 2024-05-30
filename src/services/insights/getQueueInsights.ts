@@ -11,6 +11,7 @@ export const getQueueInsights = async (queueId: string) => {
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;
+        console.log("getQueueInsights response: ", response);
     }).catch((err) => {
         res = err.response
     });

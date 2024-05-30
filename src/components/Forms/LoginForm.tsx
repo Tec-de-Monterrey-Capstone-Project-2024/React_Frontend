@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { deleteUser } from "firebase/auth";
 
 import { useDataContext } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
@@ -7,8 +8,6 @@ import { useAuth } from "../../context/AuthContext";
 import { loginUser } from "../../services/user/loginUser";
 
 import './styles.css';
-
-
 
 
 const LoginForm: React.FC = () => {
@@ -30,6 +29,7 @@ const LoginForm: React.FC = () => {
             setUser(res.data);
         } else {
             signOut();
+            deleteUser(res);
         }
     }
 

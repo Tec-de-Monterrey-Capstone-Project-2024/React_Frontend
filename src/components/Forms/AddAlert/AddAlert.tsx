@@ -14,6 +14,8 @@ const AddAlert: React.FC = () => {
         targetValue: ''
     });
 
+    const [isButtonPressed, setIsButtonPressed] = useState(false);
+
     const metrics: MetricOption[] = [
         { value: 'SERVICE_LEVEL', label: 'Service Level' },
         { value: 'ABANDONMENT_RATE', label: 'Abandonment Rate' },
@@ -32,18 +34,20 @@ const AddAlert: React.FC = () => {
     };
 
     const handleSubmit = async () => {
+        setIsButtonPressed(true);
         try {
-            const response = await axios.post('http://localhost:8080/api/metrics/setThresholdsAndTarget', null, {
+            const response = await axios.post(`http://localhost:8080/api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
                 params: {
-                    code: formData.metric,
-                    minThreshold: formData.minThreshold,
-                    maxThreshold: formData.maxThreshold,
-                    targetValue: formData.targetValue
+                    minThreshold: formData.minThreshold || null,
+                    maxThreshold: formData.maxThreshold || null,
+                    targetValue: formData.targetValue || null
                 }
             });
             console.log(response.data);
         } catch (error) {
             console.error('There was an error!', error);
+        } finally {
+            setIsButtonPressed(false);
         }
     };
 
@@ -104,7 +108,13 @@ const AddAlert: React.FC = () => {
                             />
                         </label>
                     </div>
-                    <button type="button" onClick={handleSubmit} className="form-control alert-form-button">
+                    <button 
+                        type="button" 
+                        onClick={handleSubmit} 
+                        className={`form-control alert-form-button button ${isButtonPressed ? 'pressed' : ''}`}
+                        onMouseDown={() => setIsButtonPressed(true)}
+                        onMouseUp={() => setIsButtonPressed(false)}
+                    >
                         Save Alert
                     </button>
                 </form>

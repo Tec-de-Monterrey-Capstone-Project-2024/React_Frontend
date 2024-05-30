@@ -6,7 +6,7 @@ import Button from '../../Button/Button';
 
 function AlertsTable() {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50">
         <div className="overflow-auto rounded-lg shadow">
         <table className="w-full table-fixed">
           <thead className="bg-gray-200">

@@ -28,8 +28,8 @@ const DashboardPage = () => {
     const fetchData = async () => {
       setLoadingQueue(true);
 
-      if (selectedQueueId !== "all") {
-        const res = await describeQueue(localStorage.getItem("instanceId") || "", selectedQueueId);
+      if (selectedQueueId !== "all" && user) {
+        const res = await describeQueue(user.instanceId, selectedQueueId);
         console.log(res.data);
         setQueue(res.data);
       }
@@ -38,7 +38,7 @@ const DashboardPage = () => {
     }
 
     fetchData();
-  }, [selectedQueueId]);
+  }, [user, selectedQueueId]);
 
   const [queueCounts, setQueueCounts] = useState<IQueueCounts[] | null>(null);
   const [loadingQueueCounts, setLoadingQueueCounts] = useState<Boolean>(true);
@@ -47,12 +47,11 @@ const DashboardPage = () => {
       setLoadingQueueCounts(true);
 
       const res = await getQueueCounts(user!.instanceId, selectedQueueId);
-      console.log(res.data);
       setQueueCounts(res.data);
 
       setLoadingQueueCounts(false);
     }
-    if (user) {
+    if (user && selectedQueueId !== 'all') {
       fetchData();
     }
   }, [user, selectedQueueId]);
@@ -64,7 +63,7 @@ const DashboardPage = () => {
       setLoadingMetrics(true);
 
       const res = await getGeneralMetrics();
-      console.log(res.data);
+      // console.log(res.data);
       setMetrics(res.data);
 
       setLoadingMetrics(false);
@@ -79,7 +78,6 @@ const DashboardPage = () => {
     const fetchData = async () => {
       setLoadingInsights(true);
       const res = await getQueueInsights(selectedQueueId);
-      console.log("INSIGHTTT", res);
       setInsights(res.data);
 
       setLoadingInsights(false);
@@ -112,6 +110,7 @@ const DashboardPage = () => {
 
                     return (
                         <MetricCard
+                          key={id}
                             title={name}
                             subtitle={'No se que se ponga aqui'}
                             minValue={min}

@@ -22,7 +22,6 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const fetchInstance = async () => {
       var res = await getInstance(user!.instanceId);
-      console.log("resIn: ", res);
       setArn(res.data.arn);
       setInstanceAlias(res.data.instanceAlias);
       localStorage.setItem('instanceId', res.data.id);

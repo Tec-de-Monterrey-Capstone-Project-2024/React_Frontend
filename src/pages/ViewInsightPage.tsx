@@ -131,7 +131,7 @@ const ViewInsightPage: React.FC = () => {
           insightCategory={insight.insightCategory}
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
-        <div className="flex justify-between mt-4 items-start">
+        <div className="flex justify-between mt-4 items-start mb-8">
           <div className="space-x-4">
             <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
               In Progress

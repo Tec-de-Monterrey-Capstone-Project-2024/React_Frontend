@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useDataContext } from '../../context/DataContext';
 
@@ -18,8 +18,9 @@ import './styles.css';
 
 const AgentDashboardPage: React.FC = () => {
   const { agentId } = useParams<{ agentId: string }>();
+  const navigate = useNavigate();
 
-  const { user, arn } = useDataContext();
+  const { arn } = useDataContext();
 
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState(true);
@@ -111,7 +112,9 @@ const AgentDashboardPage: React.FC = () => {
                       color={'white'}
                       borderColor={'red'}
                       showBoxBorder={true}
-                      func={() => {}}
+                      func={() => {
+                        navigate(`/insights/${insight.id}`);
+                      }}
                       btn={true}
                     />
                   );

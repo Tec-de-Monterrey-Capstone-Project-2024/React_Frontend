@@ -99,7 +99,7 @@ const AgentDashboardPage: React.FC = () => {
           </div>
           <div className='column'>
             <h2>Insights</h2>
-            {loadingInsights ? <p>Loading...</p> : (insights ? (
+            {loadingInsights ? <p>Loading...</p> : ((insights && insights.length > 0) ? (
               <div className='insights'>
                 {insights.map(insight => {
                   const { id, insightName, insightSummary } = insight;

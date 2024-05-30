@@ -1,0 +1,45 @@
+.alert-form {
+    background-color:#E5E5E5;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%; 
+    margin: auto; 
+}
+
+.alert-form form { 
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.alert-form label {
+    margin-bottom: 10px;
+    display: block;
+    width: 60%;
+}
+
+.alert-form select {
+    width: 100%; 
+    padding: 8px; 
+    margin-top: 5px; 
+    border: 1px solid #D9D9D9; 
+    border-radius: 10px; 
+    background-color: #D9D9D9;
+}
+
+.alert-form button {
+    background-color: #9DC53E;
+    color: white;
+    border: none;
+    padding: 15px; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; 
+    margin-top: 150px; 
+}
+
+.form-title {
+    font-size: 24px; 
+    color: #333; 
+    margin-bottom: 20px; 
+}

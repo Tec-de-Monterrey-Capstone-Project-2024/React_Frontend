@@ -12,4 +12,3 @@ export const ROUTES = {
     INSIGHTS: "/insights",
     ACCOUNT: "/account",
 };
-

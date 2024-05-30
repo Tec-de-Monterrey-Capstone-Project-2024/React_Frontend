@@ -1,4 +1,4 @@
-export type AlertScope = 'queue' | 'agent';
+export type AlertScope = 'queue' | 'agent' | 'instance';
 
 export interface IAlertScopeProps {
   type: AlertScope;

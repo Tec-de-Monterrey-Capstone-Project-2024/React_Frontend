@@ -4,25 +4,34 @@ import { IAgent } from "./types";
 export const getAgents = async (instanceId: string, queueId: string) => {
     const usersEndpoint = `api/amazon-connect/instances/${instanceId}/queue-users`;
     const usersRes = await httpInstance.get(usersEndpoint);
+    console.log("usersRes.data: ", usersRes.data);
 
     let queueUsers: { userId: string, queueName: string }[] = [];
 
-    const fetchQueueName = async (queueId: string) => {
-        const queueEndpoint = `api/amazon-connect/instances/${instanceId}/queues/${queueId}/description`;
+    const fetchQueueName = async (userQueueId: string) => {
+        const queueEndpoint = `api/amazon-connect/instances/${instanceId}/queues/${userQueueId}/description`;
         const queueRes = await httpInstance.get(queueEndpoint);
         return queueRes.data.name;
     };
 
     if (queueId === 'all') {
-        for (const key in usersRes.data) {
-            if (usersRes.data.hasOwnProperty(key)) {
-                const queueName = await fetchQueueName(key);
-                queueUsers = queueUsers.concat(usersRes.data[key].users.map((userId: string) => ({ userId, queueName })));
+        const queueFetchPromises = Object.keys(usersRes.data).map(async (key) => {
+            const queueData = usersRes.data[key];
+            if (queueData.users.length === 0) {
+                return [];
             }
-        }
+            const queueName = await fetchQueueName(key);
+            return queueData.users.map((userId: string) => ({ userId, queueName }));
+        });
+
+        const results = await Promise.all(queueFetchPromises);
+        queueUsers = results.flat();
     } else {
-        const queueName = await fetchQueueName(queueId);
-        queueUsers = usersRes.data[queueId]?.users.map((userId: string) => ({ userId, queueName })) || [];
+        const queueData = usersRes.data[queueId];
+        if (queueData?.users.length > 0) {
+            const queueName = await fetchQueueName(queueId);
+            queueUsers = queueData.users.map((userId: string) => ({ userId, queueName }));
+        }
     }
 
     const agentDetails = await Promise.all(queueUsers.map(async ({ userId, queueName }) => {

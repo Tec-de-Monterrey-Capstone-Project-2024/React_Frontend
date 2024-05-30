@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../ROUTES';
-import AlertsTable from '../components/Tables/AlertTable';
+import AddAlert from '../components/Forms/AddAlert';
 
 const HomePage: React.FC = () => {
   return <>
     <div>
-      <AlertsTable/>
+      <AddAlert/>
     </div>
   </>;
 };

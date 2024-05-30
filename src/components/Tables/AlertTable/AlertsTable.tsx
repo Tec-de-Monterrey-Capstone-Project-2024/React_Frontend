@@ -3,11 +3,14 @@ import { getAlerts } from '../../../services/alerts/getAlerts';
 import { PerformanceTag, PerformanceCategory } from '../../Tags/PerformanceCategoryTag';
 import { ScopeTag } from '../../Tags/AlertScopeTag';
 import Button from '../../Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const AlertsTable: React.FC = () => {
   const [alerts, setAlerts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate(); // Inicializa useNavigate fuera del useEffect
 
   useEffect(() => {
     const fetchAlerts = async () => {
@@ -48,7 +51,7 @@ const AlertsTable: React.FC = () => {
                 <td className="p-3 text-center">{alert.id}</td>
                 <td className="p-3 text-center">{alert.metricCode}</td>
                 <td className="p-3 text-center">
-                  <PerformanceTag severity={alert.insightCategory as PerformanceCategory} />
+                  <PerformanceTag severity={alert.insightCategory.toLowerCase() as PerformanceCategory} />
                 </td>
                 <td className="p-3 text-center">
                   {alert.connectItemType && <ScopeTag type={alert.connectItemType.toLowerCase()} />}
@@ -56,7 +59,7 @@ const AlertsTable: React.FC = () => {
                 <td className="p-3 text-center">{new Date(alert.occurredAt).toLocaleString()}</td>
                 <td className="p-3 text-center">
                   <div className="w-full">
-                    <Button title={"View"} variant={"dark"} onClick={() => console.log('Insights for ID:', alert.id)} />
+                    <Button title={"View"} variant={"dark"} onClick={() => navigate(`/insights/${alert.id}`)} />
                   </div>
                 </td>
                 <td className="p-3 text-center">{new Date(alert.occurred_at).toLocaleString()}</td>

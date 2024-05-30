@@ -1,5 +1,5 @@
  import React, { createContext, useState, useEffect, useContext, ReactNode } from "react";
- import { onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
+ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
  import { auth } from "../firebase";
 
  interface AuthContextType {
@@ -7,6 +7,7 @@
     loading: boolean;
     signIn: (email: string, password: string) => Promise<string>;
     signOut: () => Promise<void>;
+    register: (email:string, password: string) => Promise<string>;
   }
   
   const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -28,13 +29,19 @@
       const firebaseId = res.user.uid;
       return firebaseId;
     };
+
+    const register = async (email: string, password: string) => {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const firebaseId = res.user.uid;
+      return firebaseId;
+    }
   
     const signOutUser = async () => {
       await signOut(auth);
     };
   
     return (
-      <AuthContext.Provider value={{ user, loading, signIn, signOut: signOutUser }}>
+      <AuthContext.Provider value={{ user, loading, signIn, signOut: signOutUser, register }}>
         {!loading && children}
       </AuthContext.Provider>
     );

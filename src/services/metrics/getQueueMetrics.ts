@@ -1,8 +1,9 @@
 import httpInstance from "../httpInstance";
 
-export const getInstance = async (instanceId: string) => {
+export const getQueueMetrics = async (arn: string, queueId: string) => {
     let res: any;
-    const endpoint = `api/amazon-connect/instances/${instanceId}`;
+    const endpoint = `/api/amazon-connect/instances/queue-metrics?instanceArn=${arn}&queueId=${queueId}`;
+
     await httpInstance.get(endpoint).then((response) => {
         res = response;
     }).catch((err) => {

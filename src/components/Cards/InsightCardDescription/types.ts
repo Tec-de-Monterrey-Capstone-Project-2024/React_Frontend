@@ -1,8 +1,5 @@
-/**
- * Interface for the props of the InsightDescription component.
- */
 export interface IInsightDescription {
-  /**
+    /**
    * The initial title of the card: Reconfigure Virtual floor
    */
   title: string;
@@ -12,13 +9,18 @@ export interface IInsightDescription {
    */
   message: string;
 
-  /**
+   /**
    * Subtitle: Situation
    */
   situationTitle: string;
 
-  /**
+   /**
    * Subtitle: Action
    */
   actionTitle: string;
+  insightRootCause: string;
+  insightImpact: string;
+  insightPrevention: string;
+  insightSeverity: "LOW" | "MEDIUM" | "HIGH" | "CRITICAL" | "UNKNOWN";
+  insightCategory: "CRITICAL" | "UNSATISFACTORY" | "BELOW_EXPECTATIONS" | "EXCEEDS_EXPECTATIONS" | "OUTSTANDING" | "PIONEERING" | "UNKNOWN";
 }

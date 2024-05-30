@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { DragDropContext, Draggable, DropResult, Droppable } from 'react-beautiful-dnd';
 import { useDataContext } from '../../context/DataContext';
 
 import { getQueueInsights } from "../../services/insights/getQueueInsights";
 import { updateInsightStatus } from "../../services/insights/updateInsightStatus";
+import { getInsightsByStatus } from "../../services/insights/getInsightStatus";
 import { IInsight } from "../../services/insights/types";
 
 import { ContentCard } from '../../components/Cards/ContentCard';
@@ -15,36 +16,40 @@ const InsightPage = () => {
     const { selectedQueueId } = useDataContext();
     const [loading, setLoading] = useState(true);
     const [insights, setInsights] = useState<IInsight[]>([]);
-    const [toDoInsights, setToDoInsights] = useState<IInsight[]>([]);
-    const [inProgressInsights, setInProgressInsights] = useState<IInsight[]>([]);
-    const [doneInsights, setDoneInsights] = useState<IInsight[]>([]);
+    const [kanban, setKanban] = useState({
+        'To-do': { id: 'To-do', list: [] as IInsight[] },
+        'In Progress': { id: 'In Progress', list: [] as IInsight[] },
+        'Done': { id: 'Done', list: [] as IInsight[] }
+    });
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
                 const res = await getQueueInsights(selectedQueueId);
-                console.log(res.data);
+                const toDoRes = await getInsightsByStatus("TO_DO");
+                const inProgressRes = await getInsightsByStatus("IN_PROGRESS");
+                const doneRes = await getInsightsByStatus("DONE");
+
                 setInsights(res.data);
-            } catch (tcErr) {
-                console.error(tcErr);
+                setKanban({
+                    'To-do': { id: 'To-do', list: Array.isArray(toDoRes) ? toDoRes : [] },
+                    'In Progress': { id: 'In Progress', list: Array.isArray(inProgressRes) ? inProgressRes : [] },
+                    'Done': { id: 'Done', list: Array.isArray(doneRes) ? doneRes : [] }
+                });
+            } catch (error) {
+                console.error(error);
             }
             setLoading(false);
-        }
+        };
         fetchData();
     }, [selectedQueueId]);
 
-    useEffect(() => {
-        if (insights.length > 0) {
-            separateInsights(insights);
-        }
-    }, [insights]);
-
-    const separateInsights = (insights: IInsight[]) => {
+    const separateInsights = useCallback((insights: IInsight[]) => {
         const toDo: IInsight[] = [];
         const inProgress: IInsight[] = [];
         const done: IInsight[] = [];
-    
+
         insights.forEach((insight) => {
             switch (insight.status) {
                 case 'TO_DO':
@@ -60,41 +65,27 @@ const InsightPage = () => {
                     break;
             }
         });
-    
-        setToDoInsights(toDo);
-        setInProgressInsights(inProgress);
-        setDoneInsights(done);
-    };
-    
-    const kanbanInsight = {
-        'To-do': {
-            id: 'To-do',
-            list: toDoInsights
-        },
-        'In Progress': {
-            id: 'In Progress',
-            list: inProgressInsights
-        },
-        'Done': {
-            id: 'Done',
-            list: doneInsights
-        }
-    }
 
-    const [kanban, setKanban] = useState(kanbanInsight);
+        setKanban({
+            'To-do': { id: 'To-do', list: toDo },
+            'In Progress': { id: 'In Progress', list: inProgress },
+            'Done': { id: 'Done', list: done }
+        });
+    }, []);
+
+    useEffect(() => {
+        if (insights.length > 0) {
+            separateInsights(insights);
+        }
+    }, [insights, separateInsights]);
 
     const onDragEnd = async ({ source, destination }: DropResult) => {
         if (!destination) return;
-    
-        if (source.droppableId === destination.droppableId && source.index === destination.index) {
-            return;
-        }
-    
+
         const start = kanban[source.droppableId as keyof typeof kanban];
         const end = kanban[destination.droppableId as keyof typeof kanban];
         const [draggableItem] = start.list.splice(source.index, 1);
-    
-        // Update status based on the destination column
+
         let newStatus: "TO_DO" | "IN_PROGRESS" | "DONE" = draggableItem.status;
         if (end.id === "To-do") {
             newStatus = "TO_DO";
@@ -103,76 +94,74 @@ const InsightPage = () => {
         } else if (end.id === "Done") {
             newStatus = "DONE";
         }
-    
-        draggableItem.status = newStatus;  // Update the status of the item
-    
-        // Update the insight status on the server
-        await updateInsightStatus(draggableItem.id, newStatus);
-    
-        end.list.splice(destination.index, 0, draggableItem);
-    
-        setKanban(prevState => ({
-            ...prevState,
-            [start.id]: {
-                ...start,
-                list: start.list
-            },
-            [end.id]: {
-                ...end,
-                list: end.list
-            }
-        }));
+
+        draggableItem.status = newStatus;
+
+        try {
+            await updateInsightStatus(draggableItem.id, newStatus);
+            end.list.push(draggableItem);
+
+            setKanban({
+                ...kanban,
+                [start.id]: start,
+                [end.id]: end
+            });
+        } catch (error) {
+            console.error("Failed to update insight status", error);
+            // Revert the changes in case of error
+            start.list.splice(source.index, 0, draggableItem);
+            setKanban({
+                ...kanban,
+                [start.id]: start
+            });
+        }
     };
-    
-    useEffect(() => {
-        setKanban({
-            'To-do': { id: 'To-do', list: toDoInsights },
-            'In Progress': { id: 'In Progress', list: inProgressInsights },
-            'Done': { id: 'Done', list: doneInsights }
-        });
-    }, [toDoInsights, inProgressInsights, doneInsights]);
-    
+
     return (
         <section className="insights-page">
-            <div className="section-container container">
+            <div className="section-container m-8">
                 <div className='kanban'>
                     <DragDropContext onDragEnd={onDragEnd}>
-                        {loading ? <p>Loading...</p> : (Object.values(kanban).map(kan => (
-                            <Droppable droppableId={kan.id} key={kan.id}>
-                                {(provided) => (
-                                    <div className='kanban-column' ref={provided.innerRef} {...provided.droppableProps}>
-                                        <ContentCard>
-                                            <div className='kanban-title'>
-                                                <h1>{kan.id}</h1>
-                                            </div>
-                                            <div className='kanban-rows'>
-                                                {kan.list.map((insight, index) => (
-                                                    <Draggable key={insight.id} draggableId={insight.id.toString()} index={index}>
-                                                        {(provided) => (
-                                                            <div ref={provided.innerRef} 
-                                                            {...provided.draggableProps} 
-                                                            {...provided.dragHandleProps}>
-                                                                <InsightRow
-                                                                    id={insight.id}
-                                                                    title={insight.insightName}
-                                                                    color={'white'}
-                                                                />
-                                                            </div>
-                                                        )}
-                                                    </Draggable>
-                                                ))}
-                                            </div>
-                                        </ContentCard>
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
-                        )))}
+                        {loading ? <p>Loading...</p> : (
+                            Object.values(kanban).map(kan => (
+                                <Droppable droppableId={kan.id} key={kan.id}>
+                                    {(provided) => (
+                                        <div className='kanban-column' ref={provided.innerRef} {...provided.droppableProps}>
+                                            <ContentCard>
+                                                <div className='kanban-title'>
+                                                    <h1>{kan.id}</h1>
+                                                </div>
+                                                <div className='kanban-rows'>
+                                                    {kan.list.map((insight, index) => (
+                                                        <div className="w-full" key={insight.id}>
+                                                            <Draggable key={insight.id} draggableId={insight.id.toString()} index={index}>
+                                                                {(provided) => (
+                                                                    <div ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}>
+                                                                        <InsightRow
+                                                                            id={insight.id}
+                                                                            title={insight.insightName}
+                                                                            color={'white'}
+                                                                        />
+                                                                    </div>
+                                                                )}
+                                                            </Draggable>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </ContentCard>
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            ))
+                        )}
                     </DragDropContext>
                 </div>
             </div>
         </section>
-  );
+    );
 }
 
 export default InsightPage;

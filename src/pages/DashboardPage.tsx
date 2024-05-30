@@ -34,14 +34,12 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <section className='agent-dashboard'>
+    <section className='dashboard home'>
       <div className='container'>
         <div className="queues-card-dashboard">
-          <InsightCard title={"Reimbursements Queue"} description1={"Clients: 10"}
-                       description2={"Agents: 2"}
-                       color={"white"} borderColor={"red"} showBoxBorder={true} func={goToAgentList}/>
+          <InsightCard title={"Reimbursements Queue"} description1={"Clients: 10"} description2={"Agents: 2"} color={"white"} borderColor={"red"} showBoxBorder={true} func={goToAgentList} />
         </div>
-        <div className='agent-content'>
+        <div className='dashboard-content'>
           <div className='column'>
             <h2>KPIs</h2>
             {loading ? <p>Loading...</p> : (metrics ? (

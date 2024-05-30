@@ -3,7 +3,7 @@ import { IInsightCard } from './types';
 import './style.css'
 import classNames from 'classnames';
 
-const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2, color, borderColor, showBoxBorder, func }) => {
+const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2, color, borderColor, showBoxBorder, func, btn }) => {
     const card = classNames({
         "box-container": true,
         "gray-box": color === 'gray',
@@ -25,9 +25,9 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
             <div className="description">
                 {description2}
             </div>
-            <div className="insight-button">
+            {btn && <div className="insight-button">
                 <button className='btn-type-6'>View more</button>
-            </div>
+            </div>}
         </div>
     );
 };

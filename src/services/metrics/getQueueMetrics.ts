@@ -2,7 +2,7 @@ import httpInstance from "../httpInstance";
 
 export const getQueueMetrics = async (arn: string, queueId: string) => {
     let res: any;
-    const endpoint = `/api/amazon-connect/instances/queue-metrics?instanceArn=${arn}&agentId=${queueId}`;
+    const endpoint = `/api/amazon-connect/instances/queue-metrics?instanceArn=${arn}&queueId=${queueId}`;
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;

@@ -8,6 +8,7 @@ import MetricsData from '../config/MetricsData';
 import { getQueueInsights } from '../services/insights/getQueueInsights';
 import { getQueueCounts } from '../services/queues/getQueueCounts';
 import { describeQueue } from '../services/queues/describeQueue';
+import { getQueueMetrics } from '../services/metrics/getQueueMetrics';
 
 import { IMetric } from '../services/metrics/types';
 import { IInsight } from '../services/insights/types';
@@ -19,7 +20,7 @@ import InsightCard  from "../components/Cards/InsightCard/InsightCard";
 const DashboardPage = () => {
   const navigate = useNavigate();
 
-  const { user, selectedQueueId } = useDataContext();
+  const { user, arn, selectedQueueId } = useDataContext();
 
   const [queue, setQueue] = useState<IQueue[] | null>(null);
   const [loadingQueue, setLoadingQueue] = useState<Boolean>(true);
@@ -29,7 +30,7 @@ const DashboardPage = () => {
 
       if (selectedQueueId !== "all" && user) {
         const res = await describeQueue(user.instanceId, selectedQueueId);
-        console.log(res.data);
+        // console.log(res.data);
         setQueue(res.data);
       }
 
@@ -60,16 +61,28 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoadingMetrics(true);
-
-      // const res = await getGeneralMetrics();
-      // // console.log(res.data);
-      // setMetrics(res.data);
-
-      setLoadingMetrics(false);
+      if (arn !== '' && selectedQueueId !== 'all') {
+        const res = await getQueueMetrics(arn, selectedQueueId);
+        console.log(res);
+        if (res.status >= 200 && res.status < 300) {
+          const transformedMetrics = Object.entries(res.data).map(([key, value], index) => ({
+            id: index,
+            metric_info_code: key,
+            value
+          }));
+          setMetrics(transformedMetrics);
+        } else {
+          setMetrics(null);
+        }
+        setLoadingMetrics(false);
+      }
     }
-
-    fetchData();
-  }, []);
+    if (arn !== '' && selectedQueueId !== 'all') {
+      fetchData();
+    } else {
+      setMetrics(null);
+    }
+  }, [arn, selectedQueueId]);
   
   const [insights, setInsights] = useState<IInsight[] | null>(null);
   const [loadingInsights, setLoadingInsights] = useState<Boolean>(true);

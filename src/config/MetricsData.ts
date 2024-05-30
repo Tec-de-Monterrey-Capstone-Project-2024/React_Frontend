@@ -24,7 +24,7 @@ const MetricsData: Record<string, MetricData> = {
         unit: '%',
         graph: 'Pie'
     },
-    "FCR": {
+    "avgResolutionTime": {
         name: "First Contact Resolution",
         min: 70,
         max: 100,

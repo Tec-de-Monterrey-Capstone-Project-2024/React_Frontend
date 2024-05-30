@@ -108,7 +108,7 @@ const DashboardPage = () => {
                           borderColor={insight.insightSeverity}
                           showBoxBorder={true}
                           func={() => {
-                            console.log(`More info about ${insight.insightName}`);
+                            navigate(`/insights/${insight.id}`);
                           }}
                           btn={true}
                       />

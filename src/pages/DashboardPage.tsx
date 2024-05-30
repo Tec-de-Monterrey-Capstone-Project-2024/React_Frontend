@@ -78,7 +78,7 @@ const DashboardPage = () => {
     const fetchData = async () => {
       setLoadingInsights(true);
       const res = await getQueueInsights(selectedQueueId);
-      console.log(res);
+      console.log("INSIGHTTT", res);
       setInsights(res.data);
 
       setLoadingInsights(false);

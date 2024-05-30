@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
       console.log("resIn: ", res);
       setArn(res.data.arn);
       setInstanceAlias(res.data.instanceAlias);
+      localStorage.setItem('instanceId', res.data.id);
     }
     if (user) {
       fetchInstance();

@@ -12,7 +12,7 @@ import { InsightRow } from "../../components/InsightRow";
 import './style.css';
 
 const InsightPage = () => {
-    const { user, selectedQueueId } = useDataContext();
+    const { selectedQueueId } = useDataContext();
     const [loading, setLoading] = useState(true);
     const [insights, setInsights] = useState<IInsight[]>([]);
     const [toDoInsights, setToDoInsights] = useState<IInsight[]>([]);
@@ -23,8 +23,8 @@ const InsightPage = () => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const res = await getQueueInsights(user!.instanceId, selectedQueueId);
-                console.log(res.data);
+                const res = await getQueueInsights(selectedQueueId);
+                console.log("KANBAN INSIGHTS", res.data);
                 setInsights(res.data);
             } catch (tcErr) {
                 console.error(tcErr);
@@ -32,7 +32,7 @@ const InsightPage = () => {
             setLoading(false);
         }
         fetchData();
-    }, [user, selectedQueueId]);
+    }, [selectedQueueId]);
 
     useEffect(() => {
         if (insights.length > 0) {
@@ -134,7 +134,7 @@ const InsightPage = () => {
     
     return (
         <section className="insights-page">
-            <div className="section-container container">
+            <div className="section-container m-8">
                 <div className='kanban'>
                     <DragDropContext onDragEnd={onDragEnd}>
                         {loading ? <p>Loading...</p> : (Object.values(kanban).map(kan => (
@@ -147,19 +147,21 @@ const InsightPage = () => {
                                             </div>
                                             <div className='kanban-rows'>
                                                 {kan.list.map((insight, index) => (
-                                                    <Draggable key={insight.id} draggableId={insight.id.toString()} index={index}>
-                                                        {(provided) => (
-                                                            <div ref={provided.innerRef} 
-                                                            {...provided.draggableProps} 
-                                                            {...provided.dragHandleProps}>
-                                                                <InsightRow
-                                                                    id={insight.id}
-                                                                    title={insight.insightName}
-                                                                    color={'white'}
-                                                                />
-                                                            </div>
-                                                        )}
-                                                    </Draggable>
+                                                    <div className="w-full">
+                                                        <Draggable key={insight.id} draggableId={insight.id.toString()} index={index}>
+                                                            {(provided) => (
+                                                                <div ref={provided.innerRef}
+                                                                     {...provided.draggableProps}
+                                                                     {...provided.dragHandleProps}>
+                                                                    <InsightRow
+                                                                        id={insight.id}
+                                                                        title={insight.insightName}
+                                                                        color={'white'}
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                        </Draggable>
+                                                    </div>
                                                 ))}
                                             </div>
                                         </ContentCard>

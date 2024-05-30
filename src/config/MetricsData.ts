@@ -50,8 +50,8 @@ const MetricsData: Record<string, MetricData> = {
     },
     "avgAfterContactWorkTime": {
         name: "Average Speed Answer",
-        min: 0,
-        max: 60,
+        min: 2,
+        max: 20,
         positive_upside: false,
         unit: 's',
         graph: 'Gauge'
@@ -71,14 +71,6 @@ const MetricsData: Record<string, MetricData> = {
         positive_upside: false,
         unit: '%',
         graph: 'Pie'
-    },
-    "avgAfterContactWorkTime": {
-        name: "Average After Contact Work Time",
-        min: 2,
-        max: 20,
-        positive_upside: false,
-        unit: 's',
-        graph: 'Gauge'
     },
     "avgQueueAnswerTime": {
         name: "Average Queue Answer Time",

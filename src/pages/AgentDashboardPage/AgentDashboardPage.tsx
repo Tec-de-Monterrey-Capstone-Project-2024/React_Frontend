@@ -81,7 +81,7 @@ const AgentDashboardPage: React.FC = () => {
                     <MetricCard
                       key={id}
                       title={name}
-                      subtitle={'No se que se ponga aqui'}
+                      subtitle={''}
                       minValue={min}
                       maxValue={max}
                       value={value}

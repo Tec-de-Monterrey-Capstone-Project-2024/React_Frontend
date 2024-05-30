@@ -104,6 +104,7 @@ const AgentDashboardPage: React.FC = () => {
                       borderColor={'red'}
                       showBoxBorder={true}
                       func={() => {}}
+                      btn={true}
                     />
                   );
                 })}

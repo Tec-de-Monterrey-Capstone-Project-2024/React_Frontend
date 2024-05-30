@@ -3,3 +3,9 @@ export interface IQueue {
     name: string,
     queueType: "STANDARD" | "AGENT",
 }
+
+export interface IQueueCounts {
+    agents: number,
+    contacts: number,
+    color: string
+}

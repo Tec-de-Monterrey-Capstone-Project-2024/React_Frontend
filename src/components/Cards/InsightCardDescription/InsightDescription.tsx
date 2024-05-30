@@ -27,16 +27,35 @@ const InsightDescription: React.FC<IInsightDescription> = ({
           <strong className="text-2xl text-black">{situationTitle}</strong>
         </div>
         <p className="text-lg text-gray-800">{message}</p>
+        <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
-          <hr className="border-t-2 border-gray-150 my-2" />
           <strong className="text-2xl text-black">{actionTitle}</strong>
         </div>
         <p className="text-lg text-gray-800">Consider allocating more agents from the Receipts Queue to the Reimbursements Queue.</p>
-        <p className="text-lg text-gray-800">Root Cause: {insightRootCause}</p>
-        <p className="text-lg text-gray-800">Impact: {insightImpact}</p>
-        <p className="text-lg text-gray-800">Prevention: {insightPrevention}</p>
-        <p className="text-lg text-gray-800">Severity: {insightSeverity}</p>
-        <p className="text-lg text-gray-800">Category: {insightCategory}</p>
+        <div className="mt-4">
+          <strong className="text-2xl text-black">Root Cause</strong>
+          <p className="text-lg text-gray-800">{insightRootCause}</p>
+        </div>
+        <hr className="border-t-2 border-gray-150 my-2" />
+        <div className="mt-4">
+          <strong className="text-2xl text-black">Impact</strong>
+          <p className="text-lg text-gray-800">{insightImpact}</p>
+        </div>
+        <hr className="border-t-2 border-gray-150 my-2" />
+        <div className="mt-4">
+          <strong className="text-2xl text-black">Prevention</strong>
+          <p className="text-lg text-gray-800">{insightPrevention}</p>
+        </div>
+        <hr className="border-t-2 border-gray-150 my-2" />
+        <div className="mt-4">
+          <strong className="text-2xl text-black">Severity</strong>
+          <p className="text-lg text-gray-800">{insightSeverity}</p>
+        </div>
+        <hr className="border-t-2 border-gray-150 my-2" />
+        <div className="mt-4">
+          <strong className="text-2xl text-black">Category</strong>
+          <p className="text-lg text-gray-800">{insightCategory}</p>
+        </div>
       </div>
     </div>
   );

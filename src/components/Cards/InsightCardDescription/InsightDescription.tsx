@@ -1,10 +1,18 @@
 import React from 'react';
-
 import { IInsightDescription } from './types';
-
 import alertIcon from '../../../assets/icons/alert.svg';
 
-const InsightDescription: React.FC<IInsightDescription> = ({ title, message, situationTitle, actionTitle }) => {
+const InsightDescription: React.FC<IInsightDescription> = ({
+  title,
+  message,
+  situationTitle,
+  actionTitle,
+  insightRootCause,
+  insightImpact,
+  insightPrevention,
+  insightSeverity,
+  insightCategory,
+}) => {
   return (
     <div className="p-6 border border-gray-300 rounded-lg shadow-lg bg-gray-50">
       <h2 className="text-4xl font-bold mb-4 flex items-center">
@@ -24,6 +32,11 @@ const InsightDescription: React.FC<IInsightDescription> = ({ title, message, sit
           <strong className="text-2xl text-black">{actionTitle}</strong>
         </div>
         <p className="text-lg text-gray-800">Consider allocating more agents from the Receipts Queue to the Reimbursements Queue.</p>
+        <p className="text-lg text-gray-800">Root Cause: {insightRootCause}</p>
+        <p className="text-lg text-gray-800">Impact: {insightImpact}</p>
+        <p className="text-lg text-gray-800">Prevention: {insightPrevention}</p>
+        <p className="text-lg text-gray-800">Severity: {insightSeverity}</p>
+        <p className="text-lg text-gray-800">Category: {insightCategory}</p>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+// src/pages/ViewInsightPage.tsx
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../components/Button/Button';
@@ -102,6 +104,11 @@ const ViewInsightPage: React.FC = () => {
           message={insight.insightSummary}
           situationTitle="Situation"
           actionTitle="Action"
+          insightRootCause={insight.insightRootCause}
+          insightImpact={insight.insightImpact}
+          insightPrevention={insight.insightPrevention}
+          insightSeverity={insight.insightSeverity}
+          insightCategory={insight.insightCategory}
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
         <div className="flex justify-between mt-4 items-start">

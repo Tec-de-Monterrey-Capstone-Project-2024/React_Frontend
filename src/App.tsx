@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './components/Layouts/Layout';
-import PrivateRoute from './components/Layouts/PrivateRoute';
+import PrivateRoute from './context/PrivateRoute';
+import { ErrorProvider } from './context/ErrorContext';
+
 
 import LoginPage from './pages/AuthPages/LoginPage';
 import SignupPage from './pages/AuthPages/SignupPage';
@@ -22,6 +24,7 @@ import AddAlertPage from './pages/AddAlertPage';
 
 const App: React.FC = () => {
   return (
+    <ErrorProvider>
     <Router>
       <Layout>
         <Routes>
@@ -48,6 +51,7 @@ const App: React.FC = () => {
         </Routes>
       </Layout>
     </Router>
+    </ErrorProvider>
   );
 };
 

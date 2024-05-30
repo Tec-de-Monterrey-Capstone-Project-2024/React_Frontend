@@ -24,11 +24,19 @@ const LoginForm: React.FC = () => {
 
     const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const firebaseId = await signIn(email, password);
-        const res = await loginUser(firebaseId);
-        if (res.status >= 200 && res.status < 300) {
-            setUser(res.data);
-        } else {
+        try {
+            const firebaseId = await signIn(email, password);
+            const res = await loginUser(firebaseId);
+            if (res.status >= 200 && res.status < 300) {
+                setUser(res.data);
+                setError(null); 
+            } else {
+                setError("Invalid credentials");
+                signOut();
+            }
+        } catch (error) {
+            setError("Invalid credentials");
+            console.error("Login failed:", error);
             signOut();
         }
     }
@@ -38,6 +46,7 @@ const LoginForm: React.FC = () => {
             <div className="title">
                 <h3>Login</h3>
                 {fromForgotForm && <p className="text-sm text-[--dark-red]">You have received an email with instructions, come back after resetting your password.</p>}
+
             </div>
             <div className="">
                 <div className="input-container">
@@ -68,7 +77,7 @@ const LoginForm: React.FC = () => {
             </div>
             <div className="link-container">
                 {error && (
-                    <p className="text-red-500 mb-4 text-sm font-medium">{error}</p>
+                    <p className="text-red-500 mb-4 text-sm font-medium">Invalid Credentials, try again.</p>
                 )}
                 <button className="button login-button" type="submit">Login</button>
                 <Link to='/auth/forgot' className="link">Forgot Password</Link>

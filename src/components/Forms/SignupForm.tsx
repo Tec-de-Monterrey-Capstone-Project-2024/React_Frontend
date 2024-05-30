@@ -17,11 +17,13 @@ import './styles.css'
 
 const SignupForm = () => {
     const navigate = useNavigate();
+
     const { setUser } = useDataContext();
     const { register, signOut } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
 
     const [selectedInstanceId, setSelectedInstanceId] = useState('');
     const [instances, setInstances] = useState<IInstance[]>([]);
@@ -41,18 +43,28 @@ const SignupForm = () => {
 
     const onRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const firebaseId = await register(email,password);
-        const body = {
-            firebaseId: firebaseId,
-            email: email,
-            instanceId: selectedInstanceId
-        }
-        const res = await signupUser(body);  
-        if (res.status >= 200 && res.status < 300) {
-            setUser(res.data);
-        } else {
+
+        try {
+            const firebaseId = await register(email, password);
+            const body = {
+                firebaseId: firebaseId,
+                email: email,
+                instanceId: selectedInstanceId
+            }
+            const res = await signupUser(body);
+            if (res.status >= 200 && res.status < 300) {
+                setUser(res.data);
+            } else {
+                throw new Error('signup failed');
+            }
+        } catch (error) {
+            console.error("Signup failed:", error);
+            const currentUser = auth.currentUser;
+            if (currentUser) {
+                await deleteUser(currentUser);
+            }
             signOut();
-            deleteUser(res);
+            navigate("/auth/signup", { state: { error: "Signup failed, deleting user." } });
         }
     }
 
@@ -77,13 +89,16 @@ const SignupForm = () => {
             </div>
             <div className="input-container">
                 <label htmlFor="email" className="input-label">Email</label>
-                <input className="input" type="mail" name="email" id="email-register" placeholder=" email address..." onChange={(e) => setEmail(e.target.value)}  />
+                <input className="input" type="mail" name="email" id="email-register" placeholder=" email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
             </div>
             <div className="input-container">
                 <label htmlFor="password" className="input-label">Password</label>
                 <input className="input" type="password" name="password" id="password-register" placeholder=" password..." onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
             <div className="link-container">
+                {error && (
+                    <p className="text-red-500 mb-4 text-sm font-medium">{error}.</p>
+                )}
                 <button className="button login-button" type="submit">Register</button>
                 <Link className="link" to='/auth/login'>You have an account? </Link >
             </div>

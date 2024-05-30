@@ -16,7 +16,6 @@ import './styles.css';
 
 const SignupForm = () => {
     const navigate = useNavigate();
-
     const { setUser } = useDataContext();
     const { register, signOut } = useAuth();
     const { signupError, setSignupError } = useError();
@@ -38,9 +37,9 @@ const SignupForm = () => {
         setSelectedInstanceId(event.target.value);
     };
 
+
     const onRegister = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         try {
             const firebaseId = await register(email, password);
             const body = {
@@ -52,7 +51,6 @@ const SignupForm = () => {
             if (res.status >= 200 && res.status < 300) {
                 setUser(res.data);
                 setSignupError(null);
-                navigate("/auth/signup");
             } else {
                 throw new Error('signup failed');
             }

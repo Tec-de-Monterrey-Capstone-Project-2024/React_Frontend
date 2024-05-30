@@ -2,9 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './components/Layouts/Layout';
-import PrivateRoute from './context/PrivateRoute';
-import { ErrorProvider } from './context/ErrorContext';
-
+import PrivateRoute from './components/Layouts/PrivateRoute';
 
 import LoginPage from './pages/AuthPages/LoginPage';
 import SignupPage from './pages/AuthPages/SignupPage';
@@ -20,10 +18,10 @@ import ViewInsightPage from './pages/ViewInsightPage';
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 import { MetricDetailsPage } from './pages/MetricDetailsPage';
 import InsightPage  from './pages/InsightPage/InsightPage';
+import AddAlertPage from './pages/AddAlertPage';
 
 const App: React.FC = () => {
   return (
-    <ErrorProvider>
     <Router>
       <Layout>
         <Routes>
@@ -36,20 +34,20 @@ const App: React.FC = () => {
           <Route path='/' element={<PrivateRoute />}>
             <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
+            <Route path="/dashboard/agent/:agentId" element={<AgentDashboardPage />} />
             <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/insights" element={<InsightPage />} />
             <Route path="/insights/:id" element={<ViewInsightPage />} />
+            <Route path="/AddAlert" element={<AddAlertPage />} />
           </Route>
           
           {/* <Route component={NotFound} /> */}
         </Routes>
       </Layout>
     </Router>
-    </ErrorProvider>
   );
 };
 

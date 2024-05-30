@@ -1,6 +1,5 @@
 import { ContentCard } from '../../components/Cards/ContentCard';
 import { IMetric } from '../../services/metrics/types';
-import { getGeneralMetrics } from '../../services/metrics/getGeneralMetrics';
 import MetricsData from '../../config/MetricsData';
 import { Pie } from '../../components/DataDisplay/PieChart';
 import { GaugeChart } from '../../components/DataDisplay/GaugeChart';
@@ -17,9 +16,9 @@ const MetricDetailsPage: React.FC = () => {
         const fetchData = async () => {
             setLoading(true);
             if (id) {
-                const res = await getGeneralMetrics();
-                const dataMetric = res.data.find((metric: IMetric) => metric.id.toString() === id);
-                setMetric(dataMetric || null);
+                // const res = await getGeneralMetrics();
+                // const dataMetric = res.data.find((metric: IMetric) => metric.id.toString() === id);
+                // setMetric(dataMetric || null);
                 setLoading(false);
             }
         };

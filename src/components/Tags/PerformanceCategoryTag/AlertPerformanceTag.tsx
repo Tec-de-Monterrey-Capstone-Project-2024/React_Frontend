@@ -1,28 +1,30 @@
 import React from 'react';
-import {  PerformanceCategory, IPerformanceTagProps } from './types';
+import { PerformanceCategory, IPerformanceTagProps } from './types';
 
+// Define a color map to style the tags based on severity
 const colorMap: Record<PerformanceCategory, string> = {
-  critical: 'bg-gray-200 text-red-800', // bg-red-600
-  unsatisfactory: 'bg-gray-200 text-red-600', // bg-red-500
-  below_expectations: 'bg-gray-200 text-yellow-600', // bg-yellow-400
-  exceeds_expectations: 'bg-gray-200 text-green-600', // bg-green-400
-  outstanding: 'bg-gray-200 text-green-800', // bg-green-500
-  pioneering: 'bg-gray-200 text-blue-500'  // bg-blue-600
+  critical: 'bg-red-200 text-red-800', // Use correct bg color classes
+  unsatisfactory: 'bg-red-200 text-red-600',
+  below_expectations: 'bg-yellow-200 text-yellow-600',
+  exceeds_expectations: 'bg-green-200 text-green-600',
+  outstanding: 'bg-green-200 text-green-800',
+  pioneering: 'bg-blue-200 text-blue-500'
 };
 
 const PerformanceTag: React.FC<IPerformanceTagProps> = ({ severity }) => {
-   // Convert severity from snake_case to Normal Case
-   const formattedSeverity = severity.replace(/_/g, ' ')
+  // Convert severity from snake_case to Normal Case
+  const formattedSeverity = severity.replace(/_/g, ' ')
                                      .split(' ')
                                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                                      .join(' ');
 
-  const color = colorMap[severity]; 
+  const color = colorMap[severity];
+  
   return (
-    <span className={`px-4 py-2 rounded-lg text-csm font-bold ${color} inline-block leading-normal`}>
+    <span className={`px-4 py-2 rounded-lg text-sm font-bold ${color} inline-block leading-normal`}>
       {formattedSeverity}
     </span>
   );
-}
+};
 
 export default PerformanceTag;

@@ -1,52 +1,66 @@
 import httpInstance from "../httpInstance";
+import { IAgent } from "./types";
 
-export const getAgents = async (queue: string) => {
-    let res: any;
-    const endpoint = `api/queues/${queue}/agents`;
+export const getAgents = async (instanceId: string, queueId: string) => {
+    const usersEndpoint = `api/amazon-connect/instances/${instanceId}/queue-users`;
+    const usersRes = await httpInstance.get(usersEndpoint);
+    console.log("usersRes.data: ", usersRes.data);
 
-    await httpInstance.get(endpoint).then((response) => {
-        res = response;
-    }).catch((err) => {
-        res = err.response
-    });
-    return res;
+    let queueUsers: { userId: string, queueName: string }[] = [];
+
+    const fetchQueueName = async (userQueueId: string) => {
+        const queueEndpoint = `api/amazon-connect/instances/${instanceId}/queues/${userQueueId}/description`;
+        const queueRes = await httpInstance.get(queueEndpoint);
+        return queueRes.data.name;
+    };
+
+    if (queueId === 'all') {
+        const queueFetchPromises = Object.keys(usersRes.data).map(async (key) => {
+            const queueData = usersRes.data[key];
+            if (queueData.users.length === 0) {
+                return [];
+            }
+            const queueName = await fetchQueueName(key);
+            return queueData.users.map((userId: string) => ({ userId, queueName }));
+        });
+
+        const results = await Promise.all(queueFetchPromises);
+        queueUsers = results.flat();
+    } else {
+        const queueData = usersRes.data[queueId];
+        if (queueData?.users.length > 0) {
+            const queueName = await fetchQueueName(queueId);
+            queueUsers = queueData.users.map((userId: string) => ({ userId, queueName }));
+        }
+    }
+
+    const agentDetails = await Promise.all(queueUsers.map(async ({ userId, queueName }) => {
+        try {
+            const userEndpoint = `api/amazon-connect/instances/${instanceId}/users/${userId}/description`;
+            const userRes = await httpInstance.get(userEndpoint);
+            return transformAgentData(userRes.data, queueName);
+        } catch (error) {
+            console.error(`Error fetching data for user ${userId}:`, error);
+            return null;
+        }
+        // const userEndpoint = `api/amazon-connect/instances/${instanceId}/users/${userId}/description`;
+        // const userRes = await httpInstance.get(userEndpoint);
+        // return transformAgentData(userRes.data, queueName);
+    }));
+
+    const successfulAgents = agentDetails.filter((agent): agent is IAgent => agent !== null);
+
+    return { success: true, data: successfulAgents };
 }
 
-// import { IAgent } from "./types";
 
-// const dummyAgents: IAgent[] = [
-//     {
-//         id: 1,
-//         firstName: "John",
-//         lastName: "Doe",
-//         email: "john.doe@example.com",
-//         password: "password123",
-//         username: "johndoe",
-//         role: "AGENT"
-//     },
-//     {
-//         id: 2,
-//         firstName: "Jane",
-//         lastName: "Smith",
-//         email: "jane.smith@example.com",
-//         password: "password123",
-//         username: "janesmith",
-//         role: "SUPERVISOR"
-//     },
-//     {
-//         id: 3,
-//         firstName: "Alice",
-//         lastName: "Johnson",
-//         email: "alice.johnson@example.com",
-//         password: "password123",
-//         username: "alicejohnson",
-//         role: "AGENT"
-//     }
-// ];
-
-// export const getAgents = async (queue: number) => {
-//     const res = {
-//         data: dummyAgents
-//     };
-//     return res;
-// };
+const transformAgentData = (data: any, queueName: string): IAgent => {
+    return {
+        id: data.id,
+        firstName: data.identityInfo.firstName,
+        lastName: data.identityInfo.lastName,
+        email: data.identityInfo.email,
+        username: data.username,
+        queueName,
+    };
+}

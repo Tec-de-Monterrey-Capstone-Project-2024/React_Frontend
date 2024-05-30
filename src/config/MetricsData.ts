@@ -8,7 +8,7 @@ export type MetricData = {
 };
 
 const MetricsData: Record<string, MetricData> = {
-    "SL": {
+    "serviceLevel": {
         name: "Service Level",
         min: 70,
         max: 100,
@@ -71,6 +71,22 @@ const MetricsData: Record<string, MetricData> = {
         positive_upside: false,
         unit: '%',
         graph: 'Pie'
+    },
+    "avgAfterContactWorkTime": {
+        name: "Average After Contact Work Time",
+        min: 2,
+        max: 20,
+        positive_upside: false,
+        unit: 's',
+        graph: 'Gauge'
+    },
+    "avgQueueAnswerTime": {
+        name: "Average Queue Answer Time",
+        min: 0,
+        max: 5,
+        positive_upside: false,
+        unit: 's',
+        graph: 'Gauge'
     }
 }
 

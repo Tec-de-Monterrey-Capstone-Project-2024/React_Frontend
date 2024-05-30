@@ -11,4 +11,5 @@ export const ROUTES = {
     ALERTS: "/alerts",
     INSIGHTS: "/insights",
     ACCOUNT: "/account",
+    ADD_ALERT: "/AddAlert",
 };

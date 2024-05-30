@@ -1,14 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../ROUTES';
 import AlertsTable from '../components/Tables/AlertTable';
+import { Button } from '../components/Button'; // Asegúrate de que la ruta sea correcta
 
-const HomePage: React.FC = () => {
-  return <>
-    <div>
-      <AlertsTable/>
-    </div>
-  </>;
+const AlertsPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleAddAlertClick = () => {
+    navigate(ROUTES.ADD_ALERT);
+  };
+
+  return (
+    <>
+    <div style={{ textAlign: 'center', padding: '20px' }}>
+        <Button
+          onClick={handleAddAlertClick}
+          variant="green"
+          title="Add a new alert"
+          className=""
+          type="button"
+        >
+          Add Alert
+        </Button>
+      </div>
+      <div>
+        <AlertsTable />
+      </div>
+      
+    </>
+  );
 };
 
-export default HomePage;
+export default AlertsPage;

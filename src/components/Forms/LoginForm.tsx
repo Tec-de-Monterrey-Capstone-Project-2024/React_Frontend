@@ -26,7 +26,11 @@ const LoginForm: React.FC = () => {
         e.preventDefault();
         const firebaseId = await signIn(email, password);
         const res = await loginUser(firebaseId);
-
+        if (res.status >= 200 && res.status < 300) {
+            setUser(res.data);
+        } else {
+            signOut();
+        }
     }
 
     return (

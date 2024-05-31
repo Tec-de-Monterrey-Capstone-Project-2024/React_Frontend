@@ -4,32 +4,40 @@ import { deleteUser } from "firebase/auth";
 
 import { useDataContext } from "../../context/DataContext";
 import { useAuth } from "../../context/AuthContext";
+import { useError } from "../../context/ErrorContext";
 
 import { loginUser } from "../../services/user/loginUser";
 
 import './styles.css';
 
-
 const LoginForm: React.FC = () => {
     const { setUser } = useDataContext();
     const { signIn, signOut } = useAuth();
+    const { loginError, setLoginError } = useError();
 
     const [email, setEmail] = useState('a01657142@tec.mx');
     const [password, setPassword] = useState('password');
-    const [error, setError] = useState<string | null>(null);
 
     const location = useLocation();
     const fromForgotForm = location.state?.fromForgotForm || false;
 
     const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const firebaseId = await signIn(email, password);
-        const res = await loginUser(firebaseId);
-        if (res.status >= 200 && res.status < 300) {
-            setUser(res.data);
-        } else {
+        try {
+            const firebaseId = await signIn(email, password);
+            const res = await loginUser(firebaseId);
+            if (res.status >= 200 && res.status < 300) {
+                setUser(res.data);
+                setLoginError(null); 
+            } else {
+                setLoginError("Invalid credentials");
+                signOut();
+            }
+        } catch (loginError) {
+            setLoginError("Invalid credentials");
+            console.error("Login failed:", loginError);
             signOut();
-            deleteUser(res);
+            // deleteUser(res);
         }
     }
 
@@ -67,8 +75,8 @@ const LoginForm: React.FC = () => {
                 </div>
             </div>
             <div className="link-container">
-                {error && (
-                    <p className="text-red-500 mb-4 text-sm font-medium">{error}</p>
+                {loginError && (
+                    <p className="text-red-500 mb-4 text-sm font-medium">Invalid Credentials, try again.</p>
                 )}
                 <button className="button login-button" type="submit">Login</button>
                 <Link to='/auth/forgot' className="link">Forgot Password</Link>
@@ -77,6 +85,5 @@ const LoginForm: React.FC = () => {
         </form>
     );
 }
-
 
 export default LoginForm;

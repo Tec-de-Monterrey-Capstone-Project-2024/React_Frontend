@@ -21,7 +21,7 @@ const InsightRow: React.FC<IInsightRow> = ({ id, title, color }) => {
 
     return (
         <div className={insightRow}>
-            <div className="text">{title}</div>
+            <div className="text insight-row-text">{title}</div>
                 <div className="button-text">
                     <Button onClick={handleNavigate} variant='dark' type={'button'}>Show more</Button>
                 </div>

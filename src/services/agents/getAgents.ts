@@ -4,7 +4,7 @@ import { IAgent } from "./types";
 export const getAgents = async (instanceId: string, queueId: string) => {
     const usersEndpoint = `api/amazon-connect/instances/${instanceId}/queue-users`;
     const usersRes = await httpInstance.get(usersEndpoint);
-    console.log("usersRes.data: ", usersRes.data);
+    // console.log("usersRes.data: ", usersRes.data);
 
     let queueUsers: { userId: string, queueName: string }[] = [];
 
@@ -40,7 +40,7 @@ export const getAgents = async (instanceId: string, queueId: string) => {
             const userRes = await httpInstance.get(userEndpoint);
             return transformAgentData(userRes.data, queueName);
         } catch (error) {
-            console.error(`Error fetching data for user ${userId}:`, error);
+            // console.error(`Error fetching data for user ${userId}:`, error);
             return null;
         }
         // const userEndpoint = `api/amazon-connect/instances/${instanceId}/users/${userId}/description`;

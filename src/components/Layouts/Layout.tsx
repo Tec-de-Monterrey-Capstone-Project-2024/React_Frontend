@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { AuthProvider } from '../../context/AuthContext';
+import { ErrorProvider } from '../../context/ErrorContext';
 import { DataProvider } from '../../context/DataContext';
 
 import Navbar from './Navbar';

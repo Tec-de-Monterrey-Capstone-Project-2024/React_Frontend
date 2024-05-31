@@ -3,7 +3,7 @@ import { IAuthLayout } from './types';
 
 const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
   return (
-    <div className='grid grid-rows-2 h-screen w-screen'>
+    <div className='grid grid-rows-2 h-screen w-screen relative'>
       <div className='grid-span-1'>
         <img className='h-full w-full' src='/loginFoto.png' alt='login page image'/>
       </div>

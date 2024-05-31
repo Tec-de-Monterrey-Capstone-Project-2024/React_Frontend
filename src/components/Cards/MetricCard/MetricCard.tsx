@@ -21,11 +21,13 @@ const MetricCard: React.FC<IMetricCard> = ({ title, subtitle, minValue, maxValue
         state = positive_upside ? "danger" : "success";
     }
 
+    const roundedValue = Math.round(value);
+
     return (
         <div className="metric-card">
             <div className="top">
                 <h4>{title}</h4>
-                <p className={`unit ${state}`}>{value}{unit}</p>
+                <p className={`unit ${state}`}>{roundedValue}{unit}</p>
             </div>
             <div className="bottom">
                 <p>{subtitle}</p>

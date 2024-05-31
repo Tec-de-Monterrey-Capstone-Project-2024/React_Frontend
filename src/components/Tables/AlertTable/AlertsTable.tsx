@@ -1,12 +1,37 @@
-import React from 'react';
-import alertData from './alert-example.json'; // Ensure the path to your JSON file is correct
+import React, { useEffect, useState } from 'react';
+import { getAlerts } from '../../../services/alerts/getAlerts';
 import { PerformanceTag, PerformanceCategory } from '../../Tags/PerformanceCategoryTag';
-import { ScopeTag, AlertScope } from '../../Tags/AlertScopeTag';
+import { ScopeTag } from '../../Tags/AlertScopeTag';
 import Button from '../../Button/Button';
+import { useNavigate } from 'react-router-dom';
 
-function AlertsTable() {
+const AlertsTable: React.FC = () => {
+  const [alerts, setAlerts] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate(); // Inicializa useNavigate fuera del useEffect
+
+  useEffect(() => {
+    const fetchAlerts = async () => {
+      try {
+        const data = await getAlerts();
+        setAlerts(data);
+      } catch (error) {
+        setError('Failed to fetch alerts.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAlerts();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50">
         <div className="overflow-auto rounded-lg shadow">
         <table className="w-full table-fixed">
           <thead className="bg-gray-200">
@@ -21,25 +46,20 @@ function AlertsTable() {
           </thead>
 
           <tbody className="bg-white">
-            {alertData.map((alert, index) => (
+            {alerts.map((alert, index) => (
               <tr className="border-b" key={index}>
-                <td className="p-3 text-center">{index + 1}</td>
+                <td className="p-3 text-center">{alert.id}</td>
+                <td className="p-3 text-center">{alert.metricCode.replace(/_/g, ' ')}</td>
                 <td className="p-3 text-center">
-                  {`${alert.metric.name} (${alert.metric.code})`}
+                  <PerformanceTag severity={alert.insightCategory.toLowerCase() as PerformanceCategory} />
                 </td>
                 <td className="p-3 text-center">
-                  {/* Using PerformanceTag to display breach category */}
-                  <PerformanceTag severity={alert.breach_category as PerformanceCategory} />
+                  {alert.connectItemType && <ScopeTag type={alert.connectItemType.toLowerCase()} />}
                 </td>
-                <td className="p-3 text-center">
-                  {/* Using ScopeTag to display scope */}
-                  {alert.metric.agent_id && <ScopeTag type="agent" />}
-                  {alert.metric.queue_id && <ScopeTag type="queue" />}
-                </td>
-                <td className="p-3 text-center">{new Date(alert.occurred_at).toLocaleString()}</td>
+                <td className="p-3 text-center">{new Date(alert.occurredAt).toLocaleString()}</td>
                   <td className="p-3 text-center">
                       <div className="w-full ">
-                          <Button onClick={() => console.log('Insights for ID:', alert.id)} variant='dark' type={'button'}>Show more</Button>
+                          <Button onClick={() => navigate(`/insights/${alert.id}`)} variant='dark' type={'button'}>Show more</Button>
                       </div>
                   </td>
               </tr>
@@ -47,9 +67,10 @@ function AlertsTable() {
           </tbody>
 
         </table>
-        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default AlertsTable;
+

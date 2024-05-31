@@ -59,7 +59,7 @@ jobs:
           "REACT_APP_FIREBASE_PROJECT_NAME": "'"${{ secrets.REACT_APP_FIREBASE_PROJECT_NAME }}"'",
           "REACT_APP_FIREBASE_PROJECT_ID": "'"${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}"'",
           "REACT_APP_FIREBASE_PROJECT_NUMBER": "'"${{ secrets.REACT_APP_FIREBASE_PROJECT_NUMBER }}"'",
-          "REACT_APP_FIREBASE_API_KEY": "'"${{ secrets.REACT_APP_FIREBASE_API_KEY }}"'
+          "REACT_APP_FIREBASE_API_KEY": "'"${{ secrets.REACT_APP_FIREBASE_API_KEY }}"'"
           }' > env-vars.json
 
         cat env-vars.json

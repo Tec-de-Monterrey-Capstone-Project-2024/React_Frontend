@@ -6,6 +6,7 @@ const SocketConnectionState: React.FC = () => {
 
   useEffect(() => {
     connect();
+    console.log("Socket client connected.");
   }, []);
   
   useEffect(() => {

@@ -1,8 +1,8 @@
 import { io } from "socket.io-client";
 
 import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
-import { IUser } from '../services/user/types';
 import { socket } from "../services/insights/socket";
+import { IMetric } from "../services/metrics/types";
 
 interface SocketContextProps {
     isConnected: boolean,
@@ -16,7 +16,7 @@ export const SocketContext = createContext<SocketContextProps | null>(null);
 
 export const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isConnected, setIsConnected] = useState<boolean>(socket.connected);
-    const [events, setEvents] = useState<any>();
+    const [events, setEvents] = useState<IMetric[]>([]);
     
     const connect = () => {
         socket.connect();
@@ -28,8 +28,10 @@ export const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         setIsConnected(false);
     }
 
-    const onEvent = (value: any) => {
-        setEvents((prev: any) => [...prev, value]);
+    const onEvent = (value: IMetric) => {
+        setEvents((prev: IMetric[]) => [...prev, value]);
+        console.log("A message was received.")
+        console.log(events);
     }
 
     useEffect(() => {

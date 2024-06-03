@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from "@storybook/react";
 import AgentInsightRow from "./AgentInsightRow";
 import { IAgentInsightRow } from "./types";
+import { BrowserRouter as Router } from "react-router-dom";
 import React from 'react';
 
 const meta = {
@@ -27,7 +28,10 @@ const meta = {
 
 export default meta;
 
-const Template: StoryFn<IAgentInsightRow> = (args) => <AgentInsightRow {...args} />;
+const Template: StoryFn<IAgentInsightRow> = (args) =>
+    <Router>
+        <AgentInsightRow {...args} />;
+    </Router>
 
 export const Default = Template.bind({});
 Default.args = {

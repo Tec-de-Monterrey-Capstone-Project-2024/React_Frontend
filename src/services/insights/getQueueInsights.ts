@@ -4,14 +4,14 @@ export const getQueueInsights = async (queueId: string) => {
     let res: any;
     let endpoint: string;
     if (queueId === 'all') {
-        endpoint = `api/threshold-breach-insights?itemType=INSTANCE`;
+        endpoint = `api/threshold-breach-insights`;
     } else {
         endpoint = `api/threshold-breach-insights?connectItemId=${queueId}`;
     }
 
     await httpInstance.get(endpoint).then((response) => {
         res = response;
-        console.log("getQueueInsights response: ", response);
+        // console.log("getQueueInsights response: ", response);
     }).catch((err) => {
         res = err.response
     });

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { auth } from '../../firebase';
-import { signOut } from 'firebase/auth';
+import { signOut, deleteUser } from 'firebase/auth';
 
 import { useDataContext } from '../../context/DataContext';
 
@@ -13,7 +13,7 @@ import './styles.css';
 
 const AccountPage: React.FC = () => {
     const navigate = useNavigate();
-    const { user } = useDataContext();
+    const { user, setUser, setArn, setSelectedQueueId } = useDataContext();
     const [searchParams, setSearchParams] = useSearchParams();
     const [tab, setTab] = useState(1);
 
@@ -23,7 +23,15 @@ const AccountPage: React.FC = () => {
 
     const handleLogOut = () => {
         signOut(auth).then(() => {
-            navigate("/");
+            setUser(null);
+            localStorage.removeItem("user");
+            localStorage.removeItem("instanceId");
+
+            setArn('');
+            localStorage.setItem("arn", '');
+
+            setSelectedQueueId('all');
+            
             console.log("Signed out succesfully")
         }).catch((error) => {
             console.log('an error happened')

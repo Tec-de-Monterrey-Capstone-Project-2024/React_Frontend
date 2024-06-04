@@ -10,12 +10,13 @@ const AlertsTable: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const navigate = useNavigate(); // Inicializa useNavigate fuera del useEffect
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
         const data = await getAlerts();
+        console.log(data);
         setAlerts(data);
       } catch (error) {
         setError('Failed to fetch alerts.');
@@ -46,10 +47,10 @@ const AlertsTable: React.FC = () => {
           </thead>
 
           <tbody className="bg-white">
-            {alerts.map((alert, index) => (
+            {alerts.length > 0 && alerts.map((alert, index) => (
               <tr className="border-b" key={index}>
                 <td className="p-3 text-center">{alert.id}</td>
-                <td className="p-3 text-center">{alert.metricCode.replace(/_/g, ' ')}</td>
+                <td className="p-3 text-center">{alert.metricName.replace(/_/g, ' ')}</td>
                 <td className="p-3 text-center">
                   <PerformanceTag severity={alert.insightCategory.toLowerCase() as PerformanceCategory} />
                 </td>

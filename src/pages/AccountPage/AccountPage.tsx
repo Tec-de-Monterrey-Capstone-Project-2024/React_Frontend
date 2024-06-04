@@ -11,6 +11,8 @@ import { ContentCard } from '../../components/Cards/ContentCard';
 
 import './styles.css';
 
+import profPic from '../../assets/img/profile-picture.png';
+
 const AccountPage: React.FC = () => {
     const navigate = useNavigate();
     const { user, setUser, setArn, setSelectedQueueId } = useDataContext();
@@ -38,6 +40,7 @@ const AccountPage: React.FC = () => {
         })
     }
     useEffect(() => {
+        console.log(user);
         const urlTab = searchParams.get("tab");
         if (urlTab) {
             changeTab(parseInt(urlTab));
@@ -50,52 +53,34 @@ const AccountPage: React.FC = () => {
         <section className='account'>
             <div className="section-container container">
                 <ContentCard>
-                    <div className="content">
-                        <div className="sidebar">
-                            <div className="sidebar-container container">
-                                <div className="user">
-                                    <h2>{user?.firstName} {user?.lastName}</h2>
-                                    <p className='subtitle'>Supervisor</p>
+                    <div className="account-content">
+                        <div className='info'>
+                            <div className='img'>
+                                <img src={profPic} alt="Profile Picture" width={720} height={720} />
+                            </div>
+                            <div className='data'>
+                                <h2>{user?.firstName} {user?.lastName}</h2>
+                                <p className='username'>{user?.username}</p>
+                                <div className='inputs'>
+                                    <div className='column'>
+                                        <label htmlFor="email">Email</label>
+                                        <input name='email' title='email' type="email" value={user?.email} disabled />
+                                    </div>
+                                    <div className='column'>
+                                        <label htmlFor="sec-email">Secondary Email</label>
+                                        <input name='sec-email' title='sec-email' type="email" value={user?.secondaryEmail} disabled />
+                                    </div>
+                                    <div className='column'>
+                                        <label htmlFor="phone-number">Phone Number</label>
+                                        <input name='phone-number' title='phone-number' type="text" value={user?.mobile} disabled />
+                                    </div>
                                 </div>
-                                <ul>
-                                    <li>
-                                        <button onClick={() => changeTab(1)} data-active={tab === 1}>
-                                            Account
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button onClick={() => changeTab(2)} data-active={tab === 2}>
-                                            Preferences
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button onClick={handleLogOut} className="btn-type-4">
-                                            Log Out
-                                            {/* <img src={logoutIcon} alt="Logout icon" /> */}
-                                        </button>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
-                        <div className="tab">
-                            {tab === 1 ? <>
-                                <div className="tab-header">
-                                    <div className="title">
-                                        <h3>Account</h3>
-                                    </div>
-                                </div>
-                                <MyAccount />
-                            </> : tab === 2 ? <>
-                                <div className="tab-header">
-                                    <div className="title">
-                                        <h3>Preferences</h3>
-                                    </div>
-                                </div>
-                                {/* <Preferences /> */}
-                            </> : <>
-                                <p>Error</p>
-                            </>}
+                        <div className='bottom'>
+                            <button onClick={handleLogOut} className="btn-type-4">Logout</button>
                         </div>
+                        
                     </div>
                 </ContentCard>
             </div>

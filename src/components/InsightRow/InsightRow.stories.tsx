@@ -2,12 +2,13 @@ import { Meta, StoryFn } from "@storybook/react";
 import React from 'react';
 import InsightRow from "./InsightRow";
 import { IInsightRow } from "./types";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const meta = {
-    title: 'InsightRow',
+    title: 'Components/InsightRow',
     component: InsightRow,
     parameters: {
-        layout: 'centered',
+        layout: 'fullscreen',
         docs: {
             story: {
                 inline: true,
@@ -16,6 +17,7 @@ const meta = {
         },
     },
     argTypes: {
+        id: { control: 'number'},
         title: { control: 'text'},
         color: { control: 'text'},
     },
@@ -24,10 +26,14 @@ const meta = {
 
 export default meta;
 
-const Template: StoryFn<IInsightRow> = (args) => <InsightRow {...args} />;
+const Template: StoryFn<IInsightRow> = (args) =>
+    <Router>
+        <InsightRow {...args} />;
+    </Router>
 
 export const InsightRowExample = Template.bind({});
 InsightRowExample.args = {
-    title: 'Assign more agents to Reimbursements Queue',
+    id: 0,
+    title: 'Low Service Level',
     color: 'white',
 }

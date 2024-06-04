@@ -27,4 +27,6 @@ export interface IInsightCard {
      * Function to use with the button
      */
     func: () => void;
+
+    btn: boolean;
 }

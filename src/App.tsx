@@ -18,6 +18,7 @@ import ViewInsightPage from './pages/ViewInsightPage';
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 import { MetricDetailsPage } from './pages/MetricDetailsPage';
 import InsightPage  from './pages/InsightPage/InsightPage';
+import AddAlertPage from './pages/AddAlertPage';
 
 const App: React.FC = () => {
   return (
@@ -33,13 +34,14 @@ const App: React.FC = () => {
           <Route path='/' element={<PrivateRoute />}>
             <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
+            <Route path="/dashboard/agent/:agentId" element={<AgentDashboardPage />} />
             <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />
             <Route path="/insights" element={<InsightPage />} />
             <Route path="/insights/:id" element={<ViewInsightPage />} />
+            <Route path="/AddAlert" element={<AddAlertPage />} />
           </Route>
           
           {/* <Route component={NotFound} /> */}

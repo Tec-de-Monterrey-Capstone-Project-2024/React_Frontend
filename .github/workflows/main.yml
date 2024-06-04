@@ -53,8 +53,20 @@ jobs:
 
     - name: Deploy to Cloud Run
       run: |
+        # Create a JSON file for GCP (Google Cloud Platform)
+        echo '{
+          "GCP_PROJECT_ID": "'"${{ secrets.GCP_PROJECT_ID }}"'",
+          "REACT_APP_FIREBASE_PROJECT_NAME": "'"${{ secrets.REACT_APP_FIREBASE_PROJECT_NAME }}"'",
+          "REACT_APP_FIREBASE_PROJECT_ID": "'"${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}"'",
+          "REACT_APP_FIREBASE_PROJECT_NUMBER": "'"${{ secrets.REACT_APP_FIREBASE_PROJECT_NUMBER }}"'",
+          "REACT_APP_FIREBASE_API_KEY": "'"${{ secrets.REACT_APP_FIREBASE_API_KEY }}"'"
+          }' > env-vars.json
+
+        cat env-vars.json
+        
         gcloud run deploy connectmate-front \
           --image=us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/react-frontend/connectmate \
+          --env-vars-file=env-vars.json \
           --platform=managed \
           --port=3000 \
           --region=us-central1 \

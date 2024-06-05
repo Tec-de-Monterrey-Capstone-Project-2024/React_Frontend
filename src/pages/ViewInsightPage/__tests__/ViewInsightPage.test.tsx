@@ -28,6 +28,6 @@ describe("Test ViewInsightPage", () => {
       expect(screen.getByText("Contact Center Average Handle Time Breach.")).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId("insight-card")).toBeTruthy();
-  });
+    expect(screen.getByTestId("Insight card")).toBeTruthy();
+    });
 });

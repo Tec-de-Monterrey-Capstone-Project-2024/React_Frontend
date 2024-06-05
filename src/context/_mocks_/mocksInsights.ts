@@ -1,4 +1,4 @@
-import { IInsight } from "../../insights/types";
+import { IInsight } from "../../services/insights/types";
 
 export const mockInsight: IInsight = {
   id: 1,

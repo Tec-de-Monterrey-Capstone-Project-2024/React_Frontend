@@ -98,27 +98,27 @@ const ViewInsightPage: React.FC = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div data-testid="loading">Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div data-testid="error">{error}</div>;
   }
 
   if (!insight) {
-    return <div>No insight found</div>;
+    return <div data-testid="no-insight">No insight found</div>;
   }
 
   return (
-    <div className="p-4 flex flex-col h-screen">
+    <div className="p-4 flex flex-col h-screen" data-testid="view-insight-page">
       <div>
-        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
+        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold" data-testid="back-button">
           <span className="mr-2">&#8592;</span>
           Back
         </button>
         <br />
       </div>
-      <div data-testid="Insight card" className="flex-grow">
+      <div data-testid="insight-card" className="flex-grow">
         <Insight
           title={insight.insightName}
           message={insight.insightSummary}
@@ -129,22 +129,22 @@ const ViewInsightPage: React.FC = () => {
           insightPrevention={insight.insightPrevention}
           insightSeverity={insight.insightSeverity}
           insightCategory={insight.insightCategory}
-          data-testid="insight-card"
+          data-testid="insight-description"
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
         <div className="flex justify-between mt-4 items-start mb-8">
           {insight.status === 'TO_DO' && (
             <>
               <div className="space-x-4">
-                <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+                <Button data-testid="in-progress-button" variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
                   In Progress
                 </Button>
-                <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                <Button data-testid="done-button" variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
                   Done
                 </Button>
               </div>
               <div>
-                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                <Button data-testid="solve-in-connect-button" variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
                   Solve in Connect
                 </Button>
               </div>
@@ -153,12 +153,12 @@ const ViewInsightPage: React.FC = () => {
           {insight.status === 'IN_PROGRESS' && (
             <>
               <div className="space-x-4">
-                <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                <Button data-testid="done-button" variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
                   Done
                 </Button>
               </div>
               <div>
-                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                <Button data-testid="solve-in-connect-button" variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
                   Solve in Connect
                 </Button>
               </div>
@@ -167,19 +167,18 @@ const ViewInsightPage: React.FC = () => {
           {insight.status === 'DONE' && (
             <>
               <div className="space-x-4">
-                <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+                <Button data-testid="in-progress-button" variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
                   In Progress
                 </Button>
               </div>
               <div>
-                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                <Button data-testid="solve-in-connect-button" variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
                   Solve in Connect
                 </Button>
               </div>
             </>
           )}
         </div>
-
 
         {showModal && (
           <InsightModal
@@ -189,6 +188,7 @@ const ViewInsightPage: React.FC = () => {
             redirecting={redirecting}
             cancelRedirect={cancelRedirect}
             redirectCountdown={redirectCountdown}
+            data-testid="insight-modal"
           />
         )}
       </div>

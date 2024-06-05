@@ -27,7 +27,7 @@ const AccountPage: React.FC = () => {
             
             console.log("Signed out succesfully")
         }).catch((error) => {
-            console.log('an error happened')
+            console.error(error);
         })
     }
 
@@ -38,7 +38,7 @@ const AccountPage: React.FC = () => {
                     <div className="account-content">
                         <div className='info'>
                             <div className='img'>
-                                <img src={profPic} alt="Profile Picture" width={720} height={720} />
+                                <img data-testid="profPic" src={profPic} alt="Profile Picture" width={720} height={720} />
                             </div>
                             {user ? (
                                 <div className='data'>
@@ -60,9 +60,7 @@ const AccountPage: React.FC = () => {
                                     </div>
                                 </div>
                             ) : (
-                                <div data-testid="txt-loading">
-                                    <p>Loading...</p>
-                                </div>
+                                <p data-testid="txt-loading">Loading...</p>
                             )}
                         </div>
                         <div className='bottom'>

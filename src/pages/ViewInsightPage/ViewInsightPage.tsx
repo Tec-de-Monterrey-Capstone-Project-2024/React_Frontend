@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Button from '../components/Button/Button';
-import Insight from '../components/Cards/InsightCardDescription/InsightDescription';
-import InsightModal from '../components/Cards/Insights/InsightModal';
-import { getInsightByID } from '../services/insights/getInsightByID';
-import { updateInsightStatus } from '../services/insights/updateInsightStatus';
-import { IInsight } from '../services/insights/types';
+import Button from '../../components/Button/Button';
+import Insight from '../../components/Cards/InsightCardDescription/InsightDescription';
+import InsightModal from '../../components/Cards/Insights/InsightModal';
+import { getInsightByID } from '../../services/insights/getInsightByID';
+import { updateInsightStatus } from '../../services/insights/updateInsightStatus';
+import { IInsight } from '../../services/insights/types';
 
 const ViewInsightPage: React.FC = () => {
   const navigate = useNavigate();
@@ -118,8 +118,8 @@ const ViewInsightPage: React.FC = () => {
         </button>
         <br />
       </div>
-      <div className="flex-grow">
-        <Insight 
+      <div data-testid="Insight card" className="flex-grow">
+        <Insight
           title={insight.insightName}
           message={insight.insightSummary}
           situationTitle="Situation"
@@ -129,23 +129,58 @@ const ViewInsightPage: React.FC = () => {
           insightPrevention={insight.insightPrevention}
           insightSeverity={insight.insightSeverity}
           insightCategory={insight.insightCategory}
+          data-testid="insight-card"
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
         <div className="flex justify-between mt-4 items-start mb-8">
-          <div className="space-x-4">
-            <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
-              In Progress
-            </Button>
-            <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
-              Done
-            </Button>
-          </div>
-          <div>
-            <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
-              Solve in Connect
-            </Button>
-          </div>
+          {insight.status === 'TO_DO' && (
+            <>
+              <div className="space-x-4">
+                <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+                  In Progress
+                </Button>
+                <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                  Done
+                </Button>
+              </div>
+              <div>
+                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                  Solve in Connect
+                </Button>
+              </div>
+            </>
+          )}
+          {insight.status === 'IN_PROGRESS' && (
+            <>
+              <div className="space-x-4">
+                <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                  Done
+                </Button>
+              </div>
+              <div>
+                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                  Solve in Connect
+                </Button>
+              </div>
+            </>
+          )}
+          {insight.status === 'DONE' && (
+            <>
+              <div className="space-x-4">
+                <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+                  In Progress
+                </Button>
+              </div>
+              <div>
+                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                  Solve in Connect
+                </Button>
+              </div>
+            </>
+          )}
         </div>
+
+
         {showModal && (
           <InsightModal
             message={modalMessage}

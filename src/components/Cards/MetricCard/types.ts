@@ -6,5 +6,5 @@ export interface IMetricCard {
     value: number,
     unit: null | '%' | 's',
     positive_upside: boolean,
-    onClick: (() => void) | null,
+    onClick?: (() => void) | null,
 }

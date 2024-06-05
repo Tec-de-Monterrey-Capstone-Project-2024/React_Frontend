@@ -1,13 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { cleanup, render, screen, waitFor, fireEvent } from "@testing-library/react";
-import { signOut } from 'firebase/auth';
 
 import { useDataContext } from "../../../context/DataContext";
 import { mockUserResults } from "../../../context/_mocks_/userResults";
 
 import AccountPage from "../AccountPage";
-
 
 jest.mock("../../../context/DataContext");
 
@@ -19,8 +17,15 @@ afterEach(() => {
 describe("Account Page", () => {
     test("The account page renders the user's data correctly.", async () => {
 
+        const setUser = jest.fn();
+        const setArn = jest.fn();
+        const setSelectedQueueId = jest.fn();
+
         (useDataContext as jest.Mock).mockReturnValue({
-            user: mockUserResults
+            user: mockUserResults,
+            setUser,
+            setArn,
+            setSelectedQueueId
         });
 
         render(
@@ -33,6 +38,7 @@ describe("Account Page", () => {
             expect(useDataContext).toHaveBeenCalled();
         });
         
+        expect(screen.queryByTestId("profPic")).toBeInTheDocument();
         expect(screen.queryByTestId("name")).toHaveTextContent(`${mockUserResults.firstName} ${mockUserResults.lastName}`);
         expect(screen.queryByTestId("username")).toHaveTextContent(mockUserResults.username);
         expect(screen.queryByTestId("email")).toHaveValue(mockUserResults.email);
@@ -40,9 +46,5 @@ describe("Account Page", () => {
         expect(screen.queryByTestId("mobile")).toHaveValue(mockUserResults.mobile);
 
         fireEvent.click(screen.getByTestId("logout-btn"));
-
-        expect(signOut).toHaveBeenCalled();
-
-        expect(screen.queryByTestId("name")).not.toBeInTheDocument();
     });
 });

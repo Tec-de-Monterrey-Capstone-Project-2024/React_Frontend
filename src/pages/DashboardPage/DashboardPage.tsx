@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import { useDataContext } from '../context/DataContext';
+import { useDataContext } from '../../context/DataContext';
 
-import MetricsData from '../config/MetricsData';
+import MetricsData from '../../config/MetricsData';
 
-import { getQueueInsights } from '../services/insights/getQueueInsights';
-import { getQueueCounts } from '../services/queues/getQueueCounts';
-import { describeQueue } from '../services/queues/describeQueue';
-import { getQueueMetrics } from '../services/metrics/getQueueMetrics';
-import { getAgentMetrics } from '../services/metrics/getAgentMetrics';
+import { getQueueInsights } from '../../services/insights/getQueueInsights';
+import { getQueueCounts } from '../../services/queues/getQueueCounts';
+import { describeQueue } from '../../services/queues/describeQueue';
+import { getQueueMetrics } from '../../services/metrics/getQueueMetrics';
+import { getAgentMetrics } from '../../services/metrics/getAgentMetrics';
 
-import { IMetric } from '../services/metrics/types';
-import { IInsight } from '../services/insights/types';
-import { MetricCard } from '../components/Cards/MetricCard';
-import { IQueueCounts } from '../services/queues/types';
-import { IQueue } from '../services/queues/types';
-import InsightCard  from "../components/Cards/InsightCard/InsightCard";
+import { IMetric } from '../../services/metrics/types';
+import { IInsight } from '../../services/insights/types';
+import { MetricCard } from '../../components/Cards/MetricCard';
+import { IQueueCounts } from '../../services/queues/types';
+import { IQueue } from '../../services/queues/types';
+import InsightCard  from "../../components/Cards/InsightCard/InsightCard";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -116,7 +116,7 @@ const DashboardPage = () => {
     <section className='dashboard home'>
       <div className='container'>
         {selectedQueueId !== "all" && (
-          <div className="queues-card-dashboard">
+          <div className="queues-card-dashboard" data-testid={"dashboard-page-queue-card"}>
             <InsightCard title={(loadingQueue ? "Loading queue name..." : (queue?.at(0)?.name ?? "Queue"))} description1={"Clients: " + (loadingQueueCounts ? "Loading clients..." : (queueCounts?.at(0)?.contacts ?? "0"))}
                          description2={"Agents: " + (loadingQueueCounts ? "Loading agents..." : (queueCounts?.at(0)?.agents ?? "0"))} color={"white"} borderColor={queueCounts?.at(0)?.color ?? "green"}
                          showBoxBorder={true} func={goToAgentList} btn={false} />

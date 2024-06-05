@@ -49,7 +49,7 @@ const AlertsTable: React.FC = () => {
           <tbody className="bg-white">
             {alerts.length > 0 && alerts.map((alert, index) => (
               <tr className="border-b" key={index}>
-                <td className="p-3 text-center">{alert.id}</td>
+                <td className="p-3 text-center">{index+1}</td>
                 <td className="p-3 text-center">{alert.metricName.replace(/_/g, ' ')}</td>
                 <td className="p-3 text-center">
                   <PerformanceTag severity={alert.insightCategory.toLowerCase() as PerformanceCategory} />

@@ -27,10 +27,11 @@ afterEach(() => {
 });
 
 /*
-Me encargué de hacer que la lógica sea más parecida a la logica de Abi e intente implementar el test
-The general dashboard page renders successfully for a specific queue
-pero si no seguia con logica para intentar avanzarle sentia que me iba a quedarme atorado, espero me puedas ayudar a resolver unos tests que no me salen
-plis tqm
+ * Me encargué de hacer que la lógica sea más parecida a la logica de Abi e intente implementar el test
+ * The general dashboard page renders successfully for a specific queue
+ * pero si no seguia con logica para intentar avanzarle sentia que me iba a quedarme atorado, 
+ * espero me puedas ayudar a resolver unos tests que no me salen
+ * plis tqm
  */
 
 
@@ -40,16 +41,16 @@ describe("General Dashboard Page", () => {
     const arn = "arn:aws:connect:us-west-2:123456789012:instance/7c78bd60-4a9f-40e5-b461-b7a0dfaad848";
 
     beforeEach(() => {
-        getQueueCounts.mockResolvedValue({ data: [{ contacts: 5, agents: 10, color: "green" }] });
-        describeQueue.mockResolvedValue({ data: [{ id: queueId, name: "Test Queue" }] });
-        getQueueMetrics.mockResolvedValue({
+        (getQueueCounts as jest.Mock).mockResolvedValue({ data: [{ contacts: 5, agents: 10, color: "green" }] });
+        (describeQueue as jest.Mock).mockResolvedValue({ data: [{ id: queueId, name: "Test Queue" }] });
+        (getQueueMetrics as jest.Mock).mockResolvedValue({
             status: 200,
             data: {
                 metric1: 100,
                 metric2: 200
             }
         });
-        getQueueInsights.mockResolvedValue({
+        (getQueueInsights as jest.Mock).mockResolvedValue({
             data: [
                 { id: "1", insightName: "Insight 1", insightSummary: "Summary 1", insightSeverity: "low" },
                 { id: "2", insightName: "Insight 2", insightSummary: "Summary 2", insightSeverity: "high" }
@@ -211,11 +212,6 @@ describe("General Dashboard Page", () => {
     });
 
     test("The GeneralDashboardPage displays 'No metrics found' when no metrics are available", async () => {
-        getQueueMetrics.mockResolvedValueOnce({
-            status: 200,
-            data: {}
-        });
-
         (useDataContext as jest.Mock).mockReturnValue({
             user: { instanceId },
             arn,
@@ -236,7 +232,7 @@ describe("General Dashboard Page", () => {
     });
 
     test("The GeneralDashboardPage displays 'No insights found.' when no insights are available", async () => {
-        getQueueInsights.mockResolvedValueOnce({
+        (getQueueInsights as jest.Mock).mockResolvedValueOnce({
             data: []
         });
 

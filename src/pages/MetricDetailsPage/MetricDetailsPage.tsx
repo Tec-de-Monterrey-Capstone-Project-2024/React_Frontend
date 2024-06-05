@@ -42,7 +42,7 @@ const MetricDetailsPage: React.FC = () => {
                 <b><u>Metric Details</u></b>
             </h2>
             <div key={id} className='w-fit'>
-                <ContentCard>
+                <ContentCard data-testid="graph-container">
                     <h5 className="pb-2"><b>{name + " (" + metric_info_code + ")"}</b></h5>
                     {graph === 'Gauge' ? (
                             <GaugeChart min={0} max={100} value={value} />

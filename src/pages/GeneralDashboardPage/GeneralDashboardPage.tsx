@@ -117,15 +117,23 @@ const GeneralDashboardPage = () => {
       <div className='container'>
         {selectedQueueId !== "all" && (
           <div data-testid="queue-container" className="queues-card-dashboard">
-            <InsightCard title={(loadingQueue ? "Loading queue name..." : (queue?.at(0)?.name ?? "Queue"))} description1={"Clients: " + (loadingQueueCounts ? "Loading clients..." : (queueCounts?.at(0)?.contacts ?? "0"))}
-                         description2={"Agents: " + (loadingQueueCounts ? "Loading agents..." : (queueCounts?.at(0)?.agents ?? "0"))} color={"white"} borderColor={queueCounts?.at(0)?.color ?? "green"}
-                         showBoxBorder={true} func={goToAgentList} btn={false} />
+            <InsightCard 
+              data-testid="queue-card"
+              title={(loadingQueue ? "Loading queue name..." : (queue?.at(0)?.name ?? "Queue"))} 
+              description1={"Clients: " + (loadingQueueCounts ? "Loading clients..." : (queueCounts?.at(0)?.contacts ?? "0"))}
+              description2={"Agents: " + (loadingQueueCounts ? "Loading agents..." : (queueCounts?.at(0)?.agents ?? "0"))} 
+              color={"white"} 
+              borderColor={queueCounts?.at(0)?.color ?? "green"}
+              showBoxBorder={true} 
+              func={goToAgentList} 
+              btn={true} 
+            />
           </div>
         )}
         <div data-testid='dashboard-content' className='dashboard-content'>
           <div data-testid='column-metrics' className='column'>
             <h2>KPIs</h2>
-            {loadingMetrics ? <p data-testid='txt-loading-metrics'>Loading...</p> : ((metrics && metrics.length > 0) ? (
+            {loadingMetrics ? <p>Loading...</p> : ((metrics && metrics.length > 0) ? (
                 <div data-testid='metrics-container' className='metrics'>
                   {metrics.map(metric => {
                     const {id, metric_info_code, value} = metric;
@@ -133,7 +141,8 @@ const GeneralDashboardPage = () => {
 
                     return (
                         <MetricCard
-                          key={id}
+                            data-testid={"metric-card-" + id}
+                            key={id}
                             title={name}
                             subtitle={''}
                             minValue={min}
@@ -154,7 +163,7 @@ const GeneralDashboardPage = () => {
           </div>
           <div data-testid='column-insights' className='column'>
             <h2>Insights</h2>
-            {loadingInsights ? <p data-testid='txt-loading-insights'>Loading...</p> : ((insights && insights.length > 0) ? (
+            {loadingInsights ? <p>Loading...</p> : ((insights && insights.length > 0) ? (
                 <div data-testid="insights-container" className="insights">
                   {insights.map(insight => (
                       <InsightCard

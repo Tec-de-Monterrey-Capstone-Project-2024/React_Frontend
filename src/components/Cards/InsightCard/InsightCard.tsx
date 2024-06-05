@@ -26,7 +26,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
                 {description2}
             </div>
             {btn && <div className="insight-button">
-                <button className='btn-type-6' onClick={func}>View more</button>
+                <button data-testid="btn-insight-card" className='btn-type-6' onClick={func}>View more</button>
             </div>}
         </div>
     );

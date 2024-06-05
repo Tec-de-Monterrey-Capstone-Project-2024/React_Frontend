@@ -27,6 +27,8 @@ export interface IInsightCard {
      * Function to use with the button
      */
     func: () => void;
-
+    /**
+     * If the buttom appears in the card
+     */
     btn: boolean;
 }

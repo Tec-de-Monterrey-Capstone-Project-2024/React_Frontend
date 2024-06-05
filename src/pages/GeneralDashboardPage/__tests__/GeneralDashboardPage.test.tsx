@@ -1,18 +1,14 @@
 import GeneralDashboardPage from "../GeneralDashboardPage";
+import { getQueueCounts } from "../../../services/queues/getQueueCounts";
 
 import { DataProvider, useDataContext } from "../../../context/DataContext";
-import { mockMetricsResults } from "../../../context/_mocks_/metricResults";
-import { mockInsightsResults } from "../../../context/_mocks_/insightResults";
-import { mockQueueResults } from "../../../context/_mocks_/queueResults";
+import { AuthProvider } from "../../../context/AuthContext";
+import { ErrorProvider } from "../../../context/ErrorContext";
+import { mockUserResults } from "../../../context/_mocks_/userResults";
 
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router, useNavigate, useNavigation } from "react-router-dom";
 import React from "react";
-import { mockUserResults } from "../../../context/_mocks_/userResults";
-import { AuthProvider } from "../../../context/AuthContext";
-import { ErrorProvider } from "../../../context/ErrorContext";
-import { getQueueCounts } from "../../../services/queues/getQueueCounts";
-import { describeQueue } from "../../../services/queues/describeQueue";
 
 jest.mock("../../../context/DataContext.tsx");
 
@@ -71,6 +67,7 @@ describe("General Dashboard Page", () => {
 
         await waitFor(() => {
             expect(useDataContext).toHaveBeenCalled();
+            expect(getQueueCounts).toHaveBeenCalled();
         });
 
         expect(screen.queryByTestId("dashboard-content")).hasChildNodes;
@@ -80,8 +77,8 @@ describe("General Dashboard Page", () => {
         expect(screen.queryByTestId("column-insights")).hasChildNodes;
         expect(screen.queryByTestId("insights-container")).hasChildNodes;
 
-        fireEvent.click(screen.getByTestId("btn-insight-card"));
-        expect(screen.queryByTestId("btn-insight-card")?.getAttribute("func")).toHaveBeenCalled();
+        fireEvent.click(screen.getByTestId("insight-card-button"));
+        expect(screen.queryByTestId("insight-card-button")?.getAttribute("func")).toHaveBeenCalled();
 
         expect(screen.queryByTestId("graph-container"));
 

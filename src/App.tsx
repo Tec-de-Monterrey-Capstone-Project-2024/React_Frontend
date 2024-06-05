@@ -8,7 +8,7 @@ import LoginPage from './pages/AuthPages/LoginPage';
 import SignupPage from './pages/AuthPages/SignupPage';
 import ForgotPage from './pages/AuthPages/ForgotPage';
 
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
 import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import AccountPage from './pages/AccountPage/AccountPage';

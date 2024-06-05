@@ -39,7 +39,6 @@ describe("General Dashboard Page", () => {
             expect(useDataContext).toHaveBeenCalled();
         });
 
-        // Verify organization of elements/components
         expect(screen.queryByTestId("dashboard-content")).hasChildNodes;
         expect(screen.queryByTestId("queue-container")).not.toBeInTheDocument();
         expect(screen.queryByTestId("column-metrics")?.hasChildNodes);
@@ -47,11 +46,6 @@ describe("General Dashboard Page", () => {
         expect(screen.queryByTestId("column-insights")).hasChildNodes;
         expect(screen.queryByTestId("insights-container")).hasChildNodes;
 
-        // View metric details
-        // fireEvent.click(screen.getByTestId("metric-card-1"));
-        // expect(useNavigate()).toHaveBeenCalled();
-
-        // Graph in metric details
         expect(screen.queryByTestId("graph-container"));
 
     });
@@ -79,7 +73,6 @@ describe("General Dashboard Page", () => {
             expect(useDataContext).toHaveBeenCalled();
         });
 
-        // Verify organization of elements/components
         expect(screen.queryByTestId("dashboard-content")).hasChildNodes;
         expect(screen.queryByTestId("queue-container")).hasChildNodes;
         expect(screen.queryByTestId("column-metrics")).hasChildNodes;
@@ -87,11 +80,9 @@ describe("General Dashboard Page", () => {
         expect(screen.queryByTestId("column-insights")).hasChildNodes;
         expect(screen.queryByTestId("insights-container")).hasChildNodes;
 
-        // View agents in the queue
         fireEvent.click(screen.getByTestId("btn-insight-card"));
         expect(screen.queryByTestId("btn-insight-card")?.getAttribute("func")).toHaveBeenCalled();
 
-        // Graph in metric details
         expect(screen.queryByTestId("graph-container"));
 
     });

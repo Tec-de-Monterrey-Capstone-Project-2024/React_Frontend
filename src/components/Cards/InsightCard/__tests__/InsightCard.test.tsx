@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent} from '@testing-library/react';
 import InsightCard from '../InsightCard';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -35,5 +35,7 @@ describe("Tests for InsightCard Component", () => {
         expect(screen.getByTestId("insight-card-description1")).toHaveTextContent('Service level is below 80%');
         expect(screen.getByTestId("insight-card-description2")).toHaveTextContent('Move to the top of the queue to improve service level');
         expect(screen.getByTestId("insight-card-button")).toHaveTextContent('View more');
+
+        fireEvent.click(screen.getByTestId("insight-card-button"));
     });
 });

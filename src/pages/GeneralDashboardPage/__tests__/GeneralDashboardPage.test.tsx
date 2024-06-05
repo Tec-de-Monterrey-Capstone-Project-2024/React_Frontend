@@ -44,8 +44,8 @@ describe("General Dashboard Page", () => {
         expect(screen.queryByTestId("insights-container")).hasChildNodes;
 
         // View metric details
-        // fireEvent.click(screen.getByTestId("metric-card-1"));
-        // expect(useNavigate()).toHaveBeenCalled();
+        fireEvent.click(screen.getByTestId("metric-card-1"));
+        expect(useNavigate()).toHaveBeenCalled();
 
         // Graph in metric details
         expect(screen.queryByTestId("graph-container"));
@@ -80,10 +80,6 @@ describe("General Dashboard Page", () => {
         // View agents in the queue
         fireEvent.click(screen.getByTestId("btn-insight-card"));
         expect(screen.queryByTestId("btn-insight-card")?.getAttribute("func")).toHaveBeenCalled();
-
-        // View metric details
-        // fireEvent.click(screen.getByTestId("metric-card-1"));
-        // expect(useNavigate()).toHaveBeenCalled();
 
         // Graph in metric details
         expect(screen.queryByTestId("graph-container"));

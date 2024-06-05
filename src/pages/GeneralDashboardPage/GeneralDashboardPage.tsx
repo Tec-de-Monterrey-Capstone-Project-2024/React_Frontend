@@ -141,7 +141,6 @@ const GeneralDashboardPage = () => {
 
                     return (
                         <MetricCard
-                            data-testid={"metric-card-" + id}
                             key={id}
                             title={name}
                             subtitle={''}

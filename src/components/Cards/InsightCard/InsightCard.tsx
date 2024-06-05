@@ -15,7 +15,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
     });
 
     return (
-        <div className={card}>
+        <div className={card} data-testid="insight-card">
             <div className="header">
                 <h1>{title}</h1>
             </div>

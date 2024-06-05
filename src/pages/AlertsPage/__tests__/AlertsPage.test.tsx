@@ -5,8 +5,8 @@ import AlertsPage from '../AlertsPage';
 import { ROUTES } from '../../../ROUTES';
 
 // Mock the components and hooks from react-router-dom
-jest.mock('../../components/Tables/AlertTable', () => () => <div data-testid="alerts-table" />);
-jest.mock('../../components/Button', () => ({
+jest.mock('../../../components/Tables/AlertTable', () => () => <div data-testid="alerts-table" />);
+jest.mock('../../../components/Button', () => ({
   Button: ({ onClick, children }: { onClick: () => void; children: React.ReactNode }) => (
     <button onClick={onClick} data-testid="add-alert-button">
       {children}

@@ -4,7 +4,7 @@ import { IQueueCounts } from "./types";
 export const getQueueCounts = async (instanceId: string, queueId: string): Promise<{ data: IQueueCounts[] }> => {
     const usersEndpoint = `api/amazon-connect/instances/${instanceId}/queue-users`;
     const usersRes = await httpInstance.get(usersEndpoint);
-    console.log("getQueueCounts usersRes.data: ", usersRes.data);
+    // console.log("getQueueCounts usersRes.data: ", usersRes.data);
 
     const queueData = usersRes.data[queueId];
 

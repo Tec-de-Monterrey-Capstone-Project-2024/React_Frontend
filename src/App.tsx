@@ -2,15 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Layout from './components/Layouts/Layout';
-import PrivateRoute from './context/PrivateRoute';
-import { ErrorProvider } from './context/ErrorContext';
-
+import PrivateRoute from './components/Layouts/PrivateRoute';
 
 import LoginPage from './pages/AuthPages/LoginPage';
 import SignupPage from './pages/AuthPages/SignupPage';
 import ForgotPage from './pages/AuthPages/ForgotPage';
 
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
 import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import AccountPage from './pages/AccountPage/AccountPage';
@@ -24,7 +22,6 @@ import AddAlertPage from './pages/AddAlertPage';
 
 const App: React.FC = () => {
   return (
-    <ErrorProvider>
     <Router>
       <Layout>
         <Routes>
@@ -37,7 +34,7 @@ const App: React.FC = () => {
           <Route path='/' element={<PrivateRoute />}>
             <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/dashboard/agent/:id" element={<AgentDashboardPage />} />
+            <Route path="/dashboard/agent/:agentId" element={<AgentDashboardPage />} />
             <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/account" element={<AccountPage />} />
@@ -51,7 +48,6 @@ const App: React.FC = () => {
         </Routes>
       </Layout>
     </Router>
-    </ErrorProvider>
   );
 };
 

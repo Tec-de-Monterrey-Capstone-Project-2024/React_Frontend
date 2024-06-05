@@ -4,7 +4,7 @@ import { IQueue } from "./types";
 export const describeQueue = async (instanceId: string, queueId: string): Promise<{ data: IQueue[] }> => {
     const usersEndpoint = `api/amazon-connect/instances/${instanceId}/queues/${queueId}/description`;
     const queuesRes = await httpInstance.get(usersEndpoint);
-    console.log("describeQueue: ", queuesRes.data);
+    // console.log("describeQueue: ", queuesRes.data);
 
     const queueData = queuesRes.data;
 

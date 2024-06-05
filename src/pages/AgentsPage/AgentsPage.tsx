@@ -21,7 +21,6 @@ const AgentsPage = () => {
             try {
                 if (user) {
                     const res = await getAgents(user.instanceId, selectedQueueId);
-                    console.log(res.data);
                     setAgents(res.data);
                     
                 }

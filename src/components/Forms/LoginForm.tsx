@@ -37,7 +37,7 @@ const LoginForm: React.FC = () => {
             setLoginError("Invalid credentials");
             console.error("Login failed:", loginError);
             signOut();
-            deleteUser(res);
+            // deleteUser(res);
         }
     }
 

@@ -20,15 +20,13 @@ const InsightRow: React.FC<IInsightRow> = ({ id, title, color }) => {
     };
 
     return (
-        <div className={insightRow}>
-            <div className="text">{title}</div>
-                <div className="button-text">
+        <div className={insightRow} data-testid={"wrapper-insight-row"} >
+            <div className="text insight-row-text" data-testid={"insight-row-title"}>{title}</div>
+                <div className="button-text" data-testid={"insight-row-button"}>
                     <Button onClick={handleNavigate} variant='dark' type={'button'}>Show more</Button>
                 </div>
             </div>
-        
     );
-    
 };
 
 export default InsightRow;

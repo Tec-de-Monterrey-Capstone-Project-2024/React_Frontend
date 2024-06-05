@@ -1,25 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React from 'react';
 
 import { auth } from '../../firebase';
-import { signOut, deleteUser } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 
 import { useDataContext } from '../../context/DataContext';
 
-import MyAccount from '../../components/DataDisplay/MyAccount';
 import { ContentCard } from '../../components/Cards/ContentCard';
 
 import './styles.css';
 
-const AccountPage: React.FC = () => {
-    const navigate = useNavigate();
-    const { user, setUser, setArn, setSelectedQueueId } = useDataContext();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [tab, setTab] = useState(1);
+import profPic from '../../assets/img/profile-picture.png';
 
-    const changeTab = (tabIndex: number) => {
-        setTab(tabIndex);
-    };
+const AccountPage: React.FC = () => {
+    const { user, setUser, setArn, setSelectedQueueId } = useDataContext();
 
     const handleLogOut = () => {
         signOut(auth).then(() => {
@@ -37,65 +30,45 @@ const AccountPage: React.FC = () => {
             console.log('an error happened')
         })
     }
-    useEffect(() => {
-        const urlTab = searchParams.get("tab");
-        if (urlTab) {
-            changeTab(parseInt(urlTab));
-        } else {
-            changeTab(1);
-        }
-    }, [searchParams]);
 
     return <>
         <section className='account'>
             <div className="section-container container">
                 <ContentCard>
-                    <div className="content">
-                        <div className="sidebar">
-                            <div className="sidebar-container container">
-                                <div className="user">
-                                    <h2>{user?.firstName} {user?.lastName}</h2>
-                                    <p className='subtitle'>Supervisor</p>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <button onClick={() => changeTab(1)} data-active={tab === 1}>
-                                            Account
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button onClick={() => changeTab(2)} data-active={tab === 2}>
-                                            Preferences
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button onClick={handleLogOut} className="btn-type-4">
-                                            Log Out
-                                            {/* <img src={logoutIcon} alt="Logout icon" /> */}
-                                        </button>
-                                    </li>
-                                </ul>
+                    <div className="account-content">
+                        <div className='info'>
+                            <div className='img'>
+                                <img src={profPic} alt="Profile Picture" width={720} height={720} />
                             </div>
-                        </div>
-                        <div className="tab">
-                            {tab === 1 ? <>
-                                <div className="tab-header">
-                                    <div className="title">
-                                        <h3>Account</h3>
+                            {user ? (
+                                <div className='data'>
+                                    <h2 data-testid="name">{user.firstName} {user.lastName}</h2>
+                                    <p data-testid='username' className='username'>{user.username}</p>
+                                    <div className='inputs'>
+                                        <div className='column'>
+                                            <label htmlFor="email">Email</label>
+                                            <input data-testid='email' name='email' title='email' type="email" value={user.email} disabled />
+                                        </div>
+                                        <div className='column'>
+                                            <label htmlFor="sec-email">Secondary Email</label>
+                                            <input data-testid='sec-email' name='sec-email' title='sec-email' type="email" value={user.secondaryEmail} disabled />
+                                        </div>
+                                        <div className='column'>
+                                            <label htmlFor="phone-number">Phone Number</label>
+                                            <input data-testid='mobile' name='phone-number' title='phone-number' type="text" value={user.mobile} disabled />
+                                        </div>
                                     </div>
                                 </div>
-                                <MyAccount />
-                            </> : tab === 2 ? <>
-                                <div className="tab-header">
-                                    <div className="title">
-                                        <h3>Preferences</h3>
-                                    </div>
+                            ) : (
+                                <div data-testid="txt-loading">
+                                    <p>Loading...</p>
                                 </div>
-                                {/* <Preferences /> */}
-                            </> : <>
-                                <p>Error</p>
-                            </>}
+                            )}
                         </div>
+                        <div className='bottom'>
+                            <button data-testid="logout-btn" onClick={handleLogOut} className="btn-type-4">Logout</button>
+                        </div>
+                        
                     </div>
                 </ContentCard>
             </div>

@@ -8,10 +8,9 @@
 .white-box{
     @apply bg-white;
 }
-.text{
+.insight-row-text{
     @apply flex text-black font-bold font-montserrat text-left;
     @apply items-center;
-    @apply whitespace-nowrap;
     @apply overflow-hidden;
     @apply text-ellipsis;
     @apply text-base;

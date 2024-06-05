@@ -14,6 +14,9 @@ const AlertsPage: React.FC = () => {
   return (
     <>
     <div style={{ textAlign: 'center', padding: '20px' }}>
+      <div>
+        <AlertsTable />
+      </div>
         <Button
           onClick={handleAddAlertClick}
           variant="green"
@@ -24,9 +27,7 @@ const AlertsPage: React.FC = () => {
           Add Alert
         </Button>
       </div>
-      <div>
-        <AlertsTable />
-      </div>
+      
       
     </>
   );

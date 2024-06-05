@@ -3,16 +3,20 @@ import { getAlerts } from '../../../services/alerts/getAlerts';
 import { PerformanceTag, PerformanceCategory } from '../../Tags/PerformanceCategoryTag';
 import { ScopeTag } from '../../Tags/AlertScopeTag';
 import Button from '../../Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const AlertsTable: React.FC = () => {
   const [alerts, setAlerts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
         const data = await getAlerts();
+        console.log(data);
         setAlerts(data);
       } catch (error) {
         setError('Failed to fetch alerts.');
@@ -28,8 +32,8 @@ const AlertsTable: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="overflow-auto rounded-lg shadow">
+    <div className="p-6 bg-gray-50">
+        <div className="overflow-auto rounded-lg shadow">
         <table className="w-full table-fixed">
           <thead className="bg-gray-200">
             <tr>
@@ -43,26 +47,20 @@ const AlertsTable: React.FC = () => {
           </thead>
 
           <tbody className="bg-white">
-            {alerts.map((alert, index) => (
+            {alerts.length > 0 && alerts.map((alert, index) => (
               <tr className="border-b" key={index}>
-                <td className="p-3 text-center">{alert.id}</td>
-                <td className="p-3 text-center">{alert.metricCode}</td>
+                <td className="p-3 text-center">{index+1}</td>
+                <td className="p-3 text-center">{alert.metricName.replace(/_/g, ' ')}</td>
                 <td className="p-3 text-center">
-                  <PerformanceTag severity={alert.insightCategory as PerformanceCategory} />
+                  <PerformanceTag severity={alert.insightCategory.toLowerCase() as PerformanceCategory} />
                 </td>
                 <td className="p-3 text-center">
                   {alert.connectItemType && <ScopeTag type={alert.connectItemType.toLowerCase()} />}
                 </td>
                 <td className="p-3 text-center">{new Date(alert.occurredAt).toLocaleString()}</td>
-                <td className="p-3 text-center">
-                  <div className="w-full">
-                    <Button title={"View"} variant={"dark"} onClick={() => console.log('Insights for ID:', alert.id)} />
-                  </div>
-                </td>
-                <td className="p-3 text-center">{new Date(alert.occurred_at).toLocaleString()}</td>
                   <td className="p-3 text-center">
                       <div className="w-full ">
-                          <Button onClick={() => console.log('Insights for ID:', alert.id)} variant='dark' type={'button'}>Show more</Button>
+                          <Button onClick={() => navigate(`/insights/${alert.id}`)} variant='dark' type={'button'}>Show more</Button>
                       </div>
                   </td>
               </tr>

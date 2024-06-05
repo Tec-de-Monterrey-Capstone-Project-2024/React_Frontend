@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import React from 'react';
 
 import { auth } from '../../firebase';
-import { signOut, deleteUser } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 
 import { useDataContext } from '../../context/DataContext';
 
-import MyAccount from '../../components/DataDisplay/MyAccount';
 import { ContentCard } from '../../components/Cards/ContentCard';
 
 import './styles.css';
@@ -14,14 +12,7 @@ import './styles.css';
 import profPic from '../../assets/img/profile-picture.png';
 
 const AccountPage: React.FC = () => {
-    const navigate = useNavigate();
     const { user, setUser, setArn, setSelectedQueueId } = useDataContext();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [tab, setTab] = useState(1);
-
-    const changeTab = (tabIndex: number) => {
-        setTab(tabIndex);
-    };
 
     const handleLogOut = () => {
         signOut(auth).then(() => {
@@ -39,15 +30,6 @@ const AccountPage: React.FC = () => {
             console.log('an error happened')
         })
     }
-    useEffect(() => {
-        console.log(user);
-        const urlTab = searchParams.get("tab");
-        if (urlTab) {
-            changeTab(parseInt(urlTab));
-        } else {
-            changeTab(1);
-        }
-    }, [searchParams]);
 
     return <>
         <section className='account'>
@@ -58,24 +40,30 @@ const AccountPage: React.FC = () => {
                             <div className='img'>
                                 <img src={profPic} alt="Profile Picture" width={720} height={720} />
                             </div>
-                            <div className='data'>
-                                <h2>{user?.firstName} {user?.lastName}</h2>
-                                <p className='username'>{user?.username}</p>
-                                <div className='inputs'>
-                                    <div className='column'>
-                                        <label htmlFor="email">Email</label>
-                                        <input name='email' title='email' type="email" value={user?.email} disabled />
-                                    </div>
-                                    <div className='column'>
-                                        <label htmlFor="sec-email">Secondary Email</label>
-                                        <input name='sec-email' title='sec-email' type="email" value={user?.secondaryEmail} disabled />
-                                    </div>
-                                    <div className='column'>
-                                        <label htmlFor="phone-number">Phone Number</label>
-                                        <input name='phone-number' title='phone-number' type="text" value={user?.mobile} disabled />
+                            {user ? (
+                                <div className='data'>
+                                    <h2 data-testid="name">{user.firstName} {user.lastName}</h2>
+                                    <p data-testid='username' className='username'>{user.username}</p>
+                                    <div className='inputs'>
+                                        <div className='column'>
+                                            <label htmlFor="email">Email</label>
+                                            <input data-testid='email' name='email' title='email' type="email" value={user.email} disabled />
+                                        </div>
+                                        <div className='column'>
+                                            <label htmlFor="sec-email">Secondary Email</label>
+                                            <input data-testid='sec-email' name='sec-email' title='sec-email' type="email" value={user.secondaryEmail} disabled />
+                                        </div>
+                                        <div className='column'>
+                                            <label htmlFor="phone-number">Phone Number</label>
+                                            <input data-testid='mobile' name='phone-number' title='phone-number' type="text" value={user.mobile} disabled />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div data-testid="txt-loading">
+                                    <p>Loading...</p>
+                                </div>
+                            )}
                         </div>
                         <div className='bottom'>
                             <button onClick={handleLogOut} className="btn-type-4">Logout</button>

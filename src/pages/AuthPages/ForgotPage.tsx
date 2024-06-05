@@ -9,7 +9,7 @@ import ForgotForm from '../../components/Forms/ForgotForm';
 
 import './styles.css';
 
-const LoginPage = () => {
+const ForgotPage = () => {
   const { user } = useAuth();
 
   if (user) {
@@ -26,4 +26,4 @@ const LoginPage = () => {
   </>;
 };
 
-export default LoginPage;
+export default ForgotPage;

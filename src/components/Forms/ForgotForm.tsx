@@ -36,6 +36,8 @@ const ForgotForm: React.FC = () => {
                 <div className="input-container ">
                     <label className="input-label" htmlFor="iam-role">IAM Role</label>
                     <input className="input" name="email" type="email" id="email-address" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
+                    <label className="input-label" htmlFor="email">Email</label>
+                    <input className="input" name="email" type="email" id="email" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
                 </div>
             </div>
             <div className="link-container">

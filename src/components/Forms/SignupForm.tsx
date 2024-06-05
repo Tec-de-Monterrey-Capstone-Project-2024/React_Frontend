@@ -70,14 +70,14 @@ const SignupForm = () => {
     }
 
     return (
-        <form action="" onSubmit={onRegister}>
+        <form action="" onSubmit={onRegister} role="form">
             <div className="title">
                 <h3>Register</h3>
                 <p className="text-sm">Make sure your email is the same as Connect.</p>
             </div>
             <div className="input-container">
                 <label htmlFor="instance" className="input-label">Instance</label>
-                <select name="instanceAlias" id="instanceAlias" value={selectedInstanceId} onChange={handleInstanceChange} className="btn-type-7">
+                <select name="instance" id="instance" value={selectedInstanceId} onChange={handleInstanceChange} className="btn-type-7">
                     <option value="">Select an instance</option>
                     {instances.map((instance) => (
                         <option key={instance.id} value={instance.id}>
@@ -87,12 +87,12 @@ const SignupForm = () => {
                 </select>
             </div>
             <div className="input-container">
-                <label htmlFor="email" className="input-label">Email</label>
-                <input className="input" type="email" name="email" id="email-register" placeholder=" email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
+                <label htmlFor="email" className="input-label" >Email</label>
+                <input className="input" type="email" name="email" id="email" placeholder="email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
             </div>
             <div className="input-container">
                 <label htmlFor="password" className="input-label">Password</label>
-                <input className="input" type="password" name="password" id="password-register" placeholder=" password..." onChange={(e) => setPassword(e.target.value)} value={password} />
+                <input className="input" type="password" name="password" id="password" placeholder="password..." onChange={(e) => setPassword(e.target.value)} value={password} />
             </div>
             <div className="link-container">
                 {signupError && (

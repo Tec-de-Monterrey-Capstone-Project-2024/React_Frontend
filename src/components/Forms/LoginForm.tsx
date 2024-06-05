@@ -49,12 +49,12 @@ const LoginForm: React.FC = () => {
             </div>
             <div className="">
                 <div className="input-container">
-                    <label className="input-label" htmlFor="iam-role">Email</label>
+                    <label className="input-label" htmlFor="email">Email</label>
                     <input
                         className="input"
                         name="email"
                         type="email"
-                        id="email-address"
+                        id="email"
                         placeholder="email address..."
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}

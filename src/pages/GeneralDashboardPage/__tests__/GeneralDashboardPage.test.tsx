@@ -11,6 +11,8 @@ import React from "react";
 import { mockUserResults } from "../../../context/_mocks_/userResults";
 import { AuthProvider } from "../../../context/AuthContext";
 import { ErrorProvider } from "../../../context/ErrorContext";
+import { getQueueCounts } from "../../../services/queues/getQueueCounts";
+import { describeQueue } from "../../../services/queues/describeQueue";
 
 jest.mock("../../../context/DataContext.tsx");
 
@@ -60,7 +62,7 @@ describe("General Dashboard Page", () => {
             arn: "arn:aws:connect:us-east-1:674530197385:instance/7c78bd60-4a9f-40e5-b461-b7a0dfaad848",
             selectedQueueId: "BasicQueue"
         });
-
+        
         render(
             <Router>
                 <AuthProvider>

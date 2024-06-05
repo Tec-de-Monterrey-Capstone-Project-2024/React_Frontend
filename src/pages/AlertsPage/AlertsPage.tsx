@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../ROUTES';
-import AlertsTable from '../components/Tables/AlertTable';
-import { Button } from '../components/Button'; // Asegúrate de que la ruta sea correcta
+import { ROUTES } from '../../ROUTES';
+import AlertsTable from '../../components/Tables/AlertTable';
+import { Button } from '../../components/Button'; // Asegúrate de que la ruta sea correcta
 
 const AlertsPage: React.FC = () => {
   const navigate = useNavigate();

@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import { useDataContext } from '../context/DataContext';
+import { useDataContext } from '../../context/DataContext';
 
-import MetricsData from '../config/MetricsData';
+import MetricsData from '../../config/MetricsData';
 
-import { getQueueInsights } from '../services/insights/getQueueInsights';
-import { getQueueCounts } from '../services/queues/getQueueCounts';
-import { describeQueue } from '../services/queues/describeQueue';
-import { getQueueMetrics } from '../services/metrics/getQueueMetrics';
-import { getAgentMetrics } from '../services/metrics/getAgentMetrics';
+import { getQueueInsights } from '../../services/insights/getQueueInsights';
+import { getQueueCounts } from '../../services/queues/getQueueCounts';
+import { describeQueue } from '../../services/queues/describeQueue';
+import { getQueueMetrics } from '../../services/metrics/getQueueMetrics';
+import { getAgentMetrics } from '../../services/metrics/getAgentMetrics';
 
-import { IMetric } from '../services/metrics/types';
-import { IInsight } from '../services/insights/types';
-import { MetricCard } from '../components/Cards/MetricCard';
-import { IQueueCounts } from '../services/queues/types';
-import { IQueue } from '../services/queues/types';
-import InsightCard  from "../components/Cards/InsightCard/InsightCard";
+import { IMetric } from '../../services/metrics/types';
+import { IInsight } from '../../services/insights/types';
+import { MetricCard } from '../../components/Cards/MetricCard';
+import { IQueueCounts } from '../../services/queues/types';
+import { IQueue } from '../../services/queues/types';
+import InsightCard  from "../../components/Cards/InsightCard/InsightCard";
 
-const DashboardPage = () => {
+const GeneralDashboardPage = () => {
   const navigate = useNavigate();
 
   const { user, arn, selectedQueueId } = useDataContext();
@@ -116,17 +116,17 @@ const DashboardPage = () => {
     <section className='dashboard home'>
       <div className='container'>
         {selectedQueueId !== "all" && (
-          <div className="queues-card-dashboard">
+          <div data-testid="queue-container" className="queues-card-dashboard">
             <InsightCard title={(loadingQueue ? "Loading queue name..." : (queue?.at(0)?.name ?? "Queue"))} description1={"Clients: " + (loadingQueueCounts ? "Loading clients..." : (queueCounts?.at(0)?.contacts ?? "0"))}
                          description2={"Agents: " + (loadingQueueCounts ? "Loading agents..." : (queueCounts?.at(0)?.agents ?? "0"))} color={"white"} borderColor={queueCounts?.at(0)?.color ?? "green"}
                          showBoxBorder={true} func={goToAgentList} btn={false} />
           </div>
         )}
-        <div className='dashboard-content'>
-          <div className='column'>
+        <div data-testid='dashboard-content' className='dashboard-content'>
+          <div data-testid='column-metrics' className='column'>
             <h2>KPIs</h2>
-            {loadingMetrics ? <p>Loading...</p> : ((metrics && metrics.length > 0) ? (
-                <div className='metrics'>
+            {loadingMetrics ? <p data-testid='txt-loading-metrics'>Loading...</p> : ((metrics && metrics.length > 0) ? (
+                <div data-testid='metrics-container' className='metrics'>
                   {metrics.map(metric => {
                     const {id, metric_info_code, value} = metric;
                     const {name, min, max, unit, positive_upside} = MetricsData[metric_info_code];
@@ -152,10 +152,10 @@ const DashboardPage = () => {
                 <p>No metrics found</p>
             ))}
           </div>
-          <div className='column'>
+          <div data-testid='column-insights' className='column'>
             <h2>Insights</h2>
-            {loadingInsights ? <p>Loading...</p> : ((insights && insights.length > 0) ? (
-                <div className="insights">
+            {loadingInsights ? <p data-testid='txt-loading-insights'>Loading...</p> : ((insights && insights.length > 0) ? (
+                <div data-testid="insights-container" className="insights">
                   {insights.map(insight => (
                       <InsightCard
                           key={insight.id}
@@ -174,7 +174,6 @@ const DashboardPage = () => {
             ) : (
                 <p>No insights found.</p>
             ))}
-
           </div>
         </div>
       </div>
@@ -182,4 +181,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage;
+export default GeneralDashboardPage;

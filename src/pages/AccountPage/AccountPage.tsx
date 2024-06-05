@@ -66,7 +66,7 @@ const AccountPage: React.FC = () => {
                             )}
                         </div>
                         <div className='bottom'>
-                            <button onClick={handleLogOut} className="btn-type-4">Logout</button>
+                            <button data-testid="logout-btn" onClick={handleLogOut} className="btn-type-4">Logout</button>
                         </div>
                         
                     </div>

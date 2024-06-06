@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { cleanup, render, screen, waitFor, fireEvent } from "@testing-library/react";
 
 import { useDataContext } from "../../../context/DataContext";
-import { mockUserResults } from "../../../context/_mocks_/userResults";
+import { mockUserResults } from "../../../services/__mocks__/userResults";
 
 import AccountPage from "../AccountPage";
 

@@ -16,7 +16,7 @@ const AlertsTable: React.FC = () => {
     const fetchAlerts = async () => {
       try {
         const data = await getAlerts();
-        console.log(data);
+        // console.log(data);
         setAlerts(data);
       } catch (error) {
         setError('Failed to fetch alerts.');

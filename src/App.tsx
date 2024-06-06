@@ -12,7 +12,7 @@ import GeneralDashboardPage from './pages/GeneralDashboardPage/GeneralDashboardP
 import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import AccountPage from './pages/AccountPage/AccountPage';
-import AlertsPage from './pages/AlertsPage';
+import AlertsPage from './pages/AlertsPage/AlertsPage';
 import ViewInsightPage from './pages/ViewInsightPage';
 
 import QueuesPage from './pages/QueuesPage/QueuesPage';

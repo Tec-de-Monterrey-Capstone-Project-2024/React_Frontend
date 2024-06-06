@@ -1,16 +1,16 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteUser } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "../../../firebase";
 
-import { useDataContext } from '../../context/DataContext';
-import { useAuth } from "../../context/AuthContext";
-import { useError } from "../../context/ErrorContext";
+import { useDataContext } from '../../../context/DataContext';
+import { useAuth } from "../../../context/AuthContext";
+import { useError } from "../../../context/ErrorContext";
 
-import { getInstances } from "../../services/instance/getInstances";
-import { IInstance } from "../../services/instance/types";
+import { getInstances } from "../../../services/instance/getInstances";
+import { IInstance } from "../../../services/instance/types";
 
-import { signupUser } from "../../services/user/signupUser";
+import { signupUser } from "../../../services/user/signupUser";
 
 import './styles.css';
 

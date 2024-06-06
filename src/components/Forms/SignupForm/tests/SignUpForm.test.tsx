@@ -1,15 +1,15 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
-import { useDataContext } from "../../../context/DataContext";
-import { useError } from "../../../context/ErrorContext";
+import { useAuth } from "../../../../context/AuthContext";
+import { useDataContext } from "../../../../context/DataContext";
+import { useError } from "../../../../context/ErrorContext";
 import SignupForm from "../SignupForm";
 
 // Mock the dependencies
-jest.mock("../../../context/AuthContext");
-jest.mock("../../../context/DataContext");
-jest.mock("../../../context/ErrorContext");
+jest.mock("../../../../context/AuthContext");
+jest.mock("../../../../context/DataContext");
+jest.mock("../../../../context/ErrorContext");
 
 describe("SignupForm", () => {
   test("renders signup form correctly", async () => {

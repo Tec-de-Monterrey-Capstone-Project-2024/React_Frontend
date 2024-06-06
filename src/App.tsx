@@ -8,11 +8,11 @@ import LoginPage from './pages/AuthPages/LoginPage';
 import SignupPage from './pages/AuthPages/SignupPage';
 import ForgotPage from './pages/AuthPages/ForgotPage';
 
-import DashboardPage from './pages/DashboardPage/DashboardPage';
+import GeneralDashboardPage from './pages/GeneralDashboardPage/GeneralDashboardPage';
 import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import AccountPage from './pages/AccountPage/AccountPage';
-import AlertsPage from './pages/AlertsPage';
+import AlertsPage from './pages/AlertsPage/AlertsPage';
 import ViewInsightPage from './pages/ViewInsightPage';
 
 import QueuesPage from './pages/QueuesPage/QueuesPage';
@@ -33,7 +33,7 @@ const App: React.FC = () => {
 
           <Route path='/' element={<PrivateRoute />}>
             <Route path="/queues" element={<QueuesPage/>} />
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard" element={<GeneralDashboardPage />} />
             <Route path="/dashboard/agent/:agentId" element={<AgentDashboardPage />} />
             <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
             <Route path="/agents" element={<AgentsPage />} />

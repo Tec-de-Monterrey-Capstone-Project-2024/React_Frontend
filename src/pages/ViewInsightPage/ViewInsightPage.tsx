@@ -112,13 +112,13 @@ const ViewInsightPage: React.FC = () => {
   return (
     <div className="p-4 flex flex-col h-screen">
       <div>
-        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
+        <button data-testid="back-button" onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
           <span className="mr-2">&#8592;</span>
           Back
         </button>
         <br />
       </div>
-      <div data-testid="Insight card" className="flex-grow">
+      <div data-testid="insight-card" className="flex-grow">
         <Insight
           title={insight.insightName}
           message={insight.insightSummary}
@@ -129,7 +129,6 @@ const ViewInsightPage: React.FC = () => {
           insightPrevention={insight.insightPrevention}
           insightSeverity={insight.insightSeverity}
           insightCategory={insight.insightCategory}
-          data-testid="insight-card"
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
         <div className="flex justify-between mt-4 items-start mb-8">
@@ -179,7 +178,6 @@ const ViewInsightPage: React.FC = () => {
             </>
           )}
         </div>
-
 
         {showModal && (
           <InsightModal

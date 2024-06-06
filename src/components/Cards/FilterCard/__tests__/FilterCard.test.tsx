@@ -4,7 +4,7 @@ import FilterCard from '../FilterCard';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 describe("Tests for FilterCard Component", () => {
-    test("The FilterCard component will render correctly lol i guess", () => {
+    test("The FilterCard component will render correctly.", () => {
         render(
             <Router>
                 <FilterCard />
@@ -27,7 +27,7 @@ describe("Tests for FilterCard Component", () => {
         expect(screen.getByText("Average Speed of Answer")).toBeTruthy();
     });
 
-    test("Custom filter card render correctly lollllll", () => {
+    test("Custom filter card render correctly", () => {
         const customPriorityOptions = [
             { name: 'High', color: 'bg-blue-200' },
             { name: 'Medium', color: 'bg-orange-200' },

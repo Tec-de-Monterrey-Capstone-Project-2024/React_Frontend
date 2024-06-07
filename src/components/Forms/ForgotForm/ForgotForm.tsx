@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {sendPasswordResetEmail} from 'firebase/auth';
-import { auth } from "../../firebase";
+import { auth } from "../../../firebase";
 
 import './styles.css';
 
@@ -16,7 +16,6 @@ const ForgotForm: React.FC = () => {
         sendPasswordResetEmail(auth, email)
         .then(() => {
             navigate("/auth/login", { state: { fromForgotForm: true } });
-
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -34,8 +33,9 @@ const ForgotForm: React.FC = () => {
             </div>
             <div className="">
                 <div className="input-container ">
-                    <label className="input-label" htmlFor="iam-role">Email</label>
-                    <input className="input" name="email" type="email" id="email-address" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
+                    <label className="input-label" htmlFor="email">Email</label>
+                    <input className="input" name="email" type="email" id="email" placeholder="  email address..." onChange={(e) => setEmail(e.target.value)} value={email} />
+
                 </div>
             </div>
             <div className="link-container">

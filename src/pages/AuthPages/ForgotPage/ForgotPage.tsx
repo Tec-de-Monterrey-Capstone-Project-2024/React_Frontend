@@ -1,15 +1,15 @@
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
-import { AuthLayout } from '../../components/Layouts/AuthLayout';
-import { AuthCard } from '../../components/Cards/AuthCard';
-import LoginForm from '../../components/Forms/LoginForm';
+import { AuthLayout } from '../../../components/Layouts/AuthLayout';
+import { AuthCard } from '../../../components/Cards/AuthCard';
+import { ForgotForm } from '../../../components/Forms/ForgotForm';
 
 import './styles.css';
 
-const LoginPage = () => {
+const ForgotPage = () => {
   const { user } = useAuth();
 
   if (user) {
@@ -19,11 +19,11 @@ const LoginPage = () => {
     <section className='auth'>
         <AuthLayout>
             <AuthCard>
-                <LoginForm />
+              <ForgotForm />
             </AuthCard>
         </AuthLayout>
     </section>
   </>;
 };
 
-export default LoginPage;
+export default ForgotPage;

@@ -2,7 +2,7 @@
  import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from "firebase/auth";
  import { auth } from "../firebase";
 
- interface AuthContextType {
+ export interface AuthContextType {
     user: User | null;
     loading: boolean;
     signIn: (email: string, password: string) => Promise<string>;

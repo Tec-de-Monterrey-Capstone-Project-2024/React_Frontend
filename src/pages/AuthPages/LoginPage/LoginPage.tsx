@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../../context/AuthContext';
 
-import { AuthLayout } from '../../components/Layouts/AuthLayout';
-import { AuthCard } from '../../components/Cards/AuthCard';
-import ForgotForm from '../../components/Forms/ForgotForm';
+import { AuthLayout } from '../../../components/Layouts/AuthLayout';
+import { AuthCard } from '../../../components/Cards/AuthCard';
+import LoginForm from '../../../components/Forms/LoginForm/LoginForm';
 
 import './styles.css';
 
@@ -19,7 +19,7 @@ const LoginPage = () => {
     <section className='auth'>
         <AuthLayout>
             <AuthCard>
-              <ForgotForm />
+                <LoginForm />
             </AuthCard>
         </AuthLayout>
     </section>

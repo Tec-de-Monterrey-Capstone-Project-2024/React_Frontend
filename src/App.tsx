@@ -18,7 +18,7 @@ import {ViewInsightPage} from './pages/ViewInsightPage';
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 import { MetricDetailsPage } from './pages/MetricDetailsPage';
 import InsightPage  from './pages/InsightPage/InsightPage';
-import AddAlertPage from './pages/AddAlertPage';
+import AddAlertPage from './pages/AddAlertPage/AddAlertPage';
 
 const App: React.FC = () => {
   return (

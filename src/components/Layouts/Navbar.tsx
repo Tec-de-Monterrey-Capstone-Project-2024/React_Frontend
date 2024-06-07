@@ -6,6 +6,7 @@ import { useDataContext } from '../../context/DataContext';
 import { getQueues } from '../../services/queues/getQueues';
 import { IQueue } from '../../services/queues/types';
 import { getInstance } from '../../services/instance/getInstance';
+import { getAlerts } from '../../services';
 
 import { Button } from '../Button';
 import { AlertPopup } from '../Popups/AlertPopup';
@@ -31,8 +32,26 @@ const Navbar: React.FC = () => {
     }
   }, [user]);
 
+  const [error, setError] = useState<string | null>(null);
+  const [alerts, setAlerts] = useState<any[]>([]);
   const [queues, setQueues] = useState<IQueue[]>([]);
   const { selectedQueueId, setSelectedQueueId } = useDataContext();
+
+  useEffect(() => {
+    const fetchAlerts = async () => {
+      try {
+        const data = await getAlerts();
+        setAlerts(data);
+      } catch (error) {
+        setError('Failed to fetch alerts.');
+      }
+    };
+
+    fetchAlerts();
+    const intervalId = setInterval(fetchAlerts, 10000); 
+    return () => clearInterval(intervalId); 
+  }, []);
+
   useEffect(() => {
     const fetchQueues = async () => {
       var res = await getQueues(user!.instanceId);
@@ -126,10 +145,15 @@ const Navbar: React.FC = () => {
             </h2>
           </div>
           <div className='links'>
-            <Button variant="light" onClick={togglePopup} className="green icon">
+            <Button variant="light" onClick={togglePopup} className="green icon relative">
               <img src={alertIcon} alt="Alert icon" />
+              {alerts.slice(-1).map((alert, index) => (
+                <div className='absolute rounded-[50%] bg-[#FF0000] -right-1 -top-1 w-5 h-5 flex items-center justify-center' key={index}>
+                  <p className='text-sm'>{alert.id -1 }</p>
+                </div>
+              ))}
             </Button>
-            <AlertPopup onClose={togglePopup} message={'The Refunds Queue has a high quantity of clients. Consider reassigning agents to this queue.'} isVisible={showPopup} />
+            <AlertPopup onClose={togglePopup} isVisible={showPopup} />
 
             {(user) && (
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>

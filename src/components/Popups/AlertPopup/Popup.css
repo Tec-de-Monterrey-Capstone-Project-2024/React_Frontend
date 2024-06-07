@@ -1,71 +1,29 @@
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 12;
-  }
-  
-  .popup-content {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    height: 350px;
-    width: 600px;
-    text-align: center;
-  }
-  
-  .popup-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 200px;
-    width: 150px;
-    height: 100px;
-    margin-top: 1px;
-    margin-bottom: 5px;
-  
-  }
-  
-  .popup-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-weight: bold;
-    font-size: 24px;
-  }
-  
-  .close-btn {
-    display: flex;
-    justify-content: flex-end;
-    background: none;
-    border: none;
-    font-size: 40px;
-    cursor: pointer;
-    color: black;
-    margin-top: -20px;
-  }
-  
-  .popup-body {
-    margin: 0px 0;
-    color: black;
-  }
-  
-  .manage-btn {
-    background-color: #022539;
-    color: white;
-    border: none;
-    padding: 10px 65px;
-    font-size: 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
+.popup-container {
+    @apply absolute bg-white text-black  rounded-md border-[1px] border-gray-400 top-16 right-[800px]
+}
+
+.popup-title {
+    @apply bg-[#022539] py-4 rounded-t-md
+}
+
+.popup-title-p {
+    @apply pl-6 text-white font-bold text-lg
+}
+
+.alert-container {
+    @apply flex flex-col gap-1 py-1 px-6 border-b-[1px] border-gray-400 font-semibold
+}
+
+.button-flex {
+    @apply flex gap-4
+}
+
+.dismiss-button {
+    @apply bg-[#022539] px-2 rounded-md text-white
+}
+
+.delete-button {
+    @apply bg-[#FF0000] px-2 rounded-md text-white
+}
+
+

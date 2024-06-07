@@ -146,15 +146,17 @@ const Navbar: React.FC = () => {
             </h2>
           </div>
           <div className='links'>
-            <Button variant="light" onClick={togglePopup} className="green icon relative">
-              <img src={alertIcon} alt="Alert icon" />
-              {alerts.length > 0 && (
-                <div className='absolute rounded-[50%] bg-[#FF0000] -right-1 -top-1 w-5 h-5 flex items-center justify-center'>
-                  <p className='text-sm'>{alerts.length}</p>
-                </div>
-              )}
-            </Button>
-            <AlertPopup onClose={togglePopup} isVisible={showPopup} alerts={alerts} setAlerts={setAlerts} />
+            <div className='popover'>
+              <Button variant="light" onClick={togglePopup} className="green icon relative">
+                <img src={alertIcon} alt="Alert icon" />
+                {alerts.length > 0 && (
+                  <div className='absolute rounded-[50%] bg-[#FF0000] -right-1 -top-1 w-5 h-5 flex items-center justify-center'>
+                    <p className='text-sm'>{alerts.length}</p>
+                  </div>
+                )}
+              </Button>
+              <AlertPopup onClose={togglePopup} isVisible={showPopup} alerts={alerts} setAlerts={setAlerts} />
+            </div>
 
             {user && (
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>

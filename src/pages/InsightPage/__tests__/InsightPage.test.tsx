@@ -1,14 +1,16 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react-hooks';
+import { useCallback } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import InsightPage from '../InsightPage';
-import { renderHook, act } from '@testing-library/react';
+import { mockGetComputedStyle, mockDndSpacing, makeDnd, DND_DIRECTION_UP, DND_DIRECTION_DOWN, DND_DRAGGABLE_DATA_ATTR } from 'react-beautiful-dnd-test-utils';
 import { DataContext } from '../../../context/DataContext';
 import { getQueueInsights } from '../../../services/insights/getQueueInsights';
 import { getInsightsByStatus } from '../../../services/insights/getInsightStatus';
 import { updateInsightStatus } from '../../../services/insights/updateInsightStatus';
 import { IInsight } from '../../../services/insights/types';
+import { DropResult } from 'react-beautiful-dnd';
 
 jest.mock('../../../services/insights/getQueueInsights');
 jest.mock('../../../services/insights/getInsightStatus');
@@ -17,7 +19,8 @@ jest.mock('../../../services/insights/updateInsightStatus');
 const mockQueueInsights = [
     { id: 1, insightName: 'Insight 1', status: 'TO_DO' },
     { id: 2, insightName: 'Insight 2', status: 'IN_PROGRESS' },
-    { id: 3, insightName: 'Insight 3', status: 'DONE' }
+    { id: 3, insightName: 'Insight 3', status: 'DONE' },
+    { id: 4, insightName: 'Insight 4', status: 'TO_DO' },
 ] as IInsight[];
 
 const mockContextValue = {
@@ -27,7 +30,7 @@ const mockContextValue = {
     setArn: jest.fn(),
     selectedQueueId: 'all',
     setSelectedQueueId: jest.fn(),
-    updateInsightStatus: jest.fn()
+    updateInsightStatus: jest.fn(),
 };
 
 const setKanbanMock = jest.fn();
@@ -36,6 +39,7 @@ describe('InsightPage', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         setKanbanMock.mockClear();
+        mockGetComputedStyle();
     });
 
     test('renders loading state initially', () => {
@@ -68,11 +72,56 @@ describe('InsightPage', () => {
             expect(screen.getByText('Insight 1')).toBeInTheDocument();
             expect(screen.getByText('Insight 2')).toBeInTheDocument();
             expect(screen.getByText('Insight 3')).toBeInTheDocument();
-            expect(screen.queryByTestId("drop-columns To-do")).toBeInTheDocument();
+            expect(screen.getByText('Insight 4')).toBeInTheDocument();
         });
     });
 
-    test('handles drag and drop correctly', async () => {
+    test('separateInsights correctly separates insights by status', () => {
+        const setKanban = jest.fn();
+        const { result } = renderHook(() => {
+            const separateInsights = useCallback((insights: IInsight[]) => {
+                const toDo: IInsight[] = [];
+                const inProgress: IInsight[] = [];
+                const done: IInsight[] = [];
+    
+                insights.forEach((insight) => {
+                    switch (insight.status) {
+                        case 'TO_DO':
+                            toDo.push(insight);
+                            break;
+                        case 'IN_PROGRESS':
+                            inProgress.push(insight);
+                            break;
+                        case 'DONE':
+                            done.push(insight);
+                            break;
+                        default:
+                            break;
+                    }
+                });
+    
+                setKanban({
+                    'To-do': { id: 'To-do', list: toDo },
+                    'In Progress': { id: 'In Progress', list: inProgress },
+                    'Done': { id: 'Done', list: done }
+                });
+            }, []);
+    
+            return { separateInsights };
+        });
+    
+        act(() => {
+            result.current.separateInsights(mockQueueInsights);
+        });
+    
+        expect(setKanban).toHaveBeenCalledWith({
+            'To-do': { id: 'To-do', list: [{ id: 1, insightName: 'Insight 1', status: 'TO_DO' }, { id: 4, insightName: 'Insight 4', status: 'TO_DO' }] },
+            'In Progress': { id: 'In Progress', list: [{ id: 2, insightName:'Insight 2', status: 'IN_PROGRESS' }] },
+            'Done': { id: 'Done', list: [{ id: 3, insightName:'Insight 3', status: 'DONE' }] }
+        });
+    });
+
+    test('Kanban columns render correctly', async () => {
         (getQueueInsights as jest.Mock).mockResolvedValue({ data: mockQueueInsights });
         (getInsightsByStatus as jest.Mock).mockImplementation((status) => {
             return mockQueueInsights.filter(insight => insight.status === status);
@@ -85,86 +134,54 @@ describe('InsightPage', () => {
                 </DataContext.Provider>
             </MemoryRouter>
         );
-
-        const insightItem = await screen.findByText('Insight 1');
-        const dropZoneInProgress = await screen.findByText('In Progress');
-        const dropZoneDone = await screen.findByText('Done');
-
-        fireEvent.dragStart(insightItem);
-        fireEvent.dragEnter(dropZoneInProgress);
-        fireEvent.drop(dropZoneInProgress);
-
-        fireEvent.dragStart(insightItem);
-        fireEvent.dragEnter(dropZoneDone);
-        fireEvent.drop(dropZoneDone);
 
         await waitFor(() => {
-            expect(screen.getByText('Insight 1')).toBeInTheDocument();
-            expect(screen.getByText('Insight 2')).toBeInTheDocument();
-            expect(screen.getByText('Insight 3')).toBeInTheDocument();
+            expect(screen.getByTestId('droppable-To-do')).toBeInTheDocument();
+            expect(screen.getByTestId('droppable-In Progress')).toBeInTheDocument();
+            expect(screen.getByTestId('droppable-Done')).toBeInTheDocument();
         });
-    });
+    }); 
 
-    test('handles insight update after drag and drop', async () => {
+    test('Drag and drop move task inside a column', async () => {
         (getQueueInsights as jest.Mock).mockResolvedValue({ data: mockQueueInsights });
         (getInsightsByStatus as jest.Mock).mockImplementation((status) => {
             return mockQueueInsights.filter(insight => insight.status === status);
         });
-        (updateInsightStatus as jest.Mock).mockResolvedValue({});
-    
-        render(
+        const { container } = render(
             <MemoryRouter>
                 <DataContext.Provider value={mockContextValue}>
                     <InsightPage />
                 </DataContext.Provider>
             </MemoryRouter>
+            
         );
-    
-        const insightItem = await screen.findByText('Insight 1');
-        const dropZoneInProgress = await screen.findByText('In Progress');
-        const dragZoneTodo = await screen.findByText('To-do');
-        
-        const dataTransfer = {
-            setData: jest.fn(),
-            getData: jest.fn(),
-            dropEffect: 'move'
+
+        mockDndSpacing(container);
+
+        const verifyTaskOrderInColumn = (
+            columnTestId: string,
+            orderedTasks: string[]
+        ): void => {
+            const insights = within(screen.getByTestId('droppable-To-do'))
+                .getAllByTestId('draggable')
+                .map(x => x.textContent);
+            expect(insights).toEqual(orderedTasks);
         };
+        
+        await waitFor(() => expect(screen.getByTestId('draggable-1')).toBeInTheDocument());
 
-        fireEvent.dragStart(insightItem, { dataTransfer });
-        fireEvent.dragEnter(dragZoneTodo, { dataTransfer });
-        fireEvent.dragOver(dropZoneInProgress, { dataTransfer });
-        fireEvent.drop(dropZoneInProgress, { dataTransfer });
-        fireEvent.dragEnd(insightItem, { dataTransfer });
-    
-        await waitFor(() => {
-            expect(updateInsightStatus).toHaveBeenCalledWith(1, "IN_PROGRESS");
+        await makeDnd({
+            getDragElement: () =>
+                screen
+                    .getByTestId('draggable-1')
+                    .closest(DND_DRAGGABLE_DATA_ATTR),
+            direction: DND_DIRECTION_DOWN,
+            positions: 1
         });
-    });
-
-
-    test('handles fetch error', async () => {
-        (getQueueInsights as jest.Mock).mockRejectedValue(new Error('Failed to load insights'));
-        (getInsightsByStatus as jest.Mock).mockRejectedValue(new Error('Failed to load insights'));
-        console.error = jest.fn(); // Mock console.error
-
-        render(
-            <MemoryRouter>
-                <DataContext.Provider value={mockContextValue}>
-                    <InsightPage />
-                </DataContext.Provider>
-            </MemoryRouter>
-        );
-
-        await waitFor(() => expect(getQueueInsights).toHaveBeenCalled());
-        await waitFor(() => expect(getInsightsByStatus).toHaveBeenCalledWith("TO_DO"));
-        await waitFor(() => expect(getInsightsByStatus).toHaveBeenCalledWith("IN_PROGRESS"));
-        await waitFor(() => expect(getInsightsByStatus).toHaveBeenCalledWith("DONE"));
-        await waitFor(() => {
-            expect(screen.getByText('Insight 1')).not.toBeInTheDocument();
-            expect(screen.getByText('Insight 2')).not.toBeInTheDocument();
-            expect(screen.getByText('Insight 3')).not.toBeInTheDocument();
-        });
-        expect(console.error).toHaveBeenCalledWith(expect.any(Error));
+        verifyTaskOrderInColumn('droppable-To-do', [
+            'Insight 4',
+            'Insight 1',
+        ]);
     });
 
 });

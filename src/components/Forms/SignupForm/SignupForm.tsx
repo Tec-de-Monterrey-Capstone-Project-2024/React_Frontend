@@ -12,7 +12,7 @@ import { IInstance } from "../../../services/instance/types";
 
 import { signupUser } from "../../../services/user/signupUser";
 
-import './styles.css';
+import '../styles.css';
 
 const SignupForm = () => {
     const navigate = useNavigate();

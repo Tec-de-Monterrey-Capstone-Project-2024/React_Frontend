@@ -7,7 +7,7 @@ import { AuthLayout } from '../../../components/Layouts/AuthLayout';
 import { AuthCard } from '../../../components/Cards/AuthCard';
 import { ForgotForm } from '../../../components/Forms/ForgotForm';
 
-import './styles.css';
+import '../styles.css';
 
 const ForgotPage = () => {
   const { user } = useAuth();

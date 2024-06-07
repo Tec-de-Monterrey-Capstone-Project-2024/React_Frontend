@@ -6,7 +6,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { AuthLayout } from '../../../components/Layouts/AuthLayout';
 import { AuthCard } from '../../../components/Cards/AuthCard';
 import { SignupForm } from '../../../components/Forms/SignupForm';
-import './styles.css';
+import '../styles.css';
 
 
 const SignupPage = () => {

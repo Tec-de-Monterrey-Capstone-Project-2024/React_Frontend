@@ -15,18 +15,18 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
     });
 
     return (
-        <div className={card} data-testid={"wrapper-insight-card"}>
-            <div className="header" data-testid={"insight-card-title"}>
+        <div className={card} data-testid="insight-card">
+            <div className="header">
                 <h1>{title}</h1>
             </div>
-            <div className="description" data-testid={"insight-card-description1"}>
+            <div className="description">
                 {description1}
             </div>
-            <div className="description" data-testid={"insight-card-description2"}>
+            <div className="description">
                 {description2}
             </div>
-            {btn && <div className="insight-button" data-testid={"insight-card-button"}>
-                <button className='btn-type-6' onClick={func}>View more</button>
+            {btn && <div className="insight-button">
+                <button data-testid="insight-card-button" className='btn-type-6' onClick={func}>View more</button>
             </div>}
         </div>
     );

@@ -1,41 +1,53 @@
-import { render, screen, cleanup, fireEvent} from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import InsightCard from '../InsightCard';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { IInsightCard } from '../types';
 
-afterEach(() => {
-    cleanup();
-});
+describe('InsightCard', () => {
+    const defaultProps: IInsightCard = {
+        title: 'Reassignment',
+        description1: 'Assign more agents to Reimbursements Queue',
+        description2: 'More clients than agents',
+        color: 'gray',
+        borderColor: 'green',
+        showBoxBorder: true,
+        func: jest.fn(),
+        btn: true
+    };
 
-describe("Tests for InsightCard Component", () => {
-    test("The InsightCard component renders correctly", () => {
-        render(
-            <Router>
-                <InsightCard
-                    title="Low Service Level"
-                    description1="Service level is below 80%"
-                    description2="Move to the top of the queue to improve service level"
-                    color="white"
-                    borderColor="red"
-                    showBoxBorder={true}
-                    btn={true} 
-                    func={function (): void {
-                        throw new Error('Function not implemented.');
-                    } }                
-                />
-            </Router>
-        );
+    test('renders InsightCard with correct props', () => {
+        render(<InsightCard {...defaultProps} />);
 
-        expect(screen.getByTestId("wrapper-insight-card")).toBeTruthy();
-        expect(screen.getByTestId("insight-card-title")).toBeTruthy();
-        expect(screen.getByTestId("insight-card-description1")).toBeTruthy();
-        expect(screen.getByTestId("insight-card-description2")).toBeTruthy();
-        expect(screen.getByTestId("insight-card-button")).toBeTruthy(); 
+        expect(screen.getByText('Reassignment')).toBeInTheDocument();
+        expect(screen.getByText('Assign more agents to Reimbursements Queue')).toBeInTheDocument();
+        expect(screen.getByText('More clients than agents')).toBeInTheDocument();
+    });
 
-        expect(screen.getByTestId("insight-card-title")).toHaveTextContent('Low Service Level');
-        expect(screen.getByTestId("insight-card-description1")).toHaveTextContent('Service level is below 80%');
-        expect(screen.getByTestId("insight-card-description2")).toHaveTextContent('Move to the top of the queue to improve service level');
-        expect(screen.getByTestId("insight-card-button")).toHaveTextContent('View more');
+    test('applies correct classes based on props', () => {
+        render(<InsightCard {...defaultProps} />);
+        
+        const card = screen.getByTestId('insight-card');
+        expect(card).toHaveClass('box-container');
+        expect(card).toHaveClass('gray-box');
+        expect(card).toHaveClass('box-border');
+        expect(card).toHaveClass('green-border');
+    });
 
-        fireEvent.click(screen.getByTestId("insight-card-button"));
+    test('button is rendered and clickable', () => {
+        render(<InsightCard {...defaultProps} />);
+        
+        const button = screen.getByText('View more');
+        expect(button).toBeInTheDocument();
+        button.click();
+        expect(defaultProps.func).toHaveBeenCalled();
+    });
+
+    test('does not render button when btn is false', () => {
+        const propsWithoutButton = { ...defaultProps, btn: false };
+        render(<InsightCard {...propsWithoutButton} />);
+
+        const button = screen.queryByText('View more');
+        expect(button).not.toBeInTheDocument();
     });
 });

@@ -6,7 +6,7 @@ export const getAlerts = async (): Promise<IAlert[]> => {
         const response = await httpInstance.get<IAlert[]>('/api/threshold-breach-insights/alerts');
         return response.data;
     } catch (error) {
-        console.error('Error fetching alerts:', error);
+        // console.error('Error fetching alerts:', error);
         throw error;
     }
 };

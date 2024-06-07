@@ -24,7 +24,7 @@ const ScopeTag: React.FC<IAlertScopeProps> = ({ type }) => {
   const typeProperty = typeProperties[type];
 
   if (!typeProperty) {
-    console.error(`Invalid type: ${type}`);
+    // console.error(`Invalid type: ${type}`);
     return null; // Return null to avoid rendering if the type is invalid
   }
 

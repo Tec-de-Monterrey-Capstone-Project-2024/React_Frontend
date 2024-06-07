@@ -1,5 +1,22 @@
 section.account { width: 100%; height: 100%; position: relative; }
-section.account .content { display: flex; flex-wrap: nowrap; align-items: stretch; align-content: stretch; flex-direction: row; justify-content: flex-start; height: 100%; }
+section.account .account-content { display: flex; flex-wrap: nowrap; align-items: stretch; align-content: stretch; flex-direction: column; justify-content: flex-start; height: 100%; }
+
+section.account .info { flex: 1 0 auto; display: flex; flex-wrap: nowrap; align-items: center; align-content: stretch; flex-direction: row; justify-content: flex-start; width: 100%; }
+section.account .info .img { flex: 0 1 auto; padding: 0 2rem; }
+section.account .info .img img { --size: 200px; width: var(--size); height: var(--size); border-radius: 100%; border: 1px solid rgba(0, 0, 0, .2); }
+section.account .info .data { flex: 1 0 auto; }
+section.account .info .data { padding: 0 2rem; }
+section.account .info .data .inputs { display: flex; flex-wrap: wrap; gap: 2rem; }
+section.account .info .data .inputs .column { flex: 1 0 calc(50% - 2rem); max-width: calc(50% - 2rem); }
+section.account .info .data .inputs .column label { display: block; font-size: 1rem; font-weight: 500; margin-bottom: .5rem; line-height: 1; }
+section.account .info .data .inputs .column input { display: block; width: 100%; font-size: 1rem; background: var(--light-grey);padding: .5rem 1rem; border-radius: .5rem; border: 1px solid rgba(0, 0, 0, .2); line-height: 1; }
+
+section.account .bottom { flex: 0 0 auto; text-align: end; }
+section.account .bottom button { display: inline-block; width: auto; }
+
+section.account h2 { font-size: 1.4rem; font-weight: 500; margin-bottom: .2rem  ; line-height: 1; }
+section.account .username { font-size: 1rem; font-weight: 400; margin-bottom: 1rem; line-height: 1; }
+
 
 section.account .sidebar { flex: 1 0 auto; width: 100%; max-width: 20%; position: relative; }
 section.account .sidebar .sidebar-container { padding: 0; width: 100%; height: 100%; border-right: 1px solid #000000; padding-top: 1rem; padding-bottom: 1rem; display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: center; align-items: stretch; padding-right: 1rem; }

@@ -8,7 +8,7 @@ import { useError } from "../../../context/ErrorContext";
 
 import { loginUser } from "../../../services/user/loginUser";
 
-import './styles.css';
+import '../styles.css';
 
 const LoginForm: React.FC = () => {
     const { setUser } = useDataContext();

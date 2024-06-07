@@ -4,16 +4,16 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Layout from './components/Layouts/Layout';
 import PrivateRoute from './components/Layouts/PrivateRoute';
 
-import LoginPage from './pages/AuthPages/LoginPage';
-import SignupPage from './pages/AuthPages/SignupPage';
-import ForgotPage from './pages/AuthPages/ForgotPage';
+import {LoginPage} from './pages/AuthPages/LoginPage';
+import {SignupPage} from './pages/AuthPages/SignupPage';
+import {ForgotPage} from './pages/AuthPages/ForgotPage';
 
 import GeneralDashboardPage from './pages/GeneralDashboardPage/GeneralDashboardPage';
 import AgentDashboardPage from './pages/AgentDashboardPage/AgentDashboardPage';
 import AgentsPage from './pages/AgentsPage/AgentsPage';
 import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage/AlertsPage';
-import ViewInsightPage from './pages/ViewInsightPage';
+import {ViewInsightPage} from './pages/ViewInsightPage';
 
 import QueuesPage from './pages/QueuesPage/QueuesPage';
 import { MetricDetailsPage } from './pages/MetricDetailsPage';

@@ -7,7 +7,7 @@ import { AuthLayout } from '../../../components/Layouts/AuthLayout';
 import { AuthCard } from '../../../components/Cards/AuthCard';
 import LoginForm from '../../../components/Forms/LoginForm/LoginForm';
 
-import './styles.css';
+import '../styles.css';
 
 const LoginPage = () => {
   const { user } = useAuth();

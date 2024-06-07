@@ -15,8 +15,8 @@ const LoginForm: React.FC = () => {
     const { signIn, signOut } = useAuth();
     const { loginError, setLoginError } = useError();
 
-    const [email, setEmail] = useState('a01657142@tec.mx');
-    const [password, setPassword] = useState('password');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const location = useLocation();
     const fromForgotForm = location.state?.fromForgotForm || false;

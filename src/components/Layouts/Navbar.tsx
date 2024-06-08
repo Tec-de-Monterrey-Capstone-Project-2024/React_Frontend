@@ -162,7 +162,7 @@ const Navbar: React.FC = () => {
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (
-                  <option key={queue.id} value={queue.id}>
+                  <option key={queue.id} value={queue.name}>
                     {queue.name}
                   </option>
                 ))}

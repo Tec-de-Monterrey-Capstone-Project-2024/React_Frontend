@@ -35,10 +35,10 @@ const mockAgentData: IAgent[] = [
     },
     {
         id: 5,
-        firstName: "Diego",
-        lastName: "Zepeda",
-        email: "ilest@gmail.com",
-        username: "ilest",
+        firstName: "Moises",
+        lastName: "Badillo",
+        email: "herobrincas@gmail.com",
+        username: "herobrincas",
         queueName: "BasicQueue"
     },
     {

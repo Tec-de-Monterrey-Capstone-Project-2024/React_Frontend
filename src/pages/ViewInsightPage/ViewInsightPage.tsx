@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Button from '../components/Button/Button';
-import Insight from '../components/Cards/InsightCardDescription/InsightDescription';
-import InsightModal from '../components/Cards/Insights/InsightModal';
-import { getInsightByID } from '../services/insights/getInsightByID';
-import { updateInsightStatus } from '../services/insights/updateInsightStatus';
-import { IInsight } from '../services/insights/types';
+import Button from '../../components/Button/Button';
+import Insight from '../../components/Cards/InsightCardDescription/InsightDescription';
+import InsightModal from '../../components/Cards/Insights/InsightModal';
+import { getInsightByID } from '../../services/insights/getInsightByID';
+import { updateInsightStatus } from '../../services/insights/updateInsightStatus';
+import { IInsight } from '../../services/insights/types';
 
 const ViewInsightPage: React.FC = () => {
   const navigate = useNavigate();
@@ -112,18 +112,18 @@ const ViewInsightPage: React.FC = () => {
   return (
     <div className="p-4 flex flex-col h-screen">
       <div>
-        <button onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
+        <button data-testid="back-button" onClick={goBack} className="flex items-center text-black font-sans text-base no-underline font-bold">
           <span className="mr-2">&#8592;</span>
           Back
         </button>
         <br />
       </div>
-      <div className="flex-grow">
-        <Insight 
+      <div data-testid="insight-card" className="flex-grow">
+        <Insight
           title={insight.insightName}
           message={insight.insightSummary}
           situationTitle="Situation"
-          actionTitle="Action"
+          actionTitle={insight.insightActions}
           insightRootCause={insight.insightRootCause}
           insightImpact={insight.insightImpact}
           insightPrevention={insight.insightPrevention}
@@ -132,20 +132,53 @@ const ViewInsightPage: React.FC = () => {
         />
         <div className='mt-4 font-bold'>Mark this Insight as:</div>
         <div className="flex justify-between mt-4 items-start mb-8">
-          <div className="space-x-4">
-            <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
-              In Progress
-            </Button>
-            <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
-              Done
-            </Button>
-          </div>
-          <div>
-            <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
-              Solve in Connect
-            </Button>
-          </div>
+          {insight.status === 'TO_DO' && (
+            <>
+              <div className="space-x-4">
+                <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+                  In Progress
+                </Button>
+                <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                  Done
+                </Button>
+              </div>
+              <div>
+                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                  Solve in Connect
+                </Button>
+              </div>
+            </>
+          )}
+          {insight.status === 'IN_PROGRESS' && (
+            <>
+              <div className="space-x-4">
+                <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                  Done
+                </Button>
+              </div>
+              <div>
+                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                  Solve in Connect
+                </Button>
+              </div>
+            </>
+          )}
+          {insight.status === 'DONE' && (
+            <>
+              <div className="space-x-4">
+                <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
+                  In Progress
+                </Button>
+              </div>
+              <div>
+                <Button variant="darkblue" onClick={() => handleButtonClick('This Insight has been marked as Solve in Connect successfully.', 'Solve in Connect')}>
+                  Solve in Connect
+                </Button>
+              </div>
+            </>
+          )}
         </div>
+
         {showModal && (
           <InsightModal
             message={modalMessage}

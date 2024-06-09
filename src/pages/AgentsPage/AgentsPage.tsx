@@ -47,7 +47,7 @@ const AgentsPage = () => {
                     button={false}
                 />
                     <ContentCard>
-                        {loading ? <p>Loading agents from Queue {selectedQueueId}...</p> : <AgentsTable agents={agents} />}
+                        {loading ? <p data-testid="txt-loading">Loading agents from Queue {selectedQueueId}...</p> : <AgentsTable agents={agents} />}
                     </ContentCard>
                 </div>
             </div>

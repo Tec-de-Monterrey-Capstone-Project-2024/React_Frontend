@@ -19,7 +19,7 @@ const AgentsTable: React.FC<IAgentsTable> = ({ agents }) => {
                         button={true}
                     />
                 ))
-            ) : <p>No agents found.</p>}
+            ) : <p data-testid="txt-error">No agents found.</p>}
         </div>
     </>
 }

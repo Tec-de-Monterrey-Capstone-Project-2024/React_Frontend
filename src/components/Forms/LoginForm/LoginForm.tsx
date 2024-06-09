@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { deleteUser } from "firebase/auth";
 
-import { useDataContext } from "../../context/DataContext";
-import { useAuth } from "../../context/AuthContext";
-import { useError } from "../../context/ErrorContext";
+import { useDataContext } from "../../../context/DataContext";
+import { useAuth } from "../../../context/AuthContext";
+import { useError } from "../../../context/ErrorContext";
 
-import { loginUser } from "../../services/user/loginUser";
+import { loginUser } from "../../../services/user/loginUser";
 
-import './styles.css';
+import '../styles.css';
 
 const LoginForm: React.FC = () => {
     const { setUser } = useDataContext();
     const { signIn, signOut } = useAuth();
     const { loginError, setLoginError } = useError();
 
-    const [email, setEmail] = useState('a01657142@tec.mx');
-    const [password, setPassword] = useState('password');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const location = useLocation();
     const fromForgotForm = location.state?.fromForgotForm || false;
@@ -49,12 +49,12 @@ const LoginForm: React.FC = () => {
             </div>
             <div className="">
                 <div className="input-container">
-                    <label className="input-label" htmlFor="iam-role">Email</label>
+                    <label className="input-label" htmlFor="email">Email</label>
                     <input
                         className="input"
                         name="email"
                         type="email"
-                        id="email-address"
+                        id="email"
                         placeholder="email address..."
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
@@ -78,7 +78,7 @@ const LoginForm: React.FC = () => {
                 {loginError && (
                     <p className="text-red-500 mb-4 text-sm font-medium">Invalid Credentials, try again.</p>
                 )}
-                <button className="button login-button" type="submit">Login</button>
+                <button className="button login-button" type="submit" aria-label="login-button">Login</button>
                 <Link to='/auth/forgot' className="link">Forgot Password</Link>
                 <Link to='/auth/signup' className="link">Don't have an account?</Link>
             </div>

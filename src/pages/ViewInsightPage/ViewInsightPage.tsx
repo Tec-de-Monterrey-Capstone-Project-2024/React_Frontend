@@ -123,7 +123,7 @@ const ViewInsightPage: React.FC = () => {
           title={insight.insightName}
           message={insight.insightSummary}
           situationTitle="Situation"
-          actionTitle="Action"
+          actionTitle={insight.insightActions}
           insightRootCause={insight.insightRootCause}
           insightImpact={insight.insightImpact}
           insightPrevention={insight.insightPrevention}

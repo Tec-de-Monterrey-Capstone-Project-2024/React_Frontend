@@ -7,7 +7,7 @@
 }
 
 .agents-content select {
-    @apply flex-grow-0 flex-shrink-1 w-[15%];
+    @apply flex-grow-0 flex-shrink w-[15%];
 }
 
 .agents-content .content-card {

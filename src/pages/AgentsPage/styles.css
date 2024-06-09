@@ -1,3 +1,15 @@
 .agents-content { display: flex; height: 100%; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: 1rem; padding-top: .5rem; }
 .agents-content select { flex: 0 1 auto; width: 15%; }
 .agents-content .content-card { flex: 1 0 auto; }
+
+.agents-content {
+    @apply flex h-full flex-col flex-nowrap justify-start items-stretch gap-4 pt-2;
+}
+
+.agents-content select {
+    @apply flex-grow-0 flex-shrink-1 w-[15%];
+}
+
+.agents-content .content-card {
+    @apply flex-grow flex-shrink-0;
+}

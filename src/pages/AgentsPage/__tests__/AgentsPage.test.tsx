@@ -4,7 +4,7 @@ import { cleanup, render, screen, waitFor, fireEvent, waitForElementToBeRemoved 
 
 import { useDataContext } from "../../../context/DataContext";
 import { getAgents } from "../../../services/agents/getAgents";
-import { mockUserResults } from "../../../context/_mocks_/userResults";
+import { mockUserResults } from "../../../services/__mocks__/userResults";
 
 import AgentsPage from "../AgentsPage";
 

@@ -25,7 +25,7 @@ const AccountPage: React.FC = () => {
 
             setSelectedQueueId('all');
             
-            console.log("Signed out succesfully")
+            // console.log("Signed out succesfully")
         }).catch((error) => {
             console.error(error);
         })

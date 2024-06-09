@@ -18,7 +18,7 @@ import { IQueueCounts } from '../../services/queues/types';
 import { IQueue } from '../../services/queues/types';
 import InsightCard  from "../../components/Cards/InsightCard/InsightCard";
 
-const DashboardPage = () => {
+const GeneralDashboardPage = () => {
   const navigate = useNavigate();
 
   const { user, arn, selectedQueueId } = useDataContext();
@@ -116,24 +116,32 @@ const DashboardPage = () => {
     <section className='dashboard home'>
       <div className='container'>
         {selectedQueueId !== "all" && (
-          <div className="queues-card-dashboard" data-testid={"dashboard-page-queue-card"}>
-            <InsightCard title={(loadingQueue ? "Loading queue name..." : (queue?.at(0)?.name ?? "Queue"))} description1={"Clients: " + (loadingQueueCounts ? "Loading clients..." : (queueCounts?.at(0)?.contacts ?? "0"))}
-                         description2={"Agents: " + (loadingQueueCounts ? "Loading agents..." : (queueCounts?.at(0)?.agents ?? "0"))} color={"white"} borderColor={queueCounts?.at(0)?.color ?? "green"}
-                         showBoxBorder={true} func={goToAgentList} btn={false} />
+          <div data-testid="queue-container" className="queues-card-dashboard">
+            <InsightCard 
+              data-testid="queue-card"
+              title={(loadingQueue ? "Loading queue name..." : (queue?.at(0)?.name ?? "Queue"))} 
+              description1={"Clients: " + (loadingQueueCounts ? "Loading clients..." : (queueCounts?.at(0)?.contacts ?? "0"))}
+              description2={"Agents: " + (loadingQueueCounts ? "Loading agents..." : (queueCounts?.at(0)?.agents ?? "0"))} 
+              color={"white"} 
+              borderColor={queueCounts?.at(0)?.color ?? "green"}
+              showBoxBorder={true} 
+              func={goToAgentList} 
+              btn={true} 
+            />
           </div>
         )}
-        <div className='dashboard-content'>
-          <div className='column'>
+        <div data-testid='dashboard-content' className='dashboard-content'>
+          <div data-testid='column-metrics' className='column'>
             <h2>KPIs</h2>
             {loadingMetrics ? <p>Loading...</p> : ((metrics && metrics.length > 0) ? (
-                <div className='metrics'>
+                <div data-testid='metrics-container' className='metrics'>
                   {metrics.map(metric => {
                     const {id, metric_info_code, value} = metric;
                     const {name, min, max, unit, positive_upside} = MetricsData[metric_info_code];
 
                     return (
                         <MetricCard
-                          key={id}
+                            key={id}
                             title={name}
                             subtitle={''}
                             minValue={min}
@@ -152,10 +160,10 @@ const DashboardPage = () => {
                 <p>No metrics found</p>
             ))}
           </div>
-          <div className='column'>
+          <div data-testid='column-insights' className='column'>
             <h2>Insights</h2>
             {loadingInsights ? <p>Loading...</p> : ((insights && insights.length > 0) ? (
-                <div className="insights">
+                <div data-testid="insights-container" className="insights">
                   {insights.map(insight => (
                       <InsightCard
                           key={insight.id}
@@ -174,7 +182,6 @@ const DashboardPage = () => {
             ) : (
                 <p>No insights found.</p>
             ))}
-
           </div>
         </div>
       </div>
@@ -182,4 +189,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage;
+export default GeneralDashboardPage;

@@ -19,3 +19,62 @@ select.btn-type-2.light { border-right: 1rem solid var(--light-grey); }
 .btn-type-6 { display: block; width: 100%; background-color: var(--dark-blue); border-radius: 5rem; color: white }
 
 .btn-type-7 { display: block; text-align: start; background: var(--white); color: var(--black); padding: .5rem 1rem; border-radius: .5rem; font-size: 1rem; font-weight: 400; line-height: 1; transition: 0.5s; outline: none; border-right: 1rem solid var(--white); box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .1); }
+
+
+/**** tailwind css ****/
+/* btn-type-1 */
+.btn-type-1 {
+    @apply block text-center bg-dark-blue text-white py-2.5 rounded-md text-base font-bold leading-none transition duration-500;
+}
+.btn-type-1:hover {
+    @apply shadow-[0px_0px_20px_0px_#9DC53E];
+}
+.btn-type-1.active {
+    @apply shadow-[0px_0px_0px_6px_#9DC53E];
+}
+  
+/* btn-type-2 */
+.btn-type-2 {
+    @apply block text-left bg-light-green text-white py-2 px-4 rounded-lg text-base font-medium transition duration-500 outline-none;
+}
+select.btn-type-2 {
+    @apply border-r-[1rem_solid_var(--light-green)];
+}
+.btn-type-2.light {
+    @apply block text-left bg-light-grey text-black py-2 px-4 rounded-lg text-base font-normal transition duration-500 outline-none;
+}
+select.btn-type-2.light {
+    @apply border-r-[1rem_solid_var(--light-grey)];
+}
+  
+/* btn-type-3 */
+.btn-type-3 {
+    @apply block text-center bg-dark-blue text-white py-1.5 rounded-full text-base font-bold leading-none transition duration-500;
+}
+.btn-type-3 img {
+    @apply w-5 h-auto block mx-auto filter invert-100;
+}
+  
+/* btn-type-4 */
+.btn-type-4 {
+    @apply block text-left bg-light-red text-white py-2 px-4 w-full rounded-lg font-semibold transition duration-500;
+}
+.btn-type-4:hover {
+    @apply bg-danger-color shadow-[0px_0px_6px_0px_rgba(0,0,0,0.50)];
+}
+
+/* btn-type-5 */
+.btn-type-5 {
+    @apply inline-block text-center bg-dark-blue text-white py-2 px-4 rounded-xl text-base font-medium leading-none transition duration-500;
+}
+
+/* btn-type-6 */
+.btn-type-6 {
+    @apply block w-full bg-dark-blue rounded-full text-white;
+}
+
+/* btn-type-7 */
+.btn-type-7 {
+    @apply block text-left bg-white text-black py-2 px-4 rounded-md text-base font-normal leading-none transition duration-500 outline-none border-r-[1rem_solid_var(--white)] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.1)];
+}
+  

@@ -31,7 +31,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({
         <div className="mt-4">
           <strong className="text-2xl text-black" data-testid="agent-insight-Action">{actionTitle}</strong>
         </div>
-        <p className="text-lg text-gray-800">Consider allocating more agents from the Receipts Queue to the Reimbursements Queue.</p>
+        <p className="text-lg text-gray-800">{actionTitle}</p>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
           <strong className="text-2xl text-black">Root Cause</strong>

@@ -39,7 +39,7 @@ describe('Tests for AddAlert Component', () => {
     fireEvent.change(screen.getByLabelText('Choose metric'), { target: { value: 'SERVICE_LEVEL' } });
 
     await waitFor(() => {
-      expect(mockGet).toHaveBeenCalledWith('http://localhost:8080/api/metrics/SERVICE_LEVEL');
+      expect(mockGet).toHaveBeenCalledWith('https://connectmate-f72xn3ewaa-uc.a.run.app/api/metrics/SERVICE_LEVEL');
       expect(screen.getByLabelText('Minimum Threshold')).toHaveValue(5);
       expect(screen.getByLabelText('Maximum Threshold')).toHaveValue(10);
       expect(screen.getByLabelText('Target Value')).toHaveValue(7);
@@ -54,7 +54,7 @@ describe('Tests for AddAlert Component', () => {
     fireEvent.change(screen.getByLabelText('Choose metric'), { target: { value: 'SERVICE_LEVEL' } });
 
     await waitFor(() => {
-      expect(mockGet).toHaveBeenCalledWith('http://localhost:8080/api/metrics/SERVICE_LEVEL');
+      expect(mockGet).toHaveBeenCalledWith('https://connectmate-f72xn3ewaa-uc.a.run.app/api/metrics/SERVICE_LEVEL');
       expect(screen.getByText('Failed to fetch metric info')).toBeInTheDocument();
     });
   });
@@ -72,7 +72,7 @@ describe('Tests for AddAlert Component', () => {
     fireEvent.click(screen.getByText('Save Alert'));
 
     await waitFor(() => {
-      expect(mockPost).toHaveBeenCalledWith('http://localhost:8080/api/metrics/SERVICE_LEVEL/setThresholdsAndTarget', null, {
+      expect(mockPost).toHaveBeenCalledWith('https://connectmate-f72xn3ewaa-uc.a.run.app/api/metrics/SERVICE_LEVEL/setThresholdsAndTarget', null, {
         params: {
           minThreshold: '5',
           maxThreshold: '10',
@@ -95,7 +95,7 @@ describe('Tests for AddAlert Component', () => {
     fireEvent.click(screen.getByText('Save Alert'));
 
     await waitFor(() => {
-      expect(mockPost).toHaveBeenCalledWith('http://localhost:8080/api/metrics/SERVICE_LEVEL/setThresholdsAndTarget', null, {
+      expect(mockPost).toHaveBeenCalledWith('https://connectmate-f72xn3ewaa-uc.a.run.app/api/metrics/SERVICE_LEVEL/setThresholdsAndTarget', null, {
         params: {
           minThreshold: '5',
           maxThreshold: '10',

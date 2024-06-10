@@ -6,7 +6,7 @@ export const getInsightsByStatus = async (status: string): Promise<IInsight[]> =
         const response = await httpInstance.get<IInsight[]>(`/api/threshold-breach-insights/by-status`);
         return response.data;
     } catch (error) {
-        console.error("Error fetching insights:", error);
+        // console.error("Error fetching insights:", error);
         throw error;
     }
 };

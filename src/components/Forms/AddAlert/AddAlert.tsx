@@ -49,7 +49,7 @@ const AddAlert: React.FC = () => {
                 targetValue: metricData.targetValue !== null ? metricData.targetValue : ''
             }));
         } catch (error) {
-            console.error('Error fetching metric info', error);
+            // console.error('Error fetching metric info', error);
             setError('Failed to fetch metric info');
         }
     };
@@ -65,9 +65,9 @@ const AddAlert: React.FC = () => {
                     targetValue: formData.targetValue || null
                 }
             });
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
-            console.error('There was an error!', error);
+            // console.error('There was an error!', error);
             setError('Failed to submit form');
         } finally {
             setIsButtonPressed(false);
@@ -93,7 +93,7 @@ const AddAlert: React.FC = () => {
                 targetValue: ''
             });
         } catch (error) {
-            console.error('There was an error!', error);
+            // console.error('There was an error!', error);
             setError('Failed to clear values');
         } finally {
             setIsButtonPressed(false);

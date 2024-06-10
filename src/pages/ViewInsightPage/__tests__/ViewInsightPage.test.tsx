@@ -1,4 +1,4 @@
-import { act } from "react-dom/test-utils";
+import React from 'react';
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import ViewInsightPage from "../ViewInsightPage";
 import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
@@ -54,7 +54,9 @@ describe('ViewInsightPage', () => {
       throw new Error("Failed to fetch insight");
     });
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     const errorMessage = await waitFor(() => screen.getByText(/Failed to fetch insight/i));
     expect(errorMessage).toBeInTheDocument();
@@ -62,7 +64,7 @@ describe('ViewInsightPage', () => {
 
   test('goBack function should call navigate with -1 when back button is clicked', async () => {
     const navigate = useNavigate();
-    act(() => {
+    React.act(() => {
       renderComponent();
     });
 
@@ -92,7 +94,9 @@ describe('ViewInsightPage', () => {
 
     (getInsightByID as jest.Mock).mockResolvedValue(insightData);
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
 
@@ -120,7 +124,9 @@ describe('ViewInsightPage', () => {
     (getInsightByID as jest.Mock).mockResolvedValue(insightData);
     (updateInsightStatus as jest.Mock).mockResolvedValue({});
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByTestId('insight-card')).toBeInTheDocument();
@@ -134,7 +140,9 @@ describe('ViewInsightPage', () => {
   it('displays an error message when fetching the insight fails', async () => {
     (getInsightByID as jest.Mock).mockRejectedValue(new Error('Failed to fetch insight'));
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByText('Failed to fetch insight')).toBeInTheDocument();
@@ -144,7 +152,9 @@ describe('ViewInsightPage', () => {
   it('displays "No insight found" when the insight is not found', async () => {
     (getInsightByID as jest.Mock).mockResolvedValue(null);
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });;
 
     await waitFor(() => {
       expect(screen.getByText('No insight found')).toBeInTheDocument();
@@ -166,7 +176,9 @@ describe('ViewInsightPage', () => {
 
     (getInsightByID as jest.Mock).mockResolvedValue(insightData);
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByTestId('insight-card')).toBeInTheDocument();
@@ -191,7 +203,9 @@ describe('ViewInsightPage', () => {
 
     (getInsightByID as jest.Mock).mockResolvedValue(insightData);
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByTestId('insight-card')).toBeInTheDocument();
@@ -215,7 +229,9 @@ describe('ViewInsightPage', () => {
       };
       (getInsightByID as jest.Mock).mockResolvedValue(insightData);
 
-      renderComponent();
+      React.act(() => {
+        renderComponent();
+      });
 
       // await waitFor(() => {
       //   expect(screen.getByTestId('insight-card')).toBeInTheDocument();
@@ -242,7 +258,9 @@ describe('ViewInsightPage', () => {
     (getInsightByID as jest.Mock).mockResolvedValue(insightData);
     (updateInsightStatus as jest.Mock).mockResolvedValue({});
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByTestId('insight-card')).toBeInTheDocument();
@@ -254,7 +272,9 @@ describe('ViewInsightPage', () => {
   });
 
   it('shows the loading state correctly', async () => {
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
@@ -273,7 +293,9 @@ describe('ViewInsightPage', () => {
 
     (getInsightByID as jest.Mock).mockResolvedValue(insightData);
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByTestId('insight-card')).toBeInTheDocument();
@@ -305,7 +327,9 @@ describe('ViewInsightPage', () => {
 
     (getInsightByID as jest.Mock).mockResolvedValueOnce(initialInsightData);
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByTestId('insight-card')).toBeInTheDocument();
@@ -322,7 +346,9 @@ describe('ViewInsightPage', () => {
 
     (getInsightByID as jest.Mock).mockResolvedValueOnce(updatedInsightData);
 
-    renderComponent();
+    React.act(() => {
+      renderComponent();
+    });
 
     await waitFor(() => {
       expect(screen.getByText('Updated Insight')).toBeInTheDocument();

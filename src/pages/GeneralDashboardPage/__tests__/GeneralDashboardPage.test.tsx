@@ -212,14 +212,12 @@ describe("General Dashboard Page", () => {
         await act(async () => {
             render(
                 <Router>
-                    <DataProvider>
-                        <GeneralDashboardPage />
-                    </DataProvider>
+                    <GeneralDashboardPage />
                 </Router>
             );
         });
 
-        expect(await screen.findByText('No metrics found')).toBeInTheDocument();
+        expect(screen.findByText('No metrics found')).toBeInTheDocument();
     });
 
     test("The GeneralDashboardPage displays 'No insights found.' when no insights are available", async () => {

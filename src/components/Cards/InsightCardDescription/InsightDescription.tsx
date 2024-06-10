@@ -29,7 +29,7 @@ const InsightDescription: React.FC<IInsightDescription> = ({
         <p className="text-lg text-gray-800" data-testid="agent-insight-message">{message}</p>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
-          <strong className="text-2xl text-black" data-testid="agent-insight-Action">Actions</strong>
+          <strong className="text-2xl text-black" data-testid="agent-insight-Action">{"Actions"}</strong>
         </div>
         <p className="text-lg text-gray-800">{actionTitle}</p>
         <hr className="border-t-2 border-gray-150 my-2" />

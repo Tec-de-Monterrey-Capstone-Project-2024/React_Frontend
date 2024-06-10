@@ -9,36 +9,38 @@ import Navbar from './Navbar';
 import Sidebar from './Sidebar/Sidebar';
 
 import '../../assets/styles/layout.css';
+import SocketConnectionState from '../Socket/SocketConnectionState';
+import { SocketProvider, useSocketContext } from '../../context/SocketContext';
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
     const location = useLocation();
-    const isAuthPage = location.pathname.includes('auth');
-    
+    const isAuthPage = location.pathname.includes('auth');    
     if (isAuthPage) {
         return (
             <AuthProvider>
-                <ErrorProvider>
-                    <DataProvider>
-                        <main>{children}</main>
-                    </DataProvider>
-                </ErrorProvider>
+                <DataProvider>
+                  <SocketProvider>
+                    <main>{children}</main>
+                  </SocketProvider>
+                </DataProvider>
             </AuthProvider>
         );
     }
 
     return (
         <AuthProvider>
-            <ErrorProvider>
-                <DataProvider>
-                    <div className='layout'>
-                        <Sidebar />
-                        <div className='panel'>
-                            <Navbar />
-                            <main>{children}</main>
-                        </div>
-                    </div>
-                </DataProvider>
-            </ErrorProvider>
+            <DataProvider>
+              <SocketProvider>
+                <div className='layout'>
+                      <Sidebar />
+                      <div className='panel'>
+                          <Navbar />
+                          <SocketConnectionState />
+                          <main>{children}</main>
+                      </div>
+                  </div>
+              </SocketProvider>
+            </DataProvider>
         </AuthProvider>
     );
 };

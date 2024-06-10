@@ -23,3 +23,31 @@
 .kanban-column .content-card .content-card-container {
     height: auto;
 }
+
+
+.kanban{
+    @apply grid grid-cols-3 gap-4;
+    /* @apply mr-6;
+    @apply ml-6;
+    @apply mt-8; */
+    @apply h-full;
+}
+.kanban-title{
+    @apply text-2xl font-bold text-center;
+}
+.kanban-rows{
+    @apply mt-4;
+    @apply grid grid-flow-row gap-4;
+    @apply object-contain;
+}
+
+.kanban-column {
+    @apply overflow-auto;
+}
+
+.kanban-column .content-card {
+   @apply h-full max-h-full
+}
+.kanban-column .content-card .content-card-container {
+    @apply h-auto;
+}

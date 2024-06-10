@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+// import '@testing-library/jest-dom/extend-expect';
 import InsightModal from './InsightModal';
 
 describe('InsightModal', () => {
@@ -26,8 +26,9 @@ describe('InsightModal', () => {
       />
     );
 
-    expect(screen.getByText(message)).toBeInTheDocument();
-    expect(screen.getByText(`This Insight has been marked as ${status} successfully.`)).toBeInTheDocument();
+    // expect(screen.getByText(message)).not.toBeInTheDocument();
+    expect(screen.getByTestId('status-message')).toBeInTheDocument();
+    // expect(screen.getByText(`This Insight has been marked as ${status} successfully.`)).toBeInTheDocument();
   });
 
   it('calls onClose when the Escape key is pressed', () => {

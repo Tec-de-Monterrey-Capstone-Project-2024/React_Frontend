@@ -88,7 +88,9 @@ const AgentDashboardPage: React.FC = () => {
                       value={value}
                       unit={unit}
                       positive_upside={positive_upside}
-                      onClick={() => {}}
+                      onClick={() => {
+                        navigate(`../../dashboard/general-metrics/${metric_info_code}/${Math.round(value)}`);
+                      }}
                     />
                   );
                 })}

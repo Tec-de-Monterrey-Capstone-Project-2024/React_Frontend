@@ -15,7 +15,6 @@ import AccountPage from './pages/AccountPage/AccountPage';
 import AlertsPage from './pages/AlertsPage/AlertsPage';
 import {ViewInsightPage} from './pages/ViewInsightPage';
 
-import QueuesPage from './pages/QueuesPage/QueuesPage';
 import { MetricDetailsPage } from './pages/MetricDetailsPage';
 import InsightPage  from './pages/InsightPage/InsightPage';
 import AddAlertPage from './pages/AddAlertPage/AddAlertPage';
@@ -32,10 +31,9 @@ const App: React.FC = () => {
           <Route path="/auth/forgot" element={<ForgotPage />} />
 
           <Route path='/' element={<PrivateRoute />}>
-            <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<GeneralDashboardPage />} />
             <Route path="/dashboard/agent/:agentId" element={<AgentDashboardPage />} />
-            <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
+            <Route path="/dashboard/general-metrics/:metric_info_code/:value" element={<MetricDetailsPage />} />
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />

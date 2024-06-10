@@ -6,7 +6,7 @@ import { useDataContext } from '../../context/DataContext';
 import { getQueues } from '../../services/queues/getQueues';
 import { IQueue } from '../../services/queues/types';
 import { getInstance } from '../../services/instance/getInstance';
-import { getAlerts } from '../../services';
+import { getNotificationAlerts } from '../../services';
 
 import { Button } from '../Button';
 import {AlertPopup} from '../Popups/AlertPopup';
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const data = await getAlerts();
+        const data = await getNotificationAlerts();
         const dismissedAlerts = JSON.parse(localStorage.getItem('dismissedAlerts') || '[]');
         const filteredData = data.filter(alert => !dismissedAlerts.includes(alert.id));
         setAlerts(filteredData);
@@ -156,7 +156,7 @@ const Navbar: React.FC = () => {
 
             {instanceAlias && <span className='btn-type-2'>{instanceAlias}</span>}
 
-            <Button variant="light" onClick={() => navigate("/account")} className="green icon">
+            <Button id="account-link" variant="light" onClick={() => navigate("/account")} className="green icon">
               <img src={agentIcon} alt="Agent icon" />
             </Button>
           </div>

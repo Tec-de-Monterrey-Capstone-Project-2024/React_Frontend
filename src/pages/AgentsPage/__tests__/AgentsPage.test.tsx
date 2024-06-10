@@ -4,11 +4,13 @@ import { cleanup, render, screen, waitFor, fireEvent, waitForElementToBeRemoved 
 
 import { useDataContext } from "../../../context/DataContext";
 import { getAgents } from "../../../services/agents/getAgents";
+import { getMockAgents } from "../../../services/agents/getMockAgents";
 import { mockUserResults } from "../../../services/__mocks__/userResults";
 
 import AgentsPage from "../AgentsPage";
 
 jest.mock("../../../context/DataContext");
+jest.mock("../../../services/agents/getMockAgents");
 jest.mock("../../../services/agents/getAgents");
 
 afterEach(() => {
@@ -27,7 +29,7 @@ describe("Agents Page", () => {
             selectedQueueId: selectedQueueId
         });
 
-        (getAgents as jest.Mock).mockResolvedValue({ data: mockAgents });
+        (getMockAgents as jest.Mock).mockResolvedValue({ data: mockAgents });
 
         render(
             <Router>
@@ -40,7 +42,7 @@ describe("Agents Page", () => {
 
         await waitFor(() => {
             expect(useDataContext).toHaveBeenCalled();
-            expect(getAgents).toHaveBeenCalledWith(mockUserResults.instanceId, selectedQueueId);
+            expect(getMockAgents).toHaveBeenCalledWith(mockUserResults.instanceId, selectedQueueId);
         });
 
         await waitForElementToBeRemoved(() => screen.getByTestId("txt-loading"));
@@ -59,7 +61,7 @@ describe("Agents Page", () => {
             selectedQueueId: selectedQueueId
         });
 
-        (getAgents as jest.Mock).mockResolvedValue({ data: [] });
+        (getMockAgents as jest.Mock).mockResolvedValue({ data: [] });
 
         render(
             <Router>
@@ -72,7 +74,7 @@ describe("Agents Page", () => {
 
         await waitFor(() => {
             expect(useDataContext).toHaveBeenCalled();
-            expect(getAgents).toHaveBeenCalledWith(mockUserResults.instanceId, selectedQueueId);
+            expect(getMockAgents).toHaveBeenCalledWith(mockUserResults.instanceId, selectedQueueId);
         });
 
         await waitForElementToBeRemoved(() => screen.getByTestId("txt-loading"));

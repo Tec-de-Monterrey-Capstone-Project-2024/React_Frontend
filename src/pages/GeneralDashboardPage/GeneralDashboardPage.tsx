@@ -155,6 +155,18 @@ const GeneralDashboardPage = () => {
                         />
                     );
                   })}
+                  <MetricCard
+                      title={"Occupancy"}
+                      subtitle={''}
+                      minValue={80}
+                      maxValue={90}
+                      value={0}
+                      unit={"%"}
+                      positive_upside={true}
+                      onClick={() => {
+                        return
+                      }}
+                  />
                 </div>
             ) : (
                 <p>No metrics found</p>

@@ -2,6 +2,7 @@ import React, { useEffect, useState, ChangeEvent } from 'react';
 import { useDataContext } from '../../context/DataContext';
 
 import { getAgents } from '../../services/agents/getAgents';
+import { getMockAgents } from '../../services/agents/getMockAgents';
 import { IAgent } from '../../services/agents/types';
 
 import { ContentCard } from '../../components/Cards/ContentCard';
@@ -20,7 +21,7 @@ const AgentsPage = () => {
             setLoading(true);
             try {
                 if (user) {
-                    const res = await getAgents(user.instanceId, selectedQueueId);
+                    const res = await getMockAgents(user.instanceId, selectedQueueId);
                     setAgents(res.data);
                     
                 }
@@ -39,7 +40,7 @@ const AgentsPage = () => {
             <div className='section-container container'>
                 <div className='agents-content'>
                 <AgentInsightRow
-                    id={0}
+                    id="0"
                     firstName={"Name"}
                     lastName= {null}
                     queueName={"Queue"}

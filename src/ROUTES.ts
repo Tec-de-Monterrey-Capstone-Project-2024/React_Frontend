@@ -6,7 +6,6 @@ export const ROUTES = {
     FORGOT: "/auth/forgot",
     
     DASHBOARD: "/dashboard",
-    QUEUES: "/queues",
     AGENTS: "/agents",
     ALERTS: "/alerts",
     INSIGHTS: "/insights",

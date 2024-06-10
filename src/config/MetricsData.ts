@@ -10,7 +10,7 @@ export type MetricData = {
 const MetricsData: Record<string, MetricData> = {
     "serviceLevel": {
         name: "Service Level",
-        min: 70,
+        min: 40,
         max: 100,
         positive_upside: true,
         unit: '%',

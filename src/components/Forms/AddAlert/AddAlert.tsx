@@ -4,7 +4,6 @@ import { AlertFormData, MetricOption } from './types';
 import { ContentCard } from '../../Cards/ContentCard';
 import { Button } from '../../Button';
 import { Select } from '../../Select';
-import './styles.css';
 
 const AddAlert: React.FC = () => {
     const [formData, setFormData] = useState<AlertFormData>({
@@ -53,13 +52,13 @@ const AddAlert: React.FC = () => {
 
     return (
         <ContentCard>
-            <div className='alert-form'>
-                <h1 className="form-title">Add Alert</h1>
-                <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="form-group">
-                        <label>
+            <div className="bg-gray-200 p-5 rounded-lg w-11/12 mx-auto">
+                <h1 className="text-2xl text-gray-800 mb-5 text-center">Add Alert</h1>
+                <form onSubmit={(e) => e.preventDefault()} className="flex flex-col text-black">
+                    <div className="mb-4">
+                        <label className="mb-1 block w-full">
                             Choose metric
-                            <select name="metric" value={formData.metric} onChange={handleChange} className="form-control">
+                            <select name="metric" value={formData.metric} onChange={handleChange} className="w-full p-2 mt-1 border border-gray-300 rounded-md bg-white">
                                 <option value="">Select a metric</option>
                                 {metrics.map(metric => (
                                     <option key={metric.value} value={metric.value}>
@@ -69,8 +68,8 @@ const AddAlert: React.FC = () => {
                             </select>
                         </label>
                     </div>
-                    <div className="form-group">
-                        <label>
+                    <div className="mb-4">
+                        <label className="mb-1 block w-full">
                             Minimum Threshold
                             <input
                                 type="number"
@@ -78,12 +77,12 @@ const AddAlert: React.FC = () => {
                                 placeholder="Enter minimum threshold"
                                 value={formData.minThreshold}
                                 onChange={handleChange}
-                                className="form-control"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-md bg-white"
                             />
                         </label>
                     </div>
-                    <div className="form-group">
-                        <label>
+                    <div className="mb-4">
+                        <label className="mb-1 block w-full">
                             Maximum Threshold
                             <input
                                 type="number"
@@ -91,12 +90,12 @@ const AddAlert: React.FC = () => {
                                 placeholder="Enter maximum threshold"
                                 value={formData.maxThreshold}
                                 onChange={handleChange}
-                                className="form-control"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-md bg-white"
                             />
                         </label>
                     </div>
-                    <div className="form-group">
-                        <label>
+                    <div className="mb-4">
+                        <label className="mb-1 block w-full">
                             Target Value
                             <input
                                 type="number"
@@ -104,14 +103,14 @@ const AddAlert: React.FC = () => {
                                 placeholder="Target Value"
                                 value={formData.targetValue}
                                 onChange={handleChange}
-                                className="form-control"
+                                className="w-full p-2 mt-1 border border-gray-300 rounded-md bg-white"
                             />
                         </label>
                     </div>
-                    <button 
-                        type="button" 
-                        onClick={handleSubmit} 
-                        className={`form-control alert-form-button button alert-button ${isButtonPressed ? 'pressed' : ''}`}
+                    <button
+                        type="button"
+                        onClick={handleSubmit}
+                        className={`w-full p-3 mt-5 bg-lime-500 text-white border-none rounded-md cursor-pointer text-lg ${isButtonPressed ? 'pressed' : ''}`}
                         onMouseDown={() => setIsButtonPressed(true)}
                         onMouseUp={() => setIsButtonPressed(false)}
                     >

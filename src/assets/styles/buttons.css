@@ -32,7 +32,7 @@ select.btn-type-2.light { border-right: 1rem solid var(--light-grey); }
 .btn-type-1.active {
     @apply shadow-[0px_0px_0px_6px_#9DC53E];
 }
-  
+
 /* btn-type-2 */
 .btn-type-2 {
     @apply block text-left bg-light-green text-white py-2 px-4 rounded-lg text-base font-medium transition duration-500 outline-none;
@@ -46,7 +46,7 @@ select.btn-type-2 {
 select.btn-type-2.light {
     @apply border-r-[1rem_solid_var(--light-grey)];
 }
-  
+
 /* btn-type-3 */
 .btn-type-3 {
     @apply block text-center bg-dark-blue text-white py-1.5 rounded-full text-base font-bold leading-none transition duration-500;
@@ -54,7 +54,7 @@ select.btn-type-2.light {
 .btn-type-3 img {
     @apply w-5 h-auto block mx-auto filter invert-100;
 }
-  
+
 /* btn-type-4 */
 .btn-type-4 {
     @apply block text-left bg-light-red text-white py-2 px-4 w-full rounded-lg font-semibold transition duration-500;
@@ -77,4 +77,3 @@ select.btn-type-2.light {
 .btn-type-7 {
     @apply block text-left bg-white text-black py-2 px-4 rounded-md text-base font-normal leading-none transition duration-500 outline-none border-r-[1rem_solid_var(--white)] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.1)];
 }
-  

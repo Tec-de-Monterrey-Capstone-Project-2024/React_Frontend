@@ -29,19 +29,6 @@ module.exports = {
         'black': '#000000',
         'white': '#FFFFFF',
       },
-      spacing: {
-        'gutter-x': '3rem',
-        'gutter-y': '0',
-      },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: 'calc(var(--gutter-x) * 0.5)',
-          sm: '1rem',
-          lg: '2rem',
-          xl: '4rem',
-        },
-      },
     },
     plugins: { 
         'postcss-import': {}, 

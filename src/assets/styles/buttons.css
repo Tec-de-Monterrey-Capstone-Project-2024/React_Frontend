@@ -1,24 +1,4 @@
-.btn-type-1 { display: block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .6rem 0; border-radius: .5rem; font-size: 1rem; font-weight: 700; line-height: 1; transition: 0.5s; }
-.btn-type-1:hover { box-shadow: 0px 0px 20px 0px #9DC53E; }
-.btn-type-1.active { box-shadow: 0px 0px 0px 6px #9DC53E; }
 
-.btn-type-2 { display: block; text-align: start; background: var(--light-green); color: var(--white); padding: .5rem 1rem; border-radius: .7rem; font-size: 1rem; font-weight: 500; transition: 0.5s; outline: none; }
-select.btn-type-2 { border-right: 1rem solid var(--light-green); }
-
-.btn-type-2.light { display: block; text-align: start; background: var(--light-grey); color: var(--black); padding: .5rem 1rem; border-radius: .7rem; font-size: 1rem; font-weight: 400; transition: 0.5s; outline: none; }
-select.btn-type-2.light { border-right: 1rem solid var(--light-grey); }
-
-.btn-type-3 { display: block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .4rem; border-radius: 100%; font-size: 1rem; font-weight: 700; line-height: 1; transition: 0.5s; }
-.btn-type-3 img { width: 1.2rem; height: auto; display: block; margin: 0 auto; filter: invert(100%); }
-
-.btn-type-4 { display: block; text-align: center; background: var(--light-red); color: var(--white); padding: .5rem 1rem; width: 100%; ; border-radius: 15px; text-align: left; font-weight: 600; transition: 0.5s; }
-.btn-type-4:hover { background: var(--danger-color); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.50); }
-
-.btn-type-5 { display: inline-block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .5rem 1rem; border-radius: 1rem; font-size: 1rem; font-weight: 500; line-height: 1; transition: 0.5s; }
-
-.btn-type-6 { display: block; width: 100%; background-color: var(--dark-blue); border-radius: 5rem; color: white }
-
-.btn-type-7 { display: block; text-align: start; background: var(--white); color: var(--black); padding: .5rem 1rem; border-radius: .5rem; font-size: 1rem; font-weight: 400; line-height: 1; transition: 0.5s; outline: none; border-right: 1rem solid var(--white); box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .1); }
 
 
 /**** tailwind css ****/
@@ -52,7 +32,7 @@ select.btn-type-2.light {
     @apply block text-center text-white py-1.5 rounded-full text-base font-bold leading-none transition duration-500;
 }
 .btn-type-3 img {
-    @apply w-5 h-auto block mx-auto filter invert-100;
+    @apply w-5 h-auto block mx-auto;
 }
   
 /* btn-type-4 */
@@ -78,3 +58,25 @@ select.btn-type-2.light {
     @apply block text-left text-black py-2 px-4 rounded-md text-base font-normal leading-none transition duration-500 outline-none border-r-[1rem_solid_var(--white)] shadow-[0px_0px_0px_1px_rgba(0,0,0,0.1)];
 }
   
+
+.btn-type-1 { display: block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .6rem 0; border-radius: .5rem; font-size: 1rem; font-weight: 700; line-height: 1; transition: 0.5s; }
+.btn-type-1:hover { box-shadow: 0px 0px 20px 0px #9DC53E; }
+.btn-type-1.active { box-shadow: 0px 0px 0px 6px #9DC53E; }
+
+.btn-type-2 { display: block; text-align: start; background: var(--light-green); color: var(--white); padding: .5rem 1rem; border-radius: .7rem; font-size: 1rem; font-weight: 500; transition: 0.5s; outline: none; }
+select.btn-type-2 { border-right: 1rem solid var(--light-green); }
+
+.btn-type-2.light { display: block; text-align: start; background: var(--light-grey); color: var(--black); padding: .5rem 1rem; border-radius: .7rem; font-size: 1rem; font-weight: 400; transition: 0.5s; outline: none; }
+select.btn-type-2.light { border-right: 1rem solid var(--light-grey); }
+
+.btn-type-3 { display: block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .4rem; border-radius: 100%; font-size: 1rem; font-weight: 700; line-height: 1; transition: 0.5s; }
+.btn-type-3 img { width: 1.2rem; height: auto; display: block; margin: 0 auto; filter: invert(100%); }
+
+.btn-type-4 { display: block; text-align: center; background: var(--light-red); color: var(--white); padding: .5rem 1rem; width: 100%; ; border-radius: 15px; text-align: left; font-weight: 600; transition: 0.5s; }
+.btn-type-4:hover { background: var(--danger-color); box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.50); }
+
+.btn-type-5 { display: inline-block; text-align: center; background: var(--dark-blue); color: var(--white); padding: .5rem 1rem; border-radius: 1rem; font-size: 1rem; font-weight: 500; line-height: 1; transition: 0.5s; }
+
+.btn-type-6 { display: block; width: 100%; background-color: var(--dark-blue); border-radius: 5rem; color: white }
+
+.btn-type-7 { display: block; text-align: start; background: var(--white); color: var(--black); padding: .5rem 1rem; border-radius: .5rem; font-size: 1rem; font-weight: 400; line-height: 1; transition: 0.5s; outline: none; border-right: 1rem solid var(--white); box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .1); }

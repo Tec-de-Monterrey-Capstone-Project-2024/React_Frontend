@@ -64,7 +64,7 @@ const GeneralDashboardPage = () => {
       setLoadingMetrics(true);
       if (arn !== '' && selectedQueueId !== 'all') {
         const res = await getQueueMetrics(arn, "f0813607-af92-4a36-91e6-630ababb643c");
-        console.log(res);
+        // console.log(res);
         if (res.status >= 200 && res.status < 300) {
           const transformedMetrics = Object.entries(res.data).map(([key, value], index) => ({
             id: index,
@@ -78,7 +78,7 @@ const GeneralDashboardPage = () => {
         setLoadingMetrics(false);
       } else {
         const res = await getQueueMetrics(arn, 'f0813607-af92-4a36-91e6-630ababb643c');
-        console.log(res);
+        // console.log(res);
         if (res.status >= 200 && res.status < 300) {
           const transformedMetrics = Object.entries(res.data).map(([key, value], index) => ({
             id: index,

@@ -15,7 +15,7 @@ describe('General Navigation and Page Verification', () => {
     const routes = [
       { id: 'agents-link', path: '/agents' },
       { id: 'alerts-link', path: '/alerts' },
-      { id: 'inisghts-link', path: '/insights' },
+      { id: 'insights-link', path: '/insights' },
       { id: 'account-link', path: '/account' },
     ];
   
@@ -60,13 +60,13 @@ describe('General Navigation and Page Verification', () => {
         cy.url().should('include', "/AddAlert");
     });
 
-    // it(`should navigate to an insight view more page and verify it opens correctly`, () => {
-    //     cy.get(`#insights-link`).click();
-    //     cy.url().should('include', "/insights");
-    //     cy.get('.insights-page').should('be.visible');
-    //     cy.get(`.insight-view-more-btn`).click()
-    //     cy.url().should('include', "/insights/");
-    // });
+    it(`should navigate to an insight view more page and verify it opens correctly`, () => {
+        cy.get(`#insights-link`).click();
+        cy.url().should('include', "/insights");
+        cy.get('.insights-page').should('be.visible');
+        cy.get(`.insight-view-more-btn`).first().click();
+        cy.url().should('include', "/insights/");
+    });
 
   });
   

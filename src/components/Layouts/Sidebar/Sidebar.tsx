@@ -28,7 +28,7 @@ const Sidebar: React.FC = () => {
               <NavLink to={ROUTES.ALERTS} className="btn-type-1" id='alerts-link'>Alerts</NavLink>
             </li>
             <li>
-              <NavLink to={ROUTES.INSIGHTS} className="btn-type-1" id='inisghts-link'>Insights</NavLink>
+              <NavLink to={ROUTES.INSIGHTS} className="btn-type-1" id='insights-link'>Insights</NavLink>
             </li>
           </ul>
         </div>

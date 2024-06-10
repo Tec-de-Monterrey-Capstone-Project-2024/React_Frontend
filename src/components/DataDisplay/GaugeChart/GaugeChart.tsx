@@ -12,7 +12,7 @@ const GaugeChart: React.FC<IGaugeChart> = ({ min, max, value }) => {
     };
     
     return (
-        <div className='gauge'>
+        <div data-testid="gauge-chart" className='gauge'>
             <div className='gauge-chart'>
                 <div className='content'>
                     <div className='gauge' style={styles}>

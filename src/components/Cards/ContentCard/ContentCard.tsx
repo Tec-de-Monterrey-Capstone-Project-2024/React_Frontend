@@ -3,9 +3,9 @@ import { IContentCard } from './types';
 
 import './styles.css';
 
-const ContentCard: React.FC<IContentCard> = ({ children }) => {
+const ContentCard: React.FC<IContentCard> = ({ testid, children }) => {
     return (
-        <div className="content-card">
+        <div data-testid={testid} className="content-card">
             <div className='content-card-container container'>
                 {children}
             </div>

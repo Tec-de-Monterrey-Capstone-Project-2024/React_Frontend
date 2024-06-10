@@ -11,7 +11,7 @@ jest.mock('@mui/x-charts/PieChart', () => {
 describe('Pie component', () => {
   test('renders the PieChart with the correct series data', () => {
     const value = 40;
-    const metric = 'Test Metric';
+    const metric = 'Service Level';
     const remainingValue = 100 - value;
 
     render(<Pie value={value} metric={metric} />);

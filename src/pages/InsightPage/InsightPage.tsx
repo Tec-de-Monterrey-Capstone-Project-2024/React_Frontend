@@ -38,7 +38,7 @@ const InsightPage = () => {
                     'Done': { id: 'Done', list: Array.isArray(doneRes) ? doneRes : [] }
                 });
             } catch (error) {
-                console.error('Failed to load insights', error);
+                // console.error('Failed to load insights', error);
             }
             setLoading(false);
         };

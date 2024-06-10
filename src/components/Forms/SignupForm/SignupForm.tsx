@@ -55,7 +55,7 @@ const SignupForm = () => {
                 throw new Error('signup failed');
             }
         } catch (error) {
-            console.error("Signup failed:", error);
+            // console.error("Signup failed:", error);
             const currentUser = auth.currentUser;
             if (currentUser) {
                 await deleteUser(currentUser);

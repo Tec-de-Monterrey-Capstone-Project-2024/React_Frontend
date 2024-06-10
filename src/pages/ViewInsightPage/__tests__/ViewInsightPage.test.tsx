@@ -2,10 +2,10 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import ViewInsightPage from "../ViewInsightPage";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import '@testing-library/jest-dom/extend-expect';
+// import '@testing-library/jest-dom/extend-expect';
 import { getInsightByID } from "../../../services/insights/getInsightByID";
 import { updateInsightStatus } from "../../../services/insights/updateInsightStatus";
-import { mockInsight } from "../../../context/_mocks_/mocksInsights";
+import { mockInsight } from "../../../services/__mocks__/mocksInsights";
 
 jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),

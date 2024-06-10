@@ -10,6 +10,7 @@ import { mockUserResults } from "../../../services/__mocks__/userResults";
 import AgentsPage from "../AgentsPage";
 
 jest.mock("../../../context/DataContext");
+jest.mock("../../../services/agents/getMockAgents");
 jest.mock("../../../services/agents/getAgents");
 
 afterEach(() => {

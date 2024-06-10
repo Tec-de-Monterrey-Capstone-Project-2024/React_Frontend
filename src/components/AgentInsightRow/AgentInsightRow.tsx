@@ -23,7 +23,7 @@ const AgentInsightRow: React.FC<IAgentInsightRow> = ({ id, firstName, lastName, 
             <div className="row-text" data-testid={"agent-insight-row-name"}>{firstName} {lastName!}</div>
             {queueName && <div className="row-text" data-testid={"agent-insight-row-queue"}>{queueName}</div>}
             <div className="row-button" data-testid={"agent-insight-row-button"}>
-                {button && <Link to={`/dashboard/agent/${id}`} className='btn-type-5'>Show more</Link>}
+                {button && <Link to={`/dashboard/agent/${id}`} id={id} className='btn-type-5'>Show more</Link>}
                 {/* <Button title={"Show more"} variant={"dark"} onClick={handleShowMore}>Show more</Button> */}
             </div>
         </div>

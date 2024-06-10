@@ -156,7 +156,7 @@ const Navbar: React.FC = () => {
 
             {instanceAlias && <span className='btn-type-2'>{instanceAlias}</span>}
 
-            <Button variant="light" onClick={() => navigate("/account")} className="green icon">
+            <Button id="account-link" variant="light" onClick={() => navigate("/account")} className="green icon">
               <img src={agentIcon} alt="Agent icon" />
             </Button>
           </div>

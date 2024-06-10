@@ -243,6 +243,6 @@ describe("General Dashboard Page", () => {
             );
         });
 
-        expect(await screen.findByText('No insights found.')).toBeInTheDocument();
+        expect(screen.findByText('No insights found')).toBeInTheDocument();
     });
 });

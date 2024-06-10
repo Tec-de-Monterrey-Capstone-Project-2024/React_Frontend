@@ -61,9 +61,9 @@ const ViewInsightPage: React.FC = () => {
     if (id) {
       try {
         const response = await updateInsightStatus(Number(id), apiStatus);
-        console.log('Insight status updated:', response);
+        // console.log('Insight status updated:', response);
       } catch (err) {
-        console.error('Failed to update insight status', err);
+        // console.error('Failed to update insight status', err);
       }
     }
 
@@ -138,7 +138,7 @@ const ViewInsightPage: React.FC = () => {
                 <Button variant="grey" onClick={() => handleButtonClick('This Insight has been marked as In Progress successfully.', 'In Progress')}>
                   In Progress
                 </Button>
-                <Button variant="bright-green" onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
+                <Button variant="bright-green" testid='done-btn' onClick={() => handleButtonClick('This Insight has been marked as Done successfully.', 'Done')}>
                   Done
                 </Button>
               </div>

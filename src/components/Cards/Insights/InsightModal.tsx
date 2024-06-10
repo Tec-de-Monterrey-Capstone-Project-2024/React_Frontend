@@ -78,7 +78,7 @@ const InsightModal: React.FC<InsightModalProps> = ({ message, onClose, status, r
       );
     } else {
       return (
-        <p className="text-lg font-semibold mb-2">
+        <p data-testid="status-message" className="text-lg font-semibold mb-2">
           <span>This Insight</span> has been marked as <span className="font-bold">{status}</span> successfully.
         </p>
       );

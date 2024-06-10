@@ -192,7 +192,7 @@ const GeneralDashboardPage = () => {
                   ))}
                 </div>
             ) : (
-                <p>No insights found.</p>
+                <p>No insights found</p>
             ))}
           </div>
         </div>

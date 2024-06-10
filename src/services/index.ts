@@ -2,7 +2,9 @@ export { getAgents } from "./agents/getAgents";
 export { type IAgent } from "./agents/types";
 
 export { getAlerts } from "./alerts/getAlerts";
+export { getNotificationAlerts } from "./alerts/getNotificationAlerts";
 export { type IAlert } from "./alerts/types";
+export { type IAlertNotification } from "./alerts/types";
 
 export { getAgentInsights } from "./insights/getAgentInsights";
 export { getInsightByID } from "./insights/getInsightByID";

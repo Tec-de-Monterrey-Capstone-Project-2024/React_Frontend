@@ -6,7 +6,7 @@ import { useDataContext } from '../../context/DataContext';
 import { getQueues } from '../../services/queues/getQueues';
 import { IQueue } from '../../services/queues/types';
 import { getInstance } from '../../services/instance/getInstance';
-import { getAlerts } from '../../services';
+import { getNotificationAlerts } from '../../services';
 
 import { Button } from '../Button';
 import {AlertPopup} from '../Popups/AlertPopup';
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const data = await getAlerts();
+        const data = await getNotificationAlerts();
         const dismissedAlerts = JSON.parse(localStorage.getItem('dismissedAlerts') || '[]');
         const filteredData = data.filter(alert => !dismissedAlerts.includes(alert.id));
         setAlerts(filteredData);
@@ -111,22 +111,7 @@ const Navbar: React.FC = () => {
         setTitle('Insight');
         setSubtitle(null);
         break;
-
-      case '/dashboard/agent/1':
-        setTitle('Dashboard');
-        setSubtitle('- Luis Gerardo Doe');
-        break;
-
-      case '/dashboard/agent/2':
-        setTitle('Dashboard');
-        setSubtitle('- Jane Smith');
-        break;
-
-      case '/dashboard/agent/3':
-        setTitle('Dashboard');
-        setSubtitle('- Michael Johnson');
-        break;
-
+        
       default:
         setTitle(' ');
         setSubtitle(null);
@@ -162,7 +147,7 @@ const Navbar: React.FC = () => {
               <select id="queues" title='queues' value={selectedQueueId} onChange={changeQueue} className='btn-type-2 light'>
                 <option value="all">All queues</option>
                 {queues.map((queue) => (
-                  <option key={queue.id} value={queue.id}>
+                  <option key={queue.id} value={queue.name}>
                     {queue.name}
                   </option>
                 ))}
@@ -171,7 +156,7 @@ const Navbar: React.FC = () => {
 
             {instanceAlias && <span className='btn-type-2'>{instanceAlias}</span>}
 
-            <Button variant="light" onClick={() => navigate("/account")} className="green icon">
+            <Button id="account-link" variant="light" onClick={() => navigate("/account")} className="green icon">
               <img src={agentIcon} alt="Agent icon" />
             </Button>
           </div>

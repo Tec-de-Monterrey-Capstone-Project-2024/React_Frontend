@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { AlertFormData, MetricOption } from './types';
 import { ContentCard } from '../../Cards/ContentCard';
-import { Button } from '../../Button';
-import { Select } from '../../Select';
 import './styles.css';
+import config from "../../../config";
 
 const AddAlert: React.FC = () => {
     const [formData, setFormData] = useState<AlertFormData>({
@@ -15,6 +14,7 @@ const AddAlert: React.FC = () => {
     });
 
     const [isButtonPressed, setIsButtonPressed] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const metrics: MetricOption[] = [
         { value: 'SERVICE_LEVEL', label: 'Service Level' },
@@ -31,21 +31,70 @@ const AddAlert: React.FC = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        if (name === 'metric' && value) {
+            fetchMetricInfo(value);
+        }
+    };
+
+    const fetchMetricInfo = async (metricCode: string) => {
+        try {
+            const response = await axios.get(`${config.API_URL}api/metrics/${metricCode}`);
+            const metricData = response.data;
+
+            // Update form data with fetched metric information
+            setFormData(prev => ({
+                ...prev,
+                minThreshold: metricData.minimumThresholdValue !== null ? metricData.minimumThresholdValue : '',
+                maxThreshold: metricData.maximumThresholdValue !== null ? metricData.maximumThresholdValue : '',
+                targetValue: metricData.targetValue !== null ? metricData.targetValue : ''
+            }));
+        } catch (error) {
+            // console.error('Error fetching metric info', error);
+            setError('Failed to fetch metric info');
+        }
     };
 
     const handleSubmit = async () => {
         setIsButtonPressed(true);
+        setError(null);
         try {
-            const response = await axios.post(`http://localhost:8080/api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
+            const response = await axios.post(`${config.API_URL}api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
                 params: {
                     minThreshold: formData.minThreshold || null,
                     maxThreshold: formData.maxThreshold || null,
                     targetValue: formData.targetValue || null
                 }
             });
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
-            console.error('There was an error!', error);
+            // console.error('There was an error!', error);
+            setError('Failed to submit form');
+        } finally {
+            setIsButtonPressed(false);
+        }
+    };
+
+    const clearValues = async () => {
+        setIsButtonPressed(true);
+        setError(null);
+        try {
+            await axios.post(`${config.API_URL}api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
+                params: {
+                    minThreshold: null,
+                    maxThreshold: null,
+                    targetValue: null
+                }
+            });
+            // Clear the local state values
+            setFormData({
+                metric: '',
+                minThreshold: '',
+                maxThreshold: '',
+                targetValue: ''
+            });
+        } catch (error) {
+            // console.error('There was an error!', error);
+            setError('Failed to clear values');
         } finally {
             setIsButtonPressed(false);
         }
@@ -55,6 +104,7 @@ const AddAlert: React.FC = () => {
         <ContentCard>
             <div className='alert-form'>
                 <h1 className="form-title">Add Alert</h1>
+                {error && <div className="error-message">{error}</div>}
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div className="form-group">
                         <label>
@@ -75,7 +125,7 @@ const AddAlert: React.FC = () => {
                             <input
                                 type="number"
                                 name="minThreshold"
-                                placeholder="Enter minimum threshold"
+                                placeholder="Enter Minimum Threshold"
                                 value={formData.minThreshold}
                                 onChange={handleChange}
                                 className="form-control"
@@ -88,7 +138,7 @@ const AddAlert: React.FC = () => {
                             <input
                                 type="number"
                                 name="maxThreshold"
-                                placeholder="Enter maximum threshold"
+                                placeholder="Enter Maximum Threshold"
                                 value={formData.maxThreshold}
                                 onChange={handleChange}
                                 className="form-control"
@@ -101,7 +151,7 @@ const AddAlert: React.FC = () => {
                             <input
                                 type="number"
                                 name="targetValue"
-                                placeholder="Target Value"
+                                placeholder="Enter Target Value"
                                 value={formData.targetValue}
                                 onChange={handleChange}
                                 className="form-control"
@@ -117,6 +167,13 @@ const AddAlert: React.FC = () => {
                     >
                         Save Alert
                     </button>
+                    <button 
+                        type="button" 
+                        onClick={clearValues} 
+                        className="form-control alert-form-button button alert-button"
+                    >
+                        Clear Values
+                    </button>
                 </form>
             </div>
         </ContentCard>
@@ -124,3 +181,4 @@ const AddAlert: React.FC = () => {
 };
 
 export default AddAlert;
+

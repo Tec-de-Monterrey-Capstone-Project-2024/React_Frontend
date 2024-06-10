@@ -30,7 +30,7 @@ const GeneralDashboardPage = () => {
       setLoadingQueue(true);
 
       if (selectedQueueId !== "all" && user) {
-        const res = await describeQueue(user.instanceId, selectedQueueId);
+        const res = await describeQueue(user.instanceId, "f0813607-af92-4a36-91e6-630ababb643c");
         // console.log(res.data);
         setQueue(res.data);
       }
@@ -39,7 +39,7 @@ const GeneralDashboardPage = () => {
     }
 
     fetchData();
-  }, [user, selectedQueueId]);
+  }, [user, "f0813607-af92-4a36-91e6-630ababb643c"]);
 
   const [queueCounts, setQueueCounts] = useState<IQueueCounts[] | null>(null);
   const [loadingQueueCounts, setLoadingQueueCounts] = useState<Boolean>(true);
@@ -47,7 +47,7 @@ const GeneralDashboardPage = () => {
     const fetchData = async () => {
       setLoadingQueueCounts(true);
 
-      const res = await getQueueCounts(user!.instanceId, selectedQueueId);
+      const res = await getQueueCounts(user!.instanceId, "f0813607-af92-4a36-91e6-630ababb643c");
       setQueueCounts(res.data);
 
       setLoadingQueueCounts(false);
@@ -55,7 +55,7 @@ const GeneralDashboardPage = () => {
     if (user && selectedQueueId !== 'all') {
       fetchData();
     }
-  }, [user, selectedQueueId]);
+  }, [user, "f0813607-af92-4a36-91e6-630ababb643c"]);
 
   const [metrics, setMetrics] = useState<IMetric[] | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState<Boolean>(true);
@@ -63,7 +63,7 @@ const GeneralDashboardPage = () => {
     const fetchData = async () => {
       setLoadingMetrics(true);
       if (arn !== '' && selectedQueueId !== 'all') {
-        const res = await getQueueMetrics(arn, selectedQueueId);
+        const res = await getQueueMetrics(arn, "f0813607-af92-4a36-91e6-630ababb643c");
         console.log(res);
         if (res.status >= 200 && res.status < 300) {
           const transformedMetrics = Object.entries(res.data).map(([key, value], index) => ({
@@ -93,7 +93,7 @@ const GeneralDashboardPage = () => {
       }
     }
     fetchData();
-  }, [arn, selectedQueueId]);
+  }, [arn, "f0813607-af92-4a36-91e6-630ababb643c"]);
   
   const [insights, setInsights] = useState<IInsight[] | null>(null);
   const [loadingInsights, setLoadingInsights] = useState<Boolean>(true);
@@ -150,11 +150,23 @@ const GeneralDashboardPage = () => {
                             unit={unit}
                             positive_upside={positive_upside}
                             onClick={() => {
-                              navigate("general-metrics/" + id);
+                              navigate(`general-metrics/${metric_info_code}/${Math.round(value)}`);
                             }}
                         />
                     );
                   })}
+                  <MetricCard
+                      title={"Occupancy"}
+                      subtitle={''}
+                      minValue={80}
+                      maxValue={90}
+                      value={0}
+                      unit={"%"}
+                      positive_upside={true}
+                      onClick={() => {
+                        navigate(`general-metrics/agentOccupancy/0`);
+                      }}
+                  />
                 </div>
             ) : (
                 <p>No metrics found</p>
@@ -180,7 +192,7 @@ const GeneralDashboardPage = () => {
                   ))}
                 </div>
             ) : (
-                <p>No insights found.</p>
+                <p>No insights found</p>
             ))}
           </div>
         </div>

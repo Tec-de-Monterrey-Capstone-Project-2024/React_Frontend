@@ -28,7 +28,7 @@ const Popup: React.FC<PopupProps> = ({ isVisible, onClose, alerts, setAlerts }) 
       <div>
         {alerts.length > 0 ? alerts.map(alert => (
           <div className='alert-container' key={alert.id}>
-            <p>{alert.metricName}</p>
+            <p>{alert.insightName}</p>
             <div className='button-flex'>
               <button className='dismiss-button' onClick={() => handleDismiss(alert.id)}>Dismiss</button>
             </div>

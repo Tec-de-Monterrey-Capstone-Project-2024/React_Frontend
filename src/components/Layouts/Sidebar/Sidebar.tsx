@@ -16,19 +16,19 @@ const Sidebar: React.FC = () => {
           </div>
           <ul>
             <li>
-              <NavLink to={ROUTES.DASHBOARD} className="btn-type-1">Dashboard</NavLink>
+              <NavLink to={ROUTES.DASHBOARD} className="btn-type-1" id='dashboard-link'>Dashboard</NavLink>
             </li>
             {/* <li>
               <NavLink to={ROUTES.QUEUES} className="btn-type-1">Queues</NavLink>
             </li> */}
             <li>
-              <NavLink to={ROUTES.AGENTS} className="btn-type-1">Agents</NavLink>
+              <NavLink to={ROUTES.AGENTS} className="btn-type-1" id='agents-link'>Agents</NavLink>
             </li>
             <li>
-              <NavLink to={ROUTES.ALERTS} className="btn-type-1">Alerts</NavLink>
+              <NavLink to={ROUTES.ALERTS} className="btn-type-1" id='alerts-link'>Alerts</NavLink>
             </li>
             <li>
-              <NavLink to={ROUTES.INSIGHTS} className="btn-type-1">Insights</NavLink>
+              <NavLink to={ROUTES.INSIGHTS} className="btn-type-1" id='insights-link'>Insights</NavLink>
             </li>
           </ul>
         </div>

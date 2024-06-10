@@ -38,7 +38,7 @@ const InsightPage = () => {
                     'Done': { id: 'Done', list: Array.isArray(doneRes) ? doneRes : [] }
                 });
             } catch (error) {
-                console.error('Failed to load insights', error);
+                // console.error('Failed to load insights', error);
             }
             setLoading(false);
         };
@@ -107,7 +107,7 @@ const InsightPage = () => {
                 [end.id]: end
             });
         } catch (error) {
-            console.error("Failed to update insight status", error);
+            // console.error("Failed to update insight status", error);
             // Revert the changes in case of error
             start.list.splice(source.index, 0, draggableItem);
             setKanban({

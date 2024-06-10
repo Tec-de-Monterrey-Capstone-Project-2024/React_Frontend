@@ -1,38 +1,39 @@
-.box-container{
+.box-container {
     @apply rounded-lg px-6 py-6 shadow-md w-full;
-}
-.gray-box{
+  }
+
+  .gray-box {
     @apply bg-gray-300;
-}
+  }
 
-.white-box{
+  .white-box {
     @apply bg-white;
-}
+  }
 
-.box-border{
+  .box-border {
     @apply border-l-8;
-}
+  }
 
-.green-border{
+  .green-border {
     @apply border-l-green-500;
-}
+  }
 
-.red-border{
+  .red-border {
     @apply border-l-red-500;
-}
+  }
 
-.yellow-border{
+  .yellow-border {
     @apply border-l-yellow-300;
-}
+  }
 
-.header{
-    @apply text-wrap text-black font-bold text-left font-montserrat mb-2;
-}
+  .header {
+    @apply break-words text-black font-bold text-left font-montserrat mb-2;
+  }
 
-.description{
-    @apply text-wrap text-black text-left font-montserrat mb-2;
-}
+  .description {
+    @apply break-words text-black text-left font-montserrat mb-2;
+  }
 
-.insight-button{
+  .insight-button {
     @apply flex flex-col items-center justify-center mt-6 w-full;
-}
+  }

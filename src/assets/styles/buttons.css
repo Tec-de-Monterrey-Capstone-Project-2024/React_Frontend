@@ -52,7 +52,7 @@ select.btn-type-2.light {
     @apply block text-center bg-dark-blue text-white py-1.5 rounded-full text-base font-bold leading-none transition duration-500;
 }
 .btn-type-3 img {
-    @apply w-5 h-auto block mx-auto filter invert-100;
+    @apply w-5 h-auto block mx-auto filter invert;
 }
 
 /* btn-type-4 */
@@ -60,8 +60,8 @@ select.btn-type-2.light {
     @apply block text-left bg-light-red text-white py-2 px-4 w-full rounded-lg font-semibold transition duration-500;
 }
 .btn-type-4:hover {
-    @apply bg-danger-color shadow-[0px_0px_6px_0px_rgba(0,0,0,0.50)];
-}
+    @apply bg-red-600 shadow-lg;
+  }
 
 /* btn-type-5 */
 .btn-type-5 {

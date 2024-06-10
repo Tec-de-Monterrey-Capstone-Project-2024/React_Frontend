@@ -1,99 +1,78 @@
+/* Tailwind CSS Custom Button Classes */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .button {
-  padding: .3rem 1rem;
-  border: none;
-  border-radius: 1rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-align: center;
-  color: white;
-  outline: none;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, box-shadow 0.3s;
-  margin-top: 0;
-  margin-bottom: 0;
+  @apply px-4 py-1 border-none rounded-xl text-base font-medium text-center text-white outline-none cursor-pointer shadow-md transition-all mt-0 mb-0;
 }
 
-.button.light { background-color: #D9D9D9; color: #000000; }
-.button.dark { background-color: #022539; }
-.button.light.green { background-color: #9DC53E; color: #FFFFFF; }
+.button.light {
+  @apply bg-gray-300 text-black;
+}
+
+.button.dark {
+  @apply bg-[#022539];
+}
+
+.button.light.green {
+  @apply bg-[#9DC53E] text-white;
+}
 
 .button.darkblue {
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #062547;
+  @apply px-12 py-2 border-none rounded-xl text-lg font-bold bg-[#062547];
 }
 
 .button.grey {
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #D9D9D9;
-  color: black;
+  @apply px-12 py-2 border-none rounded-xl text-lg font-bold bg-gray-300 text-black;
 }
 
 .button.pink {
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #FFCCCC;
+  @apply px-12 py-2 border-none rounded-xl text-lg font-bold bg-pink-200;
 }
 
 .button.green {
-  background-color: #9DC53E;
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
+  @apply bg-[#9DC53E] px-12 py-2 border-none rounded-xl text-lg font-bold;
 }
 
 .button.bright-green {
-  background-color: #009F23;
-  padding: 10px 50px;
-  border: none;
-  border-radius: 1rem;
-  font-size: 16px;
-  font-weight: bold;
+  @apply bg-[#009F23] px-12 py-2 border-none rounded-xl text-lg font-bold;
 }
 
 .button.lightgreen {
-  background-color: #BED499;
-  color: #333333;
-  padding: 10px 200px;
-  font-family: 'Arial', sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 1px 0 #ffffff;
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  @apply bg-[#BED499] text-gray-800 px-52 py-2 font-sans text-lg font-bold rounded-xl shadow-lg cursor-pointer transition-all;
+  text-shadow: 0 1px 0 #ffffff; /* No Tailwind class for text-shadow */
 }
 
-.button.yellow { background-color: #FFDFA1; }
-.button.darkgreen { background-color: #9DC53E; }
+.button.yellow {
+  @apply bg-[#FFDFA1];
+}
 
-.button:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); }
-.button:active { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }
-.button.icon { padding: .5rem; border-radius: 100%; }
-.button img { height: 1.2rem; filter: invert(100%); }
+.button.darkgreen {
+  @apply bg-[#9DC53E];
+}
 
+.button.icon {
+  @apply p-2 rounded-full;
+}
+
+.button img {
+  @apply h-5; 
+  filter: invert(100%); 
+}
+
+.button:hover {
+  @apply shadow-lg;
+}
+
+.button:active {
+  @apply shadow-sm;
+}
 
 .alert-button {
-  background-color: #007bff; 
-  transition: background-color 0.3s, transform 0.1s;
+  @apply bg-blue-500 transition-all;
 }
 
 .alert-button.pressed {
-  background-color: #0056b3; 
-  transform: translateY(2px); 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  @apply bg-blue-700 transform translate-y-0.5 shadow-md;
 }

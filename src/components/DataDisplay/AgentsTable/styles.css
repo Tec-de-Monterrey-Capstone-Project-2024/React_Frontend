@@ -1,1 +1,3 @@
-.agents-table { display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: 1rem; padding-bottom: 3rem; }
+.agents-table {
+    @apply flex flex-col flex-nowrap justify-start items-stretch gap-4 pb-12;
+  }

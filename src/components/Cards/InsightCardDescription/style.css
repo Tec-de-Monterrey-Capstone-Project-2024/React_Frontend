@@ -1,19 +1,15 @@
 .insight-container {
+    @apply p-5 mb-5 bg-gray-100
     border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .insight-container h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    @apply text-lg mb-2
     color: #333;
 }
 
 .insight-container p {
-    font-size: 16px;
-    line-height: 1.5;
+     @apply text-base leading-normal
     color: #555;
 }

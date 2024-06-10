@@ -29,9 +29,8 @@ const ViewInsightPage: React.FC = () => {
         }
       } catch (err) {
         setError('Failed to fetch insight');
-      } finally {
-        setLoading(false);
       }
+      setLoading(false);
     };
 
     fetchInsight();

@@ -62,7 +62,9 @@ describe('ViewInsightPage', () => {
 
   test('goBack function should call navigate with -1 when back button is clicked', async () => {
     const navigate = useNavigate();
-    renderComponent();
+    act(() => {
+      renderComponent();
+    });
 
     await waitForElementToBeRemoved(() => screen.getByText("Loading..."));
 

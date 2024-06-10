@@ -13,7 +13,7 @@ const AlertsPage: React.FC = () => {
 
   return (
     <>
-    <div style={{ textAlign: 'center', padding: '20px' }}>
+    <div className='aletrs-page' style={{ textAlign: 'center', padding: '20px' }}>
       <div>
         <AlertsTable />
       </div>

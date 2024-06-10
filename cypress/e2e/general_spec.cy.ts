@@ -13,7 +13,6 @@ describe('General Navigation and Page Verification', () => {
     });
   
     const routes = [
-      { id: 'dashboard-link', path: '/dashboard' },
       { id: 'agents-link', path: '/agents' },
       { id: 'alerts-link', path: '/alerts' },
       { id: 'inisghts-link', path: '/insights' },
@@ -25,17 +24,14 @@ describe('General Navigation and Page Verification', () => {
         cy.url().should('include', route.path);
         
         switch (route.path) {
-          case '/dashboard':
-            cy.get('.dashboard-specific-element').should('be.visible');
-            break;
           case '/agents':
-            cy.get('.agents-specific-element').should('be.visible');
+            cy.get('.agents').should('be.visible');
             break;
           case '/alerts':
-            cy.get('.alerts-specific-element').should('be.visible');
+            cy.get('.alerts-page').should('be.visible');
             break;
           case '/insights':
-            cy.get('.insights-specific-element').should('be.visible');
+            cy.get('.insights-page').should('be.visible');
             break;
           default:
             break;

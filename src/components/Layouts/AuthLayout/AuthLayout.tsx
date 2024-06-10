@@ -1,7 +1,7 @@
 import React from 'react';
 import { IAuthLayout } from './types';
 import img from '../../../assets/img/logo.png'
-import loginFoto from '../../../../public/loginFoto.png'
+import loginFoto from '../../../assets/img/loginFoto.png'
 
 const AuthLayout: React.FC<IAuthLayout> = ({ children }) => {
   return (

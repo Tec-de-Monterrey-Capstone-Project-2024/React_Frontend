@@ -7,14 +7,14 @@ jest.mock('../../../components/Forms/AddAlert', () => () => <div data-testid="ad
 
 describe('AddAlertPage', () => {
   test('renders AddAlertPage without crashing', () => {
-    const { container } = render(<AddAlertPage />);
-    const addAlertElement = container.querySelector('[data-testid="add-alert-component"]');
-    expect(addAlertElement).not.toBeNull();
+    const { getByTestId } = render(<AddAlertPage />);
+    const addAlertElement = getByTestId('add-alert-component');
+    expect(addAlertElement).toBeInTheDocument();
   });
 
   test('contains AddAlert component', () => {
-    const { container } = render(<AddAlertPage />);
-    const addAlertComponent = container.querySelector('[data-testid="add-alert-component"]');
-    expect(addAlertComponent).not.toBeNull();
+    const { getByTestId } = render(<AddAlertPage />);
+    const addAlertComponent = getByTestId('add-alert-component');
+    expect(addAlertComponent).toBeInTheDocument();
   });
 });

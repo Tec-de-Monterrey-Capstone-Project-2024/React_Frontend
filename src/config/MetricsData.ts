@@ -28,7 +28,7 @@ const MetricsData: Record<string, MetricData> = {
         name: "Average Resolution Time",
         min: 120,
         max: 600,
-        positive_upside: true,
+        positive_upside: false,
         unit: 's',
         graph: 'Pie'
     },

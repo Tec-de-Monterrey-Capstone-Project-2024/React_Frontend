@@ -2,7 +2,7 @@ import { IAgent } from "./types";
 
 const mockAgentData: IAgent[] = [
     {
-        id: 1,
+        id: "1",
         firstName: "Federico",
         lastName: "Zenteno",
         email: "fede@gmial.com",
@@ -10,7 +10,7 @@ const mockAgentData: IAgent[] = [
         queueName: "BasicQueue"
     },
     {
-        id: 2,
+        id: "2",
         firstName: "Fer",
         lastName: "Tejeda",
         email: "fertejeda@gmail.com",
@@ -18,7 +18,7 @@ const mockAgentData: IAgent[] = [
         queueName: "BasicQueue"
     },
     {
-        id: 3,
+        id: "3",
         firstName: "Julia",
         lastName: "Pasten",
         email: "juls@gmail.com",
@@ -26,7 +26,7 @@ const mockAgentData: IAgent[] = [
         queueName: "S0S"
     },
     {
-        id: 4,
+        id: "4",
         firstName: "Diego",
         lastName: "Zepeda",
         email: "ilest@gmail.com",
@@ -34,7 +34,15 @@ const mockAgentData: IAgent[] = [
         queueName: "BasicQueue"
     },
     {
-        id: 5,
+        id: "40d74e54-2e2d-42f2-87f9-96d6d6abd97d",
+        firstName: "Abigail",
+        lastName: "Curiel",
+        email: "abi@gmail.com",
+        username: "abicuri",
+        queueName: "BasicQueue"
+    },
+    {
+        id: "5",
         firstName: "Moises",
         lastName: "Badillo",
         email: "herobrincas@gmail.com",
@@ -42,7 +50,7 @@ const mockAgentData: IAgent[] = [
         queueName: "BasicQueue"
     },
     {
-        id: 6,
+        id: "6",
         firstName: "Ricardo",
         lastName: "Campos",
         email: "richy@gmail.com",

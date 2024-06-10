@@ -40,7 +40,7 @@ const AgentsPage = () => {
             <div className='section-container container'>
                 <div className='agents-content'>
                 <AgentInsightRow
-                    id={0}
+                    id="0"
                     firstName={"Name"}
                     lastName= {null}
                     queueName={"Queue"}

@@ -36,7 +36,7 @@ const MetricsData: Record<string, MetricData> = {
         name: "Occupancy",
         min: 80,
         max: 90,
-        positive_upside: false,
+        positive_upside: true,
         unit: '%',
         graph: 'Pie'
     },

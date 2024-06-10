@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AlertFormData, MetricOption } from './types';
 import { ContentCard } from '../../Cards/ContentCard';
 import './styles.css';
+import config from "../../../config";
 
 const AddAlert: React.FC = () => {
     const [formData, setFormData] = useState<AlertFormData>({
@@ -37,7 +38,7 @@ const AddAlert: React.FC = () => {
 
     const fetchMetricInfo = async (metricCode: string) => {
         try {
-            const response = await axios.get(`http://localhost:8080/api/metrics/${metricCode}`);
+            const response = await axios.get(`${config.API_URL}api/metrics/${metricCode}`);
             const metricData = response.data;
 
             // Update form data with fetched metric information
@@ -57,7 +58,7 @@ const AddAlert: React.FC = () => {
         setIsButtonPressed(true);
         setError(null);
         try {
-            const response = await axios.post(`http://localhost:8080/api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
+            const response = await axios.post(`${config.API_URL}api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
                 params: {
                     minThreshold: formData.minThreshold || null,
                     maxThreshold: formData.maxThreshold || null,
@@ -77,7 +78,7 @@ const AddAlert: React.FC = () => {
         setIsButtonPressed(true);
         setError(null);
         try {
-            await axios.post(`http://localhost:8080/api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
+            await axios.post(`${config.API_URL}api/metrics/${formData.metric}/setThresholdsAndTarget`, null, {
                 params: {
                     minThreshold: null,
                     maxThreshold: null,

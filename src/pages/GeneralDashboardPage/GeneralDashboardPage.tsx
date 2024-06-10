@@ -150,7 +150,7 @@ const GeneralDashboardPage = () => {
                             unit={unit}
                             positive_upside={positive_upside}
                             onClick={() => {
-                              navigate("general-metrics/" + id);
+                              navigate(`general-metrics/${metric_info_code}/${Math.round(value)}`);
                             }}
                         />
                     );
@@ -164,7 +164,7 @@ const GeneralDashboardPage = () => {
                       unit={"%"}
                       positive_upside={true}
                       onClick={() => {
-                        return
+                        navigate(`general-metrics/agentOccupancy/0`);
                       }}
                   />
                 </div>

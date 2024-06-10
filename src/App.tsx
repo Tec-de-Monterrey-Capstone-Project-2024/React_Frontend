@@ -35,7 +35,7 @@ const App: React.FC = () => {
             <Route path="/queues" element={<QueuesPage/>} />
             <Route path="/dashboard" element={<GeneralDashboardPage />} />
             <Route path="/dashboard/agent/:agentId" element={<AgentDashboardPage />} />
-            <Route path="/dashboard/general-metrics/:id" element={<MetricDetailsPage />} />
+            <Route path="/dashboard/general-metrics/:metric_info_code/:value" element={<MetricDetailsPage />} />
             <Route path="/agents" element={<AgentsPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/alerts" element={<AlertsPage />} />

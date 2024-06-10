@@ -15,7 +15,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
     });
 
     return (
-        <div className={card}>
+        <div className={card} data-testid="insight-card">
             <div className="header">
                 <h1>{title}</h1>
             </div>
@@ -26,7 +26,7 @@ const InsightCard: React.FC<IInsightCard> = ({ title, description1, description2
                 {description2}
             </div>
             {btn && <div className="insight-button">
-                <button className='btn-type-6' onClick={func}>View more</button>
+                <button data-testid="insight-card-button" className='btn-type-6' onClick={func}>View more</button>
             </div>}
         </div>
     );

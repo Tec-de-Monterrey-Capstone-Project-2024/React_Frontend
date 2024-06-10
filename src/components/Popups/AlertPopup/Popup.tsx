@@ -1,30 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Popup.css';
-import Alert from './Alert.png';
 
 interface PopupProps {
-  message: string;
   isVisible: boolean;
   onClose: () => void;
+  alerts: any[];
+  setAlerts: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-const Popup: React.FC<PopupProps> = ({ message, isVisible, onClose }) => {
+const Popup: React.FC<PopupProps> = ({ isVisible, onClose, alerts, setAlerts }) => {
+  const handleDismiss = (id: number) => {
+    const dismissedAlerts = JSON.parse(localStorage.getItem('dismissedAlerts') || '[]');
+    dismissedAlerts.push(id);
+    localStorage.setItem('dismissedAlerts', JSON.stringify(dismissedAlerts));
+
+    const updatedAlerts = alerts.filter(alert => alert.id !== id);
+    setAlerts(updatedAlerts);
+  };
+
   if (!isVisible) return null;
 
   return (
-    <div className="popup-overlay">
-      <div className="popup-content">
-      <button className="close-btn" onClick={onClose}>&times;</button>
-        <img src={Alert} className="popup-image" />
-        <div className="popup-header">
-          <h2>Full Queue</h2>
-        </div>
-        <div className="popup-body">
-          <p>{message}</p>
-        </div>
-        <div className="popup-footer">
-          <button className="manage-btn">Manage</button>
-        </div>
+    <div className='popup-container'>
+      <div className='popup-title'>
+        <p className='popup-title-p'>Alerts</p>
+      </div>
+      <div>
+        {alerts.length > 0 ? alerts.map(alert => (
+          <div className='alert-container' key={alert.id}>
+            <p>{alert.insightName}</p>
+            <div className='button-flex'>
+              <button className='dismiss-button' onClick={() => handleDismiss(alert.id)}>Dismiss</button>
+            </div>
+          </div>
+        )) : <p>No alerts</p>}
       </div>
     </div>
   );

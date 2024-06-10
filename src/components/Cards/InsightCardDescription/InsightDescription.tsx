@@ -17,45 +17,45 @@ const InsightDescription: React.FC<IInsightDescription> = ({
     <div className="p-6 border border-gray-300 rounded-lg shadow-lg bg-gray-50">
       <h2 className="text-4xl font-bold mb-4 flex items-center">
         <span className="p-2 bg-gray-50 rounded-full text-lime-500 text-4xl border border-gray-300 mr-2">
-          <img src={alertIcon } alt="Alert icon" width={32} height={32}  />
+          <img src={alertIcon} alt="Alert icon" width={32} height={32} />
         </span>
         {title}
       </h2>
       <hr className="border-t-2 border-gray-250 my-4" />
       <div className="mt-4">
         <div className="mb-2">
-          <strong className="text-2xl text-black">{situationTitle}</strong>
+          <strong className="text-2xl text-black" data-testid="agent-insight-title">{situationTitle}</strong>
         </div>
-        <p className="text-lg text-gray-800">{message}</p>
+        <p className="text-lg text-gray-800" data-testid="agent-insight-message">{message}</p>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
-          <strong className="text-2xl text-black">{actionTitle}</strong>
+          <strong className="text-2xl text-black" data-testid="agent-insight-Action">{"Actions"}</strong>
         </div>
-        <p className="text-lg text-gray-800">Consider allocating more agents from the Receipts Queue to the Reimbursements Queue.</p>
+        <p className="text-lg text-gray-800">{actionTitle}</p>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
           <strong className="text-2xl text-black">Root Cause</strong>
-          <p className="text-lg text-gray-800">{insightRootCause}</p>
+          <p className="text-lg text-gray-800" data-testid="agent-insight-Root-cause">{insightRootCause}</p>
         </div>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
           <strong className="text-2xl text-black">Impact</strong>
-          <p className="text-lg text-gray-800">{insightImpact}</p>
+          <p className="text-lg text-gray-800" data-testid="agent-insight-Impact">{insightImpact}</p>
         </div>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
           <strong className="text-2xl text-black">Prevention</strong>
-          <p className="text-lg text-gray-800">{insightPrevention}</p>
+          <p className="text-lg text-gray-800" data-testid="agent-insight-Prevention">{insightPrevention}</p>
         </div>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
           <strong className="text-2xl text-black">Severity</strong>
-          <p className="text-lg text-gray-800">{insightSeverity}</p>
+          <p className="text-lg text-gray-800" data-testid="agent-insight-Severity">{insightSeverity}</p>
         </div>
         <hr className="border-t-2 border-gray-150 my-2" />
         <div className="mt-4">
           <strong className="text-2xl text-black">Category</strong>
-          <p className="text-lg text-gray-800">{insightCategory}</p>
+          <p className="text-lg text-gray-800" data-testid="agent-insight-category">{insightCategory}</p>
         </div>
       </div>
     </div>

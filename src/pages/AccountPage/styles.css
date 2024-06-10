@@ -1,5 +1,22 @@
 section.account { width: 100%; height: 100%; position: relative; }
-section.account .content { display: flex; flex-wrap: nowrap; align-items: stretch; align-content: stretch; flex-direction: row; justify-content: flex-start; height: 100%; }
+section.account .account-content { display: flex; flex-wrap: nowrap; align-items: stretch; align-content: stretch; flex-direction: column; justify-content: flex-start; height: 100%; }
+
+section.account .info { flex: 1 0 auto; display: flex; flex-wrap: nowrap; align-items: center; align-content: stretch; flex-direction: row; justify-content: flex-start; width: 100%; }
+section.account .info .img { flex: 0 1 auto; padding: 0 2rem; }
+section.account .info .img img { --size: 200px; width: var(--size); height: var(--size); border-radius: 100%; border: 1px solid rgba(0, 0, 0, .2); }
+section.account .info .data { flex: 1 0 auto; }
+section.account .info .data { padding: 0 2rem; }
+section.account .info .data .inputs { display: flex; flex-wrap: wrap; gap: 2rem; }
+section.account .info .data .inputs .column { flex: 1 0 calc(50% - 2rem); max-width: calc(50% - 2rem); }
+section.account .info .data .inputs .column label { display: block; font-size: 1rem; font-weight: 500; margin-bottom: .5rem; line-height: 1; }
+section.account .info .data .inputs .column input { display: block; width: 100%; font-size: 1rem; background: var(--light-grey);padding: .5rem 1rem; border-radius: .5rem; border: 1px solid rgba(0, 0, 0, .2); line-height: 1; }
+
+section.account .bottom { flex: 0 0 auto; text-align: end; }
+section.account .bottom button { display: inline-block; width: auto; }
+
+section.account h2 { font-size: 1.4rem; font-weight: 500; margin-bottom: .2rem  ; line-height: 1; }
+section.account .username { font-size: 1rem; font-weight: 400; margin-bottom: 1rem; line-height: 1; }
+
 
 section.account .sidebar { flex: 1 0 auto; width: 100%; max-width: 20%; position: relative; }
 section.account .sidebar .sidebar-container { padding: 0; width: 100%; height: 100%; border-right: 1px solid #000000; padding-top: 1rem; padding-bottom: 1rem; display: flex; flex-direction: column; flex-wrap: nowrap; justify-content: center; align-items: stretch; padding-right: 1rem; }
@@ -29,3 +46,135 @@ section.account .account-container .content .sidebar .sidebar-container ul li:la
 section.account .account-container .content .sidebar .sidebar-container ul li:last-child button img {  }
 section.account .account-container .content .sidebar .sidebar-container ul li:last-child button:hover {  }
 section.account .account-container .content .sidebar .sidebar-container ul li:last-child button:hover img {  }
+
+/****** tailwind ******/
+
+section.account {
+    @apply w-full h-full relative;
+}
+
+section.account .account-content {
+    @apply flex flex-nowrap items-stretch flex-col justify-start h-full;
+    align-content: stretch;
+}
+
+section.account .info {
+    @apply flex flex-[1_0_auto] items-center flex-nowrap justify-start w-full;
+    align-content: stretch;
+}
+
+section.account .info .img {
+    @apply flex-[0_1_auto] px-8;
+}
+
+section.account .info .img img {
+    --size: 200px;
+    width: var(--size);
+    height: var(--size);
+    @apply rounded-full border border-black border-opacity-20;
+}
+
+section.account .info .data {
+    @apply flex-[1_0_auto] px-8;
+}
+
+section.account .info .data .inputs {
+    @apply flex flex-wrap gap-8;
+}
+
+section.account .info .data .inputs .column {
+    @apply flex-[1_0_calc(50%-2rem)] max-w-[calc(50%-2rem)];
+}
+
+section.account .info .data .inputs .column label {
+    @apply block text-base font-medium mb-2 leading-none;
+}
+
+section.account .info .data .inputs .column input {
+    @apply block w-full text-base bg-light-grey p-2 border rounded border-black border-opacity-20 leading-none;
+}
+
+section.account .bottom {
+    @apply flex-[0_0_auto] text-right;
+}
+
+section.account .bottom button {
+    @apply inline-block w-auto;
+}
+
+section.account h2 {
+    @apply text-xl font-medium mb-1 leading-none;
+}
+
+section.account .username {
+    @apply text-base font-normal mb-4 leading-none;
+}
+
+section.account .sidebar {
+    @apply flex-[1_0_auto] w-full max-w-[20%] relative;
+}
+
+section.account .sidebar .sidebar-container {
+    @apply p-0 w-full h-full border-r border-black py-4 flex flex-col justify-center items-stretch pr-4;
+}
+
+section.account .sidebar .user {
+    @apply flex-[0_0_auto] px-2 border-b border-black;
+}
+
+section.account .sidebar .user h2 {
+    @apply text-base leading-6 mb-0 font-medium;
+}
+
+section.account .sidebar .user .subtitle {
+    @apply text-base leading-6 mb-4 font-light;
+}
+
+section.account .sidebar ul {
+    @apply flex-[1_0_auto] m-0 list-none flex flex-col content-start items-stretch justify-start px-2 gap-2 pt-4;
+}
+
+section.account .sidebar ul li {
+    @apply flex-[0_0_auto] w-full;
+}
+
+section.account .sidebar ul li:last-child {
+    @apply flex-[1_0_auto] flex items-end;
+}
+
+section.account .tab {
+    @apply flex-[1_0_auto];
+}
+
+section.account .tab .tab-header {
+    @apply p-4;
+}
+
+section.account .tab .tab-header .title h3 {
+    @apply text-xl mb-0 leading-none font-semibold;
+}
+
+section.account .tab .tab-container {
+    @apply px-8;
+}
+
+section.account .tab .tab-container form .form-control {
+    @apply py-4;
+}
+
+section.account .tab .tab-container form .form-control label {
+    @apply block text-lg mb-2 leading-none font-medium;
+}
+
+section.account .tab .tab-container form .form-control input {
+    @apply block w-full;
+}
+
+/* El resto se mantiene en CSS puro */
+section.account .info .img img {
+    --size: 200px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 100%;
+    border: 1px solid rgba(0, 0, 0, .2);
+}

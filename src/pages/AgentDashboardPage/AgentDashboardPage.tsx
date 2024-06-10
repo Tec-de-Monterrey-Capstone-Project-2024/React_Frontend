@@ -40,7 +40,7 @@ const AgentDashboardPage: React.FC = () => {
           }));
           setMetrics(transformedMetrics);
         } else {
-          setMetrics(null);
+          setMetrics([]);
         }
       }
       setLoadingMetrics(false);
@@ -69,7 +69,7 @@ const AgentDashboardPage: React.FC = () => {
         <div className='agent-content'>
           <div className='column'>
             <h2>KPIs</h2>
-            {loadingMetrics ? <p>Loading...</p> : (metrics ? (
+            {loadingMetrics ? <p data-testid="txt-metric-loading">Loading...</p> : (metrics && metrics.length > 0 ? (
               <div className='metrics'>
                 {metrics.map(metric => {
                   const { id, metric_info_code, value } = metric;
@@ -88,7 +88,9 @@ const AgentDashboardPage: React.FC = () => {
                       value={value}
                       unit={unit}
                       positive_upside={positive_upside}
-                      onClick={() => {}}
+                      onClick={() => {
+                        navigate(`../../dashboard/general-metrics/${metric_info_code}/${Math.round(value)}`);
+                      }}
                     />
                   );
                 })}
@@ -99,7 +101,7 @@ const AgentDashboardPage: React.FC = () => {
           </div>
           <div className='column'>
             <h2>Insights</h2>
-            {loadingInsights ? <p>Loading...</p> : ((insights && insights.length > 0) ? (
+            {loadingInsights ? <p data-testid="txt-insight-loading">Loading...</p> : ((insights && insights.length > 0) ? (
               <div className='insights'>
                 {insights.map(insight => {
                   const { id, insightName, insightSummary } = insight;

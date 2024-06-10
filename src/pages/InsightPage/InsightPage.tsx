@@ -38,7 +38,7 @@ const InsightPage = () => {
                     'Done': { id: 'Done', list: Array.isArray(doneRes) ? doneRes : [] }
                 });
             } catch (error) {
-                console.error(error);
+                // console.error('Failed to load insights', error);
             }
             setLoading(false);
         };
@@ -107,7 +107,7 @@ const InsightPage = () => {
                 [end.id]: end
             });
         } catch (error) {
-            console.error("Failed to update insight status", error);
+            // console.error("Failed to update insight status", error);
             // Revert the changes in case of error
             start.list.splice(source.index, 0, draggableItem);
             setKanban({
@@ -126,14 +126,14 @@ const InsightPage = () => {
                             Object.values(kanban).map(kan => (
                                 <Droppable droppableId={kan.id} key={kan.id}>
                                     {(provided) => (
-                                        <div className='kanban-column' ref={provided.innerRef} {...provided.droppableProps}>
+                                        <div className='kanban-column' ref={provided.innerRef} {...provided.droppableProps} data-testid={`droppable-${kan.id}`}>
                                             <ContentCard>
-                                                <div className='kanban-title'>
+                                                <div className='kanban-title' data-testid={`drop-columns ${kan.id}`}>
                                                     <h1>{kan.id}</h1>
                                                 </div>
-                                                <div className='kanban-rows'>
+                                                <div className='kanban-rows' >
                                                     {kan.list.map((insight, index) => (
-                                                        <div className="w-full" key={insight.id}>
+                                                        <div className="w-full" key={insight.id} data-testid={`draggable-${insight.id}`}>
                                                             <Draggable key={insight.id} draggableId={insight.id.toString()} index={index}>
                                                                 {(provided) => (
                                                                     <div ref={provided.innerRef}

@@ -10,7 +10,7 @@ export type MetricData = {
 const MetricsData: Record<string, MetricData> = {
     "serviceLevel": {
         name: "Service Level",
-        min: 70,
+        min: 40,
         max: 100,
         positive_upside: true,
         unit: '%',
@@ -19,24 +19,24 @@ const MetricsData: Record<string, MetricData> = {
     "abandonmentRate": {
         name: "Abandonment Call Rate",
         min: 0,
-        max: 30,
+        max: 10,
         positive_upside: false,
         unit: '%',
         graph: 'Pie'
     },
     "avgResolutionTime": {
-        name: "First Contact Resolution",
-        min: 70,
-        max: 100,
-        positive_upside: true,
-        unit: '%',
+        name: "Average Resolution Time",
+        min: 120,
+        max: 600,
+        positive_upside: false,
+        unit: 's',
         graph: 'Pie'
     },
     "agentOccupancy": {
         name: "Occupancy",
-        min: 0,
-        max: 30,
-        positive_upside: false,
+        min: 80,
+        max: 90,
+        positive_upside: true,
         unit: '%',
         graph: 'Pie'
     },
@@ -50,16 +50,16 @@ const MetricsData: Record<string, MetricData> = {
     },
     "avgAfterContactWorkTime": {
         name: "Average After Contact Work Time",
-        min: 2,
-        max: 20,
+        min: 10,
+        max: 50,
         positive_upside: false,
         unit: 's',
         graph: 'Gauge'
     },
     "avgHandleTime": {
         name: "Average Handle Time",
-        min: 5,
-        max: 20,
+        min: 120,
+        max: 360,
         positive_upside: false,
         unit: 's',
         graph: 'Gauge'

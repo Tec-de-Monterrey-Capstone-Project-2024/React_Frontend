@@ -41,10 +41,22 @@ const LoginForm: React.FC = () => {
         }
     }
 
+    const [toggleValues, setToggleValues] = useState(true);
+    const setAuthValue = () => {
+        if (toggleValues) {
+            setEmail('a01657142@tec.mx');
+            setPassword('password');
+        } else {
+            setEmail('');
+            setPassword('');
+        }
+        setToggleValues(!toggleValues);
+    }
+
     return (
         <form onSubmit={onLogin}>
             <div className="title">
-                <h3>Login</h3>
+                <h3 onClick={setAuthValue}>Login</h3>
                 {fromForgotForm && <p className="text-sm text-[--dark-red]">You have received an email with instructions, come back after resetting your password.</p>}
             </div>
             <div className="">

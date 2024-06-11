@@ -1,16 +1,19 @@
 import React, { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { AuthProvider } from '../../context/AuthContext';
-import { ErrorProvider } from '../../context/ErrorContext';
-import { DataProvider } from '../../context/DataContext';
+import { ILayout } from './types';
 
-import Navbar from './Navbar';
-import Sidebar from './Sidebar/Sidebar';
+import { AuthProvider } from '../../../context/AuthContext';
+import { ErrorProvider } from '../../../context/ErrorContext';
+import { DataProvider } from '../../../context/DataContext';
 
-import '../../assets/styles/layout.css';
+import Navbar from '../Navbar';
+import Sidebar from '../Sidebar/Sidebar';
 
-const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
+import '../../../assets/styles/layout.css';
+import '../../../assets/styles/buttons.css';
+
+const Layout: React.FC<ILayout> = ({ children }) => {
     const location = useLocation();
     const isAuthPage = location.pathname.includes('auth');
     

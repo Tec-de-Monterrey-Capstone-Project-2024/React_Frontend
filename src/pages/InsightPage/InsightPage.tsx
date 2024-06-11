@@ -119,7 +119,7 @@ const InsightPage = () => {
 
     return (
         <section className="insights-page">
-            <div className="section-container m-8">
+            <div className="section-container container">
                 <div className='kanban'>
                     <DragDropContext onDragEnd={onDragEnd}>
                         {loading ? <p>Loading...</p> : (

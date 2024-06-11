@@ -1,18 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Layout from './Layout';
+import Layout from '../Layout';
 
 // Mocks
-jest.mock('../../context/AuthContext', () => ({
+jest.mock('../../../../context/AuthContext', () => ({
     AuthProvider: ({ children }: { children: React.ReactNode }) => <div data-testid="AuthProvider">{children}</div>,
 }));
 
-jest.mock('../../context/ErrorContext', () => ({
+jest.mock('../../../../context/ErrorContext', () => ({
     ErrorProvider: ({ children }: { children: React.ReactNode }) => <div data-testid="ErrorProvider">{children}</div>,
 }));
 
-jest.mock('../../context/DataContext', () => ({
+jest.mock('../../../../context/DataContext', () => ({
     DataProvider: ({ children }: { children: React.ReactNode }) => <div data-testid="DataProvider">{children}</div>,
 }));
 
